@@ -25,6 +25,7 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
   </properties>
 
   <dependencies>
@@ -45,4 +46,8 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
+
+  <dependencyManagement>
+
+  </dependencyManagement>
 </project>
