@@ -32,15 +32,19 @@ public class ImplRestaurantService implements IRestaurantService{
     @Override
     public List<Restaurant> fetchRestaurantByCity(String resCity) throws NoRestaurantAvailableException {
         List<Restaurant> alllRestaurantList =  restaurantRepo.findAll();
+        List<Restaurant> resultList = new ArrayList<>();
         Boolean resExist = false;
         for(Restaurant restaurant:alllRestaurantList) {
-            if(restaurant.getResCity().equals(resCity)) {
+            if(restaurant.getResCity().toLowerCase().equals(resCity.toLowerCase())) {
+                System.out.println("City in smallcase :"+restaurant.getResCity().toLowerCase());
+                System.out.println("Input in small case :" +resCity.toLowerCase());
                 resExist = true;
+                resultList.add(restaurant);
             }
         }
         if(resExist) {
 
-        return restaurantRepo.findByResCity(resCity);
+        return resultList;
         }
         else {
             throw new NoRestaurantAvailableException("No Restaurant In This City");
@@ -75,7 +79,7 @@ public class ImplRestaurantService implements IRestaurantService{
         List<Restaurant> returnList= new ArrayList<>();
         Boolean resExist = false;
         for(Restaurant restaurant:responseList) {
-            if(restaurant.getResName().contains(resName)) {
+            if(restaurant.getResName().toLowerCase().contains(resName.toLowerCase())) {
                 returnList.add(restaurant);
                 resExist = true;
             }
@@ -95,7 +99,7 @@ public class ImplRestaurantService implements IRestaurantService{
         List<Restaurant> returnList= new ArrayList<>();
         Boolean resExist = false;
         for(Restaurant restaurant:responseList) {
-            if(restaurant.getResCuisines().contains(resCuisine)) {
+            if(restaurant.getResCuisines().stream().anyMatch((cuisine) -> cuisine.toLowerCase().contains(resCuisine.toLowerCase()))) {
                 returnList.add(restaurant);
                 resExist = true;
             }
