@@ -2,6 +2,7 @@ package com.bej.customersapiservice.services;
 
 import com.bej.customersapiservice.domain.Customer;
 import com.bej.customersapiservice.exception.CustomerAlreadyExistException;
+import com.bej.customersapiservice.exception.CustomerNotFoundException;
 
 public interface ICustomerService {
 
@@ -12,5 +13,5 @@ public interface ICustomerService {
 
 
     public Customer registerCustomer(Customer customer) throws CustomerAlreadyExistException;
-
+    public Customer updateCustomer(Customer customer, String customerEmail) throws CustomerAlreadyExistException, CustomerNotFoundException;
 }

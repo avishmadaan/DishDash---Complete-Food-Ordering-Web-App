@@ -2,6 +2,7 @@ package com.bej.customersapiservice.services;
 
 import com.bej.customersapiservice.domain.Customer;
 import com.bej.customersapiservice.exception.CustomerAlreadyExistException;
+import com.bej.customersapiservice.exception.CustomerNotFoundException;
 import com.bej.customersapiservice.proxy.CustomerProxy;
 import com.bej.customersapiservice.respository.CustomerRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,4 +33,15 @@ public class ImplCustomerService implements ICustomerService {
         customerProxy.registerCustomer(customer);
         return customerRepo.save(customer);
     }
+
+    public Customer updateCustomer(Customer customer, String customerEmail) throws CustomerNotFoundException {
+        if(customerRepo.findById(customerEmail).isPresent()) {
+            return customerRepo.save(customer);
+        }
+        else {
+            throw new CustomerNotFoundException();
+        }
+    }
+
+
 }
