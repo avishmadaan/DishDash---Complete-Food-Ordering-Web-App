@@ -17,14 +17,15 @@ public class CustomerServiceImpl implements CustomerService{
     private CustomerRepo customerRepo;
     @Override
     public Customer saveCustomer(Customer customer) throws CustomerAlreadyExistException {
-        if(customerRepo.findById(customer.getCustomerId()).isPresent())
+        if(customerRepo.findById(customer.getCustomerEmail()).isPresent())
         {
             throw new CustomerAlreadyExistException();
-        }return customerRepo.save(customer);
+        }
+        return customerRepo.save(customer);
     }
 
     @Override
-    public Customer findByCustomerEmailAndCustomerPassword(String customerEmail, String customerPassword) throws InvalidCredentialsExceptions, CustomerNotFoundException {
+    public Customer loginCustomer(String customerEmail, String customerPassword) throws InvalidCredentialsExceptions, CustomerNotFoundException {
         Customer customer=customerRepo.findByCustomerEmailAndCustomerPassword(customerEmail,customerPassword);
         if(customer==null)
         {
@@ -41,14 +42,14 @@ public class CustomerServiceImpl implements CustomerService{
     }
 
     @Override
-    public boolean deleteCustomer(String customerId) throws CustomerNotFoundException {
+    public boolean deleteCustomer(String customerEmail) throws CustomerNotFoundException {
         boolean isDeleted=false;
-        if(customerRepo.findById(customerId).isEmpty())
+        if(customerRepo.findById(customerEmail).isEmpty())
         {
             throw new CustomerNotFoundException();
 
-        }else{
-            customerRepo.deleteById(customerId);
+        }else {
+            customerRepo.deleteById(customerEmail);
             isDeleted=true;
         }
         return isDeleted;

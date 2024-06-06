@@ -16,7 +16,7 @@ public class CustomersapiserviceApplication {
 	public FilterRegistrationBean jwtFilterBean(){
 		FilterRegistrationBean filterRegistrationBean = new FilterRegistrationBean();
 		filterRegistrationBean.setFilter(new JwtFilter());
-		filterRegistrationBean.addUrlPatterns("/api/v1/customers/*");
+		filterRegistrationBean.addUrlPatterns("/api/v2/customers/*");
 		return filterRegistrationBean;
 	}
 }

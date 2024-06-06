@@ -29,7 +29,7 @@ public class CustomerController {
 
     ResponseEntity responseEntity=null;
 
-    @PostMapping("/save")
+    @PostMapping("/register")
     public ResponseEntity<?> registerCustomer(@RequestBody Customer customer)
     {
         try{
@@ -43,15 +43,20 @@ public class CustomerController {
 
     @PostMapping("/login")
     public ResponseEntity<?> loginCustomer(@RequestBody Customer customer) throws InvalidCredentialsExceptions, CustomerNotFoundException {
-        Map<String,String> map = null;
-
-        Customer customerObj=customerService.findByCustomerEmailAndCustomerPassword(customer.getCustomerEmail(), customer.getCustomerPassword());
-        if(customerObj==null)
-        {
-            throw new InvalidCredentialsExceptions();
+        try {
+            Customer customerObj = customerService.loginCustomer(customer.getCustomerEmail(), customer.getCustomerPassword());
+            if (customerObj == null) {
+                throw new InvalidCredentialsExceptions();
+            }
+            String token = securityTokenGenerator.createToken(customer);
+            responseEntity = new ResponseEntity<>(token,HttpStatus.OK);
         }
-        String token=securityTokenGenerator.createToken(customer);
-        return new ResponseEntity<>(token,HttpStatus.OK);
+
+        catch (CustomerNotFoundException e) {
+            responseEntity = new ResponseEntity(e.getMessage(), HttpStatus.NOT_FOUND);
+
+        }
+        return responseEntity;
     }
 
 }

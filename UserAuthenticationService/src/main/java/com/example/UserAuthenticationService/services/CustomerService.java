@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface CustomerService {
     Customer saveCustomer(Customer customer) throws CustomerAlreadyExistException;
-    Customer findByCustomerEmailAndCustomerPassword(String customerEmail,String customerPassword) throws InvalidCredentialsExceptions, CustomerNotFoundException;
+    Customer loginCustomer(String customerEmail,String customerPassword) throws InvalidCredentialsExceptions, CustomerNotFoundException;
     List<Customer> getAllCustomer();
-    boolean deleteCustomer(String customerId) throws CustomerNotFoundException;
+    boolean deleteCustomer(String customerEmail) throws CustomerNotFoundException;
 }
