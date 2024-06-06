@@ -4,5 +4,5 @@ import com.example.UserAuthenticationService.domain.Customer;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface CustomerRepo extends JpaRepository<Customer,String> {
-    public Customer findByCustomerEmailAndCustomerPassword(String customerName,String customerPassword);
+    public Customer findByCustomerEmailAndCustomerPassword(String customerEmail,String customerPassword);
 }
