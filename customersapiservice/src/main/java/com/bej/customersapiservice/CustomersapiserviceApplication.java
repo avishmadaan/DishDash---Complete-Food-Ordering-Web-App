@@ -1,12 +1,14 @@
 package com.bej.customersapiservice;
 
-import com.example.UserAuthenticationService.filter.JwtFilter;
+import com.bej.customersapiservice.filter.JwtFilter;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
+@EnableFeignClients
 public class CustomersapiserviceApplication {
 
 	public static void main(String[] args) {

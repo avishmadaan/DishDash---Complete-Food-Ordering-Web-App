@@ -1,4 +1,4 @@
-package com.example.UserAuthenticationService.filter;
+package com.bej.customersapiservice.filter;
 
 import io.jsonwebtoken.Jwts;
 import jakarta.servlet.*;
@@ -25,8 +25,8 @@ public class JwtFilter extends GenericFilterBean {
             //extract token from the header
             String jwtToken = authHeader.substring(7);//Bearer => 6+1 since token begins with bearer
             //token validation
-            String customerName = Jwts.parser().setSigningKey("secretKey123").parseClaimsJws(jwtToken).getBody().getSubject();
-            httpServletRequest.setAttribute("customerName",customerName);
+            String customerEmail = Jwts.parser().setSigningKey("secretKey123").parseClaimsJws(jwtToken).getBody().getSubject();
+            httpServletRequest.setAttribute("customerName",customerEmail);
             filterChain.doFilter(servletRequest,servletResponse);//some more filters, controllers
         }
     }
