@@ -21,6 +21,7 @@
     <module>ApiGateaway</module>
     <module>EurekaDiscoveryServer</module>
     <module>UserAuthenticationService</module>
+    <module>customersapiservice</module>
   </modules>
 
   <properties>
