@@ -21,7 +21,7 @@ public class Customer {
     private String customerProfilePic;
     private long customerPhone;
     private Address customerAddress;
-    private List<String> customerFavRestaurants;
+    private List<Object> customerFavRestaurants;
     private List<Object> customerFavDishes;
 
 }

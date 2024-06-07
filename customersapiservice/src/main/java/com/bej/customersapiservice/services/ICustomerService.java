@@ -17,10 +17,10 @@ public interface ICustomerService {
 
     public Customer registerCustomer(Customer customer) throws CustomerAlreadyExistException;
     public Customer updateCustomer(Customer customer, String customerEmail) throws CustomerAlreadyExistException, CustomerNotFoundException;
-    public String addFavoriteRestaurant(String restName,String customerEmail);
+    public String addFavoriteRestaurant(String restName,String customerEmail) throws CustomerNotFoundException;
     public String addFavoriteDish(Object obj,String customerEmail) throws CustomerNotFoundException;
-    public List<String> getAllFavRestaurant(String customerEmail);
+    public List<Object> getAllFavRestaurant(String customerEmail);
     public List<Object> getAllFavDishes(String customerEmail);
-    public boolean deleteFavRestaurant(String customerEmail,String restName) throws CustomerNotFoundException;
+    public boolean deleteFavRestaurant(String customerEmail,Object restName) throws CustomerNotFoundException;
     public boolean deleteFavDish(String customerEmail,Object dish) throws CustomerNotFoundException;
 }

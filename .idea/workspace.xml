@@ -5,10 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9c8a6dba-7c8c-426b-ad82-e45f53e77f5c" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ApiGateaway/src/main/java/com/example/ApiGateaway/config/AppConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/ApiGateaway/src/main/java/com/example/ApiGateaway/config/AppConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserAuthenticationService/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/UserAuthenticationService/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/customersapiservice/src/main/java/com/bej/customersapiservice/controller/CustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/customersapiservice/src/main/java/com/bej/customersapiservice/controller/CustomerController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/customersapiservice/src/main/java/com/bej/customersapiservice/domain/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/customersapiservice/src/main/java/com/bej/customersapiservice/domain/Customer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/customersapiservice/src/main/java/com/bej/customersapiservice/services/ICustomerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/customersapiservice/src/main/java/com/bej/customersapiservice/services/ICustomerService.java" afterDir="false" />
@@ -41,26 +38,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.CustomersapiserviceApplication.executor": "Run",
-    "Application.EurekaDiscoveryServerApplication.executor": "Run",
-    "Application.UserAuthenticationServiceApplication.executor": "Run",
-    "Application.abc.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "dev-v1",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Niit/Major_Capstone_project/major-capstone-project",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.CustomersapiserviceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Application.EurekaDiscoveryServerApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Application.UserAuthenticationServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Application.abc.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;dev-v1&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Niit/Major_Capstone_project/major-capstone-project&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Avish Madaan\Desktop\NIIT\Phase 2\Course 14 - Capstone Project\major-capstone-project\FoodieApp" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.abc">
+  <component name="RunManager" selected="Application.CustomersapiserviceApplication">
     <configuration name="CustomersapiserviceApplication" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="com.bej.customersapiservice.CustomersapiserviceApplication" />
       <module name="customersapiservice" />
@@ -121,8 +118,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.CustomersapiserviceApplication" />
-        <item itemvalue="Application.UserAuthenticationServiceApplication" />
         <item itemvalue="Application.EurekaDiscoveryServerApplication" />
+        <item itemvalue="Application.UserAuthenticationServiceApplication" />
       </list>
     </recent_temporary>
   </component>

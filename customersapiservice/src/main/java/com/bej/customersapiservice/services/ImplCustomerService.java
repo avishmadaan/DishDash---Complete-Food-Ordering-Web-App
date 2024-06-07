@@ -46,18 +46,18 @@ public class ImplCustomerService implements ICustomerService {
     }
 
     @Override
-    public String addFavoriteRestaurant(String restName,String customerEmail) {
+    public String addFavoriteRestaurant(String restName,String customerEmail) throws CustomerNotFoundException {
         System.out.println("Inside");
         System.out.println("Inside Imple :" + customerRepo.findById(customerEmail).get() +"Object :"+restName);
-        if(customerRepo.findById(customerEmail).get().getCustomerFavRestaurants()==null)
+        Customer optionalCustomer=customerRepo.findById(customerEmail).orElseThrow(CustomerNotFoundException::new);
+        if(optionalCustomer.getCustomerFavRestaurants()==null)
         {
-            System.out.println("Inside if");
-            customerRepo.findById(customerEmail).get().setCustomerFavRestaurants(new ArrayList<>());
+            optionalCustomer.setCustomerFavRestaurants(new ArrayList<>());
         }
 
-        List<String> favList = new ArrayList<>();
+        List<Object> favList = optionalCustomer.getCustomerFavRestaurants();
         favList.add(restName);
-        customerRepo.findById(customerEmail).get().setCustomerFavRestaurants(favList);
+        customerRepo.save(optionalCustomer);
         return "Favourite Restaurant added";
     }
 
@@ -77,7 +77,7 @@ public class ImplCustomerService implements ICustomerService {
     }
 
     @Override
-    public List<String> getAllFavRestaurant(String customerEmail) {
+    public List<Object> getAllFavRestaurant(String customerEmail) {
 
         Optional<Customer> restCustomer = customerRepo.findById(customerEmail);
         System.out.println(restCustomer.get());
@@ -92,7 +92,7 @@ public class ImplCustomerService implements ICustomerService {
     }
 
     @Override
-    public boolean deleteFavRestaurant(String customerEmail,String restName) throws CustomerNotFoundException {
+    public boolean deleteFavRestaurant(String customerEmail,Object restName) throws CustomerNotFoundException {
         boolean isDeleted=false;
         Optional<Customer> optionalCustomer=customerRepo.findById(customerEmail);
 
@@ -101,7 +101,7 @@ public class ImplCustomerService implements ICustomerService {
             throw new CustomerNotFoundException();
         }
         Customer customer=optionalCustomer.get();
-        List<String> favRestList= customer.getCustomerFavRestaurants();
+        List<Object> favRestList= customer.getCustomerFavRestaurants();
         favRestList.remove(restName);
         customer.setCustomerFavRestaurants(favRestList);
         customerRepo.save(customer);

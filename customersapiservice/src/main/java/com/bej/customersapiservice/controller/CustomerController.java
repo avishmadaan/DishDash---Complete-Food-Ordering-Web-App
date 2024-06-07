@@ -39,8 +39,7 @@ public class CustomerController {
     }
 
     @PutMapping("/customers/addfavres")
-    public ResponseEntity updateFavRest(@RequestBody String obj, HttpServletRequest request)
-    {
+    public ResponseEntity updateFavRest(@RequestBody String obj, HttpServletRequest request) throws CustomerNotFoundException {
         String customerEmail = (String) request.getAttribute("customerEmail");
         return new ResponseEntity<>(iCustomerService.addFavoriteRestaurant(obj,customerEmail),HttpStatus.OK);
     }
@@ -69,7 +68,7 @@ public class CustomerController {
         return new ResponseEntity<>(iCustomerService.deleteFavDish(customerEmail,dish),HttpStatus.OK);
     }
     @DeleteMapping("/customers/deletedrestaurant/{restName}")
-    public ResponseEntity<?> deleteFavRest(@PathVariable String restName, HttpServletRequest request) throws CustomerNotFoundException {
+    public ResponseEntity<?> deleteFavRest(@RequestBody Object restName, HttpServletRequest request) throws CustomerNotFoundException {
         String customerEmail = (String) request.getAttribute("customerEmail");
         return new ResponseEntity<>(iCustomerService.deleteFavRestaurant(customerEmail,restName),HttpStatus.OK);
     }
