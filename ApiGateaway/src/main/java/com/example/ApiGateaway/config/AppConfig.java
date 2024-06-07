@@ -13,7 +13,13 @@ public class AppConfig {
 
         return builder.routes()
                 .route(p -> p.path("/api/v1/**")
-                .uri("lb://user-authentication-service/"))
+                .uri("lb://UserAuthenticationService/"))
+
+                .route(p -> p.path("/api/v2/**")
+                        .uri("lb://customersapiservice/"))
+
+                .route(p -> p.path("/api/v3/**")
+                        .uri("lb://RestaurantService/"))
 
                 .build();
     }
