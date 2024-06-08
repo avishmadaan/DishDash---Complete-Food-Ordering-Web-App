@@ -1,0 +1,16 @@
+.bar {
+    height: 5vh;
+    background-color: yellow;
+    /* display: flex; */
+   /* justify-content: center; */
+   /* align-items: center; */
+}
+
+.bar span {
+    color: red;
+    font-style: italic;
+}
+
+.bar p {
+    margin-bottom: 0;
+}

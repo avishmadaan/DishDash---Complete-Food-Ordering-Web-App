@@ -1,0 +1,48 @@
+<div class="loginform p-5">
+  <form #loginform = "ngForm" ngNativeValidate (ngSubmit)="loginUser()">
+    <!-- Email input -->
+    <div data-mdb-input-init class="form-outline mb-4">
+      <label class="form-label" for="email">Email address</label>
+      <input
+        type="email"
+        id="email"
+        class="form-control"
+        name="customerEmail"
+        [(ngModel)]="userlogin.customerEmail"
+        #customerEmail="ngModel"
+        required
+      />
+    
+    </div>
+
+    <!-- Password input -->
+    <div data-mdb-input-init class="form-outline mb-4">
+      <label class="form-label" for="password">Password</label>
+      <input
+        type="password"
+        id="password"
+        class="form-control"
+        name="customerPassword"
+        [(ngModel)]="userlogin.customerPassword"
+        #customerPassword="ngModel"
+        required
+      />
+   
+    </div>
+
+    <div class="button">
+      <!-- Submit button -->
+      <button
+        type="submit"
+        class="btn btn-primary btn-block mb-4"
+        [disabled]="loginform.invalid"
+      >
+        Sign in
+      </button>
+    </div>
+    <!-- Register buttons -->
+    <div class="text-center">
+      <p>Not a member? <a href="#!">Register</a></p>
+    </div>
+  </form>
+</div>

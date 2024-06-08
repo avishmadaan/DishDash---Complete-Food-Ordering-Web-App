@@ -15,6 +15,7 @@ import java.util.List;
 
 @RequestMapping("/api/v3")
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 public class RestaurantController {
 
     @Autowired
@@ -22,7 +23,7 @@ public class RestaurantController {
 
     @PostMapping("/registerrestaurant")
     public ResponseEntity registerRestaurant(@RequestBody Restaurant restaurant) throws RestaurantAlreadyExistException {
-        return new ResponseEntity(iRestaurantService.registerRestaurant(restaurant), HttpStatus.OK);
+        return new ResponseEntity(iRestaurantService.registerRestaurant(restaurant), HttpStatus.CREATED);
     }
     @GetMapping("/allrestaurants")
     public ResponseEntity findAllRestaurants() {

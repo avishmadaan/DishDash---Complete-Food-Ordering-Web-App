@@ -1,0 +1,7 @@
+.button {
+    text-align: center;
+}
+
+.button button {
+    min-width: 100%;
+}
