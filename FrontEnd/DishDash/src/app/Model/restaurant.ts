@@ -1,7 +1,7 @@
 import { dish } from "./dish"
 
 export class restaurant {
-    redId:string
+    resId:string
     resName:string
     resAddress:string
     resCity:string

@@ -30,10 +30,16 @@ public class RestaurantController {
         return new ResponseEntity<>(iRestaurantService.fetchAllRestaurants(), HttpStatus.OK);
     }
 
-    @GetMapping("/restaurants/{resCity}")
+    @GetMapping("/restaurantsbycity/{resCity}")
     public ResponseEntity findRestaurantsByCity(@PathVariable String resCity) throws NoRestaurantAvailableException {
        List<Restaurant> responseList = iRestaurantService.fetchRestaurantByCity(resCity);
        return new ResponseEntity(responseList, HttpStatus.OK);
+    }
+
+    @GetMapping("/restaurantsbyid/{resId}")
+    public ResponseEntity findRestaurantsById(@PathVariable String resId) throws NoRestaurantAvailableException {
+        Restaurant response = iRestaurantService.fetchRestaurantById(resId);
+        return new ResponseEntity(response, HttpStatus.OK);
     }
 
     @GetMapping("/menu/{resId}")

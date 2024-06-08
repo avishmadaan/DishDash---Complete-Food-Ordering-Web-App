@@ -18,6 +18,16 @@ public class ImplRestaurantService implements IRestaurantService{
     @Autowired
     private RestaurantRepo restaurantRepo;
 
+    public Restaurant fetchRestaurantById(String redId) throws NoRestaurantAvailableException {
+        if(!restaurantRepo.findById(redId).isPresent()) {
+            throw new NoRestaurantAvailableException("No Restaurant with this id");
+        }
+        else {
+            return restaurantRepo.findById(redId).get();
+        }
+
+    }
+
     public Restaurant registerRestaurant(Restaurant restaurant) throws RestaurantAlreadyExistException {
         if(restaurantRepo.findById(restaurant.getResId()).isPresent()) {
             throw new RestaurantAlreadyExistException("Restaurant Already Exist");

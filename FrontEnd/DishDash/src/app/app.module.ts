@@ -19,6 +19,10 @@ import { FormsModule } from '@angular/forms';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import {MatIconModule} from '@angular/material/icon';
 import { RestaurantcardComponent } from './Components/restaurantcard/restaurantcard.component';
+import { HomepageComponent } from './Components/homepage/homepage.component';
+import { CutomerfavouriteComponent } from './Components/cutomerfavourite/cutomerfavourite.component';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { LoadingbarComponent } from './Components/loadingbar/loadingbar.component';
 
 @NgModule({
   declarations: [
@@ -34,13 +38,17 @@ import { RestaurantcardComponent } from './Components/restaurantcard/restaurantc
     LoginComponent,
     RegisterComponent,
     PagenotfoundComponent,
-    RestaurantcardComponent
+    RestaurantcardComponent,
+    HomepageComponent,
+    CutomerfavouriteComponent,
+    LoadingbarComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     MatIconModule,
+    MatProgressBarModule,
     HttpClientModule
   ],
   providers: [

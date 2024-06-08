@@ -1,6 +1,8 @@
 
-<div class="image">
+<div class="card pointer" routerLink="/restaurants/{{onerestaurant.resId}}">
+<div class="image" >
         <img [src]="onerestaurant.resImages[0]" alt="">
+    
     </div>
     <div class="info p-3 flex">
         <div class="left">
@@ -11,6 +13,8 @@
 
         <div class="right">
             <span>{{onerestaurant.resRating}}</span>
+            <mat-icon>heart</mat-icon>
 
         </div>
     </div>
+</div>
