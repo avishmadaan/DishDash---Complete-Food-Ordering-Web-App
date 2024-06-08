@@ -6,12 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="9c8a6dba-7c8c-426b-ad82-e45f53e77f5c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RestaurantService/src/main/java/com/example/RestaurantService/controller/RestaurantController.java" beforeDir="false" afterPath="$PROJECT_DIR$/RestaurantService/src/main/java/com/example/RestaurantService/controller/RestaurantController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RestaurantService/src/main/java/com/example/RestaurantService/service/IRestaurantService.java" beforeDir="false" afterPath="$PROJECT_DIR$/RestaurantService/src/main/java/com/example/RestaurantService/service/IRestaurantService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RestaurantService/src/main/java/com/example/RestaurantService/service/ImplRestaurantService.java" beforeDir="false" afterPath="$PROJECT_DIR$/RestaurantService/src/main/java/com/example/RestaurantService/service/ImplRestaurantService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Model/customer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Model/customer.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/app-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/app-routing.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/app.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/customersapiservice/src/main/java/com/bej/customersapiservice/domain/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/customersapiservice/src/main/java/com/bej/customersapiservice/domain/Customer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,7 +54,7 @@
       <recent name="C:\Users\Avish Madaan\Desktop\NIIT\Phase 2\Course 14 - Capstone Project\major-capstone-project\FoodieApp" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.CustomersapiserviceApplication">
     <configuration name="CustomersapiserviceApplication" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="com.bej.customersapiservice.CustomersapiserviceApplication" />
       <module name="customersapiservice" />

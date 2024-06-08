@@ -13,9 +13,9 @@ import java.util.List;
 @Setter
 @ToString
 public class Customer {
-
-    private String customerName;
     @Id
+    private  String customerId;
+    private String customerName;
     private String customerEmail;
     private String customerPassword;
     private String customerProfilePic;
