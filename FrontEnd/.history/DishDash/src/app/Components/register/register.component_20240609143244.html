@@ -55,11 +55,11 @@
         <mat-label>Confirm password</mat-label>
         <input matInput type="password" placeholder="confirm Password" formControlName="confirmPassword">
         <span *ngIf="confirmPassword?.dirty ||  confirmPassword?.touched ">
-            <mat-error class="error" *ngIf="confirmPassword?.errors?.['required']">
-                  Confirm Password is required
+         <mat-error *ngIf="confirmPassword?.errors?.['required']">
+               <small>Confirm Password is required</small>
             </mat-error>
-            <mat-error *ngIf="registerForm?.errors?.['passwordMismatch']">
-                  >Password and Confirm Password should match
+            <mat-error *ngIf="confirmPassword?.dirty && registerForm?.errors?.['passwordMismatch']">
+               <small>Password and Confirm Password should match</small>
             </mat-error>
          </span>
      </mat-form-field><br>
@@ -79,6 +79,5 @@
      </mat-form-field>
      </div> -->
     </div>
-    <button mat-raised-button color="primary" type="submit" [disabled]="registerForm.invalid">Submit</button>
+    <button mat-raised-button color="primary" type="submit" >Submit</button>
 </form>
-

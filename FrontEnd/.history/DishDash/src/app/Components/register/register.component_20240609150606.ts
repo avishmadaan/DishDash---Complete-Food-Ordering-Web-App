@@ -101,7 +101,7 @@ export class RegisterComponent {
       const password=c.get('customerPassword');
       console.log(password);
       
-      const confirmPass=c.get('confirmPassword');
+      const confirmPass=c.get('confirmPassowrd');
       console.log(confirmPass);
       if (!password?.value || !confirmPass?.value) {
         return null;

@@ -5,8 +5,7 @@
 /tmp
 /out-tsc
 /bazel-out
-/.history
-/.gitignore
+FrontEnd/.history/
 
 # Node
 /node_modules

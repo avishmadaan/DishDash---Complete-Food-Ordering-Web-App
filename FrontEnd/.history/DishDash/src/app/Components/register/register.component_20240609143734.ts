@@ -12,21 +12,20 @@ export class RegisterComponent {
     constructor(private fb:FormBuilder, private registerService:RegisterService){}
     registerForm=this.fb.group({
       customerId:['',[Validators.required]],
-      customerName:['',[Validators.required,Validators.minLength(3),Validators.pattern(/^[a-zA-Z ]+$/)]],
+      customerName:['',[Validators.required,Validators.minLength(3),Validators.pattern(/^[a-zA-Z]+$/)]],
       customerEmail:['',[Validators.required,Validators.pattern(/^\S+@\S+\.\S+$/)]],
       customerPassword:['',[Validators.required,Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/)]],
       confirmPassword:['',[Validators.required,Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/)]],
       customerProfilePic:[''],
-      customerPhone:['',[Validators.required,Validators.pattern(/^[6789]\d{9}$/)]]
-      // customerAddress:this.fb.group({
-      //   address1: [''],
-      //   landMark: [''],
-      //   city: [''],
-      //   pinCode: [''],
-      //   currentLocation: ['']
-      // })
+      customerPhone:['',[Validators.required,Validators.pattern(/^[6789]\d{9}$/)]],
+      customerAddress:this.fb.group({
+        address1: [''],
+        landMark: [''],
+        city: [''],
+        pinCode: [''],
+        currentLocation: ['']
+      })
     },{validators:this.checkPassowrdMisMatch})
-
     get customerId()
     {
       return this.registerForm.get('customerId');
@@ -99,15 +98,10 @@ export class RegisterComponent {
     checkPassowrdMisMatch(c:AbstractControl)
     {
       const password=c.get('customerPassword');
-      console.log(password);
-      
-      const confirmPass=c.get('confirmPassword');
-      console.log(confirmPass);
+      const confirmPass=c.get('confirmPassowrd');
       if (!password?.value || !confirmPass?.value) {
         return null;
       }
-      console.log(password.value === confirmPass.value ? null : { passwordMismatch: true });
-      
   
       return password.value === confirmPass.value ? null : { passwordMismatch: true };
     }

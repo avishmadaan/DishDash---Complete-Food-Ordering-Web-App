@@ -1,0 +1,33 @@
+<p>register works!</p>
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <mat-form-field color="primary" appearnace="legacy">
+        <input type="text" placeholder="Your Name" formControlName="customerName">
+    </mat-form-field>
+    <!-- customerEmail-->
+     <mat-form-field>
+        <input type="email" placeholder="email" formControlName="customerEmail">
+     </mat-form-field>
+    <!-- customerPassword -->
+     <mat-form-field>
+        <input type="password" placeholder="Password" formControlName="customerPassword">
+     </mat-form-field>
+     <!-- confirm password -->
+     <mat-form-field>
+        <input type="password" placeholder="Password" formControlName="confirmPassword">
+     </mat-form-field>
+    <!-- customerProfilePic -->
+    <mat-form-field>
+        <input type="file" placeholder="upload picture"  formControlName="customerProfilePic">
+     </mat-form-field>
+    <!-- customerPhone -->
+    <mat-form-field>
+        <input type="number" placeholder="contact number" formControlName="customerPhone">
+     </mat-form-field>
+    <!-- customerAddress -->
+     <div formGroupName="customerAddress">
+        <mat-form-field>
+        <input type="text">
+     </mat-form-field>
+     </div>
+    
+</form>

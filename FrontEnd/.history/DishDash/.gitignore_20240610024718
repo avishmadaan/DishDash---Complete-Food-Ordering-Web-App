@@ -6,7 +6,6 @@
 /out-tsc
 /bazel-out
 /.history
-/.gitignore
 
 # Node
 /node_modules

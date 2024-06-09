@@ -99,10 +99,7 @@ export class RegisterComponent {
     checkPassowrdMisMatch(c:AbstractControl)
     {
       const password=c.get('customerPassword');
-      console.log(password);
-      
-      const confirmPass=c.get('confirmPassword');
-      console.log(confirmPass);
+      const confirmPass=c.get('confirmPassowrd');
       if (!password?.value || !confirmPass?.value) {
         return null;
       }
