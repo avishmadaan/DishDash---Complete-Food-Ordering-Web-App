@@ -24,6 +24,9 @@ import { CutomerfavouriteComponent } from './Components/cutomerfavourite/cutomer
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { LoadingbarComponent } from './Components/loadingbar/loadingbar.component';
 
+import {CookieService} from 'ngx-cookie-service';
+import {MatDialogModule} from '@angular/material/dialog';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,11 +52,10 @@ import { LoadingbarComponent } from './Components/loadingbar/loadingbar.componen
     FormsModule,
     MatIconModule,
     MatProgressBarModule,
+    MatDialogModule,
     HttpClientModule
   ],
-  providers: [
-    provideAnimationsAsync()
-  ],
+  providers: [ provideAnimationsAsync(), CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

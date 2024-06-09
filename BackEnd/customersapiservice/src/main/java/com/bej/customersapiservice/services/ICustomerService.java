@@ -17,6 +17,7 @@ public interface ICustomerService {
 
     public Customer registerCustomer(Customer customer) throws CustomerAlreadyExistException;
     public Customer updateCustomer(Customer customer, String customerEmail) throws CustomerAlreadyExistException, CustomerNotFoundException;
+    
     public String addFavoriteRestaurant(String restName,String customerEmail) throws CustomerNotFoundException;
     public String addFavoriteDish(Object obj,String customerEmail) throws CustomerNotFoundException;
     public List<Object> getAllFavRestaurant(String customerEmail);
