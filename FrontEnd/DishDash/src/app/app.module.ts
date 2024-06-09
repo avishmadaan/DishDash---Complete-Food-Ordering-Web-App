@@ -15,7 +15,6 @@ import { LoginComponent } from './Components/login/login.component';
 import { RegisterComponent } from './Components/register/register.component';
 import { PagenotfoundComponent } from './Components/pagenotfound/pagenotfound.component';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import {MatIconModule} from '@angular/material/icon';
 import { RestaurantcardComponent } from './Components/restaurantcard/restaurantcard.component';
@@ -23,6 +22,11 @@ import { HomepageComponent } from './Components/homepage/homepage.component';
 import { CutomerfavouriteComponent } from './Components/cutomerfavourite/cutomerfavourite.component';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { LoadingbarComponent } from './Components/loadingbar/loadingbar.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -44,12 +48,16 @@ import { LoadingbarComponent } from './Components/loadingbar/loadingbar.componen
     LoadingbarComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
-    FormsModule,
     MatIconModule,
     MatProgressBarModule,
+    MatFormFieldModule,
+    MatInputModule,
+    FormsModule,
+    ReactiveFormsModule,
     HttpClientModule
+    
   ],
   providers: [
     provideAnimationsAsync()
