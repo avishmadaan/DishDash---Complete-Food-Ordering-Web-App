@@ -9,17 +9,28 @@ import { RestaurantService } from '../../services/restaurant.service';
 })
 export class RestaurantComponent implements OnInit {
 
+  city:string;
   restaurants:restaurant[] = [];
 
   constructor(private resService:RestaurantService) {}
 
   ngOnInit(): void {
-    this.resService.fetchRestaurantsByCity().subscribe({
+    this.resService.cityEmiter.subscribe({
+      next:data => {
+        this.city = data
+
+    this.resService.restaurantsEmitter.subscribe({
       next:data => {
         console.log(data);
         this.restaurants = data
       }
     })
+
+
+
+      }
+    })
+    
   }
 
 }

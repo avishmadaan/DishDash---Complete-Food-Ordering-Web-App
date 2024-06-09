@@ -3,10 +3,14 @@
     color: white;
     height: 40vh;
     flex-direction: column;
-    background-image: url('../../../../Images/background.jpg');
+    /* background-image: url('../../../../Images/background.jpg'); */
     background-size: cover;
     /* filter: blur(5px); */
 
+}
+.headline span {
+    font-style: italic;
+    color: red;
 }
 
 .headline  h1{

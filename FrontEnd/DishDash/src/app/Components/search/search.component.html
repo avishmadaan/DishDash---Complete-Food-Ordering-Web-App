@@ -1,12 +1,23 @@
 <div class="main flex justify-content align-items">
 
     <div class="headline ">
-        <h1>Discover the best food & drinks in CITY </h1>
+        <h1>Discover the best food & drinks in <span>{{city}}</span></h1>
     </div>
 
     <div class="searchbar flex align-items m-3">
+
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle flex justify-content-around align-items-center" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <mat-icon  aria-hidden="false" aria-label="Example home icon" fontIcon="location_on"></mat-icon> {{city}}
+            </button>
+            <ul class="dropdown-menu pt-0">
+                <p class="bg-dark text-center text-white">Available Cities</p>
+              <li *ngFor="let rest of allUniqueCities" ><a class="dropdown-item" href="#" (click)="selectCity(rest)">{{rest}}</a></li>
+            </ul>
+          </div>
+      
         <div class="search">
-            <input type="text" placeholder="Seach for restaurant, cuisine or a dish" [(ngModel)]="Search"></div>
+            <input type="text" placeholder="Seach for restaurant, cuisine or a dish" [(ngModel)]="Search" (input)="onSearch()"></div>
         <div class="button">
             <button class="btn btn-danger" (click)="onSearch()">
                 <mat-icon  aria-hidden="false" aria-label="Example home icon" fontIcon="search"></mat-icon>
@@ -15,6 +26,9 @@
         
 
     </div>
+
+
+    
 
 
 </div>

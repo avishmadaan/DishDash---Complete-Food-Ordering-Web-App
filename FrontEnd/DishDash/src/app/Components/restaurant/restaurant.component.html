@@ -1,6 +1,8 @@
-<div class="resBox p-5">
+<div class="resBox p-5" *ngIf="restaurants.length !==0">
     <div class="headline">
-        <h3>Best Restaurant In CITY</h3>
+        <h3>Best Restaurant In {{city}}</h3>
+
+        
     
     </div>
 
@@ -12,4 +14,9 @@
 
     <!-- <div class="text-center" *ngIf="restaurants.length == 0 || restaurants == undefined">
     <h1>No Restaurant In Your City</h1></div> -->
+</div>
+
+<div class="text-center p-5" *ngIf="restaurants.length ==0">
+<h3 class="text-info-emphasis">Sorry, No Restaurant In Your City</h3>
+<p>We are working hard to brin dishdash to your city</p>
 </div>

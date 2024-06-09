@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class IpLocationService {
-  private apiKey = "9e0d0c0e14864f4db7f83b70af667c921";
+  private apiKey = "9e0d0c0e14864f4db7f83b70af667c92";
   private apiUrl = `https://api.ipgeolocation.io/ipgeo?apiKey=${this.apiKey}`;
 
   constructor(private http:HttpClient) { }
