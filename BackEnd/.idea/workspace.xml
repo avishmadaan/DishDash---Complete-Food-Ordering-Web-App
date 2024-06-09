@@ -4,10 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="9c8a6dba-7c8c-426b-ad82-e45f53e77f5c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/customersapiservice/src/main/java/com/bej/customersapiservice/domain/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/customersapiservice/src/main/java/com/bej/customersapiservice/domain/Customer.java" afterDir="false" />
     </list>
+=======
+    <list default="true" id="9c8a6dba-7c8c-426b-ad82-e45f53e77f5c" name="Changes" comment="" />
+>>>>>>> 753c372280e3c895f3eb2272706501bf2f3984a6
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -101,8 +105,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.EurekaDiscoveryServerApplication" />
         <item itemvalue="Application.CustomersapiserviceApplication" />
+        <item itemvalue="Application.EurekaDiscoveryServerApplication" />
         <item itemvalue="Application.UserAuthenticationServiceApplication" />
       </list>
     </recent_temporary>

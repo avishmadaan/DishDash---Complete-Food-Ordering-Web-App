@@ -7,8 +7,8 @@ export class restaurant {
     resCity:string
     resRating:string
     resDescription:string
-    resCategories:string[]
-    resImages:string[]
-    resCuisines:string[]
-    resMenu:dish[]
+    resCategories?:string[]
+    resImages?:string[]
+    resCuisines?:string[]
+    resMenu?:dish[]
 }

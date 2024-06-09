@@ -1,6 +1,7 @@
 .nav {
     justify-content: space-between;
-    height: 8vh;
+    height: 10vh;
+    padding: 0px 50px;
 }
 
 .right {
@@ -10,3 +11,12 @@
 .left img {
     cursor: pointer;
 }
+
+.drop {
+    background-color: none;
+}
+
+.logout img {
+    border-radius: 50%;
+}
+

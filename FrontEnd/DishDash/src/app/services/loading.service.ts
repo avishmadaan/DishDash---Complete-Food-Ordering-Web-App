@@ -1,17 +1,15 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoadingService {
 
-  private _loading = new Subject<number>();
-  readonly loading$ = this._loading.asObservable();
+  private loadingSubject = new BehaviorSubject<number>(0);
+  loading$ = this.loadingSubject.asObservable();
 
-  setLoading(progress:number) {
-    this._loading.next(progress);
+  setLoading(value: number) {
+    this.loadingSubject.next(value);
   }
-
-  constructor() { }
 }

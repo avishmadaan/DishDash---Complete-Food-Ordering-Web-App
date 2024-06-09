@@ -1,4 +1,4 @@
-<div class="restaurantbox">
+<div class="restaurantbox" *ngIf="oneRestaurant">
     <div class="infobox bg-light p-3 m-3">
         <div class="photos flex">
             <img alt="Restaurant" *ngFor="let x of oneRestaurant.resImages" [src]="x">
