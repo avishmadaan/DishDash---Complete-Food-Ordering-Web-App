@@ -24,7 +24,7 @@
 
         <div class="login flex gap-2" *ngIf="!isLoggedIn">
             <mat-icon  aria-hidden="false" aria-label="Example home icon" fontIcon="login"></mat-icon> 
-            <span class="fw-bold">Log In</span> 
+            <span (click)="openLoginDialog('3000ms', '1500ms')" class="fw-bold pointer">Log In</span> 
         </div>
     </div>
 </div>

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { customerLogin } from '../Model/customerLogin';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { customer } from '../Model/customer';
 
 @Injectable({
@@ -10,6 +10,8 @@ import { customer } from '../Model/customer';
 export class UserService {
 
   loginAPIkey:string = ``;
+
+  logInSubject = new Subject<boolean>()
 
   constructor(private http:HttpClient) { }
 
@@ -26,5 +28,9 @@ export class UserService {
     return this.http.get<string>("url")
   }
 
-  
+  login(isLoggedIn:boolean) {
+    this.logInSubject.next(isLoggedIn);
+  }
+
+
 }

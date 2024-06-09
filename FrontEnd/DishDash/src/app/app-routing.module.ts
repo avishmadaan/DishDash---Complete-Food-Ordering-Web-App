@@ -14,7 +14,7 @@ const routes: Routes = [
 {path:'login', component: LoginComponent},
 {path:'register', component: RegisterComponent},
 {path:'customer/favourites', component: CutomerfavouriteComponent},
-{path:'restaurants/:resid', component: RestaurantviewComponent},
+{path:':city/restaurants/:resid', component: RestaurantviewComponent},
 {path:'**', component: PagenotfoundComponent}
 
 ];

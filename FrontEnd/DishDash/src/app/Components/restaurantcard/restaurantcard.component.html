@@ -1,5 +1,5 @@
 
-<div class="card pointer" routerLink="/restaurants/{{onerestaurant.resId}}">
+<div class="card pointer" routerLink="/{{onerestaurant.resCity.toLowerCase()}}/restaurants/{{onerestaurant.resId}}">
 <div class="image" >
         <img [src]="onerestaurant.resImages[0]" alt="">
     
