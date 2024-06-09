@@ -17,7 +17,7 @@ public class CustomerServiceImpl implements CustomerService{
     private CustomerRepo customerRepo;
     @Override
     public Customer saveCustomer(Customer customer) throws CustomerAlreadyExistException {
-        if(customerRepo.findById(customer.getCustomerEmail()).isPresent())
+        if(customerRepo.findById(customer.getCustomerId()).isPresent())
         {
             throw new CustomerAlreadyExistException();
         }
@@ -37,19 +37,18 @@ public class CustomerServiceImpl implements CustomerService{
 
     @Override
     public List<Customer> getAllCustomer() {
-
         return customerRepo.findAll();
     }
 
     @Override
-    public boolean deleteCustomer(String customerEmail) throws CustomerNotFoundException {
+    public boolean deleteCustomer(String customerId) throws CustomerNotFoundException {
         boolean isDeleted=false;
-        if(customerRepo.findById(customerEmail).isEmpty())
+        if(customerRepo.findById(customerId).isEmpty())
         {
             throw new CustomerNotFoundException();
 
         }else {
-            customerRepo.deleteById(customerEmail);
+            customerRepo.deleteById(customerId);
             isDeleted=true;
         }
         return isDeleted;

@@ -11,5 +11,5 @@ public interface CustomerService {
     Customer saveCustomer(Customer customer) throws CustomerAlreadyExistException;
     Customer loginCustomer(String customerEmail,String customerPassword) throws InvalidCredentialsExceptions, CustomerNotFoundException;
     List<Customer> getAllCustomer();
-    boolean deleteCustomer(String customerEmail) throws CustomerNotFoundException;
+    boolean deleteCustomer(String customerId) throws CustomerNotFoundException;
 }

@@ -17,11 +17,10 @@ import lombok.*;
 public class Customer {
 
     @Id
-    @Email
-    @NotNull
+    private String customerId;
     private String customerEmail;
 
-    @NotNull
+
     private String customerPassword;
 
 

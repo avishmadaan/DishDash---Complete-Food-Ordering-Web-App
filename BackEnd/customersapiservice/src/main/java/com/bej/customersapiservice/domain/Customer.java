@@ -14,7 +14,7 @@ import java.util.List;
 @ToString
 public class Customer {
     @Id
-    private  String customerId;
+    private String customerId;
     private String customerName;
     private String customerEmail;
     private String customerPassword;

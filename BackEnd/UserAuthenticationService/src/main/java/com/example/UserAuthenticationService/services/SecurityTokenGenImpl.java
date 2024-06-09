@@ -16,8 +16,8 @@ public class SecurityTokenGenImpl implements SecurityTokenGenerator{
     public String createToken(Customer customer){
         // Write logic to create the Jwt
         Map<String, Object> claims=new HashMap<>();
-        claims.put("email",customer.getCustomerEmail());
-        return generateToken(claims,customer.getCustomerEmail());
+        claims.put("id",customer.getCustomerId());
+        return generateToken(claims,customer.getCustomerId());
     }
 
     public String generateToken(Map<String,Object> claims,String subject) {

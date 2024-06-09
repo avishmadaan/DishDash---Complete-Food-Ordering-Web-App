@@ -13,11 +13,11 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v2")
+@CrossOrigin
 public class CustomerController {
 
     @Autowired
     private ICustomerService iCustomerService;
-
 
     @PostMapping("/register")
     public ResponseEntity registerCustomer(@RequestBody Customer customer) {
@@ -30,9 +30,9 @@ public class CustomerController {
 
     @PutMapping("/customers/update")
     public ResponseEntity updateCustomer(@RequestBody Customer customer, HttpServletRequest request) {
-        String customerEmail = (String) request.getAttribute("customerEmail");
+        String customerId = (String) request.getAttribute("customerId");
         try {
-            return new ResponseEntity(iCustomerService.updateCustomer(customer, customerEmail), HttpStatus.OK);
+            return new ResponseEntity(iCustomerService.updateCustomer(customer, customerId), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity(e.getMessage(), HttpStatus.NOT_FOUND);
         }
@@ -40,37 +40,37 @@ public class CustomerController {
 
     @PutMapping("/customers/addfavres")
     public ResponseEntity updateFavRest(@RequestBody String obj, HttpServletRequest request) throws CustomerNotFoundException {
-        String customerEmail = (String) request.getAttribute("customerEmail");
-        return new ResponseEntity<>(iCustomerService.addFavoriteRestaurant(obj,customerEmail),HttpStatus.OK);
+        String customerId = (String) request.getAttribute("customerId");
+        return new ResponseEntity<>(iCustomerService.addFavoriteRestaurant(obj,customerId),HttpStatus.OK);
     }
 
     @PutMapping("/customers/addfavdish")
     public ResponseEntity updateFavDish(@RequestBody Object obj, HttpServletRequest request) throws CustomerNotFoundException {
-        String customerEmail = (String) request.getAttribute("customerEmail");
-        return new ResponseEntity<>(iCustomerService.addFavoriteDish(obj,customerEmail),HttpStatus.OK);
+        String customerId = (String) request.getAttribute("customerId");
+        return new ResponseEntity<>(iCustomerService.addFavoriteDish(obj,customerId),HttpStatus.OK);
     }
 
     @GetMapping("/customers/restaurant")
     public ResponseEntity fetchFavRest(HttpServletRequest request)
     {
-        String customerEmail = (String) request.getAttribute("customerEmail");
-        return new ResponseEntity<>(iCustomerService.getAllFavRestaurant(customerEmail),HttpStatus.OK);
+        String customerId = (String) request.getAttribute("customerId");
+        return new ResponseEntity<>(iCustomerService.getAllFavRestaurant(customerId),HttpStatus.OK);
     }
     @GetMapping("/customers/dishes")
     public ResponseEntity fetchFavDish(HttpServletRequest request)
     {
-        String customerEmail = (String) request.getAttribute("customerEmail");
-        return new ResponseEntity<>(iCustomerService.getAllFavDishes(customerEmail),HttpStatus.OK);
+        String customerId = (String) request.getAttribute("customerId");
+        return new ResponseEntity<>(iCustomerService.getAllFavDishes(customerId),HttpStatus.OK);
     }
     @DeleteMapping("/customers/deletedish")
     public ResponseEntity<?> deleteFavDish(@RequestBody Object dish, HttpServletRequest request) throws CustomerNotFoundException {
-        String customerEmail = (String) request.getAttribute("customerEmail");
-        return new ResponseEntity<>(iCustomerService.deleteFavDish(customerEmail,dish),HttpStatus.OK);
+        String customerId = (String) request.getAttribute("customerId");
+        return new ResponseEntity<>(iCustomerService.deleteFavDish(customerId,dish),HttpStatus.OK);
     }
     @DeleteMapping("/customers/deletedrestaurant/{restName}")
     public ResponseEntity<?> deleteFavRest(@RequestBody Object restName, HttpServletRequest request) throws CustomerNotFoundException {
-        String customerEmail = (String) request.getAttribute("customerEmail");
-        return new ResponseEntity<>(iCustomerService.deleteFavRestaurant(customerEmail,restName),HttpStatus.OK);
+        String customerId = (String) request.getAttribute("customerId");
+        return new ResponseEntity<>(iCustomerService.deleteFavRestaurant(customerId,restName),HttpStatus.OK);
     }
 
 }

@@ -8,19 +8,12 @@ import java.util.List;
 
 public interface ICustomerService {
 
-//    Adding fav restaurant to user
-
-//    Adding fav dishes of particular restaurant to user
-//    Fetching fav restaurant list
-//    Fetching fav dishes list
-
-
     public Customer registerCustomer(Customer customer) throws CustomerAlreadyExistException;
-    public Customer updateCustomer(Customer customer, String customerEmail) throws CustomerAlreadyExistException, CustomerNotFoundException;
-    public String addFavoriteRestaurant(String restName,String customerEmail) throws CustomerNotFoundException;
-    public String addFavoriteDish(Object obj,String customerEmail) throws CustomerNotFoundException;
-    public List<Object> getAllFavRestaurant(String customerEmail);
-    public List<Object> getAllFavDishes(String customerEmail);
-    public boolean deleteFavRestaurant(String customerEmail,Object restName) throws CustomerNotFoundException;
-    public boolean deleteFavDish(String customerEmail,Object dish) throws CustomerNotFoundException;
+    public Customer updateCustomer(Customer customer, String customerId) throws CustomerAlreadyExistException, CustomerNotFoundException;
+    public String addFavoriteRestaurant(String resId,String customerId) throws CustomerNotFoundException;
+    public String addFavoriteDish(Object obj,String customerId) throws CustomerNotFoundException;
+    public List<Object> getAllFavRestaurant(String customerId);
+    public List<Object> getAllFavDishes(String customerId);
+    public boolean deleteFavRestaurant(String customerId,Object restName) throws CustomerNotFoundException;
+    public boolean deleteFavDish(String customerId,Object dish) throws CustomerNotFoundException;
 }

@@ -25,8 +25,8 @@ public class JwtFilter extends GenericFilterBean {
             //extract token from the header
             String jwtToken = authHeader.substring(7);//Bearer => 6+1 since token begins with bearer
             //token validation
-            String customerEmail = Jwts.parser().setSigningKey("secretKey").parseClaimsJws(jwtToken).getBody().getSubject();
-            httpServletRequest.setAttribute("customerEmail",customerEmail);
+            String customerId = Jwts.parser().setSigningKey("secretKey").parseClaimsJws(jwtToken).getBody().getSubject();
+            httpServletRequest.setAttribute("customerId",customerId);
             filterChain.doFilter(servletRequest,servletResponse);//some more filters, controllers
         }
     }
