@@ -5,23 +5,94 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9c8a6dba-7c8c-426b-ad82-e45f53e77f5c" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserAuthenticationService/src/main/java/com/example/UserAuthenticationService/controller/CustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserAuthenticationService/src/main/java/com/example/UserAuthenticationService/controller/CustomerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserAuthenticationService/src/main/java/com/example/UserAuthenticationService/domain/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserAuthenticationService/src/main/java/com/example/UserAuthenticationService/domain/Customer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserAuthenticationService/src/main/java/com/example/UserAuthenticationService/services/CustomerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserAuthenticationService/src/main/java/com/example/UserAuthenticationService/services/CustomerService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserAuthenticationService/src/main/java/com/example/UserAuthenticationService/services/CustomerServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserAuthenticationService/src/main/java/com/example/UserAuthenticationService/services/CustomerServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserAuthenticationService/src/main/java/com/example/UserAuthenticationService/services/SecurityTokenGenImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserAuthenticationService/src/main/java/com/example/UserAuthenticationService/services/SecurityTokenGenImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserAuthenticationService/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/UserAuthenticationService/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/customersapiservice/src/main/java/com/bej/customersapiservice/controller/CustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/customersapiservice/src/main/java/com/bej/customersapiservice/controller/CustomerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/customersapiservice/src/main/java/com/bej/customersapiservice/domain/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/customersapiservice/src/main/java/com/bej/customersapiservice/domain/Customer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/customersapiservice/src/main/java/com/bej/customersapiservice/filter/JwtFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/customersapiservice/src/main/java/com/bej/customersapiservice/filter/JwtFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/customersapiservice/src/main/java/com/bej/customersapiservice/services/ICustomerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/customersapiservice/src/main/java/com/bej/customersapiservice/services/ICustomerService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/customersapiservice/src/main/java/com/bej/customersapiservice/services/ImplCustomerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/customersapiservice/src/main/java/com/bej/customersapiservice/services/ImplCustomerService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/register/register.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/register/register.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/register/register.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/register/register.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/register/register.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/register/register.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Model/customer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Model/customer.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/app.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/.history/DishDash/.gitignore_20240609180148" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/.history/DishDash/.gitignore_20240610024700" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/.history/DishDash/.gitignore_20240610024718" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/.history/DishDash/.gitignore_20240610024820" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/.history/DishDash/.gitignore_20240610024906" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/.history/DishDash/src/app/Components/register/register.component_20240608130845.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/.history/DishDash/src/app/Components/register/register.component_20240608210333.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/.history/DishDash/src/app/Components/register/register.component_20240608210333.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/.history/DishDash/src/app/Components/register/register.component_20240608211826.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/.history/DishDash/src/app/Components/register/register.component_20240608211942.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/.history/DishDash/src/app/Components/register/register.component_20240608212036.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/.history/DishDash/src/app/Components/register/register.component_20240608223552.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/.history/DishDash/src/app/Components/register/register.component_20240608224149.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/.history/DishDash/src/app/Components/register/register.component_20240608224518.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/.history/DishDash/src/app/Components/register/register.component_20240608224627.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/.history/DishDash/src/app/Components/register/register.component_20240608224724.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/.history/DishDash/src/app/Components/register/register.component_20240608224748.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/.history/DishDash/src/app/Components/register/register.component_20240608224805.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/.history/DishDash/src/app/Components/register/register.component_20240608224823.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/.history/DishDash/src/app/Components/register/register.component_20240608224844.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/.history/DishDash/src/app/Components/register/register.component_20240608224854.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/.history/DishDash/src/app/Components/register/register.component_20240608224905.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/.history/DishDash/src/app/Components/register/register.component_20240608224951.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/.history/DishDash/src/app/Components/register/register.component_20240608225003.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/.history/DishDash/src/app/Components/register/register.component_20240608225014.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/.history/DishDash/src/app/Components/register/register.component_20240608225052.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/.history/DishDash/src/app/Components/register/register.component_20240608225207.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/.history/DishDash/src/app/Components/register/register.component_20240608225235.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/.history/DishDash/src/app/Components/register/register.component_20240608225327.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/.history/DishDash/src/app/Components/register/register.component_20240608225401.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/.history/DishDash/src/app/Components/register/register.component_20240608225452.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/.history/DishDash/src/app/Components/register/register.component_20240608225512.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/.history/DishDash/src/app/Components/register/register.component_20240608225524.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/.history/DishDash/src/app/Components/register/register.component_20240608225643.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/.history/DishDash/src/app/Components/register/register.component_20240608230533.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/.history/DishDash/src/app/Components/register/register.component_20240608234212.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/.history/DishDash/src/app/Components/register/register.component_20240608234219.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/.history/DishDash/src/app/Components/register/register.component_20240608234355.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/.history/DishDash/src/app/Components/register/register.component_20240609013633.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/.history/DishDash/src/app/Components/register/register.component_20240609013634.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/.history/DishDash/src/app/Components/register/register.component_20240609013745.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/.history/DishDash/src/app/Components/register/register.component_20240609014146.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/.history/DishDash/src/app/Components/register/register.component_20240609015409.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/.history/DishDash/src/app/Components/register/register.component_20240609124611.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/.history/DishDash/src/app/Components/register/register.component_20240609125055.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/.history/DishDash/src/app/Components/register/register.component_20240609135949.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/.history/DishDash/src/app/Components/register/register.component_20240609140024.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/.history/DishDash/src/app/Components/register/register.component_20240609140159.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/.history/DishDash/src/app/Components/register/register.component_20240609140323.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/.history/DishDash/src/app/Components/register/register.component_20240609140618.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/.history/DishDash/src/app/Components/register/register.component_20240609140940.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/.history/DishDash/src/app/Components/register/register.component_20240609141213.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/.history/DishDash/src/app/Components/register/register.component_20240609141628.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/.history/DishDash/src/app/Components/register/register.component_20240609141650.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/.history/DishDash/src/app/Components/register/register.component_20240609142014.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/.history/DishDash/src/app/Components/register/register.component_20240609142812.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/.history/DishDash/src/app/Components/register/register.component_20240609142855.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/.history/DishDash/src/app/Components/register/register.component_20240609143244.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/.history/DishDash/src/app/Components/register/register.component_20240609143600.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/.history/DishDash/src/app/Components/register/register.component_20240609143734.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/.history/DishDash/src/app/Components/register/register.component_20240609144004.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/.history/DishDash/src/app/Components/register/register.component_20240609144152.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/.history/DishDash/src/app/Components/register/register.component_20240609144300.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/.history/DishDash/src/app/Components/register/register.component_20240609150316.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/.history/DishDash/src/app/Components/register/register.component_20240609150606.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/.history/DishDash/src/app/Components/register/register.component_20240609151227.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/.history/DishDash/src/app/Components/register/register.component_20240609151405.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/.history/DishDash/src/app/Components/register/register.component_20240609152115.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/.history/DishDash/src/app/Components/register/register.component_20240609152450.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/.history/DishDash/src/app/Components/register/register.component_20240610021729.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/.history/DishDash/src/app/Components/register/register.component_20240610021844.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/.history/DishDash/src/app/Components/register/register.component_20240610021848.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/.history/DishDash/src/app/Model/customer_20240608210333.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/.history/DishDash/src/app/Model/customer_20240608211826.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/.history/DishDash/src/app/Model/customer_20240609013634.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/.history/DishDash/src/app/app-routing.module_20240608210333.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/.history/DishDash/src/app/app-routing.module_20240608211826.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/.history/DishDash/src/app/app.module_20240608210333.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/.history/DishDash/src/app/app.module_20240608211826.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/.history/DishDash/src/app/app.module_20240608211939.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/.history/DishDash/src/app/app.module_20240608224024.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/.history/DishDash/src/app/app.module_20240608224143.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/.history/DishDash/src/app/app.module_20240608224308.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/.history/DishDash/src/app/app.module_20240610021848.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/.history/DishDash/src/app/services/register.service_20240608195933.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/.history/DishDash/src/app/services/register.service_20240608235112.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/.history/DishDash/src/styles_20240608210333.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/.history/DishDash/src/styles_20240609132233.css" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,7 +141,7 @@
       <recent name="C:\Users\Avish Madaan\Desktop\NIIT\Phase 2\Course 14 - Capstone Project\major-capstone-project\FoodieApp" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.CustomersapiserviceApplication">
+  <component name="RunManager">
     <configuration name="ApiGateawayApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.example.ApiGateaway.ApiGateawayApplication" />
       <module name="ApiGateaway" />

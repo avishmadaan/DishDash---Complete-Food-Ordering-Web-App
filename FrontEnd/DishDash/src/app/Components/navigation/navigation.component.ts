@@ -28,16 +28,13 @@ export class NavigationComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
 
-    // Subscribe to loading progress
-    this.loadingService.loading$.subscribe(value => {
-      this.isLoading = value > 0;
-      this.progress = value;
-    });
-
+ 
     // Router events subscription
     this.routerEventsSubscription = this.router.events.subscribe(event => {
       if (event instanceof NavigationStart) {
-        this.startLoading();
+        console.log("Naviation Start")
+        this.loadingService.setLoading(0);
+        this.simulateLoadingProgress();
       } else if (
         event instanceof NavigationEnd || 
         event instanceof NavigationCancel || 
@@ -52,29 +49,29 @@ export class NavigationComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     // Unsubscribe from router events to avoid memory leaks
     if (this.routerEventsSubscription) {
+      console.log("ngonDestory")
       this.routerEventsSubscription.unsubscribe();
     }
+     // Clear the interval if the component is destroyed
+     if (this.intervalId) {
+      clearInterval(this.intervalId);
+    }
   }
 
-  private startLoading() {
-    console.log('Loading started');
-    this.loadingService.setLoading(0);
-    this.simulateLoadingProgress();
-  }
 
   private completeLoading() {
-    console.log('Loading completed');
-    if (this.intervalId) {
-      clearInterval(this.intervalId);
-      this.intervalId = null;
-    }
+    console.log("Loading Completed")
     this.loadingService.setLoading(100);
     setTimeout(() => {
       this.loadingService.setLoading(0);
-    }, 10000);
+    }, 1000);
+    this.routerEventsSubscription.unsubscribe();
+
+
   }
 
   private simulateLoadingProgress() {
+    console.log("Simulate Loading Progress")
     let progress = 0;
     this.loadingService.setLoading(progress);
     this.intervalId = setInterval(() => {
@@ -84,9 +81,11 @@ export class NavigationComponent implements OnInit, OnDestroy {
 
       if (progress >= 90) {
         clearInterval(this.intervalId);
+        console.log("90 crosses", this.intervalId)
         this.intervalId = null;
       }
     }, 100);
+    console.log("OutSide internval")
   }
 
  
