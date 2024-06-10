@@ -14,6 +14,7 @@ public interface ICustomerService {
     public String addFavoriteDish(Object obj,String customerId) throws CustomerNotFoundException;
     public List<Object> getAllFavRestaurant(String customerId);
     public List<Object> getAllFavDishes(String customerId);
+    public Customer getCustomerById(String customerId) throws CustomerNotFoundException;
     public boolean deleteFavRestaurant(String customerId,Object restName) throws CustomerNotFoundException;
     public boolean deleteFavDish(String customerId,Object dish) throws CustomerNotFoundException;
 }

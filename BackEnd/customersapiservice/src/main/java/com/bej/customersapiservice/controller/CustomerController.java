@@ -62,6 +62,11 @@ public class CustomerController {
         String customerId = (String) request.getAttribute("customerId");
         return new ResponseEntity<>(iCustomerService.getAllFavDishes(customerId),HttpStatus.OK);
     }
+    @GetMapping("/eachcustomer")
+    public ResponseEntity<?> fetchByJwtToken(HttpServletRequest request) throws CustomerNotFoundException {
+        String customerId = (String) request.getAttribute("customerId");
+        return new ResponseEntity<>(iCustomerService.getCustomerById(customerId),HttpStatus.OK);
+    }
     @DeleteMapping("/customers/deletedish")
     public ResponseEntity<?> deleteFavDish(@RequestBody Object dish, HttpServletRequest request) throws CustomerNotFoundException {
         String customerId = (String) request.getAttribute("customerId");

@@ -99,6 +99,11 @@ public class ImplCustomerService implements ICustomerService {
     }
 
     @Override
+    public Customer getCustomerById(String customerId) throws CustomerNotFoundException {
+        return customerRepo.findById(customerId).orElseThrow(CustomerNotFoundException::new);
+    }
+
+    @Override
     public boolean deleteFavRestaurant(String customerId,Object resId) throws CustomerNotFoundException {
         boolean isDeleted=false;
         Optional<Customer> optionalCustomer=customerRepo.findById(customerId);
