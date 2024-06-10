@@ -13,6 +13,7 @@ import { customer } from '../../Model/customer';
 export class NavbarComponent implements OnInit {
 
   activeCustomer:customer;
+  customerJwt:string;
 
   constructor(private cookieService:CookieService, private userService:UserService, public dialog:MatDialog){}
   isLoggedIn:boolean = false;
@@ -21,11 +22,16 @@ export class NavbarComponent implements OnInit {
 
     if(this.cookieService.check("token")) {
       this.isLoggedIn = true
+      this.customerJwt = this.cookieService.get("token")
+      console.log("Jwt: "+this.customerJwt);
+      this.fetchActiveCustomer();
     }
 
     this.userService.logInSubject.subscribe({
       next:data => {
         this.isLoggedIn = data;
+        this.customerJwt = this.cookieService.get("token")
+        this.fetchActiveCustomer();
       }
     })
   }
@@ -41,7 +47,18 @@ export class NavbarComponent implements OnInit {
     })
   }
 
-  fetchActiveCustomer(custId:string) {
+  fetchActiveCustomer() {
+    console.log("Fetch called")
+    console.log("Inside fetc jwt :" +this.customerJwt);
+    this.userService.fetchCustomerByJwt(this.customerJwt).subscribe({
+      next:data => {
+        this.activeCustomer = data
+        console.log(data);
+      },
+      error:e => {
+        console.log(e);
 
+      }
+    })
   }
 }

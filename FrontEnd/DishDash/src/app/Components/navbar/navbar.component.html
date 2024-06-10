@@ -6,10 +6,11 @@
     <div class="right">
 
         <div class="logout flex justify-center align-items bg-white border-black gap-1" *ngIf="isLoggedIn">
+            <h1>{{activeCustomer.customerEmail}}</h1>
             <div class="profile">
-                <img src="https://via.placeholder.com/40x40" alt="">
+                <img [src]="activeCustomer.customerProfilePic" alt="Profile Picture">
             </div>
-            <div class="name">Avish</div>
+            <div class="name">{{activeCustomer.customerName}}</div>
             <div class="dropdown">
                 <button class="dropdown-toggle border-0 drop" type="button" data-bs-toggle="dropdown" title="dropbutton" data-bs-offset="0,10">
                 </button>
