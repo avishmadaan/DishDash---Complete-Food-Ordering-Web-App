@@ -15,6 +15,7 @@ import { LoginComponent } from './Components/login/login.component';
 import { RegisterComponent } from './Components/register/register.component';
 import { PagenotfoundComponent } from './Components/pagenotfound/pagenotfound.component';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import {MatIconModule} from '@angular/material/icon';
 import { RestaurantcardComponent } from './Components/restaurantcard/restaurantcard.component';
@@ -22,11 +23,10 @@ import { HomepageComponent } from './Components/homepage/homepage.component';
 import { CutomerfavouriteComponent } from './Components/cutomerfavourite/cutomerfavourite.component';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { LoadingbarComponent } from './Components/loadingbar/loadingbar.component';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+import {CookieService} from 'ngx-cookie-service';
+import {MatDialogModule} from '@angular/material/dialog';
+import { MatError, MatFormField, MatInput, MatLabel } from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -48,20 +48,20 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     LoadingbarComponent
   ],
   imports: [
-    BrowserAnimationsModule,
+    BrowserModule,
     AppRoutingModule,
+    FormsModule,
     MatIconModule,
     MatProgressBarModule,
-    MatFormFieldModule,
-    MatInputModule,
-    FormsModule,
+    MatDialogModule,
     ReactiveFormsModule,
+    MatInput,
+    MatFormField,
+    MatError,
+    MatLabel,
     HttpClientModule
-    
   ],
-  providers: [
-    provideAnimationsAsync()
-  ],
+  providers: [ provideAnimationsAsync(), CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

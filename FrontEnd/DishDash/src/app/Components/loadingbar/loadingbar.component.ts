@@ -21,6 +21,13 @@ export class LoadingbarComponent implements OnInit {
         this.isLoading = progress >0 && progress<100;
       }
     })
+
+    this.loadingService.loadingSubject_1.subscribe({
+      next:data => {
+        this.progress = data;
+        this.isLoading = this.progress>0 && this.progress<100;
+      }
+    })
    }
 
 }
