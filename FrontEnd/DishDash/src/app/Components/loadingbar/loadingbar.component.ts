@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { LoadingService } from '../../services/loading.service';
 
 @Component({
@@ -11,23 +11,18 @@ export class LoadingbarComponent implements OnInit {
   progress:number =0;
   isLoading:boolean = false;
 
-  constructor(private loadingService:LoadingService) {}
+  constructor(private loadingService:LoadingService, private cdr:ChangeDetectorRef) {}
 
   ngOnInit(): void { 
-
-    this.loadingService.loading$.subscribe({
-      next:progress => {
-        this.progress = progress;
-        this.isLoading = progress >0 && progress<100;
-      }
-    })
-
     this.loadingService.loadingSubject_1.subscribe({
       next:data => {
+        console.log("MY progress: "+data)
         this.progress = data;
-        this.isLoading = this.progress>0 && this.progress<100;
+        this.cdr.detectChanges();
+          this.isLoading = this.progress>0 && this.progress<100;
       }
     })
    }
+
 
 }

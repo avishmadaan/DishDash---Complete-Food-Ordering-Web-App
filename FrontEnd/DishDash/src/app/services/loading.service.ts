@@ -8,12 +8,8 @@ export class LoadingService {
 
   public loadingSubject_1 = new Subject<number>();
 
-  private loadingSubject = new BehaviorSubject<number>(0);
-  
-  loading$ = this.loadingSubject.asObservable();
 
-  setLoading(value: number) {
-    this.loadingSubject.next(value);
+  setLoading(value:number) {
     this.loadingSubject_1.next(value);
   }
 }

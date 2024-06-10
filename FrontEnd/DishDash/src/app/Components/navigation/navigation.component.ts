@@ -14,10 +14,13 @@ export class NavigationComponent implements OnInit, OnDestroy {
 
   location: any;
   city: string = '';
-  private intervalId: any;
-  private routerEventsSubscription: Subscription = new Subscription(); // Initialize the subscription
+
   isLoading = false; // Add this property
   progress = 0; // Add this property
+
+  private intervalId: any;
+  private routerEventsSubscription: Subscription = new Subscription(); // Initialize the subscription
+
 
   constructor(
     private ipLocationService: IpLocationService, 
@@ -47,45 +50,23 @@ export class NavigationComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    // Unsubscribe from router events to avoid memory leaks
-    if (this.routerEventsSubscription) {
-      console.log("ngonDestory")
-      this.routerEventsSubscription.unsubscribe();
-    }
-     // Clear the interval if the component is destroyed
-     if (this.intervalId) {
-      clearInterval(this.intervalId);
-    }
+
   }
 
 
   private completeLoading() {
     console.log("Loading Completed")
     this.loadingService.setLoading(100);
+ 
     setTimeout(() => {
       this.loadingService.setLoading(0);
-    }, 1000);
-    this.routerEventsSubscription.unsubscribe();
-
-
+    }, 2000);
   }
 
   private simulateLoadingProgress() {
     console.log("Simulate Loading Progress")
-    let progress = 0;
-    this.loadingService.setLoading(progress);
-    this.intervalId = setInterval(() => {
-      progress += 10;
-      this.loadingService.setLoading(progress);
-      console.log('Loading progress:', progress);
-
-      if (progress >= 90) {
-        clearInterval(this.intervalId);
-        console.log("90 crosses", this.intervalId)
-        this.intervalId = null;
-      }
-    }, 100);
-    console.log("OutSide internval")
+    this.loadingService.setLoading(10);
+   
   }
 
  

@@ -6,11 +6,10 @@
     <div class="right">
 
         <div class="logout flex justify-center align-items bg-white border-black gap-1" *ngIf="isLoggedIn">
-            <h1>{{activeCustomer.customerEmail}}</h1>
             <div class="profile">
-                <img [src]="activeCustomer.customerProfilePic" alt="Profile Picture">
+                <img [src]="activeCustomer.customerProfilePic" alt="">
             </div>
-            <div class="name">{{activeCustomer.customerName}}</div>
+            <div class="name">{{activeCustomer.customerName.split(" ")[0]}}</div>
             <div class="dropdown">
                 <button class="dropdown-toggle border-0 drop" type="button" data-bs-toggle="dropdown" title="dropbutton" data-bs-offset="0,10">
                 </button>
