@@ -43,10 +43,14 @@ public class CustomerController {
     public ResponseEntity<?> loginCustomer(@RequestBody Customer customer) throws InvalidCredentialsExceptions, CustomerNotFoundException {
         try {
             Customer customerObj = customerService.loginCustomer(customer.getCustomerEmail(), customer.getCustomerPassword());
+            System.out.println("customer obj---");
+            System.out.println(customerObj);
+            System.out.println("customer---");
+            System.out.println(customer);
             if (customerObj == null) {
                 throw new InvalidCredentialsExceptions();
             }
-            String token = securityTokenGenerator.createToken(customer);
+            String token = securityTokenGenerator.createToken(customerObj);
             responseEntity = new ResponseEntity<>(token,HttpStatus.OK);
         }
 

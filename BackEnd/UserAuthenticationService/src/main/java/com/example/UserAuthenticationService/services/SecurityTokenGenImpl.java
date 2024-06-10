@@ -1,6 +1,7 @@
 package com.example.UserAuthenticationService.services;
 
 import com.example.UserAuthenticationService.domain.Customer;
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.stereotype.Service;
@@ -8,9 +9,12 @@ import org.springframework.stereotype.Service;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.function.Function;
 
 @Service
 public class SecurityTokenGenImpl implements SecurityTokenGenerator{
+
+    public static final long JWT_TOKEN_VALIDITY = 24 * 60 * 60 * 1000;
 
     @Override
     public String createToken(Customer customer){
@@ -25,6 +29,7 @@ public class SecurityTokenGenImpl implements SecurityTokenGenerator{
                 .setClaims(claims)
                 .setSubject(subject)
                 .setIssuedAt(new Date())
+                .setExpiration(new Date(System.currentTimeMillis()+JWT_TOKEN_VALIDITY))
                 .signWith(SignatureAlgorithm.HS256,"secretKey").compact();
         return jwtToken;
     }
