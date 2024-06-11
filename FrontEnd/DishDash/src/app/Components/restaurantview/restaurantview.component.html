@@ -10,9 +10,9 @@
                 <p>{{oneRestaurant.resCuisines}}</p>
                 <span>{{oneRestaurant.resAddress}}</span>
             </div>
-            <div class="rigt flex flex">
+            <div class="right flex ">
                 <span>{{oneRestaurant.resRating}}</span>
-                <mat-icon fontIcon="favorite"></mat-icon>
+                <mat-icon class="fav" fontIcon="favorite_border" (click)="toogleFav()" ></mat-icon>
             </div>
         </div>
     </div>
@@ -20,10 +20,14 @@
     <div class="menubox bg-light flex p-3 m-3">
         <div class="menuleft bg-danger-subtle p-3">
 
-            <p *ngFor="let category of oneRestaurant.resCategories">{{category}}</p>
+            <p *ngFor="let category of categoryArray">{{category[0]}} ({{category[1]}})</p>
         </div>
 
         <div class="menuright">
+            <!-- <div class="categories" *ngFor="let category of oneRestaurant.resCategories">
+                <h4>{{category}}</h4>
+            </div> -->
+        
             <div class="menuitem bg-body-secondary flex p-2 m-2 mb-3 gap-3" *ngFor="let menu of oneRestaurant.resMenu">
                 <div class="part1">
                     <img [src]="menu.dishImage" alt="">

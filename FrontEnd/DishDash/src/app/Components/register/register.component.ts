@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { AbstractControl, FormBuilder, Validators } from '@angular/forms';
-import { RegisterService } from '../../services/register.service';
 import { customer } from '../../Model/customer';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-register',
@@ -9,7 +9,11 @@ import { customer } from '../../Model/customer';
   styleUrl: './register.component.css'
 })
 export class RegisterComponent {
-    constructor(private fb:FormBuilder, private registerService:RegisterService){}
+
+  uniqueId:string = ''
+    constructor(private fb:FormBuilder, private userService:UserService){}
+
+
     registerForm=this.fb.group({
       customerId:['',[Validators.required]],
       customerName:['',[Validators.required,Validators.minLength(3),Validators.pattern(/^[a-zA-Z ]+$/)]],
@@ -80,12 +84,20 @@ export class RegisterComponent {
     {
       return this.registerForm.get('customerAddress.currentLocation');
     }
+
+    generateUniqueKey() {
+      const timestamp = new Date().getTime;
+
+      const randomNumber = Math.floor(Math.random()*1000);
+
+      return `cus-${timestamp}-${randomNumber}`
+    }
     
-    onSubmit()
+    onSubmit ()
     {
       let registerCustomer:any=this.registerForm.value as any;
       console.log(registerCustomer);
-      this.registerService.addUser(registerCustomer).subscribe({
+      this.userService.registerUser(registerCustomer).subscribe({
         next:data=>{
             console.log(data);
         },

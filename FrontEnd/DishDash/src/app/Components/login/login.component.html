@@ -1,5 +1,16 @@
+<div class=" header flex justify-content-between align-items">
+  <button mat-icon-button class="close-button" (click)="closeDialoge()">
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+
+
+<!-- <div mat-dialog-content> -->
+
 <div class="loginform p-5">
   <form #loginform = "ngForm" ngNativeValidate (ngSubmit)="loginUser()">
+
+    <div *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</div>
     <!-- Email input -->
     <div data-mdb-input-init class="form-outline mb-4">
       <label class="form-label" for="email">Email address</label>
@@ -39,11 +50,13 @@
       >
         Sign in
       </button>
+
     </div>
-    <button (click)="closeDialoge()">Close</button>
+
     <!-- Register buttons -->
     <div class="text-center">
-      <p>Not a member? <a href="#!">Register</a></p>
+      <p>Not a member? <a routerLink="/register" (click)="closeDialoge()">Register</a></p>
     </div>
   </form>
 </div>
+<!-- </div> -->

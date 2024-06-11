@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RestaurantService } from '../../services/restaurant.service';
 import { IpLocationService } from '../../services/ip-location.service';
 import { restaurant } from '../../Model/restaurant';
+import { LoadingService } from '../../services/loading.service';
 
 @Component({
   selector: 'app-search',
@@ -17,7 +18,7 @@ export class SearchComponent implements OnInit {
   fliterRestaurants:restaurant[];
   filterWithSearch:restaurant[];
 
-  constructor(private resService:RestaurantService, private ipService:IpLocationService ) {}
+  constructor(private resService:RestaurantService, private ipService:IpLocationService, private loadingService:LoadingService ) {}
   ngOnInit(): void {
 
     this.ipService.getIpLocation().subscribe({
@@ -33,10 +34,12 @@ export class SearchComponent implements OnInit {
             }
           }
         })
+       
         this.resService.fetchRestaurantsByCity(this.city).subscribe({
           next:data => {
             this.fliterRestaurants = data
             this.resService.getFilteredRestaurantList(this.fliterRestaurants);
+          
           },
           error:e => {
             console.log(e);
@@ -59,7 +62,6 @@ export class SearchComponent implements OnInit {
     this.resService.fetchRestaurantsByCity(this.city).subscribe({
       next:data => {
         this.fliterRestaurants = data
-
         this.sendFilteredData(this.fliterRestaurants);
       }
     })

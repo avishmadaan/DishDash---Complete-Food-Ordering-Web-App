@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { customerLogin } from '../Model/customerLogin';
 import { Observable, Subject } from 'rxjs';
 import { customer } from '../Model/customer';
+import { restaurant } from '../Model/restaurant';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +18,11 @@ export class UserService {
 
   loginUser(data:customerLogin):Observable<string> {
     return this.http.post("http://localhost:8081/api/v1/login", data,  { responseType: 'text' });
+  }
+
+  registerUser(customer:any):Observable<any>
+  {
+    return this.http.post<any>("http://localhost:8083/api/v2/register",customer);
   }
 
   fetchCustomerByJwt(Jwt:any):Observable<customer> {
@@ -35,6 +41,16 @@ export class UserService {
 
   login(isLoggedIn:boolean) {
     this.logInSubject.next(isLoggedIn);
+  }
+
+  fetchCustomerFavByJwt(Jwt:any):Observable<Array<string>> {
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${Jwt}` 
+    });
+    console.log(headers);
+
+    return this.http.get<Array<string>>('http://localhost:8083/api/v2/customers/eachcustomer',{ headers });
   }
 
 

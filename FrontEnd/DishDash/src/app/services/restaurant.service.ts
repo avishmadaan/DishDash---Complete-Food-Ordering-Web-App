@@ -37,5 +37,9 @@ export class RestaurantService implements OnInit {
     return this.restaurantsEmitter.next(res);
   }
 
+  saveRestaurantToCustomer() {
+    
+  }
+
 
 }

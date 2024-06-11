@@ -35,37 +35,52 @@ export class NavigationComponent implements OnInit, OnDestroy {
     // Router events subscription
     this.routerEventsSubscription = this.router.events.subscribe(event => {
       if (event instanceof NavigationStart) {
-        console.log("Naviation Start")
-        this.loadingService.setLoading(0);
+        // console.log("Naviation Start")
         this.simulateLoadingProgress();
       } else if (
         event instanceof NavigationEnd || 
         event instanceof NavigationCancel || 
         event instanceof NavigationError
       ) {
-        console.log('Navigation event completed:', event);
+        // console.log('Navigation event completed:', event);
         this.completeLoading();
       }
     });
   }
 
   ngOnDestroy(): void {
+    this.routerEventsSubscription.unsubscribe();
 
   }
 
 
   private completeLoading() {
-    console.log("Loading Completed")
-    this.loadingService.setLoading(100);
- 
+    // console.log("Loading Completed")
+    clearInterval(this.intervalId);
+    this.loadingService.setLoading(99);
+
+
     setTimeout(() => {
-      this.loadingService.setLoading(0);
-    }, 2000);
+      
+    this.loadingService.setIsLoading(false);
+    this.loadingService.setLoading(0);
+      
+    }, 500)
+    
   }
 
   private simulateLoadingProgress() {
-    console.log("Simulate Loading Progress")
-    this.loadingService.setLoading(10);
+    // console.log("Simulate Loading Progress")
+    this.loadingService.setLoading(0);
+    this.loadingService.setIsLoading(true);
+
+    this.intervalId = setInterval(() => {
+      this.progress+=10;
+      this.loadingService.setLoading(this.progress)
+      if(this.progress) {
+        clearInterval(this.intervalId);
+      }
+    }, 100)
    
   }
 

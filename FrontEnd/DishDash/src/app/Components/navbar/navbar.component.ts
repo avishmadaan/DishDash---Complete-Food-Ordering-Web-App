@@ -4,6 +4,7 @@ import { UserService } from '../../services/user.service';
 import { MatDialog } from '@angular/material/dialog';
 import { LoginComponent } from '../login/login.component';
 import { customer } from '../../Model/customer';
+import { RegisterComponent } from '../register/register.component';
 
 @Component({
   selector: 'app-navbar',
@@ -43,6 +44,12 @@ export class NavbarComponent implements OnInit {
 
   openLoginDialog(enterAnimationDuration: string, exitAnimationDuration: string):void {
     this.dialog.open(LoginComponent, {
+      width: "400px"
+    })
+  }
+
+  openSignupDialog(enterAnimationDuration: string, exitAnimationDuration: string):void {
+    this.dialog.open(RegisterComponent, {
       width: "400px"
     })
   }

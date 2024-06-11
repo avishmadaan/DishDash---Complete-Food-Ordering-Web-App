@@ -16,10 +16,15 @@ export class LoadingbarComponent implements OnInit {
   ngOnInit(): void { 
     this.loadingService.loadingSubject_1.subscribe({
       next:data => {
-        console.log("MY progress: "+data)
-        this.progress = data;
+        // console.log("MY progress: "+data)
+        this.progress = data
+      }
+    })
+
+    this.loadingService.isLoading.subscribe({
+      next:data => {
+        this.isLoading = data;
         this.cdr.detectChanges();
-          this.isLoading = this.progress>0 && this.progress<100;
       }
     })
    }

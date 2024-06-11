@@ -6,7 +6,13 @@
     height: 30vh;
     border: 2px solid black;
     overflow: hidden;
+}
+.descriptionbox .right {
+}
 
+.right .fav {
+    width: 70%;
+    height: 100%;
 }
 
 .menubox {
@@ -45,4 +51,8 @@
 
 .menuitem .part2 {
     width: 50%;
+}
+
+.fav {
+    font-size: 40px;
 }

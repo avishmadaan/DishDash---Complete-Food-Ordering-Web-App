@@ -27,6 +27,11 @@ import { LoadingbarComponent } from './Components/loadingbar/loadingbar.componen
 import {CookieService} from 'ngx-cookie-service';
 import {MatDialogModule} from '@angular/material/dialog';
 import { MatError, MatFormField, MatInput, MatLabel } from '@angular/material/input';
+import { SpinnerComponent } from './Components/spinner/spinner.component';
+import {MatProgressSpinner, MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { ProfileComponent } from './Components/profile/profile.component';
+import { LoginalertComponent } from './Components/loginalert/loginalert.component';
+
 
 @NgModule({
   declarations: [
@@ -45,7 +50,10 @@ import { MatError, MatFormField, MatInput, MatLabel } from '@angular/material/in
     RestaurantcardComponent,
     HomepageComponent,
     CutomerfavouriteComponent,
-    LoadingbarComponent
+    LoadingbarComponent,
+    SpinnerComponent,
+    ProfileComponent,
+    LoginalertComponent
   ],
   imports: [
     BrowserModule,
@@ -59,6 +67,8 @@ import { MatError, MatFormField, MatInput, MatLabel } from '@angular/material/in
     MatFormField,
     MatError,
     MatLabel,
+    MatProgressSpinnerModule,
+    MatProgressSpinner,
     HttpClientModule
   ],
   providers: [ provideAnimationsAsync(), CookieService],

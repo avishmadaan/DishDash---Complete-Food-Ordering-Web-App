@@ -14,17 +14,28 @@
                 <button class="dropdown-toggle border-0 drop" type="button" data-bs-toggle="dropdown" title="dropbutton" data-bs-offset="0,10">
                 </button>
                 <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Profile</a></li>
-                  <li><a class="dropdown-item" routerLink="customer/favourites">Favourites</a></li>
-                  <li><a class="dropdown-item" (click)="logout()">Logout</a></li>
+                  <li><a class="dropdown-item pointer" routerLink="customer/profile">Profile</a></li>
+                  <li><a class="dropdown-item pointer" routerLink="customer/favourites">Favorites</a></li>
+                  <li><a class="dropdown-item pointer" (click)="logout()">Logout</a></li>
                 </ul>
               </div>
 
         </div>
 
-        <div class="login flex gap-2" *ngIf="!isLoggedIn">
-            <mat-icon  aria-hidden="false" aria-label="Example home icon" fontIcon="login"></mat-icon> 
+        <div class="login flex gap-md-4" *ngIf="!isLoggedIn">
+
+            <div class="Signup flex gap-2">
+                <mat-icon  aria-hidden="false" aria-label="Example home icon" fontIcon="person"></mat-icon> 
+            <span (click)="openSignupDialog('3000ms', '1500ms')" class="fw-bold pointer">Register</span> 
+                
+            </div>
+
+            <div class="login flex gap-2">
+                <mat-icon  aria-hidden="false" aria-label="Example home icon" fontIcon="login"></mat-icon> 
             <span (click)="openLoginDialog('3000ms', '1500ms')" class="fw-bold pointer">Log In</span> 
+                
+            </div>
+            
         </div>
     </div>
 </div>

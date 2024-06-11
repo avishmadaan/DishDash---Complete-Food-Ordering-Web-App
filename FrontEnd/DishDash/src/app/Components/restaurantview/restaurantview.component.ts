@@ -3,6 +3,9 @@ import { ActivatedRoute } from '@angular/router';
 import { reduce } from 'rxjs';
 import { restaurant } from '../../Model/restaurant';
 import { RestaurantService } from '../../services/restaurant.service';
+import { CookieService } from 'ngx-cookie-service';
+import { Dialog } from '@angular/cdk/dialog';
+import { LoginalertComponent } from '../loginalert/loginalert.component';
 
 @Component({
   selector: 'app-restaurantview',
@@ -10,8 +13,12 @@ import { RestaurantService } from '../../services/restaurant.service';
   styleUrl: './restaurantview.component.css'
 })
 export class RestaurantviewComponent implements OnInit {
+
   oneRestaurant:restaurant;
-  constructor(private ac:ActivatedRoute, private resService:RestaurantService) {}
+  categoryAndCount = new Map();
+  categoryArray:[string, number][]=[];
+
+  constructor(private ac:ActivatedRoute, private resService:RestaurantService, private cookieService:CookieService, private dialog:Dialog) {}
 
   ngOnInit(): void {
     this.ac.paramMap.subscribe({
@@ -22,6 +29,9 @@ export class RestaurantviewComponent implements OnInit {
           next:data => {
             console.log(data);
             this.oneRestaurant = data;
+            this.prepareMapForCategories();
+            this.categoryArray = Array.from(this.categoryAndCount.entries())
+            console.log(this.categoryArray);
           }
         })
 
@@ -30,6 +40,27 @@ export class RestaurantviewComponent implements OnInit {
         console.log(e);
       }
     })
+  }
+
+  toogleFav() {
+if(!this.cookieService.get("token")) {
+this.dialog.open(LoginalertComponent)
+}
+  }
+
+  prepareMapForCategories() {
+    
+   
+    for(let cateogry of this.oneRestaurant.resCategories) {
+      let count =0
+      for(let dish of this.oneRestaurant.resMenu) {
+        if(dish.dishCategory.toLowerCase() == cateogry.toLowerCase()) {
+          count++;
+        }
+      }
+      this.categoryAndCount.set(cateogry,count);
+    }
+  
   }
 
 

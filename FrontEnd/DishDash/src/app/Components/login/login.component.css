@@ -5,3 +5,11 @@
 .button button {
     min-width: 100%;
 }
+
+.close-button {
+margin: 10px 15px auto auto;
+}
+
+.header {
+    justify-content: end;
+}

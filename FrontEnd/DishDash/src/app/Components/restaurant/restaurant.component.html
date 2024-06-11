@@ -1,12 +1,13 @@
 <div class="resBox p-5" *ngIf="restaurants.length !==0">
     <div class="headline">
         <h3>Best Restaurant In {{city}}</h3>
-
-        
-    
     </div>
 
+    <!-- <app-spinner *ngIf="loadingService.getSpinnerVisible()"></app-spinner> -->
+
     <div class="restaurants flex gap-4 p-3 justify-content" >
+
+       
         <div class="card" *ngFor="let restaurant of restaurants">
             <app-restaurantcard [onerestaurant] = "restaurant"></app-restaurantcard>
         </div>

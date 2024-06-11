@@ -3,6 +3,7 @@ import { customerLogin } from '../../Model/customerLogin';
 import { UserService } from '../../services/user.service';
 import { CookieService } from 'ngx-cookie-service';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { LoadingService } from '../../services/loading.service';
 
 @Component({
   selector: 'app-login',
@@ -17,12 +18,17 @@ export class LoginComponent {
   };
 
   customerJWT:string
+
+  errorMessage:string | null = null;
   
-  constructor(private userService:UserService, private cookieService: CookieService, public dialog:MatDialog, public dialogRef:MatDialogRef<LoginComponent>){}
+  constructor(private userService:UserService, private cookieService: CookieService, public dialog:MatDialog, public dialogRef:MatDialogRef<LoginComponent>, public loadingSevice:LoadingService
+  ){}
 
   loginUser() {
+ 
     this.userService.loginUser(this.userlogin).subscribe({
       next:data => {
+      
         console.log(data);
         this.customerJWT = data;
         this.cookieService.set("token",this.customerJWT);
@@ -32,7 +38,9 @@ export class LoginComponent {
 
       },
       error:e => {
+      
         console.log(e);
+        this.errorMessage = "Invalid email or password. Please try again"
       }
     })
 
