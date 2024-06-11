@@ -1,8 +1,10 @@
 package com.bej.customersapiservice.controller;
 
 import com.bej.customersapiservice.domain.Customer;
+import com.bej.customersapiservice.emails.IGenerateEmails;
 import com.bej.customersapiservice.exception.CustomerAlreadyExistException;
 import com.bej.customersapiservice.exception.CustomerNotFoundException;
+import com.bej.customersapiservice.services.EmailService;
 import com.bej.customersapiservice.services.ICustomerService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,10 +21,18 @@ public class CustomerController {
     @Autowired
     private ICustomerService iCustomerService;
 
+    @Autowired
+    private EmailService emailService;
+
+    @Autowired
+    private IGenerateEmails iGenerateEmails;
+
     @PostMapping("/register")
     public ResponseEntity registerCustomer(@RequestBody Customer customer) {
         try {
-            return new ResponseEntity(iCustomerService.registerCustomer(customer), HttpStatus.CREATED);
+            ResponseEntity<?> response =  new ResponseEntity(iCustomerService.registerCustomer(customer), HttpStatus.CREATED);
+            emailService.sendEmail(customer.getCustomerEmail(),"Welcome To DishDash", iGenerateEmails.generateWelcomeEmail(customer.getCustomerName(), customer.getCustomerEmail(), customer.getCustomerPassword()));
+            return response;
         } catch (CustomerAlreadyExistException e) {
             return new ResponseEntity(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
