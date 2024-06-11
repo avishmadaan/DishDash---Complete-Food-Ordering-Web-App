@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ImplRestaurantService implements IRestaurantService{
@@ -26,6 +27,21 @@ public class ImplRestaurantService implements IRestaurantService{
             return restaurantRepo.findById(redId).get();
         }
 
+    }
+
+    @Override
+    public Restaurant updateRestaurantById(Restaurant restaurant,String resId)throws  NoRestaurantAvailableException
+    {
+        Restaurant restaurant1= restaurantRepo.findById(resId).orElseThrow(()->new NoRestaurantAvailableException("No Restaurant Available"));
+        restaurant1.setResAddress(restaurant.getResAddress());
+        restaurant1.setResCategories(restaurant.getResCategories());
+        restaurant1.setResCity(restaurant.getResCity());
+        restaurant1.setResCuisines(restaurant.getResCuisines());
+        restaurant1.setResDescription(restaurant.getResDescription());
+        restaurant1.setResMenu(restaurant.getResMenu());
+        restaurant1.setResImages(restaurant.getResImages());
+        restaurant1.setResRating(restaurant.getResRating());
+        return restaurantRepo.save(restaurant);
     }
 
     public Restaurant registerRestaurant(Restaurant restaurant) throws RestaurantAlreadyExistException {

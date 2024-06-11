@@ -62,7 +62,7 @@ public class ImplCustomerService implements ICustomerService {
             optionalCustomer.setCustomerFavRestaurants(new ArrayList<>());
         }
 
-        List<Object> favList = optionalCustomer.getCustomerFavRestaurants();
+        List<String> favList = optionalCustomer.getCustomerFavRestaurants();
         favList.add(resId);
         customerRepo.save(optionalCustomer);
         return "Favourite Restaurant added";
@@ -84,7 +84,7 @@ public class ImplCustomerService implements ICustomerService {
     }
 
     @Override
-    public List<Object> getAllFavRestaurant(String customerId) {
+    public List<String> getAllFavRestaurant(String customerId) {
 
         Optional<Customer> restCustomer = customerRepo.findById(customerId);
         System.out.println(restCustomer.get());
@@ -113,7 +113,7 @@ public class ImplCustomerService implements ICustomerService {
             throw new CustomerNotFoundException();
         }
         Customer customer=optionalCustomer.get();
-        List<Object> favRestList= customer.getCustomerFavRestaurants();
+        List<String> favRestList= customer.getCustomerFavRestaurants();
         favRestList.remove(resId);
         customer.setCustomerFavRestaurants(favRestList);
         customerRepo.save(customer);

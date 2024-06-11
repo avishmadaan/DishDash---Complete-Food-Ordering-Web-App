@@ -16,6 +16,7 @@ public interface IRestaurantService {
     public List<Restaurant> fetchRestaurantByName(String resName) throws NoRestaurantAvailableException;
     public List<Restaurant> fetchRestaurantByCuisine(String resCuisine) throws NoRestaurantAvailableException;
     public Restaurant fetchRestaurantById(String redId) throws NoRestaurantAvailableException;
+    public Restaurant updateRestaurantById(Restaurant restaurant,String resId)throws  NoRestaurantAvailableException;
 
 
 }

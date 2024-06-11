@@ -12,7 +12,7 @@ public interface ICustomerService {
     public Customer updateCustomer(Customer customer, String customerId) throws CustomerAlreadyExistException, CustomerNotFoundException;
     public String addFavoriteRestaurant(String resId,String customerId) throws CustomerNotFoundException;
     public String addFavoriteDish(Object obj,String customerId) throws CustomerNotFoundException;
-    public List<Object> getAllFavRestaurant(String customerId);
+    public List<String> getAllFavRestaurant(String customerId);
     public List<Object> getAllFavDishes(String customerId);
     public Customer getCustomerById(String customerId) throws CustomerNotFoundException;
     public boolean deleteFavRestaurant(String customerId,Object restName) throws CustomerNotFoundException;

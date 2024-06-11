@@ -61,5 +61,16 @@ public class RestaurantController {
         return new ResponseEntity(iRestaurantService.fetchRestaurantByCuisine(resCuisine), HttpStatus.OK);
     }
 
+    @PutMapping("/updateRestaurant/{resId}")
+    public ResponseEntity<?> UpdateRestaurantById(@RequestBody Restaurant restaurant, @PathVariable String resId)
+    {
+        try{
+            return new ResponseEntity<>(iRestaurantService.updateRestaurantById(restaurant,resId),HttpStatus.OK);
+        }catch(NoRestaurantAvailableException ex)
+        {
+            return new ResponseEntity<>("Problem in controller",HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
 }
 
