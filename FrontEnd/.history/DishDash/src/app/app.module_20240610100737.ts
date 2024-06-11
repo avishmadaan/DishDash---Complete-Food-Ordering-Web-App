@@ -15,7 +15,6 @@ import { LoginComponent } from './Components/login/login.component';
 import { RegisterComponent } from './Components/register/register.component';
 import { PagenotfoundComponent } from './Components/pagenotfound/pagenotfound.component';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import {MatIconModule} from '@angular/material/icon';
 import { RestaurantcardComponent } from './Components/restaurantcard/restaurantcard.component';
@@ -23,15 +22,10 @@ import { HomepageComponent } from './Components/homepage/homepage.component';
 import { CutomerfavouriteComponent } from './Components/cutomerfavourite/cutomerfavourite.component';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { LoadingbarComponent } from './Components/loadingbar/loadingbar.component';
-
-import {CookieService} from 'ngx-cookie-service';
-import {MatDialogModule} from '@angular/material/dialog';
-import { MatError, MatFormField, MatInput, MatLabel } from '@angular/material/input';
-import { SpinnerComponent } from './Components/spinner/spinner.component';
-import {MatProgressSpinner, MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-import { ProfileComponent } from './Components/profile/profile.component';
-import { LoginalertComponent } from './Components/loginalert/loginalert.component';
-import { EditFormComponent } from './Components/edit-form/edit-form.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -51,29 +45,23 @@ import { EditFormComponent } from './Components/edit-form/edit-form.component';
     RestaurantcardComponent,
     HomepageComponent,
     CutomerfavouriteComponent,
-    LoadingbarComponent,
-    SpinnerComponent,
-    ProfileComponent,
-    LoginalertComponent,
-    EditFormComponent
+    LoadingbarComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
-    FormsModule,
     MatIconModule,
     MatProgressBarModule,
-    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
+    FormsModule,
     ReactiveFormsModule,
-    MatInput,
-    MatFormField,
-    MatError,
-    MatLabel,
-    MatProgressSpinnerModule,
-    MatProgressSpinner,
     HttpClientModule
+    
   ],
-  providers: [ provideAnimationsAsync(), CookieService],
+  providers: [
+    provideAnimationsAsync()
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

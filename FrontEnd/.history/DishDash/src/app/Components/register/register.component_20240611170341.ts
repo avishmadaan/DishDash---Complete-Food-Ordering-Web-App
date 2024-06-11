@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { AbstractControl, FormBuilder, Validators } from '@angular/forms';
 import { customer } from '../../Model/customer';
 import { UserService } from '../../services/user.service';
-import { v4 as uuidv4 } from 'uuid';
 
 @Component({
   selector: 'app-register',
@@ -22,6 +21,15 @@ export class RegisterComponent {
       customerEmail:['',[Validators.required,Validators.pattern(/^\S+@\S+\.\S+$/)]],
       customerPassword:['',[Validators.required,Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/)]],
       confirmPassword:['',[Validators.required,Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/)]],
+      customerProfilePic:[''],
+      customerPhone:['',[Validators.required,Validators.pattern(/^[6789]\d{9}$/)]]
+      // customerAddress:this.fb.group({
+      //   address1: [''],
+      //   landMark: [''],
+      //   city: [''],
+      //   pinCode: [''],
+      //   currentLocation: ['']
+      // })
     },{validators:this.checkPassowrdMisMatch})
 
     get customerId()
@@ -47,36 +55,44 @@ export class RegisterComponent {
       return this.registerForm.get('confirmPassword');
     }
 
-    // get customerProfilePic()
-    // {
-    //   return this.registerForm.get('customerProfilePic');
-    // }
+    get customerProfilePic()
+    {
+      return this.registerForm.get('customerProfilePic');
+    }
 
-    // get customerPhone()
-    // {
-    //   return this.registerForm.get('customerPhone');
-    // }
+    get customerPhone()
+    {
+      return this.registerForm.get('customerPhone');
+    }
 
-    // get address1()
-    // {
-    //   return this.registerForm.get('customerAddress.address1');
-    // }
-    // get landmark()
-    // {
-    //   return this.registerForm.get('customerAddress.landmark');
-    // }
-    // get city()
-    // {
-    //   return this.registerForm.get('customerAddress.city');
-    // }
-    // get pinCode()
-    // {
-    //   return this.registerForm.get('customerAddress.pinCode');
-    // }
-    // get currentLocation()
-    // {
-    //   return this.registerForm.get('customerAddress.currentLocation');
-    // }
+    get address1()
+    {
+      return this.registerForm.get('customerAddress.address1');
+    }
+    get landmark()
+    {
+      return this.registerForm.get('customerAddress.landmark');
+    }
+    get city()
+    {
+      return this.registerForm.get('customerAddress.city');
+    }
+    get pinCode()
+    {
+      return this.registerForm.get('customerAddress.pinCode');
+    }
+    get currentLocation()
+    {
+      return this.registerForm.get('customerAddress.currentLocation');
+    }
+
+    generateUniqueKey() {
+      const timestamp = new Date().getTime;
+
+      const randomNumber = Math.floor(Math.random()*1000);
+
+      return `cus-${timestamp}-${randomNumber}`
+    }
     
     onSubmit ()
     {
@@ -108,5 +124,8 @@ export class RegisterComponent {
   
       return password.value === confirmPass.value ? null : { passwordMismatch: true };
     }
+}
+function uuidv4(): string {
+  throw new Error('Function not implemented.');
 }
 

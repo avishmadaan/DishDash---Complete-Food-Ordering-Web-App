@@ -1,6 +1,18 @@
 <!-- <p>register works!</p> -->
 <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
     <div class="form-div">
+   <!-- customerID -->
+    <mat-form-field color="primary" appearnace="legacy">
+        <mat-label>customer Id</mat-label>
+        <input matInput type="text" placeholder="Unique Id" formControlName="customerId">
+         <mat-error class="error" *ngIf="registerForm.get('customerId')?.errors?.['required']">
+               CustomerId is required
+         </mat-error>
+         <mat-error class="error" *ngIf="registerForm.get('customerId')?.errors?.['minLength']">
+               Customer Id must me unique.
+         </mat-error>
+   </mat-form-field>
+    <br>
     <!-- customerName -->
     <mat-form-field color="primary" appearnace="legacy">
         <mat-label>Your Name</mat-label>
@@ -30,14 +42,16 @@
      <mat-form-field color="primary" appearnace="legacy">
         <mat-label>Password</mat-label>
         <input matInput type="password" placeholder="Password" formControlName="customerPassword">
+        <span>
         <mat-error class="error" *ngIf="registerForm.get('customerPassword')?.errors?.['required']">
             Password is required.
         </mat-error>
         <mat-error class="error" *ngIf="registerForm.get('customerPassword')?.errors?.['pattern']">
-            Password should have min 8 letter password, with atleast a symbol, upper and lower case letters
-            and a number.
+            <small>Password should have min 8 letter password, with atleast a symbol, upper and lower case letters
+            and a number.</small>
          </mat-error>
-     </mat-form-field ><br>
+         </span>
+     </mat-form-field >&nbsp;
      <!-- confirm password -->
      <mat-form-field color="primary" appearnace="legacy">
         <mat-label>Confirm password</mat-label>
@@ -50,7 +64,22 @@
                   >Password and Confirm Password should match
             </mat-error>
          </span>
-     </mat-form-field><br> 
+     </mat-form-field><br><br>
+    <!-- customerProfilePic -->
+    
+    <input type="file" placeholder="upload picture"  formControlName="customerProfilePic">
+     <br><br>
+    <!-- customerPhone -->
+    <mat-form-field color="primary" appearnace="legacy">
+        <mat-label>contact number</mat-label>
+        <input matInput type="number" placeholder="contact number" formControlName="customerPhone">
+     </mat-form-field><br>
+    <!-- customerAddress -->
+     <!-- <div formGroupName="customerAddress">
+        <mat-form-field color="primary" appearnace="legacy">
+        <input matInput type="text">
+     </mat-form-field>
+     </div> -->
     </div>
     <button mat-raised-button color="primary" type="submit" [disabled]="registerForm.invalid">Submit</button>
 </form>

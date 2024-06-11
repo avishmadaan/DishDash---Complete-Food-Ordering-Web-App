@@ -32,6 +32,7 @@ import {MatProgressSpinner, MatProgressSpinnerModule} from '@angular/material/pr
 import { ProfileComponent } from './Components/profile/profile.component';
 import { LoginalertComponent } from './Components/loginalert/loginalert.component';
 import { EditFormComponent } from './Components/edit-form/edit-form.component';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
 
 
 @NgModule({
