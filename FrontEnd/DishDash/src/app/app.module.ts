@@ -31,7 +31,6 @@ import { SpinnerComponent } from './Components/spinner/spinner.component';
 import {MatProgressSpinner, MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { ProfileComponent } from './Components/profile/profile.component';
 import { LoginalertComponent } from './Components/loginalert/loginalert.component';
-import { EditFormComponent } from './Components/edit-form/edit-form.component';
 
 
 @NgModule({
@@ -54,8 +53,7 @@ import { EditFormComponent } from './Components/edit-form/edit-form.component';
     LoadingbarComponent,
     SpinnerComponent,
     ProfileComponent,
-    LoginalertComponent,
-    EditFormComponent
+    LoginalertComponent
   ],
   imports: [
     BrowserModule,
