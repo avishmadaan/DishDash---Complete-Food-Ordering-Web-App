@@ -6,13 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="9c8a6dba-7c8c-426b-ad82-e45f53e77f5c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RestaurantService/src/main/java/com/example/RestaurantService/controller/RestaurantController.java" beforeDir="false" afterPath="$PROJECT_DIR$/RestaurantService/src/main/java/com/example/RestaurantService/controller/RestaurantController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RestaurantService/src/main/java/com/example/RestaurantService/exception/NoRestaurantAvailableException.java" beforeDir="false" afterPath="$PROJECT_DIR$/RestaurantService/src/main/java/com/example/RestaurantService/exception/NoRestaurantAvailableException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RestaurantService/src/main/java/com/example/RestaurantService/service/IRestaurantService.java" beforeDir="false" afterPath="$PROJECT_DIR$/RestaurantService/src/main/java/com/example/RestaurantService/service/IRestaurantService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RestaurantService/src/main/java/com/example/RestaurantService/service/ImplRestaurantService.java" beforeDir="false" afterPath="$PROJECT_DIR$/RestaurantService/src/main/java/com/example/RestaurantService/service/ImplRestaurantService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/customersapiservice/src/main/java/com/bej/customersapiservice/domain/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/customersapiservice/src/main/java/com/bej/customersapiservice/domain/Customer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/customersapiservice/src/main/java/com/bej/customersapiservice/services/ICustomerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/customersapiservice/src/main/java/com/bej/customersapiservice/services/ICustomerService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/customersapiservice/src/main/java/com/bej/customersapiservice/services/ImplCustomerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/customersapiservice/src/main/java/com/bej/customersapiservice/services/ImplCustomerService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/profile/profile.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/profile/profile.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/profile/profile.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/profile/profile.component.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,7 +57,7 @@
       <recent name="C:\Users\Avish Madaan\Desktop\NIIT\Phase 2\Course 14 - Capstone Project\major-capstone-project\FoodieApp" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.RestaurantServiceApplication">
+  <component name="RunManager" selected="Application.UserAuthenticationServiceApplication">
     <configuration name="ApiGateawayApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.example.ApiGateaway.ApiGateawayApplication" />
       <module name="ApiGateaway" />
@@ -137,11 +132,11 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.UserAuthenticationServiceApplication" />
         <item itemvalue="Application.RestaurantServiceApplication" />
         <item itemvalue="Application.CustomersapiserviceApplication" />
-        <item itemvalue="Application.EurekaDiscoveryServerApplication" />
         <item itemvalue="Application.ApiGateawayApplication" />
-        <item itemvalue="Application.UserAuthenticationServiceApplication" />
+        <item itemvalue="Application.EurekaDiscoveryServerApplication" />
       </list>
     </recent_temporary>
   </component>

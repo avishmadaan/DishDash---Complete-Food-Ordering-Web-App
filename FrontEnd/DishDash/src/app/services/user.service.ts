@@ -52,6 +52,8 @@ export class UserService {
 
     return this.http.get<Array<string>>('http://localhost:8083/api/v2/customers/eachcustomer',{ headers });
   }
-
+  updateUser(customer: any): Observable<any> {
+    return this.http.put<any>("http://localhost:8083/api/v2/customers/update", customer);
+  }
 
 }

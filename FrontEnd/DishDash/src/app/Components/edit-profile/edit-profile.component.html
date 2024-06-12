@@ -1,0 +1,37 @@
+<!-- <p>edit-profile works!</p> -->
+<p>edit-profile works!</p>
+<!-- customerProfilePic -->
+  
+<input type="file" placeholder="upload picture"  formControlName="customerProfilePic">
+<br><br>
+
+<!-- customerPassword -->
+<mat-form-field color="primary" appearnace="legacy">
+  <mat-label>Password</mat-label>
+  <input matInput type="password" placeholder="Password" formControlName="customerPassword">
+  <mat-error class="error" *ngIf="registerForm.get('customerPassword')?.errors?.['required']">
+      Password is required.
+  </mat-error>
+  <mat-error class="error" *ngIf="registerForm.get('customerPassword')?.errors?.['pattern']">
+      Password should have min 8 letter password, with atleast a symbol, upper and lower case letters
+      and a number.
+   </mat-error>
+</mat-form-field ><br>
+<!-- confirm password -->
+<mat-form-field color="primary" appearnace="legacy">
+  <mat-label>Confirm password</mat-label>
+  <input matInput type="password" placeholder="confirm Password" formControlName="confirmPassword">
+  <span *ngIf="confirmPassword?.dirty ||  confirmPassword?.touched ">
+      <mat-error class="error" *ngIf="confirmPassword?.errors?.['required']">
+            Confirm Password is required
+      </mat-error>
+      <mat-error *ngIf="registerForm?.errors?.['passwordMismatch']">
+            >Password and Confirm Password should match
+      </mat-error>
+   </span>
+</mat-form-field><br>
+<button mat-raised-button color="primary" (click)="addAddress()">Add Address</button><br><br>
+
+
+<button class="btn btn-dark btn-block mb-3" type="submit">Update</button><br><br>  
+
