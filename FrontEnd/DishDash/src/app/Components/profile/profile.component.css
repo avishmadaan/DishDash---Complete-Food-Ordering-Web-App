@@ -1,0 +1,15 @@
+.header {
+  /* background-image: url('background-image.jpg'); */
+  background-size: cover;
+  color:lightcoral;
+  padding: 10px 0;
+}
+
+.edit-button {
+  color: black;
+  font-weight: bold;
+}
+
+.profile-icon {
+  font-size: 60px;
+}

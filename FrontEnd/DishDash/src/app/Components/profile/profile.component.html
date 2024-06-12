@@ -1,3 +1,21 @@
-<app-navbar></app-navbar>
-<app-edit-profile></app-edit-profile>
-<app-cutomerfavourite></app-cutomerfavourite>
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> -->
+
+<header class="header">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col">
+        <!-- <button type="button" class="btn btn-light edit-button">Edit Profile</button> -->
+        <button mat-button class="edit-button" routerLink="/edit-profile">Edit Profile</button>
+      </div>
+      <div class="col text-right">
+        <i class="fas fa-user-circle profile-icon"></i>
+      </div>
+    </div>
+  </div>
+</header>
+<body>
+  <button mat-button class="edit-button" routerLink="/customer/favourites">FAVOURITES</button>
+</body>
+
+
+  
