@@ -23,6 +23,7 @@
     <module>UserAuthenticationService</module>
     <module>RestaurantService</module>
     <module>customersapiservice</module>
+    <module>cart-service-api</module>
   </modules>
 
   <properties>
@@ -60,6 +61,7 @@
       <artifactId>spring-boot-starter-test</artifactId>
       <scope>test</scope>
     </dependency>
+
   </dependencies>
 
   <dependencyManagement>

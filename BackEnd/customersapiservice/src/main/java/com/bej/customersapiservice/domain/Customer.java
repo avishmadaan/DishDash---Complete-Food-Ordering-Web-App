@@ -20,8 +20,7 @@ public class Customer {
     private String customerPassword;
     private String customerProfilePic;
     private long customerPhone;
-    private Address customerAddress;
+    private List<Address> customerAddress;
     private List<String> customerFavRestaurants;
-    private List<Object> customerFavDishes;
-
+    private List<String> customerFavDishes;
 }
