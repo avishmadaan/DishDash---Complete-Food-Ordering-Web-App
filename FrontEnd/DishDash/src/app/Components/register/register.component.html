@@ -5,10 +5,10 @@
   </div>
 
 <!-- <p>register works!</p> -->
-<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-    <div class="form-div">
+<form class="regform" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <div class="form-div flex flex-column justify-content-center ">
     <!-- customerName -->
-    <mat-form-field color="primary" appearnace="legacy">
+    <mat-form-field class="w-100" color="primary" appearnace="legacy">
         <mat-label>Your Name</mat-label>
             <input matInput type="text" placeholder="Your Name" formControlName="customerName">
         <mat-error class="error" *ngIf="registerForm.get('customerName')?.errors?.['required']">
@@ -20,7 +20,7 @@
          <mat-error class="error" *ngIf="registerForm.get('customerName')?.errors?.['pattern']">
             only alphabets are allowed
          </mat-error>
-    </mat-form-field><br>
+    </mat-form-field>
     <!-- customerEmail-->
      <mat-form-field color="primary" appearnace="legacy">
         <mat-label>Your Email</mat-label>
@@ -31,7 +31,7 @@
         <mat-error class="error" *ngIf="registerForm.get('customerEmail')?.errors?.['pattern']">
             Enter valid email.
         </mat-error>
-     </mat-form-field ><br>
+     </mat-form-field >
     <!-- customerPassword -->
      <mat-form-field color="primary" appearnace="legacy">
         <mat-label>Password</mat-label>
@@ -43,7 +43,7 @@
             Password should have min 8 letter password, with atleast a symbol, upper and lower case letters
             and a number.
          </mat-error>
-     </mat-form-field ><br>
+     </mat-form-field >
      <!-- confirm password -->
      <mat-form-field color="primary" appearnace="legacy">
         <mat-label>Confirm password</mat-label>
@@ -56,8 +56,14 @@
                   >Password and Confirm Password should match
             </mat-error>
          </span>
-     </mat-form-field><br> 
+     </mat-form-field>
     </div>
-    <button mat-raised-button color="primary" type="submit" [disabled]="registerForm.invalid">Submit</button>
+    <!-- <button class="bg-primary-subtle" color="primary" type="submit" [disabled]="registerForm.invalid">Submit</button> -->
+
+    <button class="w-100 mainbtn btn btn-primary btn-block mb-4" type="submit" [disabled]="registerForm.invalid">Submit</button>
 </form>
+
+<div class="spinner flex justify-content-center" *ngIf="isLoading">
+    <mat-spinner></mat-spinner>
+</div>
 

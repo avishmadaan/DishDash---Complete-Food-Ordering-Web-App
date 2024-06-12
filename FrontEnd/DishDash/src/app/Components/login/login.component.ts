@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { customerLogin } from '../../Model/customerLogin';
 import { UserService } from '../../services/user.service';
 import { CookieService } from 'ngx-cookie-service';
@@ -11,7 +11,7 @@ import { RegisterComponent } from '../register/register.component';
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
 
   userlogin:customerLogin = {
     customerEmail: '',
@@ -24,10 +24,22 @@ export class LoginComponent {
   
   constructor(private userService:UserService, private cookieService: CookieService, public dialog:MatDialog, public dialogRef:MatDialogRef<LoginComponent>, public loadingSevice:LoadingService
   ){}
+  ngOnInit(): void {
+    this.userService.listenLogin.subscribe({
+      next:data => {
+        this.loginUser(data);
+      },
 
-  loginUser() {
+      error:e => {
+console.log(e);
+      }
+    })
+   
+  }
+
+  loginUser(userlogin:customerLogin) {
     this.isLoadingSpinner = true;
-    this.userService.loginUser(this.userlogin).subscribe({
+    this.userService.loginUser(userlogin).subscribe({
       next:data => {
     this.isLoadingSpinner = false
         console.log(data);

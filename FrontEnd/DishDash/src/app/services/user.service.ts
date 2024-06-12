@@ -13,6 +13,7 @@ export class UserService {
   loginAPIkey:string = ``;
 
   logInSubject = new Subject<boolean>()
+  listenLogin = new Subject<customerLogin>();
 
 
   constructor(private http:HttpClient) { }
@@ -21,9 +22,16 @@ export class UserService {
     return this.http.post("http://localhost:8081/api/v1/login", data,  { responseType: 'text' });
   }
 
-  registerUser(customer:any):Observable<any>
+  //SendToNav
+
+  sendToNav(data:customerLogin) {
+    this.listenLogin.next(data);
+
+  }
+
+  registerUser(customer:customer):Observable<customer>
   {
-    return this.http.post<any>("http://localhost:8083/api/v2/register",customer);
+    return this.http.post<customer>("http://localhost:8083/api/v2/register",customer);
   }
 
   fetchCustomerByJwt(Jwt:any):Observable<customer> {

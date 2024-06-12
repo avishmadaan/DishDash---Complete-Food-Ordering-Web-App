@@ -4,6 +4,8 @@ import { customer } from '../../Model/customer';
 import { UserService } from '../../services/user.service';
 import { v4 as uuidv4 } from 'uuid';
 import { MatDialogRef } from '@angular/material/dialog';
+import { customerLogin } from '../../Model/customerLogin';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-register',
@@ -12,9 +14,16 @@ import { MatDialogRef } from '@angular/material/dialog';
 })
 export class RegisterComponent {
 
-  uniqueId:string = ''
+  uniqueId:string = '';
+  isLoading:boolean = false;
   uuidString: string = uuidv4();
-    constructor(private fb:FormBuilder, private userService:UserService, public dialogRef:MatDialogRef<RegisterComponent>){}
+
+  userlogin:customerLogin = {
+    customerEmail: '',
+    customerPassword : ''
+  };
+
+    constructor(private fb:FormBuilder, private userService:UserService, public dialogRef:MatDialogRef<RegisterComponent>, public cookieService:CookieService){}
 
 
     registerForm=this.fb.group({
@@ -81,19 +90,30 @@ export class RegisterComponent {
     
     onSubmit ()
     {
+      this.isLoading=true;
       let registerCustomer:any=this.registerForm.value as any;
       console.log(registerCustomer);
       this.userService.registerUser(registerCustomer).subscribe({
         next:data=>{
+          this.isLoading = false;
             console.log(data);
+            this.userlogin.customerEmail = data.customerEmail
+            this.userlogin.customerPassword = data.customerPassword
+            this.closeDialoge();
+            console.log("LoginDetails")
+            console.log(this.userlogin);
+            this.loginUser(this.userlogin);
         },
         error:err=>{
+          this.isLoading = false;
             console.log("Error",err);
             
         }
       })
       
     }
+
+
     checkPassowrdMisMatch(c:AbstractControl)
     {
       const password=c.get('customerPassword');
@@ -108,6 +128,29 @@ export class RegisterComponent {
       
   
       return password.value === confirmPass.value ? null : { passwordMismatch: true };
+    }
+
+
+    loginUser(userlogin:customerLogin) {
+      let customerJWT:string;
+      this.userService.loginUser(userlogin).subscribe({
+        next:data => {
+          console.log(data);
+          customerJWT = data;
+          this.cookieService.set("token",customerJWT);
+          this.afterLogin();
+  
+        },
+        error:e => {
+          console.log(e);
+        }
+      })
+  
+    }
+  
+    afterLogin() {
+      this.userService.login(true)
+  
     }
 
     closeDialoge(){

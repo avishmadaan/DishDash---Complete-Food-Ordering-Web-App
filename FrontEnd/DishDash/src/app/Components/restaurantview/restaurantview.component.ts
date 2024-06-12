@@ -20,9 +20,10 @@ export class RestaurantviewComponent implements OnInit {
   categoryArray: [string, number][] = [];
   isFavorite: boolean = false;
   custFavorites: string[] = [];
-
+  spinnerVisible:boolean=false;
   categoryWise =new Map();
   categoryWiseDishesArray:[string, dish[]][] = [];
+  noSuchRestaurant = false;
 
   //Counter Code
   counter:number = 0;
@@ -45,13 +46,16 @@ export class RestaurantviewComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.spinnerVisible=true;
     this.ac.paramMap.subscribe({
       next: data => {
         let restId = data.get('resid');
+        this.spinnerVisible=false;
         this.fetchRestaurantById(restId);
       },
       error: e => {
         console.log(e);
+        this.spinnerVisible = false;
       }
     });
 
@@ -59,6 +63,7 @@ export class RestaurantviewComponent implements OnInit {
   }
 
   fetchRestaurantById(id: string) {
+    this.spinnerVisible=true;
     this.resService.fetchRestaurantByid(id).subscribe({
       next: data => {
         this.oneRestaurant = data;
@@ -67,7 +72,7 @@ export class RestaurantviewComponent implements OnInit {
 
         this.prepareCategoryWise();
         this.categoryWiseDishesArray = Array.from(this.categoryWise.entries());
-
+       this.spinnerVisible=false;
      
         if (this.cookieService.get('token')) {
     
@@ -75,7 +80,10 @@ export class RestaurantviewComponent implements OnInit {
         }
       },
       error: e => {
-      
+
+        console.log("Error")
+        this.spinnerVisible=false;
+        this.noSuchRestaurant=true;
       }
     });
   }
