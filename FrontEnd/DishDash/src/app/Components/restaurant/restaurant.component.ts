@@ -12,24 +12,38 @@ export class RestaurantComponent implements OnInit {
 
   city:string;
   restaurants:restaurant[] = [];
+  spinnerVisible:boolean = false;
+  noRestuarant:boolean = false;
 
-  constructor(private resService:RestaurantService, public loadingService:LoadingService) {}
+  constructor(private resService:RestaurantService) {}
 
   ngOnInit(): void {
     this.resService.cityEmiter.subscribe({
       next:data => {
         this.city = data
 
-  
+  this.spinnerVisible = true
+  this.noRestuarant=false
     this.resService.restaurantsEmitter.subscribe({
       next:data => {
         console.log(data);
-        
-        this.restaurants = data
+        if(data) {
+          this.restaurants = data
+          this.noRestuarant=false
+          console.log("happening something")
+        }
+        else {
+          this.noRestuarant = true
+          this.restaurants=[]
+        }
+    this.spinnerVisible = false
+    
+      },
+      error:e => {
+        console.log("Not received anything")
+        this.spinnerVisible = false
       }
     })
-
-
 
       }
     })

@@ -1,41 +1,97 @@
-<div class="nav flex justify-content align-items ">
-    <div class="left">
-        <img src="https://via.placeholder.com/150x40" alt="Placeholder Image" class="logo" routerLink="/">
+<div class="nav flex justify-content align-items">
+  <div class="left">
+    <img
+      src="https://via.placeholder.com/150x40"
+      alt="Placeholder Image"
+      class="logo"
+      routerLink="/"
+    />
+  </div>
+
+  <div class="right flex justify-content-center gap-4 align-items">
+    <div
+      class="logout flex justify-center align-items bg-white border-black gap-1"
+      *ngIf="isLoggedIn"
+    >
+      <div class="profile">
+        <img src="https://via.placeholder.com/40x40 " alt="Profile" />
+      </div>
+      <div class="name">{{ activeCustomer.customerName.split(" ")[0] }}</div>
+      <div class="dropdown">
+        <button
+          class="dropdown-toggle border-0 drop"
+          type="button"
+          data-bs-toggle="dropdown"
+          title="dropbutton"
+          data-bs-offset="0,10"
+        ></button>
+        <ul class="dropdown-menu">
+          <li>
+            <a class="dropdown-item pointer" routerLink="customer/profile"
+              >Profile</a
+            >
+          </li>
+          <li>
+            <a class="dropdown-item pointer" routerLink="customer/favourites"
+              >Favorites</a
+            >
+          </li>
+          <li>
+            <a class="dropdown-item pointer" (click)="logout()">Logout</a>
+          </li>
+        </ul>
+      </div>
     </div>
 
-    <div class="right">
+    <div class="login flex gap-md-4" *ngIf="!isLoggedIn">
+      <div class="Signup flex gap-2">
+        <mat-icon
+          aria-hidden="false"
+          aria-label="Example home icon"
+          fontIcon="person"
+        ></mat-icon>
+        <span
+          (click)="openSignupDialog('3000ms', '1500ms')"
+          class="fw-bold pointer"
+          >Register</span
+        >
+      </div>
 
-        <div class="logout flex justify-center align-items bg-white border-black gap-1" *ngIf="isLoggedIn">
-            <div class="profile">
-                <img [src]="activeCustomer.customerProfilePic" alt="">
-            </div>
-            <div class="name">{{activeCustomer.customerName.split(" ")[0]}}</div>
-            <div class="dropdown">
-                <button class="dropdown-toggle border-0 drop" type="button" data-bs-toggle="dropdown" title="dropbutton" data-bs-offset="0,10">
-                </button>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item pointer" routerLink="customer/profile">Profile</a></li>
-                  <li><a class="dropdown-item pointer" routerLink="customer/favourites">Favorites</a></li>
-                  <li><a class="dropdown-item pointer" (click)="logout()">Logout</a></li>
-                </ul>
-              </div>
-
-        </div>
-
-        <div class="login flex gap-md-4" *ngIf="!isLoggedIn">
-
-            <div class="Signup flex gap-2">
-                <mat-icon  aria-hidden="false" aria-label="Example home icon" fontIcon="person"></mat-icon> 
-            <span (click)="openSignupDialog('3000ms', '1500ms')" class="fw-bold pointer">Register</span> 
-                
-            </div>
-
-            <div class="login flex gap-2">
-                <mat-icon  aria-hidden="false" aria-label="Example home icon" fontIcon="login"></mat-icon> 
-            <span (click)="openLoginDialog('3000ms', '1500ms')" class="fw-bold pointer">Log In</span> 
-                
-            </div>
-            
-        </div>
+      <div class="login flex gap-2">
+        <mat-icon
+          aria-hidden="false"
+          aria-label="Example home icon"
+          fontIcon="login"
+        ></mat-icon>
+        <span
+          (click)="openLoginDialog('3000ms', '1500ms')"
+          class="fw-bold pointer"
+          >Log In</span
+        >
+      </div>
     </div>
+
+    <div class="cart flex justify-content-center align-items gap-2" (mouseover)="showCart=true" (mouseleave)="showCart=false" >
+
+        <div class="menupart flex justify-content-center align-items gap-2" >
+            <mat-icon
+            aria-hidden="false"
+            aria-label="Example home icon" [matBadge]="matBadge" matBadgeColor="warn"
+            fontIcon="shopping_cart" 
+          ></mat-icon>
+    
+          <span
+          class="fw-bold pointer"
+          >Cart</span
+        >
+        </div>
+
+    <div class="mycart bg-white shadow" *ngIf="showCart" >
+       <app-cart></app-cart>
+    </div>
+   
+    </div>
+
+   
+  </div>
 </div>

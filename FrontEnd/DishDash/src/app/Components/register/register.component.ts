@@ -3,6 +3,7 @@ import { AbstractControl, FormBuilder, Validators } from '@angular/forms';
 import { customer } from '../../Model/customer';
 import { UserService } from '../../services/user.service';
 import { v4 as uuidv4 } from 'uuid';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-register',
@@ -13,7 +14,7 @@ export class RegisterComponent {
 
   uniqueId:string = ''
   uuidString: string = uuidv4();
-    constructor(private fb:FormBuilder, private userService:UserService){}
+    constructor(private fb:FormBuilder, private userService:UserService, public dialogRef:MatDialogRef<RegisterComponent>){}
 
 
     registerForm=this.fb.group({
@@ -107,6 +108,10 @@ export class RegisterComponent {
       
   
       return password.value === confirmPass.value ? null : { passwordMismatch: true };
+    }
+
+    closeDialoge(){
+this.dialogRef.close()
     }
 }
 

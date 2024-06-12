@@ -1,0 +1,49 @@
+<h1 class="text-center text-success">Edit Profile</h1>
+<div class="container mt-5">
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <!-- customerProfilePic -->
+    <div class="form-group">
+      <label for="customerProfilePic" class="form-label">Upload Picture</label>
+      <input type="file" class="form-control" id="customerProfilePic" placeholder="Upload Picture" formControlName="customerProfilePic">
+    </div>
+    <br>
+    <!-- customerPassword -->
+    <div class="form-group">
+      <mat-form-field class="full-width" appearance="fill">
+        <mat-label>Password</mat-label>
+        <input matInput type="password" class="form-control" placeholder="Password" formControlName="customerPassword">
+        <mat-error class="error" *ngIf="registerForm.get('customerPassword')?.errors?.['required']">
+          Password is required.
+        </mat-error>
+        <mat-error class="error" *ngIf="registerForm.get('customerPassword')?.errors?.['pattern']">
+          Password should have a minimum of 8 characters, with at least a symbol, upper and lower case letters, and a number.
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <br>
+    <!-- confirmPassword -->
+    <div class="form-group">
+      <mat-form-field class="full-width" appearance="fill">
+        <mat-label>Confirm Password</mat-label>
+        <input matInput type="password" class="form-control" placeholder="Confirm Password" formControlName="confirmPassword">
+        <span *ngIf="confirmPassword?.dirty || confirmPassword?.touched">
+          <mat-error class="error" *ngIf="confirmPassword?.errors?.['required']">
+            Confirm Password is required.
+          </mat-error>
+          <mat-error *ngIf="registerForm?.errors?.['passwordMismatch']">
+            Password and Confirm Password should match.
+          </mat-error>
+        </span>
+      </mat-form-field>
+    </div>
+    <br>
+    <div class="form-group">
+      <button mat-button class="mat-primary" routerLink="/address">Add Address</button>
+    </div>
+    <!-- Update Button -->
+    <div class="form-group">
+      <button class="btn btn-secondary btn-block mb-3" type="submit">Update</button>
+    </div>
+    <br>
+  </form>
+</div>

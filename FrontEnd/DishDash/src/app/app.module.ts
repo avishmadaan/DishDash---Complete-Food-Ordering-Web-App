@@ -31,6 +31,8 @@ import { SpinnerComponent } from './Components/spinner/spinner.component';
 import {MatProgressSpinner, MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { ProfileComponent } from './Components/profile/profile.component';
 import { LoginalertComponent } from './Components/loginalert/loginalert.component';
+import {MatBadgeModule} from '@angular/material/badge';
+import { CartComponent } from './Components/cart/cart.component';
 
 
 @NgModule({
@@ -53,7 +55,8 @@ import { LoginalertComponent } from './Components/loginalert/loginalert.componen
     LoadingbarComponent,
     SpinnerComponent,
     ProfileComponent,
-    LoginalertComponent
+    LoginalertComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,
@@ -69,6 +72,7 @@ import { LoginalertComponent } from './Components/loginalert/loginalert.componen
     MatLabel,
     MatProgressSpinnerModule,
     MatProgressSpinner,
+    MatBadgeModule,
     HttpClientModule
   ],
   providers: [ provideAnimationsAsync(), CookieService],

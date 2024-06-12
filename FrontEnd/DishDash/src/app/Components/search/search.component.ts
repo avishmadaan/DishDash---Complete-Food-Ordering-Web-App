@@ -10,7 +10,7 @@ import { LoadingService } from '../../services/loading.service';
   styleUrl: './search.component.css'
 })
 export class SearchComponent implements OnInit {
-
+  cityFromIp:string=''
   city:string;
   Search:string= '';
   restaurants:restaurant[];
@@ -24,6 +24,7 @@ export class SearchComponent implements OnInit {
     this.ipService.getIpLocation().subscribe({
       next:data => {
         this.city = data.city
+        this.cityFromIp =data.city
         this.updateCity(this.city)
 
         this.resService.fetchAllRestaurants().subscribe({
@@ -43,6 +44,8 @@ export class SearchComponent implements OnInit {
           },
           error:e => {
             console.log(e);
+            // console.log("No such city")
+            this.resService.getFilteredRestaurantList(this.fliterRestaurants);
           }
         })
       }
@@ -62,6 +65,12 @@ export class SearchComponent implements OnInit {
     this.resService.fetchRestaurantsByCity(this.city).subscribe({
       next:data => {
         this.fliterRestaurants = data
+        this.sendFilteredData(this.fliterRestaurants);
+      },
+
+      error: e => {
+        console.log("No Restaurant In This City");
+        this.fliterRestaurants = null
         this.sendFilteredData(this.fliterRestaurants);
       }
     })

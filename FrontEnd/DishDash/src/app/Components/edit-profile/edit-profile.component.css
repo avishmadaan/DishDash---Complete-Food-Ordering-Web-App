@@ -1,0 +1,30 @@
+.container {
+    max-width: 600px;
+    margin: auto;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #f8f9fa;
+  }
+  
+  .form-group {
+    margin-bottom: 1rem;
+  }
+  
+  .full-width {
+    width: 100%;
+  }
+  
+  .error {
+    color: red;
+    font-size: 0.875rem;
+  }
+  
+  .text-center {
+    text-align: center;
+  }
+  
+  .text-success {
+    color: #286ca7;
+  }
+  

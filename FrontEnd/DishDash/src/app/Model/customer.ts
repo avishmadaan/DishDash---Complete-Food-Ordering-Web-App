@@ -9,6 +9,6 @@ export class customer {
     customerProfilePic?: string
     customerPhone: number
     customerAddress?:address[]
-    customerFavRestaurant?:favrestaurant[]
+    customerFavRestaurants?:string[]
     customerFavDishes?:favdishes[]
 }

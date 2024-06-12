@@ -12,8 +12,6 @@ import { ProfileComponent } from './Components/profile/profile.component';
 const routes: Routes = [
 {path:'', component: HomepageComponent},
 {path:'home', component: HomepageComponent},
-{path:'login', component: LoginComponent},
-{path:'register', component: RegisterComponent},
 {path:'customer/profile', component:ProfileComponent},
 {path:'customer/favourites', component: CutomerfavouriteComponent},
 {path:':city/restaurants/:resid', component: RestaurantviewComponent},

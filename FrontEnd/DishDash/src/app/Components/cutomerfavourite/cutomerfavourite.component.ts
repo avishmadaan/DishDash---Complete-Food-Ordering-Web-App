@@ -14,7 +14,8 @@ export class CutomerfavouriteComponent implements OnInit {
   activeCustomer:customer;
   customerJwt:string;
   restIds:string[]=[];
-  restaurants:restaurant[]=[]
+  restaurants:restaurant[]=[];
+  favRestPresent = false;
 
 
   constructor(private userService:UserService, private cookieService:CookieService, private restService:RestaurantService) {}
@@ -24,6 +25,9 @@ export class CutomerfavouriteComponent implements OnInit {
     this.userService.fetchCustomerFavByJwt(this.customerJwt).subscribe({
       next:data => {
         this.restIds = data;
+        if(this.restIds.length >0) {
+          this.fetchRestById(this.restIds);
+        }
       },
       error:e => [
         console.log("Error")
@@ -33,12 +37,22 @@ export class CutomerfavouriteComponent implements OnInit {
    
   }
 
-fetchRestById(restId:string) {
-  this.restService.fetchRestaurantByid(restId).subscribe({
-    next:data => {
-      this.restaurants.push(data);
-    }
-  })
+fetchRestById(restIds:string[]) {
+  this.favRestPresent = true;
+
+  for(let restId of restIds) {
+    this.restService.fetchRestaurantByid(restId).subscribe({
+      next:data => {
+        this.restaurants.push(data);
+      },
+
+      error:e => {
+        console.log("Error while fetching " +restId)
+      }
+    })
+
+  }
+
 }
 
   fetchCustomerFavourites() {
