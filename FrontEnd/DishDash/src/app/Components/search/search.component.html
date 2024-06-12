@@ -11,6 +11,7 @@
                 <mat-icon  aria-hidden="false" aria-label="Example home icon" fontIcon="location_on"></mat-icon> {{city}}
             </button>
             <ul class="dropdown-menu pt-0">
+                <li class="pointer currentLocation" (click)="selectCity(cityFromIp)">Current Location: {{cityFromIp}}</li>
                 <p class="bg-dark text-center text-white">Available Cities</p>
               <li *ngFor="let rest of allUniqueCities" ><a class="dropdown-item" href="#" (click)="selectCity(rest)">{{rest}}</a></li>
             </ul>

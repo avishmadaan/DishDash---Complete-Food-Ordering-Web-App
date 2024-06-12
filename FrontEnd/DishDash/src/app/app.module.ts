@@ -31,8 +31,8 @@ import { SpinnerComponent } from './Components/spinner/spinner.component';
 import {MatProgressSpinner, MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { ProfileComponent } from './Components/profile/profile.component';
 import { LoginalertComponent } from './Components/loginalert/loginalert.component';
-import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
-import { AddressFormComponent } from './components/address-form/address-form.component';
+import {MatBadgeModule} from '@angular/material/badge';
+import { CartComponent } from './Components/cart/cart.component';
 
 
 @NgModule({
@@ -56,8 +56,7 @@ import { AddressFormComponent } from './components/address-form/address-form.com
     SpinnerComponent,
     ProfileComponent,
     LoginalertComponent,
-    EditProfileComponent,
-    AddressFormComponent
+    CartComponent
   ],
   imports: [
     BrowserModule,
@@ -73,6 +72,7 @@ import { AddressFormComponent } from './components/address-form/address-form.com
     MatLabel,
     MatProgressSpinnerModule,
     MatProgressSpinner,
+    MatBadgeModule,
     HttpClientModule
   ],
   providers: [ provideAnimationsAsync(), CookieService],

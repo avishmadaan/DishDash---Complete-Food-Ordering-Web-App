@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v2")
-@CrossOrigin
+@CrossOrigin(origins = "http://localhost:4200")
 public class CustomerController {
 
     @Autowired
@@ -26,6 +26,11 @@ public class CustomerController {
 
     @Autowired
     private IGenerateEmails iGenerateEmails;
+
+    @PostMapping("/registertest")
+    public ResponseEntity registerCustomertest(@RequestBody Customer customer) {
+        return new ResponseEntity(iCustomerService.testRegister(customer), HttpStatus.CREATED);
+    }
 
     @PostMapping("/register")
     public ResponseEntity registerCustomer(@RequestBody Customer customer) {
@@ -72,7 +77,7 @@ public class CustomerController {
         String customerId = (String) request.getAttribute("customerId");
         return new ResponseEntity<>(iCustomerService.getAllFavDishes(customerId),HttpStatus.OK);
     }
-    @GetMapping("/eachcustomer")
+    @GetMapping("/customers/eachcustomer")
     public ResponseEntity<?> fetchByJwtToken(HttpServletRequest request) throws CustomerNotFoundException {
         String customerId = (String) request.getAttribute("customerId");
         return new ResponseEntity<>(iCustomerService.getCustomerById(customerId),HttpStatus.OK);
@@ -82,10 +87,10 @@ public class CustomerController {
         String customerId = (String) request.getAttribute("customerId");
         return new ResponseEntity<>(iCustomerService.deleteFavDish(customerId,dish),HttpStatus.OK);
     }
-    @DeleteMapping("/customers/deletedrestaurant/{restName}")
-    public ResponseEntity<?> deleteFavRest(@RequestBody Object restName, HttpServletRequest request) throws CustomerNotFoundException {
+    @DeleteMapping("/customers/deleterestaurant")
+    public ResponseEntity<?> deleteFavRest(@RequestParam String resId, HttpServletRequest request) throws CustomerNotFoundException {
         String customerId = (String) request.getAttribute("customerId");
-        return new ResponseEntity<>(iCustomerService.deleteFavRestaurant(customerId,restName),HttpStatus.OK);
+        return new ResponseEntity<>(iCustomerService.deleteFavRestaurant(customerId,resId),HttpStatus.OK);
     }
 
 }

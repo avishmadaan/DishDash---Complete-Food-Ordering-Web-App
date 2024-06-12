@@ -20,6 +20,11 @@ public class ImplCustomerService implements ICustomerService {
     private CustomerRepo customerRepo;
     @Autowired
     private CustomerProxy customerProxy;
+
+    @Override
+    public Customer testRegister(Customer customer){
+        return this.customerRepo.save(customer);
+    }
     @Override
     public Customer registerCustomer(Customer customer) throws CustomerAlreadyExistException {
         if(customerRepo.findById(customer.getCustomerId()).isPresent()) {
@@ -31,9 +36,7 @@ public class ImplCustomerService implements ICustomerService {
         if(customer.getCustomerFavRestaurants() == null) {
             customer.setCustomerFavRestaurants(new ArrayList<>());
         }
-//
-//        customerProxy.registerCustomer(customer);
-//        return customerRepo.save(customer);
+
         Customer customer1=customerRepo.save(customer);
         if(!(customer1.getCustomerId().isEmpty()))
         {
@@ -104,7 +107,7 @@ public class ImplCustomerService implements ICustomerService {
     }
 
     @Override
-    public boolean deleteFavRestaurant(String customerId,Object resId) throws CustomerNotFoundException {
+    public boolean deleteFavRestaurant(String customerId,String resId) throws CustomerNotFoundException {
         boolean isDeleted=false;
         Optional<Customer> optionalCustomer=customerRepo.findById(customerId);
 

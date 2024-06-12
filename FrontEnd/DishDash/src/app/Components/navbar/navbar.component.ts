@@ -15,6 +15,8 @@ export class NavbarComponent implements OnInit {
 
   activeCustomer:customer;
   customerJwt:string;
+  matBadge:number =5;
+  showCart:boolean = false;
 
   constructor(private cookieService:CookieService, private userService:UserService, public dialog:MatDialog){}
   isLoggedIn:boolean = false;
@@ -22,10 +24,11 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
 
     if(this.cookieService.check("token")) {
-      this.isLoggedIn = true
+    
       this.customerJwt = this.cookieService.get("token")
       console.log("Jwt: "+this.customerJwt);
       this.fetchActiveCustomer();
+      
     }
 
     this.userService.logInSubject.subscribe({
@@ -55,12 +58,14 @@ export class NavbarComponent implements OnInit {
   }
 
   fetchActiveCustomer() {
-    console.log("Fetch called")
-    console.log("Inside fetc jwt :" +this.customerJwt);
+   
     this.userService.fetchCustomerByJwt(this.customerJwt).subscribe({
       next:data => {
+    
         this.activeCustomer = data
-        console.log(data);
+        this.isLoggedIn = true
+        console.log(data)
+        
       },
       error:e => {
         console.log(e);

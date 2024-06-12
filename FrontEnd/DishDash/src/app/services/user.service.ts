@@ -1,7 +1,7 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { customerLogin } from '../Model/customerLogin';
-import { Observable, Subject } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { customer } from '../Model/customer';
 import { restaurant } from '../Model/restaurant';
 
@@ -13,6 +13,7 @@ export class UserService {
   loginAPIkey:string = ``;
 
   logInSubject = new Subject<boolean>()
+
 
   constructor(private http:HttpClient) { }
 
@@ -28,9 +29,8 @@ export class UserService {
   fetchCustomerByJwt(Jwt:any):Observable<customer> {
 
     const headers = new HttpHeaders({
-      'Authorization': `Bearer ${Jwt}` 
+      'Authorization': `Bearer ${Jwt}`
     });
-    console.log(headers);
 
     return this.http.get<customer>('http://localhost:8083/api/v2/customers/eachcustomer',{ headers });
   }
@@ -43,17 +43,46 @@ export class UserService {
     this.logInSubject.next(isLoggedIn);
   }
 
+  //Fetching all favs by JWT
   fetchCustomerFavByJwt(Jwt:any):Observable<Array<string>> {
 
     const headers = new HttpHeaders({
-      'Authorization': `Bearer ${Jwt}` 
+      'Authorization': `Bearer ${Jwt}`
     });
-    console.log(headers);
 
-    return this.http.get<Array<string>>('http://localhost:8083/api/v2/customers/eachcustomer',{ headers });
+    return this.http.get<Array<string>>('http://localhost:8083/api/v2/customers/restaurant',{ headers });
   }
-  updateUser(customer: any): Observable<any> {
-    return this.http.put<any>("http://localhost:8083/api/v2/customers/update", customer);
+
+
+
+
+  //Sending Customer Fav To Backend
+
+  sendFavoriteRestToCustomer(resId:string, Jwt:string): Observable<string>{
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${Jwt}`
+    });
+    return this.http.put("http://localhost:8083/api/v2/customers/addfavres", resId, { headers, responseType:'text'})
   }
+
+  //Deleting Custoemer Fav from Backedn
+  DeleteFavoriteRestFromCustomer(resId:string, Jwt:string):Observable<boolean> {
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${Jwt}`
+    });
+
+    const params = new HttpParams().set('resId', resId);
+
+    const options ={
+      headers:headers,
+      params: params
+    }
+
+ return this.http.delete<boolean>("http://localhost:8082/api/v2/customers/deleterestaurant", options)
+
+  }
+  
 
 }

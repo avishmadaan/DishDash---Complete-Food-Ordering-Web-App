@@ -8,17 +8,11 @@ import { LoginComponent } from './Components/login/login.component';
 import { RegisterComponent } from './Components/register/register.component';
 import { CutomerfavouriteComponent } from './Components/cutomerfavourite/cutomerfavourite.component';
 import { ProfileComponent } from './Components/profile/profile.component';
-import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
-import { AddressFormComponent } from './components/address-form/address-form.component';
 
 const routes: Routes = [
 {path:'', component: HomepageComponent},
 {path:'home', component: HomepageComponent},
-{path:'login', component: LoginComponent},
-{path:'register', component: RegisterComponent},
-{path:'address',component:AddressFormComponent},
 {path:'customer/profile', component:ProfileComponent},
-{path:'edit-profile',component:EditProfileComponent},
 {path:'customer/favourites', component: CutomerfavouriteComponent},
 {path:':city/restaurants/:resid', component: RestaurantviewComponent},
 {path:'**', component: PagenotfoundComponent}
