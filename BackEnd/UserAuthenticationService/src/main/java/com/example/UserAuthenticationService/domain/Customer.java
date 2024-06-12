@@ -19,8 +19,6 @@ public class Customer {
     @Id
     private String customerId;
     private String customerEmail;
-
-
     private String customerPassword;
 
 

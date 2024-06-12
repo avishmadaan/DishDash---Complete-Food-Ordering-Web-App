@@ -20,7 +20,8 @@ public class AppConfig {
 
                 .route(p -> p.path("/api/v3/**")
                         .uri("lb://RestaurantService/"))
-
+                .route(p->p.path("/cart/**")
+                        .uri("lb://cart-service-api"))
                 .build();
     }
 }
