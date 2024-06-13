@@ -5,24 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9c8a6dba-7c8c-426b-ad82-e45f53e77f5c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/cart-service-api/src/main/java/com/bej/domain/Dish.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cart-service-api/src/main/java/com/bej/exceptions/CartNotFoundException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cart-service-api/src/main/java/com/bej/exceptions/NoDishFoundException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cart-service-api/src/main/java/com/bej/repository/CartRepo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cart-service-api/src/main/java/com/bej/services/CartService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/customersapiservice/src/main/java/com/bej/customersapiservice/proxy/CartProxy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_10-06-2024_09_31_pm__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_10-06-2024_09_31_pm__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12-06-2024_12_36_am__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12-06-2024_12_36_am__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ApiGateaway/src/main/java/com/example/ApiGateaway/config/AppConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/ApiGateaway/src/main/java/com/example/ApiGateaway/config/AppConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RestaurantService/src/main/java/com/example/RestaurantService/service/ImplRestaurantService.java" beforeDir="false" afterPath="$PROJECT_DIR$/RestaurantService/src/main/java/com/example/RestaurantService/service/ImplRestaurantService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserAuthenticationService/src/main/java/com/example/UserAuthenticationService/domain/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserAuthenticationService/src/main/java/com/example/UserAuthenticationService/domain/Customer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserAuthenticationService/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/UserAuthenticationService/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/customersapiservice/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/customersapiservice/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cart-service-api/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/cart-service-api/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cart-service-api/src/main/java/com/bej/controller/CartController.java" beforeDir="false" afterPath="$PROJECT_DIR$/cart-service-api/src/main/java/com/bej/controller/CartController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cart-service-api/src/main/java/com/bej/domain/Dish.java" beforeDir="false" afterPath="$PROJECT_DIR$/cart-service-api/src/main/java/com/bej/domain/Dish.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cart-service-api/src/main/java/com/bej/services/CartService.java" beforeDir="false" afterPath="$PROJECT_DIR$/cart-service-api/src/main/java/com/bej/services/CartService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cart-service-api/src/main/java/com/bej/services/CartServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/cart-service-api/src/main/java/com/bej/services/CartServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cart-service-api/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/cart-service-api/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/customersapiservice/src/main/java/com/bej/customersapiservice/controller/CustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/customersapiservice/src/main/java/com/bej/customersapiservice/controller/CustomerController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/customersapiservice/src/main/java/com/bej/customersapiservice/domain/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/customersapiservice/src/main/java/com/bej/customersapiservice/domain/Customer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/customersapiservice/src/main/java/com/bej/customersapiservice/services/ICustomerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/customersapiservice/src/main/java/com/bej/customersapiservice/services/ICustomerService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/customersapiservice/src/main/java/com/bej/customersapiservice/services/ImplCustomerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/customersapiservice/src/main/java/com/bej/customersapiservice/services/ImplCustomerService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/customersapiservice/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/customersapiservice/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,7 +62,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "dev-v1",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Niit/Course_12/Sprint-4/Challenge/muzix",
+    "last_opened_file_path": "C:/Niit/Major_Capstone_project/major-capstone-project/major-capstone-project/BackEnd",
     "settings.editor.selected.configurable": "preferences.pluginManager"
   }
 }]]></component>
@@ -75,7 +71,20 @@
       <recent name="C:\Users\Avish Madaan\Desktop\NIIT\Phase 2\Course 14 - Capstone Project\major-capstone-project\FoodieApp" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.CustomersapiserviceApplication">
+  <component name="RunManager" selected="Application.CartServiceApiApplication">
+    <configuration name="ApiGateawayApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.ApiGateaway.ApiGateawayApplication" />
+      <module name="ApiGateaway" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.ApiGateaway.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="CartServiceApiApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.bej.CartServiceApiApplication" />
       <module name="cart-service-api" />
@@ -95,19 +104,6 @@
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.bej.customersapiservice.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="EurekaDiscoveryServerApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.example.EurekaDiscoveryServer.EurekaDiscoveryServerApplication" />
-      <module name="EurekaDiscoveryServer" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.example.EurekaDiscoveryServer.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -142,7 +138,7 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.EurekaDiscoveryServerApplication" />
+      <item itemvalue="Application.ApiGateawayApplication" />
       <item itemvalue="Application.UserAuthenticationServiceApplication" />
       <item itemvalue="Application.CartServiceApiApplication" />
       <item itemvalue="Application.RestaurantServiceApplication" />
@@ -150,11 +146,11 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.CustomersapiserviceApplication" />
-        <item itemvalue="Application.RestaurantServiceApplication" />
-        <item itemvalue="Application.UserAuthenticationServiceApplication" />
         <item itemvalue="Application.CartServiceApiApplication" />
-        <item itemvalue="Application.EurekaDiscoveryServerApplication" />
+        <item itemvalue="Application.CustomersapiserviceApplication" />
+        <item itemvalue="Application.UserAuthenticationServiceApplication" />
+        <item itemvalue="Application.RestaurantServiceApplication" />
+        <item itemvalue="Application.ApiGateawayApplication" />
       </list>
     </recent_temporary>
   </component>

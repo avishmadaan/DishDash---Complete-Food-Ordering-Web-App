@@ -27,13 +27,28 @@ public class CartServiceImpl implements CartService{
     }
 
     @Override
-    public Cart updateCart(Dish dish,String cartId) throws CartNotFoundException {
+    public Cart updateCart(Dish dish,String restId, String cartId) throws CartNotFoundException {
         Cart cart=cartRepo.findById(cartId).orElseThrow(()->new CartNotFoundException("No Cart Found"));
-            if(cart.getDishList()==null)
+            if(cart.getResId()==null)
             {
-                cart.setDishList(new ArrayList<>());
+                cart.setResId(restId);
             }
-            cart.getDishList().add(dish);
+            if (cart.getResId().equals(restId) ) {
+                if (cart.getDishList() == null) {
+                    cart.setDishList(new ArrayList<>());
+                }
+                List<Dish> dishList=cart.getDishList();
+                Optional<Dish> dishPresent=dishList.stream().filter(i->i.getDishName().equals(dish.getDishName())).findFirst();
+                if(dishPresent.isPresent())
+                {
+                    dishPresent.get().setDishQuantity(dishPresent.get().getDishQuantity()+1);
+                }else{
+                    dishList.add(dish);
+                }
+            }else{
+                //throw error
+            }
+
             return cartRepo.save(cart);
     }
 

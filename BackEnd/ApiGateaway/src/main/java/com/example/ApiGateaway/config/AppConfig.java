@@ -14,14 +14,12 @@ public class AppConfig {
         return builder.routes()
                 .route(p -> p.path("/api/v1/**")
                 .uri("lb://UserAuthenticationService/"))
-
                 .route(p -> p.path("/api/v2/**")
                         .uri("lb://customersapiservice/"))
-
                 .route(p -> p.path("/api/v3/**")
                         .uri("lb://RestaurantService/"))
                 .route(p->p.path("/cart/**")
-                        .uri("lb://cart-service-api"))
+                        .uri("lb://cart-service-api/"))
                 .build();
     }
 }

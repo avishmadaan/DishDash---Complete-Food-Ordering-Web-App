@@ -20,14 +20,15 @@ public class CartController {
     {
         return new ResponseEntity<>(cartService.getCartById(cartId),HttpStatus.OK);
     }
-    @PostMapping("/add")
-    public ResponseEntity<?> addCart(@RequestBody Cart cart)
+    @PostMapping("/add/{cartId}")
+    public ResponseEntity<?> addCart(@PathVariable String cartId)
     {
+        Cart cart = new Cart(cartId,null,null);
         return new ResponseEntity<>(cartService.addCart(cart),HttpStatus.CREATED);
     }
-    @PutMapping("/update/{cartId}")
-    public ResponseEntity<?> updateCart(@RequestBody Dish dish,@PathVariable String cartId) throws CartNotFoundException {
-        return new ResponseEntity<>(cartService.updateCart(dish,cartId),HttpStatus.OK);
+    @PutMapping("/update/{restId}/{cartId}")
+    public ResponseEntity<?> updateCart(@RequestBody Dish dish,@PathVariable String restId,@PathVariable String cartId) throws CartNotFoundException {
+        return new ResponseEntity<>(cartService.updateCart(dish,restId,cartId),HttpStatus.OK);
     }
     @DeleteMapping("/delete/{cartId}")
     public ResponseEntity<?> deleteCart(@PathVariable String cartId) throws CartNotFoundException {

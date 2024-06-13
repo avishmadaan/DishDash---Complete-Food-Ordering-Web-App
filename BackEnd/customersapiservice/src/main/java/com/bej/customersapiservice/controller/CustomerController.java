@@ -75,7 +75,7 @@ public class CustomerController {
         String customerId = (String) request.getAttribute("customerId");
         return new ResponseEntity<>(iCustomerService.getAllFavDishes(customerId),HttpStatus.OK);
     }
-    @GetMapping("/eachcustomer")
+    @GetMapping("customers/eachcustomer")
     public ResponseEntity<?> fetchByJwtToken(HttpServletRequest request) throws CustomerNotFoundException {
         String customerId = (String) request.getAttribute("customerId");
         return new ResponseEntity<>(iCustomerService.getCustomerById(customerId),HttpStatus.OK);
@@ -85,12 +85,12 @@ public class CustomerController {
         String customerId = (String) request.getAttribute("customerId");
         return new ResponseEntity<>(iCustomerService.deleteFavDish(customerId,dish),HttpStatus.OK);
     }
-    @DeleteMapping("/customers/deletedrestaurant")
-    public ResponseEntity<?> deleteFavRest(@RequestParam String restId, HttpServletRequest request) {
+    @DeleteMapping("/customers/deleterestaurant")
+    public ResponseEntity<?> deleteFavRest(@RequestParam String resId, HttpServletRequest request) {
         String customerId = (String) request.getAttribute("customerId");
         try{
             log.info("Inside customers/deletedrestaurant controller");
-            return new ResponseEntity<>(iCustomerService.deleteFavRestaurant(customerId,restId),HttpStatus.OK);
+            return new ResponseEntity<>(iCustomerService.deleteFavRestaurant(customerId,resId),HttpStatus.OK);
         }catch(CustomerNotFoundException ex)
         {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

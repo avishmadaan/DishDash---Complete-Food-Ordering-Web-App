@@ -10,7 +10,7 @@ import lombok.*;
 public class Dish {
     String dishName;
     String dishImage;
-    String dishQuantity;
+    int dishQuantity;
     String dishPrice;
     boolean veg;
 }

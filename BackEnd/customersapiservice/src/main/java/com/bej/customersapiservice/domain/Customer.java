@@ -22,5 +22,6 @@ public class Customer {
     private long customerPhone;
     private List<Address> customerAddress;
     private List<String> customerFavRestaurants;
-    private List<String> customerFavDishes;
+    private List<String> customerFavDishes;//object
+    private String customerCartId;
 }

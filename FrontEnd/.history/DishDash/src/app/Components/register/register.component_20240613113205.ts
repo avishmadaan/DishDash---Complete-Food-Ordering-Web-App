@@ -59,11 +59,6 @@ export class RegisterComponent {
       return this.registerForm.get('confirmPassword');
     }
 
-    get customerCartId()
-    {
-      return this.registerForm.get('customerCartId');
-    }
-
     // get customerProfilePic()
     // {
     //   return this.registerForm.get('customerProfilePic');

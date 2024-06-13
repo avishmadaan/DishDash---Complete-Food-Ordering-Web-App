@@ -4,6 +4,7 @@ import com.bej.customersapiservice.domain.Customer;
 import com.bej.customersapiservice.exception.CustomerAlreadyExistException;
 import com.bej.customersapiservice.exception.CustomerNotFoundException;
 import com.bej.customersapiservice.exception.RestaurantAlreatExistException;
+import com.bej.customersapiservice.proxy.CartProxy;
 import com.bej.customersapiservice.proxy.CustomerProxy;
 import com.bej.customersapiservice.respository.CustomerRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,6 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.function.Predicate;
 
 @Service
 public class ImplCustomerService implements ICustomerService {
@@ -22,6 +22,8 @@ public class ImplCustomerService implements ICustomerService {
     private CustomerRepo customerRepo;
     @Autowired
     private CustomerProxy customerProxy;
+    @Autowired
+    private CartProxy cartProxy;
     @Override
     public Customer registerCustomer(Customer customer) throws CustomerAlreadyExistException {
         if(customerRepo.findById(customer.getCustomerId()).isPresent()) {
@@ -33,15 +35,16 @@ public class ImplCustomerService implements ICustomerService {
         if(customer.getCustomerFavRestaurants() == null) {
             customer.setCustomerFavRestaurants(new ArrayList<>());
         }
-//
 //        customerProxy.registerCustomer(customer);
 //        return customerRepo.save(customer);
         Customer customer1=customerRepo.save(customer);
         if(!(customer1.getCustomerId().isEmpty()))
         {
             ResponseEntity<?> proxyResponse=customerProxy.registerCustomer(customer);
+            ResponseEntity<?> cartProxyRes=cartProxy.addCart(customer.getCustomerCartId());
             System.out.println(proxyResponse.getBody());
         }
+
         return customer1;
     }
 
