@@ -42,13 +42,11 @@ console.log(e);
     this.userService.loginUser(userlogin).subscribe({
       next:data => {
     this.isLoadingSpinner = false
-        console.log(data);
+        console.log("My JWT "+data);
         this.customerJWT = data;
         this.cookieService.set("token",this.customerJWT);
         this.afterLogin();
         this.closeDialoge();
-
-
       },
       error:e => {
       this.isLoadingSpinner = false
