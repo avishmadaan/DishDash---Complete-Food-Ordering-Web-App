@@ -4,6 +4,7 @@ import { customerLogin } from '../Model/customerLogin';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { customer } from '../Model/customer';
 import { restaurant } from '../Model/restaurant';
+import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,12 +12,20 @@ import { restaurant } from '../Model/restaurant';
 export class UserService {
 
   loginAPIkey:string = ``;
-
   logInSubject = new Subject<boolean>()
   listenLogin = new Subject<customerLogin>();
+  tokenSubject = new BehaviorSubject<boolean>(this.hasToken());
 
+  constructor(private http:HttpClient, private cookieservice:CookieService) {
+    window.addEventListener('storage', () => {
+      console.log('Token state changed');
+      this.tokenSubject.next(this.hasToken())
+    })
+   }
 
-  constructor(private http:HttpClient) { }
+  hasToken():boolean {
+    return this.cookieservice.check("token")
+  }
 
   loginUser(data:customerLogin):Observable<string> {
     return this.http.post("http://localhost:8081/api/v1/login", data,  { responseType: 'text' });

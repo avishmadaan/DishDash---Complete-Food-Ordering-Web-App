@@ -49,14 +49,14 @@ export class EditProfileComponent {
 
     console.log(registerCustomer);
 
-    this.userService.updateUser(registerCustomer).subscribe({
-      next: data => {
-        console.log('Update successful', data);
-      },
-      error: err => {
-        console.log('Error updating profile', err);
-      }
-    });
+    // this.userService.updateUser(registerCustomer).subscribe({
+    //   next: data => {
+    //     console.log('Update successful', data);
+    //   },
+    //   error: err => {
+    //     console.log('Error updating profile', err);
+    //   }
+    // });
   }
 
   checkPasswordMismatch(c: AbstractControl) {
@@ -98,9 +98,9 @@ export class EditProfileComponent {
   }
   
 
-  updateProfile(updatedProfile: any) {
-    this.userService.updateUser(updatedProfile).subscribe(() => {
-      // Optionally, display a success message or navigate to another page
-    });
-  }
+  // updateProfile(updatedProfile: any) {
+  //   this.userService.updateUser(updatedProfile).subscribe(() => {
+  //     // Optionally, display a success message or navigate to another page
+  //   });
+  // }
 }

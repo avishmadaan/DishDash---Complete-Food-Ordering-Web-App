@@ -1,9 +1,18 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RouterService {
 
-  constructor() { }
+  constructor(private router:Router) { }
+
+  navigateToHomePage() {
+    this.router.navigateByUrl('/');
+  }
+
+  navigateToFavOption() {
+    this.router.navigateByUrl("customer/profile/favorites")
+  }
 }

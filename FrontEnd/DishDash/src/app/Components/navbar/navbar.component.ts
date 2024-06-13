@@ -28,8 +28,21 @@ export class NavbarComponent implements OnInit {
       this.customerJwt = this.cookieService.get("token")
       console.log("Jwt: "+this.customerJwt);
       this.fetchActiveCustomer();
-      
     }
+
+    this.userService.tokenSubject.subscribe({
+      next:data => {
+        console.log("You got this data " +data)
+        if(!data) {
+          this.logout()
+          console.log("We did logout")
+        }
+      },
+      error:e => {
+        console.log("Error in getting toke")
+        console.log(e)
+      }
+    })
 
     this.userService.logInSubject.subscribe({
       next:data => {

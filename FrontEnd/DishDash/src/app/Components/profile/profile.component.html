@@ -1,1 +1,38 @@
-<h1>Your Profile</h1>
+<div class="welcome p-3 bg-black">
+    <img class="profile rounded-circle" src="https://via.placeholder.com/100x100" alt="">
+ <h2 class="mt-1 text-white">Welcome, <span class="fst-italic fw-bold text-danger">{{activeCustomer.customerName}}</span></h2> 
+</div>
+
+<div class="profilediv flex ">
+
+    <div class="left w-30 p-3  pt-4 pb-4 bg-body-secondary">
+        <div class="profileInfo">
+            <h6 >PROFILE</h6>
+            <div class="item fs-3 flex flex-column gap-3">
+                <div class="favorites bg-white p-2 pointer" routerLink="favorites">Favorites</div>
+                <div class="editProfile bg-white p-2 pointer" routerLink="edit-profile">Edit Profile</div>
+            </div>
+        </div>
+
+        <div class="orderOnline mt-5">
+            <h6>ONLINE ORDEREING</h6>
+            <div class="item   fs-3 flex flex-column gap-3">
+                <div class="editProfile bg-white p-2 pointer">Order History</div>
+                <div class="favorites bg-white p-2 pointer">My History</div>
+            </div>
+        </div>
+
+        <div class="orderOnline mt-5">
+            <h6>ACCOUNT SETTINGS</h6>
+            <div class="item   fs-3 flex flex-column gap-3">
+                <div class="editProfile bg-white p-2 pointer" (click)="logout()">Logout</div>
+            </div>
+        </div>
+        
+    </div>
+
+    <div class="right w-50">
+       <router-outlet></router-outlet>
+
+    </div>
+</div>
