@@ -4,6 +4,7 @@ import com.bej.domain.Cart;
 import com.bej.domain.Dish;
 import com.bej.exceptions.CartNotFoundException;
 import com.bej.exceptions.NoDishFoundException;
+import com.bej.exceptions.RestaurantAlreadyExistException;
 import com.bej.repository.CartRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,7 +28,7 @@ public class CartServiceImpl implements CartService{
     }
 
     @Override
-    public Cart updateCart(Dish dish,String restId, String cartId) throws CartNotFoundException {
+    public Cart updateCart(Dish dish,String restId, String cartId) throws CartNotFoundException, RestaurantAlreadyExistException {
         Cart cart=cartRepo.findById(cartId).orElseThrow(()->new CartNotFoundException("No Cart Found"));
             if(cart.getResId()==null)
             {
@@ -46,7 +47,7 @@ public class CartServiceImpl implements CartService{
                     dishList.add(dish);
                 }
             }else{
-                //throw error
+                throw new RestaurantAlreadyExistException();
             }
 
             return cartRepo.save(cart);

@@ -4,6 +4,7 @@ import com.bej.domain.Cart;
 import com.bej.domain.Dish;
 import com.bej.exceptions.CartNotFoundException;
 import com.bej.exceptions.NoDishFoundException;
+import com.bej.exceptions.RestaurantAlreadyExistException;
 import com.bej.services.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 public class CartController {
     @Autowired
     private CartService cartService;
+
     @GetMapping("/cartById/{cartId}")
     public ResponseEntity<?> fetchCartById(@PathVariable String cartId)
     {
@@ -27,7 +29,7 @@ public class CartController {
         return new ResponseEntity<>(cartService.addCart(cart),HttpStatus.CREATED);
     }
     @PutMapping("/update/{restId}/{cartId}")
-    public ResponseEntity<?> updateCart(@RequestBody Dish dish,@PathVariable String restId,@PathVariable String cartId) throws CartNotFoundException {
+    public ResponseEntity<?> updateCart(@RequestBody Dish dish,@PathVariable String restId,@PathVariable String cartId) throws CartNotFoundException, RestaurantAlreadyExistException {
         return new ResponseEntity<>(cartService.updateCart(dish,restId,cartId),HttpStatus.OK);
     }
     @DeleteMapping("/delete/{cartId}")
