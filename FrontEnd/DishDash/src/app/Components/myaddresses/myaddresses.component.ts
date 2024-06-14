@@ -68,6 +68,14 @@ randomUUID:string = uuidv4()
   deleteAddress() {
 
   }
+
+  //Generating a unique idd
+  generateUniqueKey() {
+    const timestamp = new Date().getTime();
+    const randomNumber = Math.floor(Math.random() * 1000);
+    return `cus-${timestamp}-${randomNumber}`;
+  }
+  
 //Saving a new Address
 
   addressForm = this.fb.group({

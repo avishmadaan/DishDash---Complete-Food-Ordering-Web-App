@@ -37,6 +37,9 @@ import { OrderhistoryComponent } from './Components/orderhistory/orderhistory.co
 import { MyaddressesComponent } from './Components/myaddresses/myaddresses.component';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatButtonModule} from '@angular/material/button';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { EditProfileComponent } from './Components/edit-profile/edit-profile.component';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 
 @NgModule({
@@ -62,7 +65,8 @@ import {MatButtonModule} from '@angular/material/button';
     LoginalertComponent,
     CartComponent,
     OrderhistoryComponent,
-    MyaddressesComponent
+    MyaddressesComponent,
+    EditProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -81,6 +85,8 @@ import {MatButtonModule} from '@angular/material/button';
     MatBadgeModule,
     MatExpansionModule,
     MatButtonModule,
+    NgxPaginationModule,
+    MatTooltipModule,
     HttpClientModule
   ],
   providers: [ provideAnimationsAsync(), CookieService],

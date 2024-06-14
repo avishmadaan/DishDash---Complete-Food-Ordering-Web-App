@@ -26,12 +26,14 @@ export class CutomerfavouriteComponent implements OnInit {
     this.spinnerVisible = true
     this.userService.fetchCustomerFavByJwt(this.customerJwt).subscribe({
       next:data => {
+        this.spinnerVisible = false
         this.restIds = data;
+        console.log("favs")
+        console.log(data)
         if(this.restIds.length >0) {
           this.fetchRestById(this.restIds);
         }
         else {
-          this.spinnerVisible = false
           this.nofavRestPresent = true
         }
       },

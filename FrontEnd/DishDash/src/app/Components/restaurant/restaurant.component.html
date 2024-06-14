@@ -8,9 +8,13 @@
     <div class="restaurants flex gap-4 p-3 justify-content" >
 
        
-        <div class="card" *ngFor="let restaurant of restaurants">
+        <div class="card" *ngFor="let restaurant of restaurants | paginate:{itemsPerPage:itemsPerPage, currentPage:p}">
             <app-restaurantcard [onerestaurant] = "restaurant"></app-restaurantcard>
         </div>
+    </div>
+    <div class="controls text-center m-3">
+        
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
     </div>
 
     <!-- <div class="text-center" *ngIf="restaurants.length == 0 || restaurants == undefined">

@@ -1,1 +1,50 @@
-<h3>Update Your Profile</h3>
+<div class="editprofile p-5">
+
+
+
+<h4 class="fw-bolder">Update Your Profile</h4>
+
+
+<form [formGroup]="updateForm" (ngSubmit)="onSubmit()">
+
+  <!-- customerName -->
+  <mat-form-field class="w-100" color="primary" appearnace="legacy">
+    <mat-label>Your Name</mat-label>
+        <input matInput type="text" placeholder="Your Name" formControlName="customerName">
+    <mat-error class="error" *ngIf="updateForm.get('customerName')?.errors?.['required']">
+        Name is required
+     </mat-error>
+     <mat-error calss="error" *ngIf="updateForm.get('customerName')?.errors?.['minlength']">
+        Name must have more than 2 characters.
+     </mat-error>
+     <mat-error class="error" *ngIf="updateForm.get('customerName')?.errors?.['pattern']">
+        only alphabets are allowed
+     </mat-error>
+</mat-form-field>
+
+ <!-- customerEmail-->
+ <mat-form-field color="primary" appearnace="legacy" class="w-100">
+    <mat-label>Your Email</mat-label>
+    <input matInput type="email" placeholder="email" formControlName="customerEmail" matTooltip="You can't edit this email">
+
+ </mat-form-field >
+
+
+ <!-- customerPhone -->
+ <mat-form-field class="w-100" color="primary" appearnace="legacy">
+    <mat-label>Your Phone Number</mat-label>
+        <input matInput type="number" placeholder="Your Phone" formControlName="customerPhone">
+
+        <mat-error class="error" *ngIf="updateForm.get('customerPhone')?.errors?.['required']">
+            Phone is required
+         </mat-error>
+   
+</mat-form-field>
+
+<button class="w-100 mainbtn btn btn-primary btn-block mb-4" type="submit" [disabled]="updateForm.invalid">Update Profile Info</button>
+</form>
+
+<div class="spinner flex justify-content-center " *ngIf="spinnerVisible">
+    <mat-spinner ></mat-spinner>
+</div>
+</div>

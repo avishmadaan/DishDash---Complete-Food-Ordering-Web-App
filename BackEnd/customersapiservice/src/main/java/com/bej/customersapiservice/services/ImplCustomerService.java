@@ -53,12 +53,10 @@ public class ImplCustomerService implements ICustomerService {
     }
 
     public Customer updateCustomer(Customer customer, String customerId) throws CustomerNotFoundException {
-        if(customerRepo.findById(customerId).isPresent()) {
-            return customerRepo.save(customer);
-        }
-        else {
-            throw new CustomerNotFoundException();
-        }
+        Customer customer1=customerRepo.findById(customerId).orElseThrow(CustomerNotFoundException::new);
+        customer1.setCustomerName(customer.getCustomerName());
+        customer1.setCustomerPhone(customer.getCustomerPhone());
+        return customerRepo.save(customer1);
     }
 
     @Override

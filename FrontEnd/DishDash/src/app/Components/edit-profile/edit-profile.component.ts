@@ -14,11 +14,10 @@ export class EditProfileComponent implements OnInit {
 
   uniqueId: string = '';
   customerJwt:string=''
+  spinnerVisible:boolean = false;
   activeCustomer:customer ={
-    customerName: '',
-    customerEmail: '',
-    customerPassword: '',
-    customerPhone: 0
+    customerId:'',
+    customerName: ''
   }
 
   constructor(private fb: FormBuilder, private userService: UserService, private router: Router, private cookieService:CookieService) {}
@@ -34,6 +33,13 @@ export class EditProfileComponent implements OnInit {
     this.userService.fetchCustomerByJwt(this.customerJwt).subscribe({
       next:data => {
         this.activeCustomer = data;
+
+        this.updateForm.patchValue({
+          customerId:this.activeCustomer.customerId,
+          customerEmail:this.activeCustomer.customerEmail,
+          customerName:this.activeCustomer.customerName,
+          customerPhone:this.activeCustomer.customerPhone
+        })
       },
       error:e => {
         console.log("Error while fetching Customer")
@@ -44,15 +50,18 @@ export class EditProfileComponent implements OnInit {
   }
 
   updateForm = this.fb.group({
-    customerName: [this.activeCustomer.customerName],
-    customerPhone:[this.activeCustomer.customerPhone],
-    customerPassword: [this.activeCustomer.customerPassword, [Validators.required, Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/)]],
-    confirmPassword: [this.activeCustomer.customerPassword, [Validators.required, this.confirmPasswordValidator()]]
-  }, { validators: this.checkPasswordMismatch });
+    customerId: [''],
+    customerEmail:[{value:'', disabled:true}],
+    customerName: ['', [Validators.required, Validators.minLength(3),Validators.pattern(/^[a-zA-Z ]+$/)]],
+    customerPhone:[ 0 , [Validators.required]],
+    
+  });
 
-  get customerPassword() {
-    return this.updateForm.get('customerPassword');
+  getCustomerId() {
+    return this.updateForm.get('customerId')
   }
+
+
   get customerName() {
     return this.updateForm.get('customerName');
   }
@@ -63,84 +72,32 @@ export class EditProfileComponent implements OnInit {
   
 
 
-  get confirmPassword() {
-    return this.updateForm.get('confirmPassword');
-  }
 
-  get customerProfilePic() {
-    return this.updateForm.get('customerProfilePic');
-  }
 
-  generateUniqueKey() {
-    const timestamp = new Date().getTime();
-    const randomNumber = Math.floor(Math.random() * 1000);
-    return `cus-${timestamp}-${randomNumber}`;
-  }
 
   onSubmit() {
-    if (this.updateForm.invalid) {
-      return;
-    }
+    this.spinnerVisible = true;
+    const customer =this.updateForm.value
+    console.log(customer);
 
-    const registerCustomer = {
-      ...this.updateForm.value,
-      customerProfilePic: this.updateForm.get('customerProfilePic')!.value
-    };
+    const Jwt = this.cookieService.get("token");
 
-    console.log(registerCustomer);
+    this.userService.updateCustomer(Jwt, customer).subscribe({
+      next:data => {
+        this.spinnerVisible = false;
+        console.log("Update Success")
+      },
+      error:e => {
+        this.spinnerVisible = false;
+        console.log("Update Failed")
+      }
+    })
 
-    // this.userService.updateUser(registerCustomer).subscribe({
-    //   next: data => {
-    //     console.log('Update successful', data);
-    //   },
-    //   error: err => {
-    //     console.log('Error updating profile', err);
-    //   }
-    // });
+
   }
 
-  checkPasswordMismatch(c: AbstractControl) {
-    const password = c.get('customerPassword');
-    const confirmPass = c.get('confirmPassword');
-    if (!password?.value || !confirmPass?.value) {
-      return null;
-    }
-    return password.value === confirmPass.value ? null : { passwordMismatch: true };
   }
 
-  confirmPasswordValidator() {
-    return (control: AbstractControl) => {
-      if (!control.parent || !control) {
-        return null;
-      }
-
-      const password = control.parent.get('customerPassword');
-      const confirmPassword = control;
-
-      if (!password || !confirmPassword) {
-        return null;
-      }
-
-      if (confirmPassword.value === '') {
-        return { required: true };
-      }
-
-      if (password.value !== confirmPassword.value) {
-        return { passwordMismatch: true };
-      }
-
-      return null;
-    };
-  }
-
-  addAddress() {
-    this.router.navigate(['/components/address-form']);
-  }
   
 
-  // updateProfile(updatedProfile: any) {
-  //   this.userService.updateUser(updatedProfile).subscribe(() => {
-  //     // Optionally, display a success message or navigate to another page
-  //   });
-  // }
-}
+

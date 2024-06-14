@@ -15,6 +15,10 @@ export class RestaurantComponent implements OnInit {
   spinnerVisible:boolean = false;
   noRestuarant:boolean = false;
 
+   // Pagination properties
+   p: number = 1;  // Current page number
+   itemsPerPage: number = 2;  // Number of items per page
+
   constructor(private resService:RestaurantService) {}
 
   ngOnInit(): void {

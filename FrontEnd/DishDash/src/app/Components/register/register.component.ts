@@ -91,7 +91,8 @@ export class RegisterComponent {
     onSubmit ()
     {
       this.isLoading=true;
-      let registerCustomer:any=this.registerForm.value as any;
+      let registerCustomer:customer=this.registerForm.value as customer;
+      registerCustomer.customerCartId = this.generateUniqueKey();
       console.log(registerCustomer);
       this.userService.registerUser(registerCustomer).subscribe({
         next:data=>{
@@ -111,6 +112,13 @@ export class RegisterComponent {
         }
       })
       
+    }
+
+    //Generating unique key for cartId
+    generateUniqueKey() {
+      const timestamp = new Date().getTime();
+      const randomNumber = Math.floor(Math.random() * 1000);
+      return `cart-${timestamp}-${randomNumber}`;
     }
 
 

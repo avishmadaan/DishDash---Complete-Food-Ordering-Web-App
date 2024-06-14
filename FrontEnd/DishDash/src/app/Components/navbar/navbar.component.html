@@ -94,4 +94,16 @@
 
    
   </div>
+
+   <!-- Logout Message -->
+  <div class="logout-message" *ngIf="logoutMessageVisible">
+    <span class="text-success">Logged out successfully!</span>
+  </div>
+
+  <!-- Loading Indicator -->
+  <div class="loading-overlay" *ngIf="loading">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
 </div>

@@ -17,11 +17,19 @@ export class UserService {
   listenLogin = new Subject<customerLogin>();
   tokenSubject = new BehaviorSubject<boolean>(this.hasToken());
 
+  loggedOutFromProfileSubject = new Subject<boolean>();
+
   constructor(private http:HttpClient, private cookieservice:CookieService) {
     window.addEventListener('storage', () => {
       console.log('Token state changed');
       this.tokenSubject.next(this.hasToken())
     })
+   }
+
+   //Sending info to navbar to logout when logged out from profile
+
+   loggingOutFromProfile(loggedout:boolean) {
+    this.loggedOutFromProfileSubject.next(loggedout)
    }
 
   hasToken():boolean {
@@ -134,4 +142,23 @@ export class UserService {
 
   return this.http.put<address>("http://localhost:8082/api/v2/customers/addresses/makeitprimary", addressPrimary, { headers })
  }
+
+//Updating user through Profile Edit Tav
+
+updateCustomer (Jwt:string,updatedCustomer:any):Observable<customer> {
+
+  const headers = new HttpHeaders({
+    'Authorization': `Bearer ${Jwt}`
+  });
+
+  return this.http.put<customer>("http://localhost:8082/api/v2/customers/update", updatedCustomer, { headers })
+
+
+
 }
+
+
+
+}
+
+

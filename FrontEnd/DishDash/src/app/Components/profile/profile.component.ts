@@ -13,6 +13,7 @@ export class ProfileComponent implements OnInit {
   customerJwt:string;
   constructor(private cookieservice:CookieService, private userService:UserService, private routerservice:RouterService) {}
   activeCustomer:customer ={
+    customerId:'',
     customerName: '',
     customerEmail: '',
     customerPassword: '',
@@ -67,7 +68,8 @@ export class ProfileComponent implements OnInit {
   }
 
   logout() {
-    this.cookieservice.delete("token");
+    this.userService.loggingOutFromProfile(true);
+    // this.cookieservice.delete("token");
     this.routerservice.navigateToHomePage();
   }
 

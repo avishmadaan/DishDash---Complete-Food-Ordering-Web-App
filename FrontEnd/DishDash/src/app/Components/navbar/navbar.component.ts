@@ -18,6 +18,9 @@ export class NavbarComponent implements OnInit {
   matBadge:number =5;
   showCart:boolean = false;
 
+  logoutMessageVisible: boolean = false;
+  loading: boolean = false; // Loading indicator
+
   constructor(private cookieService:CookieService, private userService:UserService, public dialog:MatDialog){}
   isLoggedIn:boolean = false;
 
@@ -51,11 +54,35 @@ export class NavbarComponent implements OnInit {
         this.fetchActiveCustomer();
       }
     })
+
+    this.userService.loggedOutFromProfileSubject.subscribe({
+      next:data => {
+        if(true) {
+          this.logout()
+        }
+      },
+      error:e => {
+        console.log("Error while logging out ")
+        console.log(e);
+      }
+    })
   }
 
   logout() {
     this.cookieService.delete("token");
-    this.isLoggedIn=false;
+    this.loading = true; // Show loading indicator
+    setTimeout(() => {
+      this.cookieService.delete("token");
+      this.isLoggedIn = false;
+      this.loading = false; // Hide loading indicator
+    }, 1000); // Simulate a 1-second delay for logout process
+  }
+
+  showLogoutMessage() {
+    this.logoutMessageVisible = true;
+    setTimeout(() => {
+      this.logoutMessageVisible = false;
+    }, 3000); // Hide message after 3 seconds
   }
 
   openLoginDialog(enterAnimationDuration: string, exitAnimationDuration: string):void {
@@ -86,4 +113,7 @@ export class NavbarComponent implements OnInit {
       }
     })
   }
+
+
+
 }
