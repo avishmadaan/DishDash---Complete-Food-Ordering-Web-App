@@ -1,8 +1,15 @@
-<div class="welcome p-3 bg-black">
+<!-- <div class="welcome p-3 bg-black">
     <img class="profile rounded-circle" src="https://via.placeholder.com/100x100" alt="">
  <h2 class="mt-1 text-white">Welcome, <span class="fst-italic fw-bold text-danger">{{activeCustomer.customerName}}</span></h2> 
-</div>
+</div> -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
+<div class="welcome p-3 bg-black position-relative">
+    <img id="profileImage" class="profile rounded-circle" src="https://via.placeholder.com/100x100" alt="Profile Image">
+    <input type="file" id="fileInput" (change)="onFileSelected($event)" style="display:none;">
+    <i class="fas fa-camera camera-icon text-white mt-4" (click)="triggerFileInput()"></i>
+    <h2 class="mt-1 text-white">Welcome, <span class="fst-italic fw-bold text-danger">{{activeCustomer.customerName}}</span></h2>
+</div>
 <div class="profilediv flex ">
 
     <div class="left w-30 p-3  pt-4 pb-4 bg-body-secondary">

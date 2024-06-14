@@ -34,6 +34,36 @@ export class ProfileComponent implements OnInit {
     })
 
   }
+  triggerFileInput() {
+    const fileInput = document.getElementById('fileInput') as HTMLInputElement;
+    fileInput.click();
+  }
+
+  onFileSelected(event: Event) {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files[0]) {
+      const file = input.files[0];
+      const img = new Image();
+      const reader = new FileReader();
+
+      reader.onload = (e: any) => {
+        img.src = e.target.result;
+    
+        img.onload = () => {
+          if (img.width > 100 || img.height > 100) {
+            alert('Profile photo should have 100 width and 100 height');
+            console.log(img.src);
+          } else {
+            const profileImage = document.getElementById('profileImage') as HTMLImageElement;
+            profileImage.src = e.target.result;
+            console.log(profileImage.src);
+          }
+        };
+      };
+
+      reader.readAsDataURL(file);
+    }
+  }
 
   logout() {
     this.cookieservice.delete("token");
