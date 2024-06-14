@@ -11,12 +11,21 @@ import com.bej.customersapiservice.respository.CustomerRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
+import static reactor.core.Disposables.swap;
 
 @Service
 public class ImplCustomerService implements ICustomerService {
@@ -53,12 +62,10 @@ public class ImplCustomerService implements ICustomerService {
     }
 
     public Customer updateCustomer(Customer customer, String customerId) throws CustomerNotFoundException {
-        if(customerRepo.findById(customerId).isPresent()) {
-            return customerRepo.save(customer);
-        }
-        else {
-            throw new CustomerNotFoundException();
-        }
+        Customer customer1=customerRepo.findById(customerId).orElseThrow(CustomerNotFoundException::new);
+        customer1.setCustomerName(customer.getCustomerName());
+        customer1.setCustomerPhone(customer.getCustomerPhone());
+        return customerRepo.save(customer1);
     }
 
     @Override
@@ -186,29 +193,76 @@ public class ImplCustomerService implements ICustomerService {
         Customer customer = customerRepo.findById(customerId).orElseThrow(CustomerNotFoundException::new);
         List<Address> addressList = customer.getCustomerAddress();
         Address address = addressList.stream().filter(i -> i.getAddressId().equals(addressId)).collect(Collectors.toList()).get(0);
-        addressList.remove(address);
+        boolean isDeleted = addressList.remove(address);
         customer.setCustomerAddress(addressList);
         customerRepo.save(customer);
-        return addressList.remove(address);
+        return isDeleted;
     }
 
     @Override
     public Address makeItPrimary(String customerId, Address address) throws CustomerNotFoundException {
         Customer customer = customerRepo.findById(customerId).orElseThrow(CustomerNotFoundException::new);
         List<Address> addressList = customer.getCustomerAddress();
-//        addressList.stream().filter(i -> i.getAddressId().equals(address.getAddressId())).peek(
-//                i -> i.
-//        )
-//        addressList.remove(address);
-       int index =  addressList.indexOf(address);
-        System.out.println("Index of address "+index);
-        System.out.println("Deleted or not "+addressList.remove(address) );
-        addressList.set(0,address);
-        System.out.println("Address :" +address);
+        int index = IntStream.range(0, addressList.size())
+                .filter(i -> addressList.get(i).getAddressId().equals(address.getAddressId()))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("Address not found in customer's address list."));
+
+//        int index=-1;
+//        for (int i = 0; i < addressList.size(); i++) {
+//            if (addressList.get(i).getAddressId().equals(address.getAddressId())) {
+//                index = i;
+//                break;
+//            }
+//        }
+
+        if (index != -1) {
+            // Swap the address to the primary position
+            swap(addressList, 0, index);
+        } else {
+            throw new IllegalArgumentException("Address not found in customer's address list.");
+        }
+
+        // Update the customer with the new primary address
         customer.setCustomerAddress(addressList);
         customerRepo.save(customer);
+
         return addressList.get(0);
 
+    }
+
+    @Override
+    public String uploadImage(String customerId, String path, MultipartFile file) throws IOException {
+        String name=file.getOriginalFilename();
+        // Check if the file type is allowed (only JPEG and PNG)
+        String contentType = file.getContentType();
+        if (!isAllowedContentType(contentType)) {
+            throw new IllegalArgumentException("Only JPEG and PNG files are allowed.");
+        }
+        //random name generated file
+        String randomId= UUID.randomUUID().toString();
+        String fileName1=randomId.concat(name.substring(name.lastIndexOf(".")));
+        //FullPath
+        String filePath=path+ File.separator +fileName1;
+
+        //create folder if not created
+        File file1=new File(path);
+        if(!file1.exists())
+        {
+            file1.mkdir();
+        }
+        //file copy
+        Files.copy(file.getInputStream(), Paths.get(filePath));
+        return filePath;
+    }
+    private boolean isAllowedContentType(String contentType) {
+        return "image/jpeg".equals(contentType) || "image/png".equals(contentType);
+    }
+
+    private void swap(List<Address> addressList, int i, int index) {
+        Address temp=addressList.get(i);
+        addressList.set(i,addressList.get(index));
+        addressList.set(index,temp);
     }
 
 }

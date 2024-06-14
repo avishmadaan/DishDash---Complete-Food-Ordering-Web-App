@@ -71,6 +71,9 @@ export class UserService {
     return this.http.get<Array<string>>('http://localhost:8083/api/v2/customers/restaurant',{ headers });
   }
 
+
+
+
   //Sending Customer Fav To Backend
 
   sendFavoriteRestToCustomer(resId:string, Jwt:string): Observable<string>{
@@ -130,13 +133,5 @@ export class UserService {
   });
 
   return this.http.put<address>("http://localhost:8082/api/v2/customers/addresses/makeitprimary", addressPrimary, { headers })
- }
-
- //upload a profile picture
- uploadImage(Jwt:string, base64Image:string):Observable<any>{
-  const headers = new HttpHeaders({
-    'Authorization': `Bearer ${Jwt}`
-  });
-  return this.http.post<any>("http://localhost:8082/api/v2/customers/upload/image",{base64Image},{headers});
  }
 }
