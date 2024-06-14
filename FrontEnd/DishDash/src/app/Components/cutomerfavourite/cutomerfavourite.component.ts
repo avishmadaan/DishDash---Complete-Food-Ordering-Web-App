@@ -11,42 +11,52 @@ import { restaurant } from '../../Model/restaurant';
   styleUrl: './cutomerfavourite.component.css'
 })
 export class CutomerfavouriteComponent implements OnInit {
+  spinnerVisible:boolean =false;
   activeCustomer:customer;
   customerJwt:string;
   restIds:string[]=[];
   restaurants:restaurant[]=[];
-  favRestPresent = false;
+  nofavRestPresent = false;
 
 
   constructor(private userService:UserService, private cookieService:CookieService, private restService:RestaurantService) {}
 
   ngOnInit(): void {
     this.customerJwt = this.cookieService.get("token");
+    this.spinnerVisible = true
     this.userService.fetchCustomerFavByJwt(this.customerJwt).subscribe({
       next:data => {
         this.restIds = data;
         if(this.restIds.length >0) {
           this.fetchRestById(this.restIds);
         }
+        else {
+          this.spinnerVisible = false
+          this.nofavRestPresent = true
+        }
       },
-      error:e => [
-        console.log("Error")
-      ]
+      error:e => {
+        console.log("Error");
+        this.spinnerVisible = false;
+        this.nofavRestPresent= true;
+    }
     })
 
    
   }
 
 fetchRestById(restIds:string[]) {
-  this.favRestPresent = true;
 
   for(let restId of restIds) {
     this.restService.fetchRestaurantByid(restId).subscribe({
       next:data => {
+
         this.restaurants.push(data);
+        this.spinnerVisible = false;
       },
 
       error:e => {
+        this.spinnerVisible = false;
         console.log("Error while fetching " +restId)
       }
     })

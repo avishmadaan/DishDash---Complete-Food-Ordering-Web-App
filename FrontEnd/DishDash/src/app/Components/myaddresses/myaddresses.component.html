@@ -1,0 +1,124 @@
+<div class="addAddressForm flex justify-content-center align-items-center w-100 p-5">
+<mat-accordion class="example-headers-align" multi>
+
+  <mat-expansion-panel>
+
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <mat-icon>home</mat-icon>
+        Add You Address
+      </mat-panel-title>
+      <!-- <mat-panel-description>
+        Type your name and age
+        
+      </mat-panel-description> -->
+    </mat-expansion-panel-header>
+
+
+    <form [formGroup]="addressForm" (ngSubmit)="onSubmit()">
+      <!-- Address Line 1 -->
+      <mat-form-field>
+        <mat-label for="address1" class="form-label">House No/Flat No/ Area Name</mat-label>
+        <input placeholder="House No/Flat No/ Area Name" matInput type="text" id="address1" class="form-control" formControlName="address1">
+        <mat-error class="error" *ngIf="address1?.errors?.['required']">
+          Address Line 1 is required.
+        </mat-error>
+      </mat-form-field>
+
+ <!-- Landmark -->
+ <mat-form-field>
+      <mat-label for="landMark" class="form-label">Landmark</mat-label>
+        <input placeholder="Landmark" matInput type="text" id="landMark" class="form-control" formControlName="landMark">
+        <mat-error class="error" *ngIf="landmark?.errors?.['required']">
+          Landmark is required.
+        </mat-error>
+      </mat-form-field>
+
+       <!-- City -->
+       <mat-form-field>
+        <mat-label for="city" class="form-label">City</mat-label>
+        <input placeholder="City" matInput type="text" id="city" class="form-control" formControlName="city">
+        <mat-error class="error" *ngIf="city?.errors?.['required']">
+          City is required.
+        </mat-error>
+      </mat-form-field>
+
+       <!-- Pin Code -->
+       <mat-form-field>
+        <mat-label for="pincode" class="form-label">Pin Code</mat-label>
+        <input placeholder="Pincode" matInput type="number" id="pincode" class="form-control" formControlName="pincode">
+        <mat-error class="error" *ngIf="pincode?.errors?.['required']">
+          Pin Code is required.
+        </mat-error>
+        <mat-error class="error" *ngIf="pincode?.errors?.['pattern']">
+          Pin Code must be 6 digits.
+        </mat-error>
+      </mat-form-field>
+
+
+        <!-- Current Location -->
+        <mat-form-field>
+          <mat-label for="currentLocation" class="form-label">Current Location</mat-label>
+          <input placeholder="Google Maps Location" matInput type="text" id="currentLocation" class="form-control" formControlName="currentLocation">
+          <mat-error class="error" *ngIf="currentLocation?.errors?.['required']">
+            Current Location is required.
+          </mat-error>
+        </mat-form-field>
+
+         <!-- Submit Button -->
+      <div class="form-group">
+        <button class="btn btn-dark btn-block mb-3" type="submit" [disabled]="addressForm.invalid">Save Address</button>
+      </div>
+
+    </form>
+
+  </mat-expansion-panel>
+
+</mat-accordion>
+
+</div>
+
+<div class="existingAddress bg-body-tertiary h-100 p-3">
+
+  <div class="noAddress flex justify-content-center" *ngIf="allAddress.length==0">
+    <h3>No Saved Addresses...</h3>
+  </div>
+
+  <div class="spinner flex justify-content-center " *ngIf="spinnerVisible">
+    <mat-spinner ></mat-spinner>
+</div>
+  
+  <div class="alreadyExist bg-light ">
+    <h4>Your Saved Addresses</h4>
+    <div class="cards mt-2 flex gap-5 flex-wrap">
+      <div class="addresscard p-2 p-3" [ngClass]="{'shadow':isFirst}" *ngFor="let address of allAddress; let isFirst = first">
+        <div *ngIf="isFirst" class="special-highlight text-center bg">
+          <!-- Special content for the first address -->
+          <p class="text-primary">This is your primary address!</p>
+      </div>
+        <h6>{{address.address1}}</h6>
+        <p>{{address.city}}</p>
+        <p>{{address.landMark}}</p>
+        <p>{{address.pincode}}</p>
+        <span>{{address.currentLocation}}</span>
+
+        <div *ngIf="!isFirst">
+          <button mat-raised-button color="primary" class="butt" (click)="primaryAddress(address)">Make It Primary</button>
+        </div>
+        <div>
+          <button mat-raised-button color="warn" class="butt mt-4" (click)="deleteAddress()">Delete</button>
+        </div>
+        
+    </div>
+  
+
+  
+  </div>
+  </div>
+
+</div>
+
+
+
+
+

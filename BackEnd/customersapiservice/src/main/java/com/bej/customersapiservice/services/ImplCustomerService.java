@@ -1,5 +1,6 @@
 package com.bej.customersapiservice.services;
 
+import com.bej.customersapiservice.domain.Address;
 import com.bej.customersapiservice.domain.Customer;
 import com.bej.customersapiservice.exception.CustomerAlreadyExistException;
 import com.bej.customersapiservice.exception.CustomerNotFoundException;
@@ -14,6 +15,8 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 @Service
 public class ImplCustomerService implements ICustomerService {
@@ -35,6 +38,7 @@ public class ImplCustomerService implements ICustomerService {
         if(customer.getCustomerFavRestaurants() == null) {
             customer.setCustomerFavRestaurants(new ArrayList<>());
         }
+//
 //        customerProxy.registerCustomer(customer);
 //        return customerRepo.save(customer);
         Customer customer1=customerRepo.save(customer);
@@ -149,6 +153,62 @@ public class ImplCustomerService implements ICustomerService {
         isDeleted=true;
 
         return isDeleted;
+    }
+
+    @Override
+    public List<Address> fetchAllAddresses(String customerId) throws CustomerNotFoundException {
+
+        Customer customer = customerRepo.findById(customerId).orElseThrow(CustomerNotFoundException::new);
+        if(customer.getCustomerAddress() == null) {
+            customer.setCustomerAddress(new ArrayList<>());
+        }
+        return customer.getCustomerAddress();
+
+    }
+
+    @Override
+    public Address addNewAddress(String customerId, Address address) throws CustomerNotFoundException {
+        Customer customer = customerRepo.findById(customerId).orElseThrow(CustomerNotFoundException::new);
+        if(customer.getCustomerAddress() == null) {
+            customer.setCustomerAddress(new ArrayList<>());
+        }
+
+        List<Address> addressList = customer.getCustomerAddress();
+        addressList.add(0,address);
+        customer.setCustomerAddress(addressList);
+        customerRepo.save(customer);
+        return customer.getCustomerAddress().get(0);
+    }
+
+
+    @Override
+    public boolean deleteAddress(String customerId, String addressId)  throws CustomerNotFoundException {
+        Customer customer = customerRepo.findById(customerId).orElseThrow(CustomerNotFoundException::new);
+        List<Address> addressList = customer.getCustomerAddress();
+        Address address = addressList.stream().filter(i -> i.getAddressId().equals(addressId)).collect(Collectors.toList()).get(0);
+        addressList.remove(address);
+        customer.setCustomerAddress(addressList);
+        customerRepo.save(customer);
+        return addressList.remove(address);
+    }
+
+    @Override
+    public Address makeItPrimary(String customerId, Address address) throws CustomerNotFoundException {
+        Customer customer = customerRepo.findById(customerId).orElseThrow(CustomerNotFoundException::new);
+        List<Address> addressList = customer.getCustomerAddress();
+//        addressList.stream().filter(i -> i.getAddressId().equals(address.getAddressId())).peek(
+//                i -> i.
+//        )
+//        addressList.remove(address);
+       int index =  addressList.indexOf(address);
+        System.out.println("Index of address "+index);
+        System.out.println("Deleted or not "+addressList.remove(address) );
+        addressList.set(0,address);
+        System.out.println("Address :" +address);
+        customer.setCustomerAddress(addressList);
+        customerRepo.save(customer);
+        return addressList.get(0);
+
     }
 
 }

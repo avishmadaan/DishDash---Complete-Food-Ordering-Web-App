@@ -17,7 +17,6 @@ export class RegisterComponent {
   uniqueId:string = '';
   isLoading:boolean = false;
   uuidString: string = uuidv4();
-  uuidCart:string=uuidv4();
 
   userlogin:customerLogin = {
     customerEmail: '',
@@ -33,7 +32,6 @@ export class RegisterComponent {
       customerEmail:['',[Validators.required,Validators.pattern(/^\S+@\S+\.\S+$/)]],
       customerPassword:['',[Validators.required,Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/)]],
       confirmPassword:['',[Validators.required,Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/)]],
-      customerCartId:[this.uuidCart]
     },{validators:this.checkPassowrdMisMatch})
 
     get customerId()
@@ -57,11 +55,6 @@ export class RegisterComponent {
     get confirmPassword()
     {
       return this.registerForm.get('confirmPassword');
-    }
-
-    get customerCartId()
-    {
-      return this.registerForm.get('customerCartId');
     }
 
     // get customerProfilePic()

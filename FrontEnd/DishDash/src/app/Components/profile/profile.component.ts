@@ -16,24 +16,8 @@ export class ProfileComponent implements OnInit {
     customerName: '',
     customerEmail: '',
     customerPassword: '',
-    customerPhone: 0
   }
 
-  ngOnInit():void {
-    
-    this.routerservice.navigateToFavOption();
-    this.customerJwt = this.cookieservice.get("token")
-
-    this.userService.fetchCustomerByJwt(this.customerJwt).subscribe({
-      next:data => {
-        this.activeCustomer = data;
-      },
-      error:data => {
-        console.log("Error while Fetchin Customer")
-      }
-    })
-
-  }
   triggerFileInput() {
     const fileInput = document.getElementById('fileInput') as HTMLInputElement;
     fileInput.click();
@@ -65,9 +49,30 @@ export class ProfileComponent implements OnInit {
     }
   }
 
+
+  ngOnInit():void {
+    
+    // this.routerservice.navigateToFavOption();
+    this.customerJwt = this.cookieservice.get("token")
+
+    this.userService.fetchCustomerByJwt(this.customerJwt).subscribe({
+      next:data => {
+        this.activeCustomer = data;
+      },
+      error:data => {
+        console.log("Error while Fetchin Customer")
+      }
+    })
+
+  }
+
   logout() {
     this.cookieservice.delete("token");
     this.routerservice.navigateToHomePage();
+  }
+
+  profilePictureUpdate() {
+    
   }
 
 }

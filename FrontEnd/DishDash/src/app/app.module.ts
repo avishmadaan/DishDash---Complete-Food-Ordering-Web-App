@@ -33,6 +33,10 @@ import { ProfileComponent } from './Components/profile/profile.component';
 import { LoginalertComponent } from './Components/loginalert/loginalert.component';
 import {MatBadgeModule} from '@angular/material/badge';
 import { CartComponent } from './Components/cart/cart.component';
+import { OrderhistoryComponent } from './Components/orderhistory/orderhistory.component';
+import { MyaddressesComponent } from './Components/myaddresses/myaddresses.component';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatButtonModule} from '@angular/material/button';
 
 
 @NgModule({
@@ -56,7 +60,9 @@ import { CartComponent } from './Components/cart/cart.component';
     SpinnerComponent,
     ProfileComponent,
     LoginalertComponent,
-    CartComponent
+    CartComponent,
+    OrderhistoryComponent,
+    MyaddressesComponent
   ],
   imports: [
     BrowserModule,
@@ -73,6 +79,8 @@ import { CartComponent } from './Components/cart/cart.component';
     MatProgressSpinnerModule,
     MatProgressSpinner,
     MatBadgeModule,
+    MatExpansionModule,
+    MatButtonModule,
     HttpClientModule
   ],
   providers: [ provideAnimationsAsync(), CookieService],

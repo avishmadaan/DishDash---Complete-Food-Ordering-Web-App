@@ -5,6 +5,7 @@ import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { customer } from '../Model/customer';
 import { restaurant } from '../Model/restaurant';
 import { CookieService } from 'ngx-cookie-service';
+import { address } from '../Model/address';
 
 @Injectable({
   providedIn: 'root'
@@ -100,6 +101,37 @@ export class UserService {
  return this.http.delete<boolean>("http://localhost:8082/api/v2/customers/deleterestaurant", options)
 
   }
-  
 
+  //Fetching All Customer Address From Backend
+
+  fetchAllCustomerAddress(Jwt:string):Observable<Array<address>> {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${Jwt}`
+    });
+
+    return this.http.get<Array<address>>("http://localhost:8082/api/v2/customers/addresses/all", { headers })
+
+  }  
+
+
+  //Saving a single Restaurant To Database
+
+  saveNewAddress(Jwt:string, newAddress:address):Observable<address>
+ {
+  const headers = new HttpHeaders({
+    'Authorization': `Bearer ${Jwt}`
+  });
+
+  return this.http.put<address>("http://localhost:8082/api/v2/customers/addresses/addnew", newAddress, { headers })
+ }
+
+ //Making Address Primary
+
+ makeItPrimary(Jwt:string, addressPrimary:address):Observable<address> {
+  const headers = new HttpHeaders({
+    'Authorization': `Bearer ${Jwt}`
+  });
+
+  return this.http.put<address>("http://localhost:8082/api/v2/customers/addresses/makeitprimary", addressPrimary, { headers })
+ }
 }

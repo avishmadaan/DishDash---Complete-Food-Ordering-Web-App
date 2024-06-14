@@ -1,4 +1,4 @@
-<div class="resBox p-5" *ngIf="favRestPresent">
+<div class="resBox p-5" *ngIf="restaurants.length != 0">
     <div class="headline">
         <h3>Your Favourites</h3>
     </div>
@@ -13,7 +13,11 @@
 
 </div>
 
-<div class="text-center p-5" *ngIf="!favRestPresent">
+<div class="text-center p-5" *ngIf="nofavRestPresent">
 <h3 class="text-info-emphasis">No Favorite Restaurant</h3>
 <p routerLink="/" class="pointer bg">Go to Home Page</p>
+</div>
+
+<div class="spinner flex justify-content-center " *ngIf="spinnerVisible">
+    <mat-spinner ></mat-spinner>
 </div>

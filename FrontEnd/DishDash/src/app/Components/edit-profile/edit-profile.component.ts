@@ -1,34 +1,74 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from '../../services/user.service';
+import { CookieService } from 'ngx-cookie-service';
+import { customer } from '../../Model/customer';
 
 @Component({
   selector: 'app-edit-profile',
   templateUrl: './edit-profile.component.html',
   styleUrl: './edit-profile.component.css'
 })
-export class EditProfileComponent {
+export class EditProfileComponent implements OnInit {
+
   uniqueId: string = '';
+  customerJwt:string=''
+  activeCustomer:customer ={
+    customerName: '',
+    customerEmail: '',
+    customerPassword: '',
+    customerPhone: 0
+  }
 
-  constructor(private fb: FormBuilder, private userService: UserService, private router: Router) {}
+  constructor(private fb: FormBuilder, private userService: UserService, private router: Router, private cookieService:CookieService) {}
+  ngOnInit(): void {
+    this.customerJwt = this.cookieService.get("token")
+    this.fetchActiveCustomer()
+   
+  }
 
-  registerForm = this.fb.group({
-    customerProfilePic: [''],
-    customerPassword: ['', [Validators.required, Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/)]],
-    confirmPassword: ['', [Validators.required, this.confirmPasswordValidator()]]
+  //fetching Active Customer
+  fetchActiveCustomer() {
+
+    this.userService.fetchCustomerByJwt(this.customerJwt).subscribe({
+      next:data => {
+        this.activeCustomer = data;
+      },
+      error:e => {
+        console.log("Error while fetching Customer")
+        console.log(e);
+      }
+    })
+
+  }
+
+  updateForm = this.fb.group({
+    customerName: [this.activeCustomer.customerName],
+    customerPhone:[this.activeCustomer.customerPhone],
+    customerPassword: [this.activeCustomer.customerPassword, [Validators.required, Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/)]],
+    confirmPassword: [this.activeCustomer.customerPassword, [Validators.required, this.confirmPasswordValidator()]]
   }, { validators: this.checkPasswordMismatch });
 
   get customerPassword() {
-    return this.registerForm.get('customerPassword');
+    return this.updateForm.get('customerPassword');
+  }
+  get customerName() {
+    return this.updateForm.get('customerName');
   }
 
+  get customerPhone() {
+    return this.updateForm.get('customerName');
+  }
+  
+
+
   get confirmPassword() {
-    return this.registerForm.get('confirmPassword');
+    return this.updateForm.get('confirmPassword');
   }
 
   get customerProfilePic() {
-    return this.registerForm.get('customerProfilePic');
+    return this.updateForm.get('customerProfilePic');
   }
 
   generateUniqueKey() {
@@ -38,13 +78,13 @@ export class EditProfileComponent {
   }
 
   onSubmit() {
-    if (this.registerForm.invalid) {
+    if (this.updateForm.invalid) {
       return;
     }
 
     const registerCustomer = {
-      ...this.registerForm.value,
-      customerProfilePic: this.registerForm.get('customerProfilePic')!.value
+      ...this.updateForm.value,
+      customerProfilePic: this.updateForm.get('customerProfilePic')!.value
     };
 
     console.log(registerCustomer);

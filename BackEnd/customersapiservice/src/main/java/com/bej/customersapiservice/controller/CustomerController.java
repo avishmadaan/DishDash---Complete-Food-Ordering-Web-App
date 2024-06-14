@@ -1,5 +1,6 @@
 package com.bej.customersapiservice.controller;
 
+import com.bej.customersapiservice.domain.Address;
 import com.bej.customersapiservice.domain.Customer;
 import com.bej.customersapiservice.emails.IGenerateEmails;
 import com.bej.customersapiservice.exception.CustomerAlreadyExistException;
@@ -96,6 +97,30 @@ public class CustomerController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
+    }
+
+    @GetMapping("/customers/addresses/all")
+    public ResponseEntity fetchAllAddresses(HttpServletRequest request) throws CustomerNotFoundException {
+        String customerId = (String) request.getAttribute("customerId");
+        return new ResponseEntity<>(iCustomerService.fetchAllAddresses(customerId),HttpStatus.OK);
+    }
+
+    @PutMapping("/customers/addresses/addnew")
+    public ResponseEntity addNewAddress(@RequestBody Address address, HttpServletRequest request) throws CustomerNotFoundException {
+        String customerId = (String) request.getAttribute("customerId");
+        return new ResponseEntity<>(iCustomerService.addNewAddress(customerId, address),HttpStatus.CREATED);
+    }
+
+    @DeleteMapping("/customers/deleteone/{addressId}")
+    public ResponseEntity removeAddress(@PathVariable String addressId, HttpServletRequest request) throws CustomerNotFoundException {
+        String customerId = (String) request.getAttribute("customerId");
+        return new ResponseEntity<>(iCustomerService.deleteAddress(customerId, addressId),HttpStatus.OK);
+    }
+
+    @PutMapping("/customers/addresses/makeitprimary")
+    public ResponseEntity makeItPrimary(@RequestBody Address address, HttpServletRequest request) throws CustomerNotFoundException {
+        String customerId = (String) request.getAttribute("customerId");
+        return new ResponseEntity<>(iCustomerService.makeItPrimary(customerId, address),HttpStatus.OK);
     }
 
 }
