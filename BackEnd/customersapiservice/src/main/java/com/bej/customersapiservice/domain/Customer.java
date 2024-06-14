@@ -24,4 +24,6 @@ public class Customer {
     private List<String> customerFavRestaurants;
     private List<String> customerFavDishes;//object
     private String customerCartId;
+
+
 }

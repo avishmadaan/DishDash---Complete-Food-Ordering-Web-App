@@ -12,10 +12,15 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.ws.rs.Path;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.annotation.Id;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
+
 @Slf4j
 @RestController
 @RequestMapping("/api/v2")
@@ -30,6 +35,9 @@ public class CustomerController {
 
     @Autowired
     private IGenerateEmails iGenerateEmails;
+
+    @Value("${project.image}")
+    private String path;
 
     @PostMapping("/register")
     public ResponseEntity registerCustomer(@RequestBody Customer customer) {
@@ -121,6 +129,19 @@ public class CustomerController {
     public ResponseEntity makeItPrimary(@RequestBody Address address, HttpServletRequest request) throws CustomerNotFoundException {
         String customerId = (String) request.getAttribute("customerId");
         return new ResponseEntity<>(iCustomerService.makeItPrimary(customerId, address),HttpStatus.OK);
+    }
+
+    @PostMapping("/customers/upload/image")
+    public ResponseEntity<?> fileUpload(@RequestParam MultipartFile image, HttpServletRequest request) throws IOException {
+        String customerId = (String) request.getAttribute("customerId");
+        try{
+            String fileName=this.iCustomerService.uploadImage(customerId,path,image);
+            return new ResponseEntity<>(fileName, HttpStatus.OK);
+        }catch (Exception ex)
+        {
+            return new ResponseEntity<>(ex.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
     }
 
 }

@@ -13,7 +13,6 @@ export class ProfileComponent implements OnInit {
   customerJwt:string;
   constructor(private cookieservice:CookieService, private userService:UserService, private routerservice:RouterService) {}
   activeCustomer:customer ={
-    customerId:'',
     customerName: '',
     customerEmail: '',
     customerPassword: '',
@@ -26,7 +25,6 @@ export class ProfileComponent implements OnInit {
 
   onFileSelected(event: Event) {
     const input = event.target as HTMLInputElement;
-    const Jwt:string=this.cookieservice.get('token')
     if (input.files && input.files[0]) {
       const file = input.files[0];
 
@@ -46,22 +44,14 @@ export class ProfileComponent implements OnInit {
             console.log(img.src);
             return;
           } 
-          else if(img.height>100 || img.width>100)
-            {
-              alert('Profile photo should have 100 width and 100 height')
-            }
+          // else if(img.height>100 || img.width>100)
+          //   {
+          //     alert('Profile photo should have 100 width and 100 height')
+          //   }
           else {
-            this.userService.uploadImage(Jwt,base64Image).subscribe({
-              next:data=>{
-                console.log(data)
-              },
-              error:err=>{
-                console.log(err);
-              }
-            })
             const profileImage = document.getElementById('profileImage') as HTMLImageElement;
             profileImage.src = e.target.result;
-            // console.log(profileImage.src);
+            console.log(profileImage.src);
           }
         };
       };
@@ -88,8 +78,7 @@ export class ProfileComponent implements OnInit {
   }
 
   logout() {
-    this.userService.loggingOutFromProfile(true);
-    // this.cookieservice.delete("token");
+    this.cookieservice.delete("token");
     this.routerservice.navigateToHomePage();
   }
 

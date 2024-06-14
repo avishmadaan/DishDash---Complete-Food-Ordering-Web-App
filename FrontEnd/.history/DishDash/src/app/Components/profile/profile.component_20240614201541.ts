@@ -13,7 +13,6 @@ export class ProfileComponent implements OnInit {
   customerJwt:string;
   constructor(private cookieservice:CookieService, private userService:UserService, private routerservice:RouterService) {}
   activeCustomer:customer ={
-    customerId:'',
     customerName: '',
     customerEmail: '',
     customerPassword: '',
@@ -26,42 +25,30 @@ export class ProfileComponent implements OnInit {
 
   onFileSelected(event: Event) {
     const input = event.target as HTMLInputElement;
-    const Jwt:string=this.cookieservice.get('token')
     if (input.files && input.files[0]) {
       const file = input.files[0];
 
       //check file size if greater than 2 mb
       const maxSizeInBytes = 2 * 1024 * 1024;
-     
+      if (file.size > maxSizeInBytes) {
+        alert('File size exceeds 2MB');
+        return;
+      }
+
       const img = new Image();
       const reader = new FileReader();
 
       reader.onload = (e: any) => {
         img.src = e.target.result;
-        const base64Image=img.src.split(',')[1];
     
         img.onload = () => {
-          if (file.size > maxSizeInBytes) {
-            alert('File size exceeds 2MB');
+          if (img.width > 100 || img.height > 100) {
+            alert('Profile photo should have 100 width and 100 height');
             console.log(img.src);
-            return;
-          } 
-          else if(img.height>100 || img.width>100)
-            {
-              alert('Profile photo should have 100 width and 100 height')
-            }
-          else {
-            this.userService.uploadImage(Jwt,base64Image).subscribe({
-              next:data=>{
-                console.log(data)
-              },
-              error:err=>{
-                console.log(err);
-              }
-            })
+          } else {
             const profileImage = document.getElementById('profileImage') as HTMLImageElement;
             profileImage.src = e.target.result;
-            // console.log(profileImage.src);
+            console.log(profileImage.src);
           }
         };
       };
@@ -88,8 +75,7 @@ export class ProfileComponent implements OnInit {
   }
 
   logout() {
-    this.userService.loggingOutFromProfile(true);
-    // this.cookieservice.delete("token");
+    this.cookieservice.delete("token");
     this.routerservice.navigateToHomePage();
   }
 

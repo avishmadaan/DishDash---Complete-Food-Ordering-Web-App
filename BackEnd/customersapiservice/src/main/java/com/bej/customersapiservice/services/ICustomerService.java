@@ -5,7 +5,9 @@ import com.bej.customersapiservice.domain.Customer;
 import com.bej.customersapiservice.exception.CustomerAlreadyExistException;
 import com.bej.customersapiservice.exception.CustomerNotFoundException;
 import com.bej.customersapiservice.exception.RestaurantAlreatExistException;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 public interface ICustomerService {
@@ -26,4 +28,5 @@ public interface ICustomerService {
     public boolean deleteAddress(String customerId, String addressId)  throws CustomerNotFoundException;
 
     public Address makeItPrimary(String customerId, Address address) throws CustomerNotFoundException;
+    String uploadImage(String customerId, String path, MultipartFile file) throws IOException;
 }
