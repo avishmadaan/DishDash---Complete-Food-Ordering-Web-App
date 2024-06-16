@@ -8,6 +8,8 @@ import { LoginalertComponent } from '../loginalert/loginalert.component';
 import { UserService } from '../../services/user.service';
 import { customer } from '../../Model/customer';
 import { dish } from '../../Model/dish';
+import { CartServiceService } from '../../services/cart-service.service';
+import { CartDish } from '../../Model/CartDish';
 
 @Component({
   selector: 'app-restaurantview',
@@ -24,16 +26,59 @@ export class RestaurantviewComponent implements OnInit {
   categoryWise =new Map();
   categoryWiseDishesArray:[string, dish[]][] = [];
   noSuchRestaurant = false;
+  activeCustomer:customer;
 
   //Counter Code
   counter:number = 0;
 
-  increaseCount() {
-    this.counter++;
+  //fetchingActiveCustomer
+  fetchActiveCustomer() {
+    const Jwt = this.cookieService.get("token")
+
+    this.userService.fetchCustomerByJwt(Jwt).subscribe({
+      next:data => {
+        console.log("fetching Success")
+        this.activeCustomer = data;
+      },
+      error:e => {
+        console.log("Error while fetching the customer")
+        console.log(e);
+        
+      }
+    })
   }
 
-  decreseCount() {
-    this.counter--;
+  increaseCount(item:dish) {
+    this.fetchActiveCustomer()
+    const restId = this.oneRestaurant.resId;
+    const cartId = this.activeCustomer.customerCartId
+    const cartItem = item as unknown as CartDish
+    cartItem.dishQuantity =1;
+   console.log(cartItem)
+
+   this.cartService.addingCartItem(restId, cartId, cartItem).subscribe({
+    next:data => {
+      console.log("DishItem Added To Cart Success")
+    },
+    error:e => {
+      console.log("Adding to cart Failed")
+    }
+   })
+
+  }
+
+  decreaseCount(item:dish) {
+    const cartId = this.activeCustomer.customerCartId
+    const cartItem = item as unknown as CartDish
+    // cartItem.dishQuantity =1;
+    this.cartService.removingCartItem(cartId,cartItem.dishName).subscribe({
+      next:data => {
+        console.log("Remove Success")
+      },
+      error:e => [
+        console.log("Remove Failure")
+      ]
+    })
   }
 
 
@@ -42,7 +87,8 @@ export class RestaurantviewComponent implements OnInit {
     private resService: RestaurantService,
     private cookieService: CookieService,
     public dialog: MatDialog,
-    private userService: UserService
+    private userService: UserService,
+    private cartService:CartServiceService
   ) {}
 
   ngOnInit(): void {
@@ -88,7 +134,8 @@ export class RestaurantviewComponent implements OnInit {
     });
   }
 
-  fetchActiveCustomer() {
+  ///Fetching Customer Fav Restaurant List
+  fetchActiveCustomerFavs() {
     const Jwt = this.cookieService.get('token');
 
     this.userService.fetchCustomerFavByJwt(Jwt).subscribe({
@@ -107,7 +154,7 @@ export class RestaurantviewComponent implements OnInit {
 
   }
 
-  toogleFav() {
+  toggleFav() {
     if (!this.cookieService.get('token')) {
       this.openLoginAlertDialog('3000ms', '1500ms');
       return; // Stop further execution if user is not logged in
@@ -180,7 +227,7 @@ export class RestaurantviewComponent implements OnInit {
     console.log("MyDisWise Map" +dishesInOneCategory);
   }
 
-  scrollToCateogry(category:string) {
+  scrollToCategory(category:string) {
     console.log("Scroll Called")
     const element = document.getElementById(category);
     console.log(element);

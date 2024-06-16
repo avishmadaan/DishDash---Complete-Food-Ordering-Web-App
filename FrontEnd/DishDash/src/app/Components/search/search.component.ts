@@ -7,89 +7,92 @@ import { LoadingService } from '../../services/loading.service';
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
-  styleUrl: './search.component.css'
+  styleUrls: ['./search.component.css']
 })
 export class SearchComponent implements OnInit {
-  cityFromIp:string=''
-  city:string;
-  Search:string= '';
-  restaurants:restaurant[];
-  allUniqueCities = new Set();
-  fliterRestaurants:restaurant[];
-  filterWithSearch:restaurant[];
+  cityFromIp: string = '';
+  city: string;
+  Search: string = '';
+  restaurants: restaurant[];
+  allUniqueCities = new Set<string>();
+  fliterRestaurants: restaurant[];
+  filterWithSearch: restaurant[];
 
-  constructor(private resService:RestaurantService, private ipService:IpLocationService, private loadingService:LoadingService ) {}
+  constructor(
+    private resService: RestaurantService,
+    private ipService: IpLocationService,
+    private loadingService: LoadingService
+  ) {}
+
   ngOnInit(): void {
-
+    // Fetch IP location to determine current city
     this.ipService.getIpLocation().subscribe({
-      next:data => {
-        this.city = data.city
-        this.cityFromIp =data.city
-        this.updateCity(this.city)
+      next: data => {
+        this.city = data.city;
+        this.cityFromIp = data.city;
+        this.updateCity(this.city);
 
+        // Fetch all restaurants and unique cities
         this.resService.fetchAllRestaurants().subscribe({
-          next:data => {
-            this.restaurants = data
-            for( let rest of this.restaurants) {
+          next: data => {
+            this.restaurants = data;
+            for (let rest of this.restaurants) {
               this.allUniqueCities.add(rest.resCity);
             }
           }
-        })
-       
+        });
+
+        // Fetch restaurants by city
         this.resService.fetchRestaurantsByCity(this.city).subscribe({
-          next:data => {
-            this.fliterRestaurants = data
+          next: data => {
+            this.fliterRestaurants = data;
             this.resService.getFilteredRestaurantList(this.fliterRestaurants);
-          
           },
-          error:e => {
-            console.log(e);
-            // console.log("No such city")
+          error: e => {
+            console.error(e);
             this.resService.getFilteredRestaurantList(this.fliterRestaurants);
           }
-        })
+        });
       }
-    })
-  
-   
+    });
   }
 
-  updateCity(city:string) {
+  // Update the current city
+  updateCity(city: string) {
     this.resService.updateCity(city);
-
   }
-  selectCity(city:any) {
+
+  // Select a city from the dropdown
+  selectCity(city: string) {
     this.city = city;
     this.updateCity(this.city);
-    
+
+    // Fetch restaurants by the selected city
     this.resService.fetchRestaurantsByCity(this.city).subscribe({
-      next:data => {
-        this.fliterRestaurants = data
+      next: data => {
+        this.fliterRestaurants = data;
         this.sendFilteredData(this.fliterRestaurants);
       },
-
       error: e => {
-        console.log("No Restaurant In This City");
-        this.fliterRestaurants = null
+        console.error("No Restaurant In This City");
+        this.fliterRestaurants = [];
         this.sendFilteredData(this.fliterRestaurants);
       }
-    })
-
+    });
   }
 
-  sendFilteredData(rest:restaurant[]) {
+  // Send filtered data to the service
+  sendFilteredData(rest: restaurant[]) {
     this.resService.getFilteredRestaurantList(rest);
   }
 
-  onSearch(){
-
-    let tempRest: restaurant[] = this.fliterRestaurants.filter((value) => 
+  // Perform search on restaurants
+  onSearch() {
+    const tempRest: restaurant[] = this.fliterRestaurants.filter(value =>
       value.resName.toLowerCase().includes(this.Search.toLowerCase())
     );
 
     this.filterWithSearch = tempRest;
     this.sendFilteredData(this.filterWithSearch);
-    
   }
-
 }

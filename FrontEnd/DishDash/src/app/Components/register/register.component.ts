@@ -10,159 +10,110 @@ import { CookieService } from 'ngx-cookie-service';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrl: './register.component.css'
+  styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
 
-  uniqueId:string = '';
-  isLoading:boolean = false;
+  uniqueId: string = '';
+  isLoading: boolean = false;
   uuidString: string = uuidv4();
 
-  userlogin:customerLogin = {
+  userlogin: customerLogin = {
     customerEmail: '',
-    customerPassword : ''
+    customerPassword: ''
   };
 
-    constructor(private fb:FormBuilder, private userService:UserService, public dialogRef:MatDialogRef<RegisterComponent>, public cookieService:CookieService){}
+  constructor(
+    private fb: FormBuilder,
+    private userService: UserService,
+    public dialogRef: MatDialogRef<RegisterComponent>,
+    public cookieService: CookieService
+  ) {}
 
+  registerForm = this.fb.group({
+    customerId: [this.uuidString],
+    customerName: ['', [Validators.required, Validators.minLength(3), Validators.pattern(/^[a-zA-Z ]+$/)]],
+    customerEmail: ['', [Validators.required, Validators.pattern(/^\S+@\S+\.\S+$/)]],
+    customerPassword: ['', [Validators.required, Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/)]],
+    confirmPassword: ['', [Validators.required]]
+  }, { validators: this.checkPasswordMismatch });
 
-    registerForm=this.fb.group({
-      customerId:[this.uuidString],
-      customerName:['',[Validators.required,Validators.minLength(3),Validators.pattern(/^[a-zA-Z ]+$/)]],
-      customerEmail:['',[Validators.required,Validators.pattern(/^\S+@\S+\.\S+$/)]],
-      customerPassword:['',[Validators.required,Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/)]],
-      confirmPassword:['',[Validators.required,Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/)]],
-    },{validators:this.checkPassowrdMisMatch})
+  get customerId() {
+    return this.registerForm.get('customerId');
+  }
 
-    get customerId()
-    {
-      return this.registerForm.get('customerId');
-    }
-    get customerName(){
-      return this.registerForm.get('customerName');
-    }
+  get customerName() {
+    return this.registerForm.get('customerName');
+  }
 
-    get customerEmail()
-    {
-      return this.registerForm.get('custonerEmail');
-    }
+  get customerEmail() {
+    return this.registerForm.get('customerEmail');
+  }
 
-    get customerPassword()
-    {
-      return this.registerForm.get('customerPassword');
-    }
+  get customerPassword() {
+    return this.registerForm.get('customerPassword');
+  }
 
-    get confirmPassword()
-    {
-      return this.registerForm.get('confirmPassword');
-    }
+  get confirmPassword() {
+    return this.registerForm.get('confirmPassword');
+  }
 
-    // get customerProfilePic()
-    // {
-    //   return this.registerForm.get('customerProfilePic');
-    // }
-
-    // get customerPhone()
-    // {
-    //   return this.registerForm.get('customerPhone');
-    // }
-
-    // get address1()
-    // {
-    //   return this.registerForm.get('customerAddress.address1');
-    // }
-    // get landmark()
-    // {
-    //   return this.registerForm.get('customerAddress.landmark');
-    // }
-    // get city()
-    // {
-    //   return this.registerForm.get('customerAddress.city');
-    // }
-    // get pinCode()
-    // {
-    //   return this.registerForm.get('customerAddress.pinCode');
-    // }
-    // get currentLocation()
-    // {
-    //   return this.registerForm.get('customerAddress.currentLocation');
-    // }
-    
-    onSubmit ()
-    {
-      this.isLoading=true;
-      let registerCustomer:customer=this.registerForm.value as customer;
-      registerCustomer.customerCartId = this.generateUniqueKey();
-      console.log(registerCustomer);
-      this.userService.registerUser(registerCustomer).subscribe({
-        next:data=>{
-          this.isLoading = false;
-            console.log(data);
-            this.userlogin.customerEmail = data.customerEmail
-            this.userlogin.customerPassword = data.customerPassword
-            this.closeDialoge();
-            console.log("LoginDetails")
-            console.log(this.userlogin);
-            this.loginUser(this.userlogin);
-        },
-        error:err=>{
-          this.isLoading = false;
-            console.log("Error",err);
-            
-        }
-      })
-      
-    }
-
-    //Generating unique key for cartId
-    generateUniqueKey() {
-      const timestamp = new Date().getTime();
-      const randomNumber = Math.floor(Math.random() * 1000);
-      return `cart-${timestamp}-${randomNumber}`;
-    }
-
-
-    checkPassowrdMisMatch(c:AbstractControl)
-    {
-      const password=c.get('customerPassword');
-      console.log(password);
-      
-      const confirmPass=c.get('confirmPassword');
-      console.log(confirmPass);
-      if (!password?.value || !confirmPass?.value) {
-        return null;
+  onSubmit() {
+    this.isLoading = true;
+    let registerCustomer: customer = this.registerForm.value as customer;
+    registerCustomer.customerCartId = this.generateUniqueKey();
+    console.log(registerCustomer);
+    this.userService.registerUser(registerCustomer).subscribe({
+      next: data => {
+        this.isLoading = false;
+        console.log(data);
+        this.userlogin.customerEmail = data.customerEmail;
+        this.userlogin.customerPassword = data.customerPassword;
+        this.closeDialoge();
+        this.loginUser(this.userlogin);
+      },
+      error: err => {
+        this.isLoading = false;
+        console.log("Error", err);
       }
-      console.log(password.value === confirmPass.value ? null : { passwordMismatch: true });
-      
-  
-      return password.value === confirmPass.value ? null : { passwordMismatch: true };
-    }
+    });
+  }
 
+  generateUniqueKey() {
+    const timestamp = new Date().getTime();
+    const randomNumber = Math.floor(Math.random() * 1000);
+    return `cart-${timestamp}-${randomNumber}`;
+  }
 
-    loginUser(userlogin:customerLogin) {
-      let customerJWT:string;
-      this.userService.loginUser(userlogin).subscribe({
-        next:data => {
-          console.log(data);
-          customerJWT = data;
-          this.cookieService.set("token",customerJWT);
-          this.afterLogin();
-  
-        },
-        error:e => {
-          console.log(e);
-        }
-      })
-  
+  checkPasswordMismatch(c: AbstractControl) {
+    const password = c.get('customerPassword');
+    const confirmPass = c.get('confirmPassword');
+    if (!password?.value || !confirmPass?.value) {
+      return null;
     }
-  
-    afterLogin() {
-      this.userService.login(true)
-  
-    }
+    return password.value === confirmPass.value ? null : { passwordMismatch: true };
+  }
 
-    closeDialoge(){
-this.dialogRef.close()
-    }
+  loginUser(userlogin: customerLogin) {
+    let customerJWT: string;
+    this.userService.loginUser(userlogin).subscribe({
+      next: data => {
+        console.log(data);
+        customerJWT = data;
+        this.cookieService.set("token", customerJWT);
+        this.afterLogin();
+      },
+      error: e => {
+        console.log(e);
+      }
+    });
+  }
+
+  afterLogin() {
+    this.userService.login(true);
+  }
+
+  closeDialoge() {
+    this.dialogRef.close();
+  }
 }
-

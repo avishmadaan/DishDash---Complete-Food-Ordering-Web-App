@@ -203,18 +203,18 @@ public class ImplCustomerService implements ICustomerService {
     public Address makeItPrimary(String customerId, Address address) throws CustomerNotFoundException {
         Customer customer = customerRepo.findById(customerId).orElseThrow(CustomerNotFoundException::new);
         List<Address> addressList = customer.getCustomerAddress();
-        int index = IntStream.range(0, addressList.size())
-                .filter(i -> addressList.get(i).getAddressId().equals(address.getAddressId()))
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("Address not found in customer's address list."));
+//        int index = IntStream.range(0, addressList.size())
+//                .filter(i -> addressList.get(i).getAddressId().equals(address.getAddressId()))
+//                .findFirst()
+//                .orElseThrow(() -> new IllegalArgumentException("Address not found in customer's address list."));
 
-//        int index=-1;
-//        for (int i = 0; i < addressList.size(); i++) {
-//            if (addressList.get(i).getAddressId().equals(address.getAddressId())) {
-//                index = i;
-//                break;
-//            }
-//        }
+        int index=-1;
+        for (int i = 0; i < addressList.size(); i++) {
+            if (addressList.get(i).getAddressId().equals(address.getAddressId())) {
+                index = i;
+                break;
+            }
+        }
 
         if (index != -1) {
             // Swap the address to the primary position

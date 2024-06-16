@@ -1,20 +1,17 @@
-
 <div class="card pointer" routerLink="/{{onerestaurant.resCity.toLowerCase()}}/restaurants/{{onerestaurant.resId}}">
-<div class="image" >
-        <img [src]="onerestaurant.resImages[0]" alt="">
-    
+    <div class="image">
+      <img [src]="onerestaurant.resImages[0]" class="card-img-top" alt="{{onerestaurant.resName}}">
     </div>
-    <div class="info p-3 flex">
-        <div class="left">
-            <h6>{{onerestaurant.resName}}</h6>
-            <p>{{onerestaurant.resAddress}}</p>
-            <span>{{onerestaurant.resCategories}}</span>
-        </div>
-
-        <div class="right">
-            <span>{{onerestaurant.resRating}}</span>
-            <mat-icon>heart</mat-icon>
-
-        </div>
+    <div class="card-body">
+      <h5 class="card-title">{{onerestaurant.resName}}</h5>
+      <p class="card-text">{{onerestaurant.resAddress}}</p>
+      <p class="card-text">
+        <span *ngFor="let category of onerestaurant.resCategories" class="badge bg-primary me-1">{{category}}</span>
+      </p>
+      <div class="d-flex justify-content-between align-items-center">
+        <span class="rating"><mat-icon>star</mat-icon>{{onerestaurant.resRating}}</span>
+        <mat-icon class="heart-icon">favorite</mat-icon>
+      </div>
     </div>
-</div>
+  </div>
+  

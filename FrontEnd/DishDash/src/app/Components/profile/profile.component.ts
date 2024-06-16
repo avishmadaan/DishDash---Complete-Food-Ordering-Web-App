@@ -7,17 +7,18 @@ import { RouterService } from '../../services/router.service';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
-  styleUrl: './profile.component.css'
+  styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-  customerJwt:string;
-  constructor(private cookieservice:CookieService, private userService:UserService, private routerservice:RouterService) {}
-  activeCustomer:customer ={
-    customerId:'',
+  customerJwt: string;
+  activeCustomer: customer = {
+    customerId: '',
     customerName: '',
     customerEmail: '',
     customerPassword: '',
-  }
+  };
+
+  constructor(private cookieService: CookieService, private userService: UserService, private routerService: RouterService) {}
 
   triggerFileInput() {
     const fileInput = document.getElementById('fileInput') as HTMLInputElement;
@@ -26,42 +27,20 @@ export class ProfileComponent implements OnInit {
 
   onFileSelected(event: Event) {
     const input = event.target as HTMLInputElement;
-    const Jwt:string=this.cookieservice.get('token')
     if (input.files && input.files[0]) {
       const file = input.files[0];
-
-      //check file size if greater than 2 mb
-      const maxSizeInBytes = 2 * 1024 * 1024;
-     
       const img = new Image();
       const reader = new FileReader();
 
       reader.onload = (e: any) => {
         img.src = e.target.result;
-        const base64Image=img.src.split(',')[1];
-    
+
         img.onload = () => {
-          if (file.size > maxSizeInBytes) {
-            alert('File size exceeds 2MB');
-            console.log(img.src);
-            return;
-          } 
-          else if(img.height>100 || img.width>100)
-            {
-              alert('Profile photo should have 100 width and 100 height')
-            }
-          else {
-            this.userService.uploadImage(Jwt,base64Image).subscribe({
-              next:data=>{
-                console.log(data)
-              },
-              error:err=>{
-                console.log(err);
-              }
-            })
+          if (img.width > 100 || img.height > 100) {
+            alert('Profile photo should have 100 width and 100 height');
+          } else {
             const profileImage = document.getElementById('profileImage') as HTMLImageElement;
             profileImage.src = e.target.result;
-            // console.log(profileImage.src);
           }
         };
       };
@@ -70,31 +49,21 @@ export class ProfileComponent implements OnInit {
     }
   }
 
-
-  ngOnInit():void {
-    
-    // this.routerservice.navigateToFavOption();
-    this.customerJwt = this.cookieservice.get("token")
+  ngOnInit(): void {
+    this.customerJwt = this.cookieService.get("token");
 
     this.userService.fetchCustomerByJwt(this.customerJwt).subscribe({
-      next:data => {
+      next: data => {
         this.activeCustomer = data;
       },
-      error:data => {
-        console.log("Error while Fetchin Customer")
+      error: data => {
+        console.log("Error while fetching customer");
       }
-    })
-
+    });
   }
 
   logout() {
     this.userService.loggingOutFromProfile(true);
-    // this.cookieservice.delete("token");
-    this.routerservice.navigateToHomePage();
+    this.routerService.navigateToHomePage();
   }
-
-  profilePictureUpdate() {
-    
-  }
-
 }

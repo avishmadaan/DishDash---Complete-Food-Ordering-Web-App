@@ -17,7 +17,6 @@ export class MyaddressesComponent implements OnInit {
 allAddress:address[]=[];
 spinnerVisible:boolean = false;
 noAddresses:boolean = false;
-randomUUID:string = uuidv4()
 
 
   constructor(private fb: FormBuilder, private router: Router, private userService:UserService, private cookieService:CookieService) {}
@@ -36,7 +35,11 @@ randomUUID:string = uuidv4()
   if(this.allAddress.length == 0) {
     this.noAddresses = true;
   }
+  else {
+    this.noAddresses = false;
+  }
   this.spinnerVisible = false;
+  // this.noAddresses = false;
   },
 
   error:e => {
@@ -65,7 +68,19 @@ randomUUID:string = uuidv4()
 }
 
   //Deleting Address
-  deleteAddress() {
+  deleteAddress(addressId) {
+    const Jwt = this.cookieService.get('token')
+    this.userService.deleteAddress(Jwt,addressId).subscribe({
+      next:data => {
+        console.log("Deletion Success")
+        this.fetchAllAddresses()
+      },
+
+      error:e => {
+        console.log("Deletion Failure")
+      }
+    })
+    
 
   }
 
@@ -73,13 +88,13 @@ randomUUID:string = uuidv4()
   generateUniqueKey() {
     const timestamp = new Date().getTime();
     const randomNumber = Math.floor(Math.random() * 1000);
-    return `cus-${timestamp}-${randomNumber}`;
+    return `address-${timestamp}-${randomNumber}`;
   }
   
 //Saving a new Address
 
   addressForm = this.fb.group({
-    addressId:[this.randomUUID],
+    addressId:[],
     address1: ['', Validators.required],
     landMark: ['', Validators.required],
     city: ['', Validators.required],
@@ -113,13 +128,15 @@ randomUUID:string = uuidv4()
 
   //On submitting new adress this is generated
   onSubmit() {
+    const random = this.generateUniqueKey();
 
-    const address = this.addressForm.value as address;
+    const addressNew = this.addressForm.value as address;
+    addressNew.addressId = random;
     console.log('Address:', address);
 
     const Jwt = this.cookieService.get('token');
-    console.log("JWT :" +Jwt)
-    this.userService.saveNewAddress(Jwt, address).subscribe({
+
+    this.userService.saveNewAddress(Jwt, addressNew).subscribe({
     next:data => {
       console.log(data);
     console.log("Address Added Successfully")

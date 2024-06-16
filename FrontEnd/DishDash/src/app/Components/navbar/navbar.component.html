@@ -1,106 +1,65 @@
-<div class="nav flex justify-content align-items">
-  <div class="left">
-    <img
-      src="https://via.placeholder.com/150x40"
-      alt="Placeholder Image"
-      class="logo"
-      routerLink="/"
-    />
-  </div>
-
-  <div class="right flex justify-content-center gap-4 align-items">
-    <div
-      class="logout flex justify-center align-items bg-white border-black gap-1"
-      *ngIf="isLoggedIn"
+<div class="navbar navbar-expand-lg navbar-light bg-light fixed-top shadow-sm">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/">
+      <img src="MainLogo.png" alt="Logo" class="logo" />
+    </a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
     >
-      <div class="profile">
-        <img src="https://via.placeholder.com/40x40 " alt="Profile" />
-      </div>
-      <div class="name">{{ activeCustomer.customerName.split(" ")[0] }}</div>
-      <div class="dropdown">
-        <button
-          class="dropdown-toggle border-0 drop"
-          type="button"
-          data-bs-toggle="dropdown"
-          title="dropbutton"
-          data-bs-offset="0,10"
-        ></button>
-        <ul class="dropdown-menu">
-          <li>
-            <a class="dropdown-item pointer" routerLink="customer/profile/favorites"
-              >Profile</a
-            >
-          </li>
-          <!-- <li>
-            <a class="dropdown-item pointer" routerLink="customer/favourites"
-              >Favorites</a
-            >
-          </li> -->
-          <li>
-            <a class="dropdown-item pointer" (click)="logout()">Logout</a>
-          </li>
-        </ul>
-      </div>
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item" *ngIf="!isLoggedIn">
+          <a class="nav-link pointer" (click)="openLoginDialog('3000ms', '1500ms')">Log In</a>
+        </li>
+        <!-- <li class="nav-item" *ngIf="!isLoggedIn">
+          <a class="nav-link" (click)="openSignupDialog('3000ms', '1500ms')">Register</a>
+        </li> -->
+        <li class="nav-item dropdown" *ngIf="isLoggedIn">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="navbarDropdown"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            <img
+              src="https://via.placeholder.com/40x40"
+              alt="Profile"
+              class="profile-pic"
+            />
+            {{ activeCustomer.customerName.split(' ')[0] }}
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" routerLink="customer/profile/favorites">Profile</a></li>
+            <li><a class="dropdown-item" (click)="logout()">Logout</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link position-relative" (mouseover)="showCart = true" (mouseleave)="showCart = false">
+            <mat-icon [matBadge]="matBadge" matBadgeColor="warn">shopping_cart</mat-icon>
+            Cart
+          </a>
+          <div class="cart-dropdown position-absolute bg-white shadow-sm" *ngIf="showCart">
+            <app-cart [cartId]="activeCustomer.customerCartId" (quantityChange)="noOfItemsChanges($event)"></app-cart>
+          </div>
+        </li>
+      </ul>
     </div>
-
-    <div class="login flex gap-md-4" *ngIf="!isLoggedIn">
-      <!-- <div class="Signup flex gap-2">
-        <mat-icon
-          aria-hidden="false"
-          aria-label="Example home icon"
-          fontIcon="person"
-        ></mat-icon>
-        <span
-          (click)="openSignupDialog('3000ms', '1500ms')"
-          class="fw-bold pointer"
-          >Register</span
-        >
-      </div> -->
-
-      <div class="login flex gap-2">
-        <mat-icon
-          aria-hidden="false"
-          aria-label="Example home icon"
-          fontIcon="login"
-        ></mat-icon>
-        <span
-          (click)="openLoginDialog('3000ms', '1500ms')"
-          class="fw-bold pointer"
-          >Log In</span
-        >
-      </div>
-    </div>
-
-    <div class="cart flex justify-content-center align-items gap-2" (mouseover)="showCart=true" (mouseleave)="showCart=false" >
-
-        <div class="menupart flex justify-content-center align-items gap-2" >
-            <mat-icon
-            aria-hidden="false"
-            aria-label="Example home icon" [matBadge]="matBadge" matBadgeColor="warn"
-            fontIcon="shopping_cart" 
-          ></mat-icon>
-    
-          <span
-          class="fw-bold pointer"
-          >Cart</span
-        >
-        </div>
-
-    <div class="mycart bg-white shadow" *ngIf="showCart" >
-       <app-cart></app-cart>
-    </div>
-   
-    </div>
-
-   
   </div>
 
-   <!-- Logout Message -->
-  <div class="logout-message" *ngIf="logoutMessageVisible">
-    <span class="text-success">Logged out successfully!</span>
+  <div class="logout-message alert alert-success" *ngIf="logoutMessageVisible" role="alert">
+    Logged out successfully!
   </div>
 
-  <!-- Loading Indicator -->
   <div class="loading-overlay" *ngIf="loading">
     <div class="spinner-border text-primary" role="status">
       <span class="visually-hidden">Loading...</span>

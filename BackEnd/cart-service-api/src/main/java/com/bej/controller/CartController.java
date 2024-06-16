@@ -12,7 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/cart")
+@RequestMapping("api/v4/cart")
 public class CartController {
     @Autowired
     private CartService cartService;
@@ -36,8 +36,8 @@ public class CartController {
     public ResponseEntity<?> deleteCart(@PathVariable String cartId) throws CartNotFoundException {
         return new ResponseEntity<>(cartService.deleteCartById(cartId),HttpStatus.OK);
     }
-    @DeleteMapping("/deleteDish")
+    @PutMapping("/removeDish")
     public ResponseEntity<?> deleteDishFromCart(@RequestParam("cartId") String cartId,@RequestParam("dishName") String dishName) throws NoDishFoundException, CartNotFoundException {
-        return new ResponseEntity<>(cartService.deleteDishFromCart(cartId,dishName),HttpStatus.OK);
+        return new ResponseEntity<>(cartService.removeDishFromCart(cartId,dishName),HttpStatus.OK);
     }
 }

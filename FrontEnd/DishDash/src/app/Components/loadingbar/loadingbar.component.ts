@@ -4,30 +4,29 @@ import { LoadingService } from '../../services/loading.service';
 @Component({
   selector: 'app-loadingbar',
   templateUrl: './loadingbar.component.html',
-  styleUrl: './loadingbar.component.css'
+  styleUrls: ['./loadingbar.component.css']
 })
 export class LoadingbarComponent implements OnInit {
 
-  progress:number =0;
-  isLoading:boolean = false;
+  progress: number = 0;
+  isLoading: boolean = false;
 
-  constructor(private loadingService:LoadingService, private cdr:ChangeDetectorRef) {}
+  constructor(private loadingService: LoadingService, private cdr: ChangeDetectorRef) {}
 
-  ngOnInit(): void { 
+  ngOnInit(): void {
+    // Subscribe to the loading progress
     this.loadingService.loadingSubject_1.subscribe({
-      next:data => {
-        // console.log("MY progress: "+data)
-        this.progress = data
+      next: data => {
+        this.progress = data;
       }
-    })
+    });
 
+    // Subscribe to the loading state
     this.loadingService.isLoading.subscribe({
-      next:data => {
+      next: data => {
         this.isLoading = data;
         this.cdr.detectChanges();
       }
-    })
-   }
-
-
+    });
+  }
 }

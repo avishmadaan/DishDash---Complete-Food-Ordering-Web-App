@@ -1,14 +1,16 @@
-<div class=" header flex justify-content-between align-items">
+<div class="alert-container">
+  <div class="header d-flex justify-content-end align-items-center">
     <button mat-icon-button class="close-button" (click)="closeDialog()">
       <mat-icon>close</mat-icon>
     </button>
   </div>
-<div>
-<h1 mat-dialog-title>  <mat-icon  aria-hidden="false" aria-label="Example home icon" fontIcon="error"></mat-icon></h1>
-<div mat-dialog-content>
-  <!-- Your content here -->
-   <h4>You need to Login First</h4>
-   <a class="login pointer" (click)="openLoginDialog()">Here you can login
-   </a>
-</div>
+  <div class="content text-center">
+    <h1 mat-dialog-title>
+      <mat-icon class="error-icon" fontIcon="error"></mat-icon>
+    </h1>
+    <div mat-dialog-content>
+      <h4>You need to login first</h4>
+      <a class="login-link pointer" (click)="openLoginDialog()">Click here to login</a>
+    </div>
+  </div>
 </div>

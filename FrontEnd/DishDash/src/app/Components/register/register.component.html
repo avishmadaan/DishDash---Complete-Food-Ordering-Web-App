@@ -1,69 +1,103 @@
-<div class=" header flex justify-content-between align-items">
+<div class="header flex justify-content-end align-items-center">
     <button mat-icon-button class="close-button" (click)="closeDialoge()">
       <mat-icon>close</mat-icon>
     </button>
   </div>
-
-<!-- <p>register works!</p> -->
-<form class="regform" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-    <div class="form-div flex flex-column justify-content-center ">
-    <!-- customerName -->
-    <mat-form-field class="w-100" color="primary" appearnace="legacy">
-        <mat-label>Your Name</mat-label>
-            <input matInput type="text" placeholder="Your Name" formControlName="customerName">
-        <mat-error class="error" *ngIf="registerForm.get('customerName')?.errors?.['required']">
-            Name is required
-         </mat-error>
-         <mat-error calss="error" *ngIf="registerForm.get('customerName')?.errors?.['minlength']">
+  
+  <div class="regform p-5">
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <div *ngIf="registerForm.invalid && (registerForm.dirty || registerForm.touched)" class="alert alert-danger">
+        Please fill out the form correctly.
+      </div>
+  
+      <!-- Customer Name -->
+      <div class="form-outline mb-4">
+        <input
+          type="text"
+          id="customerName"
+          class="form-control"
+          formControlName="customerName"
+          placeholder="Your Name"
+        />
+        <div *ngIf="registerForm.get('customerName')?.touched && registerForm.get('customerName')?.invalid">
+          <small *ngIf="registerForm.get('customerName')?.errors?.['required']" class="text-danger">
+            Name is required.
+          </small>
+          <small *ngIf="registerForm.get('customerName')?.errors?.['minlength']" class="text-danger">
             Name must have more than 2 characters.
-         </mat-error>
-         <mat-error class="error" *ngIf="registerForm.get('customerName')?.errors?.['pattern']">
-            only alphabets are allowed
-         </mat-error>
-    </mat-form-field>
-    <!-- customerEmail-->
-     <mat-form-field color="primary" appearnace="legacy">
-        <mat-label>Your Email</mat-label>
-        <input matInput type="email" placeholder="email" formControlName="customerEmail">
-        <mat-error class="error" *ngIf="registerForm.get('customerEmail')?.errors?.['required']">
+          </small>
+          <small *ngIf="registerForm.get('customerName')?.errors?.['pattern']" class="text-danger">
+            Only alphabets are allowed.
+          </small>
+        </div>
+      </div>
+  
+      <!-- Customer Email -->
+      <div class="form-outline mb-4">
+        <input
+          type="email"
+          id="customerEmail"
+          class="form-control"
+          formControlName="customerEmail"
+          placeholder="Email address"
+        />
+        <div *ngIf="registerForm.get('customerEmail')?.touched && registerForm.get('customerEmail')?.invalid">
+          <small *ngIf="registerForm.get('customerEmail')?.errors?.['required']" class="text-danger">
             Email is required.
-        </mat-error>
-        <mat-error class="error" *ngIf="registerForm.get('customerEmail')?.errors?.['pattern']">
-            Enter valid email.
-        </mat-error>
-     </mat-form-field >
-    <!-- customerPassword -->
-     <mat-form-field color="primary" appearnace="legacy">
-        <mat-label>Password</mat-label>
-        <input matInput type="password" placeholder="Password" formControlName="customerPassword">
-        <mat-error class="error" *ngIf="registerForm.get('customerPassword')?.errors?.['required']">
+          </small>
+          <small *ngIf="registerForm.get('customerEmail')?.errors?.['pattern']" class="text-danger">
+            Enter a valid email.
+          </small>
+        </div>
+      </div>
+  
+      <!-- Customer Password -->
+      <div class="form-outline mb-4">
+        <input
+          type="password"
+          id="customerPassword"
+          class="form-control"
+          formControlName="customerPassword"
+          placeholder="Password"
+        />
+        <div *ngIf="registerForm.get('customerPassword')?.touched && registerForm.get('customerPassword')?.invalid">
+          <small *ngIf="registerForm.get('customerPassword')?.errors?.['required']" class="text-danger">
             Password is required.
-        </mat-error>
-        <mat-error class="error" *ngIf="registerForm.get('customerPassword')?.errors?.['pattern']">
-            Password should have min 8 letter password, with atleast a symbol, upper and lower case letters
-            and a number.
-         </mat-error>
-     </mat-form-field >
-     <!-- confirm password -->
-     <mat-form-field color="primary" appearnace="legacy">
-        <mat-label>Confirm password</mat-label>
-        <input matInput type="password" placeholder="confirm Password" formControlName="confirmPassword">
-        <span *ngIf="confirmPassword?.dirty ||  confirmPassword?.touched ">
-            <mat-error class="error" *ngIf="confirmPassword?.errors?.['required']">
-                  Confirm Password is required
-            </mat-error>
-            <mat-error *ngIf="registerForm?.errors?.['passwordMismatch']">
-                  >Password and Confirm Password should match
-            </mat-error>
-         </span>
-     </mat-form-field>
-    </div>
-    <!-- <button class="bg-primary-subtle" color="primary" type="submit" [disabled]="registerForm.invalid">Submit</button> -->
-
-    <button class="w-100 mainbtn btn btn-primary btn-block mb-4" type="submit" [disabled]="registerForm.invalid">Submit</button>
-</form>
-
-<div class="spinner flex justify-content-center" *ngIf="isLoading">
-    <mat-spinner></mat-spinner>
-</div>
-
+          </small>
+          <small *ngIf="registerForm.get('customerPassword')?.errors?.['pattern']" class="text-danger">
+            Password should have min 8 characters, with at least one symbol, upper and lower case letters, and a number.
+          </small>
+        </div>
+      </div>
+  
+      <!-- Confirm Password -->
+      <div class="form-outline mb-4">
+        <input
+          type="password"
+          id="confirmPassword"
+          class="form-control"
+          formControlName="confirmPassword"
+          placeholder="Confirm Password"
+        />
+        <div *ngIf="confirmPassword?.touched && confirmPassword?.invalid">
+          <small *ngIf="confirmPassword?.errors?.['required']" class="text-danger">
+            Confirm Password is required.
+          </small>
+          <small *ngIf="registerForm.errors?.['passwordMismatch']" class="text-danger">
+            Password and Confirm Password should match.
+          </small>
+        </div>
+      </div>
+  
+      <!-- Submit button -->
+      <div class="button">
+        <button class="btn btn-primary btn-block mb-4" type="submit" [disabled]="registerForm.invalid">Submit</button>
+      </div>
+  
+      <!-- Spinner -->
+      <div class="spinner flex justify-content-center" *ngIf="isLoading">
+        <mat-spinner></mat-spinner>
+      </div>
+    </form>
+  </div>
+  

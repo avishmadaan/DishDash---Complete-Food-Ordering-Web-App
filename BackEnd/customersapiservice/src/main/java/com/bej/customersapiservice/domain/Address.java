@@ -11,6 +11,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @ToString
 public class Address {
+    @Id
     private String addressId;
     private String address1;
     private String landMark;

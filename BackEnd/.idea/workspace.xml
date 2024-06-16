@@ -6,12 +6,18 @@
   <component name="ChangeListManager">
     <list default="true" id="9c8a6dba-7c8c-426b-ad82-e45f53e77f5c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ApiGateaway/src/main/java/com/example/ApiGateaway/config/AppConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/ApiGateaway/src/main/java/com/example/ApiGateaway/config/AppConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UserAuthenticationService/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/UserAuthenticationService/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/customersapiservice/src/main/java/com/bej/customersapiservice/controller/CustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/customersapiservice/src/main/java/com/bej/customersapiservice/controller/CustomerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/customersapiservice/src/main/java/com/bej/customersapiservice/domain/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/customersapiservice/src/main/java/com/bej/customersapiservice/domain/Customer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/customersapiservice/src/main/java/com/bej/customersapiservice/services/ICustomerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/customersapiservice/src/main/java/com/bej/customersapiservice/services/ICustomerService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cart-service-api/src/main/java/com/bej/controller/CartController.java" beforeDir="false" afterPath="$PROJECT_DIR$/cart-service-api/src/main/java/com/bej/controller/CartController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cart-service-api/src/main/java/com/bej/domain/Dish.java" beforeDir="false" afterPath="$PROJECT_DIR$/cart-service-api/src/main/java/com/bej/domain/Dish.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cart-service-api/src/main/java/com/bej/services/CartService.java" beforeDir="false" afterPath="$PROJECT_DIR$/cart-service-api/src/main/java/com/bej/services/CartService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cart-service-api/src/main/java/com/bej/services/CartServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/cart-service-api/src/main/java/com/bej/services/CartServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/customersapiservice/src/main/java/com/bej/customersapiservice/domain/Address.java" beforeDir="false" afterPath="$PROJECT_DIR$/customersapiservice/src/main/java/com/bej/customersapiservice/domain/Address.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/customersapiservice/src/main/java/com/bej/customersapiservice/services/ImplCustomerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/customersapiservice/src/main/java/com/bej/customersapiservice/services/ImplCustomerService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/customersapiservice/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/customersapiservice/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/edit-profile/edit-profile.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/edit-profile/edit-profile.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/myaddresses/myaddresses.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/myaddresses/myaddresses.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/myaddresses/myaddresses.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/myaddresses/myaddresses.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/profile/profile.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/profile/profile.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/services/user.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/services/user.service.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -65,8 +71,8 @@
       <recent name="C:\Users\Avish Madaan\Desktop\NIIT\Phase 2\Course 14 - Capstone Project\major-capstone-project\FoodieApp" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.CustomersapiserviceApplication">
-    <configuration name="ApiGateawayApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+  <component name="RunManager">
+    <configuration name="ApiGateawayApplication" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.example.ApiGateaway.ApiGateawayApplication" />
       <module name="ApiGateaway" />
       <extension name="coverage">
@@ -79,7 +85,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CustomersapiserviceApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration name="CustomersapiserviceApplication" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.bej.customersapiservice.CustomersapiserviceApplication" />
       <module name="customersapiservice" />
       <extension name="coverage">
@@ -105,7 +111,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="RestaurantServiceApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration name="RestaurantServiceApplication" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.example.RestaurantService.RestaurantServiceApplication" />
       <module name="RestaurantService" />
       <extension name="coverage">
@@ -118,7 +124,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="UserAuthenticationServiceApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration name="UserAuthenticationServiceApplication" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.example.UserAuthenticationService.UserAuthenticationServiceApplication" />
       <module name="UserAuthenticationService" />
       <extension name="coverage">
@@ -131,19 +137,23 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="MY gROUP" type="CompoundRunConfigurationType">
+      <toRun name="ApiGateawayApplication" type="Application" />
+      <toRun name="CustomersapiserviceApplication" type="Application" />
+      <toRun name="RestaurantServiceApplication" type="Application" />
+      <toRun name="UserAuthenticationServiceApplication" type="Application" />
+      <method v="2" />
+    </configuration>
     <list>
-      <item itemvalue="Application.EurekaDiscoveryServerApplication" />
       <item itemvalue="Application.ApiGateawayApplication" />
       <item itemvalue="Application.UserAuthenticationServiceApplication" />
       <item itemvalue="Application.RestaurantServiceApplication" />
       <item itemvalue="Application.CustomersapiserviceApplication" />
+      <item itemvalue="Application.EurekaDiscoveryServerApplication" />
+      <item itemvalue="Compound.MY gROUP" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.CustomersapiserviceApplication" />
-        <item itemvalue="Application.RestaurantServiceApplication" />
-        <item itemvalue="Application.ApiGateawayApplication" />
-        <item itemvalue="Application.UserAuthenticationServiceApplication" />
         <item itemvalue="Application.EurekaDiscoveryServerApplication" />
       </list>
     </recent_temporary>

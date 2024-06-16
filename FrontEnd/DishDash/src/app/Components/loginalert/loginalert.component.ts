@@ -1,23 +1,21 @@
-import { Dialog } from '@angular/cdk/dialog';
 import { Component } from '@angular/core';
-import { LoginComponent } from '../login/login.component';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { LoginComponent } from '../login/login.component';
 
 @Component({
   selector: 'app-loginalert',
   templateUrl: './loginalert.component.html',
-  styleUrl: './loginalert.component.css'
+  styleUrls: ['./loginalert.component.css']
 })
 export class LoginalertComponent {
-  constructor(private dialog:MatDialog, public dialogRef:MatDialogRef<LoginalertComponent>){}
+  constructor(private dialog: MatDialog, public dialogRef: MatDialogRef<LoginalertComponent>) {}
 
-  closeDialog(){
+  closeDialog() {
     this.dialogRef.close();
   }
 
-  openLoginDialog(){
+  openLoginDialog() {
     this.closeDialog();
     this.dialog.open(LoginComponent);
   }
-
 }

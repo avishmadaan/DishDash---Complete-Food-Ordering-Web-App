@@ -5,4 +5,5 @@ export class dish {
     dishPrice:number
     dishDescription:string
     dishCategory:string
+    veg:boolean
 }

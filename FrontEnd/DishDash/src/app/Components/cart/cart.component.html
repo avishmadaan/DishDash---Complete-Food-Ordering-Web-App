@@ -1,5 +1,18 @@
-<h6>Restaurant Name</h6>
+<h6>Your Cart</h6>
 
 <div class="cartItems">
-    <div class="item">Item No 1</div>
+    <div class="item flex gap-2 mb-3  bg-light" *ngFor="let dishItem of customerCart.dishList">
+       <div class="left w-50">
+        <img class="w-100" src="{{dishItem.dishImage}}" alt="">
+       </div>
+       <div class="middle w-50">
+        <p>Name:- {{dishItem.dishName}}</p>
+        <p>Price:- {{dishItem.dishPrice}}</p>
+        <p>Quantity:- {{dishItem.dishQuantity}}</p>
+       </div>
+
+      <div class="right"></div>
+
+        
+    </div>
 </div>

@@ -13,5 +13,5 @@ public interface CartService {
     public Optional<Cart> getCartById(String cartId);
     public Cart updateCart(Dish dish,String restId,String cartId) throws CartNotFoundException, RestaurantAlreadyExistException;
     public boolean deleteCartById(String cartId) throws CartNotFoundException;
-    public boolean deleteDishFromCart(String cartId,String dishName) throws CartNotFoundException, NoDishFoundException;
+    public boolean removeDishFromCart(String cartId,String dishName) throws CartNotFoundException, NoDishFoundException;
 }

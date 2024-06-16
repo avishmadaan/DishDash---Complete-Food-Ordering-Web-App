@@ -11,6 +11,6 @@ public class Dish {
     String dishName;
     String dishImage;
     int dishQuantity;
-    String dishPrice;
+    double dishPrice;
     boolean veg;
 }

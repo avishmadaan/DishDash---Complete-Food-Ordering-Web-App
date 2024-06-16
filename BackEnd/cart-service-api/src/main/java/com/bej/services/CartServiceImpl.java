@@ -63,18 +63,27 @@ public class CartServiceImpl implements CartService{
     }
 
     @Override
-    public boolean deleteDishFromCart(String cartId,String dishName) throws CartNotFoundException, NoDishFoundException {
+    public boolean removeDishFromCart(String cartId,String dishName) throws CartNotFoundException, NoDishFoundException {
         Cart cart = cartRepo.findById(cartId).orElseThrow(() -> new CartNotFoundException("Cart not found"));
 
         List<Dish> dishList = cart.getDishList();
 
-        boolean dishPresent = dishList.stream().anyMatch(i -> i.getDishName().equals(dishName));
+        Optional<Dish> optionalDish=dishList.stream().filter(i->i.getDishName().equals(dishName)).findFirst();
 
-        if (!dishPresent) {
+        if (optionalDish.isPresent()) {
+            Dish dish = optionalDish.get();
+            if(dish.getDishQuantity()==1)
+            {
+                dishList.remove(dish);
+            }else{
+                dish.setDishQuantity(dish.getDishQuantity()-1);
+            }
+        }
+        else{
             throw new NoDishFoundException("Dish isn't in cart");
         }
 
-        dishList.removeIf(i -> i.getDishName().equals(dishName));
+//        dishList.removeIf(i -> i.getDishName().equals(dishName));
 
         cartRepo.save(cart);
 

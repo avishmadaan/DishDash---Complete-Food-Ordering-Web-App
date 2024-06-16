@@ -9,69 +9,70 @@ import { RegisterComponent } from '../register/register.component';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
 
-  userlogin:customerLogin = {
+  userlogin: customerLogin = {
     customerEmail: '',
-    customerPassword : ''
+    customerPassword: ''
   };
 
-  customerJWT:string
-  errorMessage:string | null = null;
+  customerJWT: string;
+  errorMessage: string | null = null;
   isLoadingSpinner = false;
-  
-  constructor(private userService:UserService, private cookieService: CookieService, public dialog:MatDialog, public dialogRef:MatDialogRef<LoginComponent>, public loadingSevice:LoadingService
-  ){}
+
+  constructor(
+    private userService: UserService,
+    private cookieService: CookieService,
+    public dialog: MatDialog,
+    public dialogRef: MatDialogRef<LoginComponent>,
+    public loadingSevice: LoadingService
+  ) {}
+
   ngOnInit(): void {
     this.userService.listenLogin.subscribe({
-      next:data => {
+      next: data => {
         this.loginUser(data);
       },
-
-      error:e => {
-console.log(e);
+      error: e => {
+        console.log(e);
       }
-    })
-   
+    });
   }
 
-  loginUser(userlogin:customerLogin) {
+  loginUser(userlogin: customerLogin): void {
     this.isLoadingSpinner = true;
     this.userService.loginUser(userlogin).subscribe({
-      next:data => {
-    this.isLoadingSpinner = false
-        console.log("My JWT "+data);
+      next: data => {
+        this.isLoadingSpinner = false;
+        console.log("My JWT " + data);
         this.customerJWT = data;
-        this.cookieService.set("token",this.customerJWT);
+        this.cookieService.set("token", this.customerJWT);
         this.afterLogin();
         this.closeDialoge();
       },
-      error:e => {
-      this.isLoadingSpinner = false
+      error: e => {
+        this.isLoadingSpinner = false;
         console.log(e);
-        this.errorMessage = "Invalid email or password. Please try again"
+        this.errorMessage = "Invalid email or password. Please try again";
       }
-    })
-
+    });
   }
 
-  afterLogin() {
-    this.userService.login(true)
-
+  afterLogin(): void {
+    this.userService.login(true);
   }
 
-  openRegister() {
+  openRegister(): void {
     this.dialog.open(RegisterComponent, {
       width: "400px"
-    })
+    });
 
-    this.closeDialoge()
+    this.closeDialoge();
   }
 
-  closeDialoge() {
+  closeDialoge(): void {
     this.dialogRef.close();
   }
-
 }

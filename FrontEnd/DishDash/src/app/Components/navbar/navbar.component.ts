@@ -9,111 +9,111 @@ import { RegisterComponent } from '../register/register.component';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
-  styleUrl: './navbar.component.css'
+  styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
 
-  activeCustomer:customer;
-  customerJwt:string;
-  matBadge:number =5;
-  showCart:boolean = false;
+  activeCustomer: customer;
+  customerJwt: string;
+  matBadge: number;
+  showCart: boolean = false;
 
   logoutMessageVisible: boolean = false;
-  loading: boolean = false; // Loading indicator
+  loading: boolean = false;
 
-  constructor(private cookieService:CookieService, private userService:UserService, public dialog:MatDialog){}
-  isLoggedIn:boolean = false;
+  constructor(private cookieService: CookieService, private userService: UserService, public dialog: MatDialog) {}
+  isLoggedIn: boolean = false;
 
   ngOnInit(): void {
-
-    if(this.cookieService.check("token")) {
-    
-      this.customerJwt = this.cookieService.get("token")
-      console.log("Jwt: "+this.customerJwt);
+    // Check if token exists and fetch active customer if it does
+    if (this.cookieService.check("token")) {
+      this.customerJwt = this.cookieService.get("token");
       this.fetchActiveCustomer();
     }
 
+    // Subscribe to token subject to handle token-related actions
     this.userService.tokenSubject.subscribe({
-      next:data => {
-        console.log("You got this data " +data)
-        if(!data) {
-          this.logout()
-          console.log("We did logout")
+      next: data => {
+        if (!data) {
+          this.logout();
         }
       },
-      error:e => {
-        console.log("Error in getting toke")
-        console.log(e)
+      error: e => {
+        console.error(e);
       }
-    })
+    });
 
+    // Subscribe to logInSubject to update login state
     this.userService.logInSubject.subscribe({
-      next:data => {
+      next: data => {
         this.isLoggedIn = data;
-        this.customerJwt = this.cookieService.get("token")
+        this.customerJwt = this.cookieService.get("token");
         this.fetchActiveCustomer();
       }
-    })
+    });
 
+    // Subscribe to loggedOutFromProfileSubject to handle profile logout
     this.userService.loggedOutFromProfileSubject.subscribe({
-      next:data => {
-        if(true) {
-          this.logout()
+      next: data => {
+        if (true) {
+          this.logout();
         }
       },
-      error:e => {
-        console.log("Error while logging out ")
-        console.log(e);
+      error: e => {
+        console.error(e);
       }
-    })
+    });
   }
 
+  // Update the badge with the number of items in the cart
+  noOfItemsChanges($event) {
+    this.matBadge = $event;
+  }
+
+  // Handle user logout and display loading indicator
   logout() {
     this.cookieService.delete("token");
-    this.loading = true; // Show loading indicator
+    this.loading = true;
     setTimeout(() => {
       this.cookieService.delete("token");
       this.isLoggedIn = false;
-      this.loading = false; // Hide loading indicator
-    }, 1000); // Simulate a 1-second delay for logout process
+      this.loading = false;
+      this.showLogoutMessage();
+    }, 1000);
   }
 
+  // Show a temporary message indicating successful logout
   showLogoutMessage() {
     this.logoutMessageVisible = true;
     setTimeout(() => {
       this.logoutMessageVisible = false;
-    }, 3000); // Hide message after 3 seconds
+    }, 3000);
   }
 
-  openLoginDialog(enterAnimationDuration: string, exitAnimationDuration: string):void {
+  // Open the login dialog
+  openLoginDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
     this.dialog.open(LoginComponent, {
       width: "400px"
-    })
+    });
   }
 
-  openSignupDialog(enterAnimationDuration: string, exitAnimationDuration: string):void {
+  // Open the signup dialog
+  openSignupDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
     this.dialog.open(RegisterComponent, {
       width: "400px"
-    })
+    });
   }
 
+  // Fetch active customer details using JWT token
   fetchActiveCustomer() {
-   
     this.userService.fetchCustomerByJwt(this.customerJwt).subscribe({
-      next:data => {
-    
-        this.activeCustomer = data
-        this.isLoggedIn = true
-        console.log(data)
-        
+      next: data => {
+        this.activeCustomer = data;
+        this.isLoggedIn = true;
       },
-      error:e => {
-        console.log(e);
-
+      error: e => {
+        console.error(e);
       }
-    })
+    });
   }
-
-
-
 }
