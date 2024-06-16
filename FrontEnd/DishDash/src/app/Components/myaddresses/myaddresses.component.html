@@ -18,7 +18,7 @@
 
           <mat-form-field class="w-100">
             <mat-label>Landmark</mat-label>
-            <input matInput placeholder="Landmark" formControlName="landmark">
+            <input matInput placeholder="Landmark" formControlName="landMark">
             <mat-error *ngIf="landmark?.hasError('required')">Landmark is required.</mat-error>
           </mat-form-field>
 
@@ -58,26 +58,24 @@
 
     <div *ngIf="!spinnerVisible && !noAddresses">
       <h4 class="mb-4">Your Saved Addresses</h4>
-      <ul class="list-group">
-        <li class="list-group-item" *ngFor="let address of allAddress; let isFirst = first">
-          <div class="address-details d-flex justify-content-between align-items-center">
-            <div>
-              <h6 class="mb-1">{{ address.address1 }}</h6>
-              <p class="mb-1">{{ address.city }}</p>
-              <p class="mb-1">{{ address.landMark }}</p>
-              <p class="mb-1">{{ address.pincode }}</p>
-              <span class="text-muted">{{ address.currentLocation }}</span>
-            </div>
-            <div class="action-buttons">
-              <button *ngIf="!isFirst" mat-raised-button color="primary" class="btn btn-sm me-2" (click)="primaryAddress(address)">Make Primary</button>
+      <div class="address-cards">
+        <div *ngFor="let address of allAddress; let isFirst = first" class="address-card card shadow-sm mb-3">
+          <div class="card-body">
+            <h5 class="card-title">{{ address.address1 }}</h5>
+            <p class="card-text"><strong>City:</strong> {{ address.city }}</p>
+            <p class="card-text"><strong>Landmark:</strong> {{ address.landMark }}</p>
+            <p class="card-text"><strong>Pin Code:</strong> {{ address.pincode }}</p>
+            <p class="card-text"><strong>Location:</strong> {{ address.currentLocation }}</p>
+            <div class="d-flex justify-content-between align-items-center mt-3">
+              <button *ngIf="!isFirst" mat-raised-button color="primary" class="btn btn-sm" (click)="primaryAddress(address)">Make Primary</button>
               <button mat-raised-button color="warn" class="btn btn-sm" (click)="deleteAddress(address.addressId)">Delete</button>
             </div>
+            <div *ngIf="isFirst" class="primary-banner bg-primary text-white text-center p-2 mt-2">
+              Primary Address
+            </div>
           </div>
-          <div *ngIf="isFirst" class="primary-banner bg-primary text-white text-center p-2 mt-2">
-            Primary Address
-          </div>
-        </li>
-      </ul>
+        </div>
+      </div>
     </div>
   </div>
 </div>

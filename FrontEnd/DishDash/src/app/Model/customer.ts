@@ -8,7 +8,7 @@ export class customer {
     customerEmail?: string
     customerPassword?: string
     customerProfilePic?: string
-    customerPhone?: number
+    customerPhone?: string
     customerAddress?:address[]
     customerFavRestaurants?:string[]
     customerFavDishes?:favdishes[]

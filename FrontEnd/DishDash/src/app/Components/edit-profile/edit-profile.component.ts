@@ -12,19 +12,20 @@ import { customer } from '../../Model/customer';
 export class EditProfileComponent implements OnInit {
   customerJwt: string = '';
   spinnerVisible: boolean = false;
+  updateMessageVisible: boolean = false;
   activeCustomer: customer = {
     customerId: '',
     customerName: '',
     customerEmail: '',
     customerPassword: '',
-    customerPhone: null // Ensure phone number is null initially
+    customerPhone: '' // Ensure phone number is an empty string initially
   };
 
   updateForm = this.fb.group({
     customerId: [''],
     customerEmail: [{ value: '', disabled: true }],
     customerName: ['', [Validators.required, Validators.minLength(3), Validators.pattern(/^[a-zA-Z ]+$/)]],
-    customerPhone: [0, [Validators.required]]
+    customerPhone: ['', [Validators.required]] // Ensure phone number is initialized as an empty string
   });
 
   constructor(
@@ -42,12 +43,13 @@ export class EditProfileComponent implements OnInit {
     this.userService.fetchCustomerByJwt(this.customerJwt).subscribe({
       next: data => {
         this.activeCustomer = data;
+        // const customerPhone = this.activeCustomer.customerPhone !== null ? String(this.activeCustomer.customerPhone) : '';
 
         this.updateForm.patchValue({
           customerId: this.activeCustomer.customerId,
           customerEmail: this.activeCustomer.customerEmail,
           customerName: this.activeCustomer.customerName,
-          customerPhone: this.activeCustomer.customerPhone
+          customerPhone: this.activeCustomer.customerPhone// Handle null or empty phone number
         });
       },
       error: e => {
@@ -65,6 +67,7 @@ export class EditProfileComponent implements OnInit {
     this.userService.updateCustomer(this.customerJwt, customer).subscribe({
       next: data => {
         this.spinnerVisible = false;
+        this.showUpdateMessage();
         console.log('Update Success');
       },
       error: e => {
@@ -72,5 +75,12 @@ export class EditProfileComponent implements OnInit {
         console.log('Update Failed');
       }
     });
+  }
+
+  showUpdateMessage() {
+    this.updateMessageVisible = true;
+    setTimeout(() => {
+      this.updateMessageVisible = false;
+    }, 3000);
   }
 }
