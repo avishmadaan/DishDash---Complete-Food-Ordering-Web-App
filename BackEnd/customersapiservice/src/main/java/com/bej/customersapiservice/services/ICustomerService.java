@@ -28,5 +28,8 @@ public interface ICustomerService {
     public boolean deleteAddress(String customerId, String addressId)  throws CustomerNotFoundException;
 
     public Address makeItPrimary(String customerId, Address address) throws CustomerNotFoundException;
-    String uploadImage(String customerId, String path, MultipartFile file) throws IOException;
+    public Customer addOrder(String customerId,String orderId) throws Exception;
+    public List<Customer> getAllCustomer();
+    String uploadImage(String customerId, String path, MultipartFile file) throws IOException, CustomerNotFoundException;
+
 }

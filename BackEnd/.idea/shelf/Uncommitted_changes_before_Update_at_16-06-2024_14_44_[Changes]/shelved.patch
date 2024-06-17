@@ -1,0 +1,226 @@
+Index: cart-service-api/src/main/java/com/bej/controller/CartController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.bej.controller;\r\n\r\nimport com.bej.domain.Cart;\r\nimport com.bej.domain.Dish;\r\nimport com.bej.exceptions.CartNotFoundException;\r\nimport com.bej.exceptions.NoDishFoundException;\r\nimport com.bej.exceptions.RestaurantAlreadyExistException;\r\nimport com.bej.services.CartService;\r\nimport org.springframework.beans.factory.annotation.Autowired;\r\nimport org.springframework.http.HttpStatus;\r\nimport org.springframework.http.ResponseEntity;\r\nimport org.springframework.web.bind.annotation.*;\r\n\r\n@RestController\r\n@RequestMapping(\"/cart\")\r\npublic class CartController {\r\n    @Autowired\r\n    private CartService cartService;\r\n\r\n    @GetMapping(\"/cartById/{cartId}\")\r\n    public ResponseEntity<?> fetchCartById(@PathVariable String cartId)\r\n    {\r\n        return new ResponseEntity<>(cartService.getCartById(cartId),HttpStatus.OK);\r\n    }\r\n    @PostMapping(\"/add/{cartId}\")\r\n    public ResponseEntity<?> addCart(@PathVariable String cartId)\r\n    {\r\n        Cart cart = new Cart(cartId,null,null);\r\n        return new ResponseEntity<>(cartService.addCart(cart),HttpStatus.CREATED);\r\n    }\r\n    @PutMapping(\"/update/{restId}/{cartId}\")\r\n    public ResponseEntity<?> updateCart(@RequestBody Dish dish,@PathVariable String restId,@PathVariable String cartId) throws CartNotFoundException, RestaurantAlreadyExistException {\r\n        return new ResponseEntity<>(cartService.updateCart(dish,restId,cartId),HttpStatus.OK);\r\n    }\r\n    @DeleteMapping(\"/delete/{cartId}\")\r\n    public ResponseEntity<?> deleteCart(@PathVariable String cartId) throws CartNotFoundException {\r\n        return new ResponseEntity<>(cartService.deleteCartById(cartId),HttpStatus.OK);\r\n    }\r\n    @DeleteMapping(\"/deleteDish\")\r\n    public ResponseEntity<?> deleteDishFromCart(@RequestParam(\"cartId\") String cartId,@RequestParam(\"dishName\") String dishName) throws NoDishFoundException, CartNotFoundException {\r\n        return new ResponseEntity<>(cartService.deleteDishFromCart(cartId,dishName),HttpStatus.OK);\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/cart-service-api/src/main/java/com/bej/controller/CartController.java b/cart-service-api/src/main/java/com/bej/controller/CartController.java
+--- a/cart-service-api/src/main/java/com/bej/controller/CartController.java	(revision 8c2d45159d2c77c57c43d6775106798ad45eae1d)
++++ b/cart-service-api/src/main/java/com/bej/controller/CartController.java	(date 1718453757039)
+@@ -36,8 +36,8 @@
+     public ResponseEntity<?> deleteCart(@PathVariable String cartId) throws CartNotFoundException {
+         return new ResponseEntity<>(cartService.deleteCartById(cartId),HttpStatus.OK);
+     }
+-    @DeleteMapping("/deleteDish")
++    @PutMapping("/removeDish")
+     public ResponseEntity<?> deleteDishFromCart(@RequestParam("cartId") String cartId,@RequestParam("dishName") String dishName) throws NoDishFoundException, CartNotFoundException {
+-        return new ResponseEntity<>(cartService.deleteDishFromCart(cartId,dishName),HttpStatus.OK);
++        return new ResponseEntity<>(cartService.removeDishFromCart(cartId,dishName),HttpStatus.OK);
+     }
+ }
+Index: cart-service-api/src/main/java/com/bej/services/CartService.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.bej.services;\r\n\r\nimport com.bej.domain.Cart;\r\nimport com.bej.domain.Dish;\r\nimport com.bej.exceptions.CartNotFoundException;\r\nimport com.bej.exceptions.NoDishFoundException;\r\nimport com.bej.exceptions.RestaurantAlreadyExistException;\r\n\r\nimport java.util.Optional;\r\n\r\npublic interface CartService {\r\n    public Cart addCart(Cart cart);\r\n    public Optional<Cart> getCartById(String cartId);\r\n    public Cart updateCart(Dish dish,String restId,String cartId) throws CartNotFoundException, RestaurantAlreadyExistException;\r\n    public boolean deleteCartById(String cartId) throws CartNotFoundException;\r\n    public boolean deleteDishFromCart(String cartId,String dishName) throws CartNotFoundException, NoDishFoundException;\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/cart-service-api/src/main/java/com/bej/services/CartService.java b/cart-service-api/src/main/java/com/bej/services/CartService.java
+--- a/cart-service-api/src/main/java/com/bej/services/CartService.java	(revision 8c2d45159d2c77c57c43d6775106798ad45eae1d)
++++ b/cart-service-api/src/main/java/com/bej/services/CartService.java	(date 1718453552962)
+@@ -13,5 +13,5 @@
+     public Optional<Cart> getCartById(String cartId);
+     public Cart updateCart(Dish dish,String restId,String cartId) throws CartNotFoundException, RestaurantAlreadyExistException;
+     public boolean deleteCartById(String cartId) throws CartNotFoundException;
+-    public boolean deleteDishFromCart(String cartId,String dishName) throws CartNotFoundException, NoDishFoundException;
++    public boolean removeDishFromCart(String cartId,String dishName) throws CartNotFoundException, NoDishFoundException;
+ }
+Index: customersapiservice/src/main/java/com/bej/customersapiservice/domain/Customer.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.bej.customersapiservice.domain;\r\n\r\nimport lombok.*;\r\nimport org.springframework.data.annotation.Id;\r\nimport org.springframework.data.mongodb.core.mapping.Document;\r\n\r\nimport java.util.List;\r\n\r\n@Document\r\n@NoArgsConstructor\r\n@AllArgsConstructor\r\n@Getter\r\n@Setter\r\n@ToString\r\npublic class Customer {\r\n    @Id\r\n    private String customerId;\r\n    private String customerName;\r\n    private String customerEmail;\r\n    private String customerPassword;\r\n    private String customerProfilePic;\r\n    private long customerPhone;\r\n    private List<Address> customerAddress;\r\n    private List<String> customerFavRestaurants;\r\n    private List<String> customerFavDishes;//object\r\n    private String customerCartId;\r\n\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/customersapiservice/src/main/java/com/bej/customersapiservice/domain/Customer.java b/customersapiservice/src/main/java/com/bej/customersapiservice/domain/Customer.java
+--- a/customersapiservice/src/main/java/com/bej/customersapiservice/domain/Customer.java	(revision 8c2d45159d2c77c57c43d6775106798ad45eae1d)
++++ b/customersapiservice/src/main/java/com/bej/customersapiservice/domain/Customer.java	(date 1718449536921)
+@@ -25,5 +25,7 @@
+     private List<String> customerFavDishes;//object
+     private String customerCartId;
+ 
+-
++    public Customer(String customerProfilePic) {
++        this.customerProfilePic = customerProfilePic;
++    }
+ }
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"9c8a6dba-7c8c-426b-ad82-e45f53e77f5c\" name=\"Changes\" comment=\"\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/UserAuthenticationService/src/main/resources/application.properties\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/UserAuthenticationService/src/main/resources/application.properties\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/customersapiservice/src/main/java/com/bej/customersapiservice/controller/CustomerController.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/customersapiservice/src/main/java/com/bej/customersapiservice/controller/CustomerController.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/customersapiservice/src/main/java/com/bej/customersapiservice/domain/Customer.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/customersapiservice/src/main/java/com/bej/customersapiservice/domain/Customer.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/customersapiservice/src/main/java/com/bej/customersapiservice/services/ICustomerService.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/customersapiservice/src/main/java/com/bej/customersapiservice/services/ICustomerService.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/customersapiservice/src/main/java/com/bej/customersapiservice/services/ImplCustomerService.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/customersapiservice/src/main/java/com/bej/customersapiservice/services/ImplCustomerService.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/customersapiservice/src/main/resources/application.properties\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/customersapiservice/src/main/resources/application.properties\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/../FrontEnd/DishDash/src/app/services/user.service.ts\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/../FrontEnd/DishDash/src/app/services/user.service.ts\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Interface\" />\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$/..\" />\r\n  </component>\r\n  <component name=\"MarkdownSettingsMigration\">\r\n    <option name=\"stateVersion\" value=\"1\" />\r\n  </component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 7\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"2hRdb5bzKy99WtrSghQJjDoSedT\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">{\r\n  &quot;keyToString&quot;: {\r\n    &quot;Application.ApiGateawayApplication.executor&quot;: &quot;Run&quot;,\r\n    &quot;Application.CartServiceApiApplication.executor&quot;: &quot;Run&quot;,\r\n    &quot;Application.CustomersapiserviceApplication.executor&quot;: &quot;Run&quot;,\r\n    &quot;Application.EurekaDiscoveryServerApplication.executor&quot;: &quot;Run&quot;,\r\n    &quot;Application.RestaurantServiceApplication.executor&quot;: &quot;Run&quot;,\r\n    &quot;Application.UserAuthenticationServiceApplication.executor&quot;: &quot;Run&quot;,\r\n    &quot;Application.abc.executor&quot;: &quot;Run&quot;,\r\n    &quot;Maven.FoodieApp [clean].executor&quot;: &quot;Run&quot;,\r\n    &quot;Maven.FoodieApp [compile].executor&quot;: &quot;Run&quot;,\r\n    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\r\n    &quot;git-widget-placeholder&quot;: &quot;dev-v1&quot;,\r\n    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,\r\n    &quot;last_opened_file_path&quot;: &quot;C:/Niit/Major_Capstone_project/major-capstone-project/major-capstone-project/BackEnd&quot;,\r\n    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;\r\n  }\r\n}</component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"CopyFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\Avish Madaan\\Desktop\\NIIT\\Phase 2\\Course 14 - Capstone Project\\major-capstone-project\\FoodieApp\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunManager\" selected=\"Application.CustomersapiserviceApplication\">\r\n    <configuration name=\"ApiGateawayApplication\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"com.example.ApiGateaway.ApiGateawayApplication\" />\r\n      <module name=\"ApiGateaway\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"com.example.ApiGateaway.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"CustomersapiserviceApplication\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"com.bej.customersapiservice.CustomersapiserviceApplication\" />\r\n      <module name=\"customersapiservice\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"com.bej.customersapiservice.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"EurekaDiscoveryServerApplication\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"com.example.EurekaDiscoveryServer.EurekaDiscoveryServerApplication\" />\r\n      <module name=\"EurekaDiscoveryServer\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"com.example.EurekaDiscoveryServer.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"RestaurantServiceApplication\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"com.example.RestaurantService.RestaurantServiceApplication\" />\r\n      <module name=\"RestaurantService\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"com.example.RestaurantService.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"UserAuthenticationServiceApplication\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"com.example.UserAuthenticationService.UserAuthenticationServiceApplication\" />\r\n      <module name=\"UserAuthenticationService\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"com.example.UserAuthenticationService.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <list>\r\n      <item itemvalue=\"Application.EurekaDiscoveryServerApplication\" />\r\n      <item itemvalue=\"Application.ApiGateawayApplication\" />\r\n      <item itemvalue=\"Application.UserAuthenticationServiceApplication\" />\r\n      <item itemvalue=\"Application.RestaurantServiceApplication\" />\r\n      <item itemvalue=\"Application.CustomersapiserviceApplication\" />\r\n    </list>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"Application.CustomersapiserviceApplication\" />\r\n        <item itemvalue=\"Application.RestaurantServiceApplication\" />\r\n        <item itemvalue=\"Application.ApiGateawayApplication\" />\r\n        <item itemvalue=\"Application.UserAuthenticationServiceApplication\" />\r\n        <item itemvalue=\"Application.EurekaDiscoveryServerApplication\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"9c8a6dba-7c8c-426b-ad82-e45f53e77f5c\" name=\"Changes\" comment=\"\" />\r\n      <created>1717560898011</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1717560898011</updated>\r\n    </task>\r\n    <servers />\r\n  </component>\r\n  <component name=\"XSLT-Support.FileAssociations.UIState\">\r\n    <expand />\r\n    <select />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 8c2d45159d2c77c57c43d6775106798ad45eae1d)
++++ b/.idea/workspace.xml	(date 1718453553337)
+@@ -6,13 +6,12 @@
+   <component name="ChangeListManager">
+     <list default="true" id="9c8a6dba-7c8c-426b-ad82-e45f53e77f5c" name="Changes" comment="">
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/UserAuthenticationService/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/UserAuthenticationService/src/main/resources/application.properties" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/customersapiservice/src/main/java/com/bej/customersapiservice/controller/CustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/customersapiservice/src/main/java/com/bej/customersapiservice/controller/CustomerController.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/cart-service-api/src/main/java/com/bej/controller/CartController.java" beforeDir="false" afterPath="$PROJECT_DIR$/cart-service-api/src/main/java/com/bej/controller/CartController.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/cart-service-api/src/main/java/com/bej/services/CartService.java" beforeDir="false" afterPath="$PROJECT_DIR$/cart-service-api/src/main/java/com/bej/services/CartService.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/cart-service-api/src/main/java/com/bej/services/CartServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/cart-service-api/src/main/java/com/bej/services/CartServiceImpl.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/customersapiservice/src/main/java/com/bej/customersapiservice/domain/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/customersapiservice/src/main/java/com/bej/customersapiservice/domain/Customer.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/customersapiservice/src/main/java/com/bej/customersapiservice/services/ICustomerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/customersapiservice/src/main/java/com/bej/customersapiservice/services/ICustomerService.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/customersapiservice/src/main/java/com/bej/customersapiservice/services/ImplCustomerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/customersapiservice/src/main/java/com/bej/customersapiservice/services/ImplCustomerService.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/customersapiservice/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/customersapiservice/src/main/resources/application.properties" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/services/user.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/services/user.service.ts" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -141,10 +140,10 @@
+     <recent_temporary>
+       <list>
+         <item itemvalue="Application.CustomersapiserviceApplication" />
+-        <item itemvalue="Application.RestaurantServiceApplication" />
+-        <item itemvalue="Application.ApiGateawayApplication" />
+         <item itemvalue="Application.UserAuthenticationServiceApplication" />
+         <item itemvalue="Application.EurekaDiscoveryServerApplication" />
++        <item itemvalue="Application.RestaurantServiceApplication" />
++        <item itemvalue="Application.ApiGateawayApplication" />
+       </list>
+     </recent_temporary>
+   </component>
+Index: cart-service-api/src/main/java/com/bej/services/CartServiceImpl.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.bej.services;\r\n\r\nimport com.bej.domain.Cart;\r\nimport com.bej.domain.Dish;\r\nimport com.bej.exceptions.CartNotFoundException;\r\nimport com.bej.exceptions.NoDishFoundException;\r\nimport com.bej.exceptions.RestaurantAlreadyExistException;\r\nimport com.bej.repository.CartRepo;\r\nimport org.springframework.beans.factory.annotation.Autowired;\r\nimport org.springframework.stereotype.Service;\r\n\r\nimport java.util.ArrayList;\r\nimport java.util.List;\r\nimport java.util.Optional;\r\n\r\n@Service\r\npublic class CartServiceImpl implements CartService{\r\n    @Autowired\r\n    private CartRepo cartRepo;\r\n    @Override\r\n    public Cart addCart(Cart cart) {\r\n        return cartRepo.save(cart);\r\n    }\r\n\r\n    @Override\r\n    public Optional<Cart> getCartById(String cartId) {\r\n        return cartRepo.findById(cartId);\r\n    }\r\n\r\n    @Override\r\n    public Cart updateCart(Dish dish,String restId, String cartId) throws CartNotFoundException, RestaurantAlreadyExistException {\r\n        Cart cart=cartRepo.findById(cartId).orElseThrow(()->new CartNotFoundException(\"No Cart Found\"));\r\n            if(cart.getResId()==null)\r\n            {\r\n                cart.setResId(restId);\r\n            }\r\n            if (cart.getResId().equals(restId) ) {\r\n                if (cart.getDishList() == null) {\r\n                    cart.setDishList(new ArrayList<>());\r\n                }\r\n                List<Dish> dishList=cart.getDishList();\r\n                Optional<Dish> dishPresent=dishList.stream().filter(i->i.getDishName().equals(dish.getDishName())).findFirst();\r\n                if(dishPresent.isPresent())\r\n                {\r\n                    dishPresent.get().setDishQuantity(dishPresent.get().getDishQuantity()+1);\r\n                }else{\r\n                    dishList.add(dish);\r\n                }\r\n            }else{\r\n                throw new RestaurantAlreadyExistException();\r\n            }\r\n\r\n            return cartRepo.save(cart);\r\n    }\r\n\r\n    @Override\r\n    public boolean deleteCartById(String cartId) throws CartNotFoundException {\r\n        boolean isDeleted=false;\r\n        Cart cart = cartRepo.findById(cartId).orElseThrow(()->new CartNotFoundException(\"No Cart found\"));\r\n        cartRepo.delete(cart);\r\n        isDeleted=true;\r\n        return isDeleted;\r\n    }\r\n\r\n    @Override\r\n    public boolean deleteDishFromCart(String cartId,String dishName) throws CartNotFoundException, NoDishFoundException {\r\n        Cart cart = cartRepo.findById(cartId).orElseThrow(() -> new CartNotFoundException(\"Cart not found\"));\r\n\r\n        List<Dish> dishList = cart.getDishList();\r\n\r\n        boolean dishPresent = dishList.stream().anyMatch(i -> i.getDishName().equals(dishName));\r\n\r\n        if (!dishPresent) {\r\n            throw new NoDishFoundException(\"Dish isn't in cart\");\r\n        }\r\n\r\n        dishList.removeIf(i -> i.getDishName().equals(dishName));\r\n\r\n        cartRepo.save(cart);\r\n\r\n        return true;\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/cart-service-api/src/main/java/com/bej/services/CartServiceImpl.java b/cart-service-api/src/main/java/com/bej/services/CartServiceImpl.java
+--- a/cart-service-api/src/main/java/com/bej/services/CartServiceImpl.java	(revision 8c2d45159d2c77c57c43d6775106798ad45eae1d)
++++ b/cart-service-api/src/main/java/com/bej/services/CartServiceImpl.java	(date 1718453552971)
+@@ -63,18 +63,27 @@
+     }
+ 
+     @Override
+-    public boolean deleteDishFromCart(String cartId,String dishName) throws CartNotFoundException, NoDishFoundException {
++    public boolean removeDishFromCart(String cartId,String dishName) throws CartNotFoundException, NoDishFoundException {
+         Cart cart = cartRepo.findById(cartId).orElseThrow(() -> new CartNotFoundException("Cart not found"));
+ 
+         List<Dish> dishList = cart.getDishList();
+ 
+-        boolean dishPresent = dishList.stream().anyMatch(i -> i.getDishName().equals(dishName));
++        Optional<Dish> optionalDish=dishList.stream().filter(i->i.getDishName().equals(dishName)).findFirst();
+ 
+-        if (!dishPresent) {
++        if (optionalDish.isPresent()) {
++            Dish dish = optionalDish.get();
++            if(dish.getDishQuantity()==1)
++            {
++                dishList.remove(dish);
++            }else{
++                dish.setDishQuantity(dish.getDishQuantity()-1);
++            }
++        }
++        else{
+             throw new NoDishFoundException("Dish isn't in cart");
+         }
+ 
+-        dishList.removeIf(i -> i.getDishName().equals(dishName));
++//        dishList.removeIf(i -> i.getDishName().equals(dishName));
+ 
+         cartRepo.save(cart);
+ 
+Index: customersapiservice/src/main/java/com/bej/customersapiservice/services/ICustomerService.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.bej.customersapiservice.services;\r\n\r\nimport com.bej.customersapiservice.domain.Address;\r\nimport com.bej.customersapiservice.domain.Customer;\r\nimport com.bej.customersapiservice.exception.CustomerAlreadyExistException;\r\nimport com.bej.customersapiservice.exception.CustomerNotFoundException;\r\nimport com.bej.customersapiservice.exception.RestaurantAlreatExistException;\r\nimport org.springframework.web.multipart.MultipartFile;\r\n\r\nimport java.io.IOException;\r\nimport java.util.List;\r\n\r\npublic interface ICustomerService {\r\n\r\n    public Customer registerCustomer(Customer customer) throws CustomerAlreadyExistException;\r\n    public Customer updateCustomer(Customer customer, String customerId) throws CustomerAlreadyExistException, CustomerNotFoundException;\r\n    public String addFavoriteRestaurant(String resId,String customerId) throws CustomerNotFoundException, RestaurantAlreatExistException;\r\n    public String addFavoriteDish(String obj,String customerId) throws CustomerNotFoundException;\r\n    public List<String> getAllFavRestaurant(String customerId);\r\n    public List<String> getAllFavDishes(String customerId);\r\n    public Customer getCustomerById(String customerId) throws CustomerNotFoundException;\r\n    public boolean deleteFavRestaurant(String customerId,String restId) throws CustomerNotFoundException;\r\n    public boolean deleteFavDish(String customerId,String dishName) throws CustomerNotFoundException;\r\n\r\n    public List<Address> fetchAllAddresses(String customerId) throws CustomerNotFoundException;\r\n    public Address addNewAddress(String customerId, Address address) throws CustomerNotFoundException;\r\n\r\n    public boolean deleteAddress(String customerId, String addressId)  throws CustomerNotFoundException;\r\n\r\n    public Address makeItPrimary(String customerId, Address address) throws CustomerNotFoundException;\r\n    String uploadImage(String customerId, String path, MultipartFile file) throws IOException;\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/customersapiservice/src/main/java/com/bej/customersapiservice/services/ICustomerService.java b/customersapiservice/src/main/java/com/bej/customersapiservice/services/ICustomerService.java
+--- a/customersapiservice/src/main/java/com/bej/customersapiservice/services/ICustomerService.java	(revision 8c2d45159d2c77c57c43d6775106798ad45eae1d)
++++ b/customersapiservice/src/main/java/com/bej/customersapiservice/services/ICustomerService.java	(date 1718397848193)
+@@ -28,5 +28,5 @@
+     public boolean deleteAddress(String customerId, String addressId)  throws CustomerNotFoundException;
+ 
+     public Address makeItPrimary(String customerId, Address address) throws CustomerNotFoundException;
+-    String uploadImage(String customerId, String path, MultipartFile file) throws IOException;
++    String uploadImage(String customerId, String path, MultipartFile file) throws IOException, CustomerNotFoundException;
+ }
+Index: customersapiservice/src/main/java/com/bej/customersapiservice/services/ImplCustomerService.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.bej.customersapiservice.services;\r\n\r\nimport com.bej.customersapiservice.domain.Address;\r\nimport com.bej.customersapiservice.domain.Customer;\r\nimport com.bej.customersapiservice.exception.CustomerAlreadyExistException;\r\nimport com.bej.customersapiservice.exception.CustomerNotFoundException;\r\nimport com.bej.customersapiservice.exception.RestaurantAlreatExistException;\r\nimport com.bej.customersapiservice.proxy.CartProxy;\r\nimport com.bej.customersapiservice.proxy.CustomerProxy;\r\nimport com.bej.customersapiservice.respository.CustomerRepo;\r\nimport org.springframework.beans.factory.annotation.Autowired;\r\nimport org.springframework.http.ResponseEntity;\r\nimport org.springframework.stereotype.Service;\r\nimport org.springframework.web.multipart.MultipartFile;\r\n\r\nimport java.io.File;\r\nimport java.io.IOException;\r\nimport java.nio.file.Files;\r\nimport java.nio.file.Paths;\r\nimport java.util.ArrayList;\r\nimport java.util.List;\r\nimport java.util.Optional;\r\nimport java.util.UUID;\r\nimport java.util.function.Predicate;\r\nimport java.util.stream.Collectors;\r\nimport java.util.stream.IntStream;\r\n\r\nimport static reactor.core.Disposables.swap;\r\n\r\n@Service\r\npublic class ImplCustomerService implements ICustomerService {\r\n\r\n    @Autowired\r\n    private CustomerRepo customerRepo;\r\n    @Autowired\r\n    private CustomerProxy customerProxy;\r\n    @Autowired\r\n    private CartProxy cartProxy;\r\n    @Override\r\n    public Customer registerCustomer(Customer customer) throws CustomerAlreadyExistException {\r\n        if(customerRepo.findById(customer.getCustomerId()).isPresent()) {\r\n            throw new CustomerAlreadyExistException();\r\n        }\r\n        if(customer.getCustomerFavDishes() ==  null) {\r\n            customer.setCustomerFavDishes(new ArrayList<>());\r\n        }\r\n        if(customer.getCustomerFavRestaurants() == null) {\r\n            customer.setCustomerFavRestaurants(new ArrayList<>());\r\n        }\r\n//\r\n//        customerProxy.registerCustomer(customer);\r\n//        return customerRepo.save(customer);\r\n        Customer customer1=customerRepo.save(customer);\r\n        if(!(customer1.getCustomerId().isEmpty()))\r\n        {\r\n            ResponseEntity<?> proxyResponse=customerProxy.registerCustomer(customer);\r\n            ResponseEntity<?> cartProxyRes=cartProxy.addCart(customer.getCustomerCartId());\r\n            System.out.println(proxyResponse.getBody());\r\n        }\r\n\r\n        return customer1;\r\n    }\r\n\r\n    public Customer updateCustomer(Customer customer, String customerId) throws CustomerNotFoundException {\r\n        Customer customer1=customerRepo.findById(customerId).orElseThrow(CustomerNotFoundException::new);\r\n        customer1.setCustomerName(customer.getCustomerName());\r\n        customer1.setCustomerPhone(customer.getCustomerPhone());\r\n        return customerRepo.save(customer1);\r\n    }\r\n\r\n    @Override\r\n    public String addFavoriteRestaurant(String resId,String customerId) throws CustomerNotFoundException, RestaurantAlreatExistException {\r\n        System.out.println(\"Inside\");\r\n        System.out.println(\"Inside Imple :\" + customerRepo.findById(customerId).get() +\"Object :\"+resId);\r\n        Customer optionalCustomer=customerRepo.findById(customerId).orElseThrow(CustomerNotFoundException::new);\r\n        if(optionalCustomer.getCustomerFavRestaurants()==null)\r\n        {\r\n            optionalCustomer.setCustomerFavRestaurants(new ArrayList<>());\r\n        }\r\n        List<String> favList = optionalCustomer.getCustomerFavRestaurants();\r\n        boolean isPresent=favList.stream().anyMatch(i->i.equals(resId));\r\n        System.out.println(isPresent);\r\n        if(isPresent)\r\n        {\r\n            throw new RestaurantAlreatExistException();\r\n        }\r\n        favList.add(resId);\r\n        customerRepo.save(optionalCustomer);\r\n        return \"Favourite Restaurant added\";\r\n    }\r\n\r\n    @Override\r\n    public String addFavoriteDish(String restId, String customerId) throws CustomerNotFoundException {\r\n        Customer customer= customerRepo.findById(customerId).orElseThrow(CustomerNotFoundException::new);\r\n\r\n        if (customer.getCustomerFavDishes() == null) {\r\n            customer.setCustomerFavDishes(new ArrayList<>());\r\n        }\r\n\r\n        List<String> favDishList = customer.getCustomerFavDishes();\r\n        favDishList.add(restId);\r\n        customerRepo.save(customer);\r\n        return \"Dish added to your favorites...\";\r\n\r\n    }\r\n\r\n    @Override\r\n    public List<String> getAllFavRestaurant(String customerId) {\r\n\r\n        Optional<Customer> restCustomer = customerRepo.findById(customerId);\r\n        System.out.println(restCustomer.get());\r\n        return restCustomer.get().getCustomerFavRestaurants();\r\n    }\r\n\r\n    @Override\r\n    public List<String> getAllFavDishes(String customerId) {\r\n        Optional<Customer> restCustomer = customerRepo.findById(customerId);\r\n        System.out.println(restCustomer.get());\r\n        return restCustomer.get().getCustomerFavDishes();\r\n    }\r\n\r\n    @Override\r\n    public Customer getCustomerById(String customerId) throws CustomerNotFoundException {\r\n        return customerRepo.findById(customerId).orElseThrow(CustomerNotFoundException::new);\r\n    }\r\n\r\n    @Override\r\n    public boolean deleteFavRestaurant(String customerId,String resId) throws CustomerNotFoundException {\r\n       boolean isDeleted=false;\r\n       Customer customer=customerRepo.findById(customerId).orElseThrow(CustomerNotFoundException::new);\r\n       List<String> favRestList = customer.getCustomerFavRestaurants();\r\n       System.out.println(\"Before deletion :\"+favRestList);\r\n       for(int i=0;i<favRestList.size();i++)\r\n       {\r\n           if(favRestList.get(i).equals(resId)){\r\n               favRestList.remove(resId);\r\n               isDeleted=true;\r\n           }\r\n\r\n       }\r\n       System.out.println(\"After deletion :\"+favRestList);\r\n       customer.setCustomerFavRestaurants(favRestList);\r\n       customerRepo.save(customer);\r\n       return isDeleted;\r\n    }\r\n    public boolean deleteFavDish(String customerId,String dish) throws CustomerNotFoundException {\r\n        boolean isDeleted=false;\r\n        Optional<Customer> optionalCustomer=customerRepo.findById(customerId);\r\n\r\n        if(optionalCustomer.isEmpty())\r\n        {\r\n            throw new CustomerNotFoundException();\r\n        }\r\n        Customer customer=optionalCustomer.get();\r\n\r\n        List<String> favList = customer.getCustomerFavDishes();\r\n        favList.remove(dish);\r\n        customer.setCustomerFavDishes(favList);\r\n        customerRepo.save(customer);\r\n        isDeleted=true;\r\n\r\n        return isDeleted;\r\n    }\r\n\r\n    @Override\r\n    public List<Address> fetchAllAddresses(String customerId) throws CustomerNotFoundException {\r\n\r\n        Customer customer = customerRepo.findById(customerId).orElseThrow(CustomerNotFoundException::new);\r\n        if(customer.getCustomerAddress() == null) {\r\n            customer.setCustomerAddress(new ArrayList<>());\r\n        }\r\n        return customer.getCustomerAddress();\r\n\r\n    }\r\n\r\n    @Override\r\n    public Address addNewAddress(String customerId, Address address) throws CustomerNotFoundException {\r\n        Customer customer = customerRepo.findById(customerId).orElseThrow(CustomerNotFoundException::new);\r\n        if(customer.getCustomerAddress() == null) {\r\n            customer.setCustomerAddress(new ArrayList<>());\r\n        }\r\n\r\n        List<Address> addressList = customer.getCustomerAddress();\r\n        addressList.add(0,address);\r\n        customer.setCustomerAddress(addressList);\r\n        customerRepo.save(customer);\r\n        return customer.getCustomerAddress().get(0);\r\n    }\r\n\r\n\r\n    @Override\r\n    public boolean deleteAddress(String customerId, String addressId)  throws CustomerNotFoundException {\r\n        Customer customer = customerRepo.findById(customerId).orElseThrow(CustomerNotFoundException::new);\r\n        List<Address> addressList = customer.getCustomerAddress();\r\n        Address address = addressList.stream().filter(i -> i.getAddressId().equals(addressId)).collect(Collectors.toList()).get(0);\r\n        boolean isDeleted = addressList.remove(address);\r\n        customer.setCustomerAddress(addressList);\r\n        customerRepo.save(customer);\r\n        return isDeleted;\r\n    }\r\n\r\n    @Override\r\n    public Address makeItPrimary(String customerId, Address address) throws CustomerNotFoundException {\r\n        Customer customer = customerRepo.findById(customerId).orElseThrow(CustomerNotFoundException::new);\r\n        List<Address> addressList = customer.getCustomerAddress();\r\n        int index = IntStream.range(0, addressList.size())\r\n                .filter(i -> addressList.get(i).getAddressId().equals(address.getAddressId()))\r\n                .findFirst()\r\n                .orElseThrow(() -> new IllegalArgumentException(\"Address not found in customer's address list.\"));\r\n\r\n//        int index=-1;\r\n//        for (int i = 0; i < addressList.size(); i++) {\r\n//            if (addressList.get(i).getAddressId().equals(address.getAddressId())) {\r\n//                index = i;\r\n//                break;\r\n//            }\r\n//        }\r\n\r\n        if (index != -1) {\r\n            // Swap the address to the primary position\r\n            swap(addressList, 0, index);\r\n        } else {\r\n            throw new IllegalArgumentException(\"Address not found in customer's address list.\");\r\n        }\r\n\r\n        // Update the customer with the new primary address\r\n        customer.setCustomerAddress(addressList);\r\n        customerRepo.save(customer);\r\n\r\n        return addressList.get(0);\r\n\r\n    }\r\n\r\n    @Override\r\n    public String uploadImage(String customerId, String path, MultipartFile file) throws IOException {\r\n        String name=file.getOriginalFilename();\r\n        // Check if the file type is allowed (only JPEG and PNG)\r\n        String contentType = file.getContentType();\r\n        if (!isAllowedContentType(contentType)) {\r\n            throw new IllegalArgumentException(\"Only JPEG and PNG files are allowed.\");\r\n        }\r\n        //random name generated file\r\n        String randomId= UUID.randomUUID().toString();\r\n        String fileName1=randomId.concat(name.substring(name.lastIndexOf(\".\")));\r\n        //FullPath\r\n        String filePath=path+ File.separator +fileName1;\r\n\r\n        //create folder if not created\r\n        File file1=new File(path);\r\n        if(!file1.exists())\r\n        {\r\n            file1.mkdir();\r\n        }\r\n        //file copy\r\n        Files.copy(file.getInputStream(), Paths.get(filePath));\r\n        return filePath;\r\n    }\r\n    private boolean isAllowedContentType(String contentType) {\r\n        return \"image/jpeg\".equals(contentType) || \"image/png\".equals(contentType);\r\n    }\r\n\r\n    private void swap(List<Address> addressList, int i, int index) {\r\n        Address temp=addressList.get(i);\r\n        addressList.set(i,addressList.get(index));\r\n        addressList.set(index,temp);\r\n    }\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/customersapiservice/src/main/java/com/bej/customersapiservice/services/ImplCustomerService.java b/customersapiservice/src/main/java/com/bej/customersapiservice/services/ImplCustomerService.java
+--- a/customersapiservice/src/main/java/com/bej/customersapiservice/services/ImplCustomerService.java	(revision 8c2d45159d2c77c57c43d6775106798ad45eae1d)
++++ b/customersapiservice/src/main/java/com/bej/customersapiservice/services/ImplCustomerService.java	(date 1718452315213)
+@@ -203,18 +203,18 @@
+     public Address makeItPrimary(String customerId, Address address) throws CustomerNotFoundException {
+         Customer customer = customerRepo.findById(customerId).orElseThrow(CustomerNotFoundException::new);
+         List<Address> addressList = customer.getCustomerAddress();
+-        int index = IntStream.range(0, addressList.size())
+-                .filter(i -> addressList.get(i).getAddressId().equals(address.getAddressId()))
+-                .findFirst()
+-                .orElseThrow(() -> new IllegalArgumentException("Address not found in customer's address list."));
++//        int index = IntStream.range(0, addressList.size())
++//                .filter(i -> addressList.get(i).getAddressId().equals(address.getAddressId()))
++//                .findFirst()
++//                .orElseThrow(() -> new IllegalArgumentException("Address not found in customer's address list."));
+ 
+-//        int index=-1;
+-//        for (int i = 0; i < addressList.size(); i++) {
+-//            if (addressList.get(i).getAddressId().equals(address.getAddressId())) {
+-//                index = i;
+-//                break;
+-//            }
+-//        }
++        int index=-1;
++        for (int i = 0; i < addressList.size(); i++) {
++            if (addressList.get(i).getAddressId().equals(address.getAddressId())) {
++                index = i;
++                break;
++            }
++        }
+ 
+         if (index != -1) {
+             // Swap the address to the primary position
+@@ -232,7 +232,8 @@
+     }
+ 
+     @Override
+-    public String uploadImage(String customerId, String path, MultipartFile file) throws IOException {
++    public String uploadImage(String customerId, String path, MultipartFile file) throws IOException, CustomerNotFoundException {
++        Customer customer=customerRepo.findById(customerId).orElseThrow(CustomerNotFoundException::new);
+         String name=file.getOriginalFilename();
+         // Check if the file type is allowed (only JPEG and PNG)
+         String contentType = file.getContentType();
+@@ -244,7 +245,7 @@
+         String fileName1=randomId.concat(name.substring(name.lastIndexOf(".")));
+         //FullPath
+         String filePath=path+ File.separator +fileName1;
+-
++        customer.setCustomerProfilePic(filePath);
+         //create folder if not created
+         File file1=new File(path);
+         if(!file1.exists())
+@@ -253,7 +254,9 @@
+         }
+         //file copy
+         Files.copy(file.getInputStream(), Paths.get(filePath));
+-        return filePath;
++        customer.setCustomerProfilePic(fileName1);
++        customerRepo.save(customer);
++        return fileName1;
+     }
+     private boolean isAllowedContentType(String contentType) {
+         return "image/jpeg".equals(contentType) || "image/png".equals(contentType);

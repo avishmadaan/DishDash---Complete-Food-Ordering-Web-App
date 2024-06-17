@@ -5,9 +5,9 @@ import com.bej.customersapiservice.domain.Customer;
 import com.bej.customersapiservice.exception.CustomerAlreadyExistException;
 import com.bej.customersapiservice.exception.CustomerNotFoundException;
 import com.bej.customersapiservice.exception.RestaurantAlreatExistException;
-import com.bej.customersapiservice.proxy.CartProxy;
 import com.bej.customersapiservice.proxy.CustomerProxy;
 import com.bej.customersapiservice.respository.CustomerRepo;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -21,12 +21,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-import java.util.function.Predicate;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
-
-import static reactor.core.Disposables.swap;
-
+@Slf4j
 @Service
 public class ImplCustomerService implements ICustomerService {
 
@@ -34,8 +30,7 @@ public class ImplCustomerService implements ICustomerService {
     private CustomerRepo customerRepo;
     @Autowired
     private CustomerProxy customerProxy;
-    @Autowired
-    private CartProxy cartProxy;
+
     @Override
     public Customer registerCustomer(Customer customer) throws CustomerAlreadyExistException {
         if(customerRepo.findById(customer.getCustomerId()).isPresent()) {
@@ -54,7 +49,6 @@ public class ImplCustomerService implements ICustomerService {
         if(!(customer1.getCustomerId().isEmpty()))
         {
             ResponseEntity<?> proxyResponse=customerProxy.registerCustomer(customer);
-            ResponseEntity<?> cartProxyRes=cartProxy.addCart(customer.getCustomerCartId());
             System.out.println(proxyResponse.getBody());
         }
 
@@ -232,7 +226,34 @@ public class ImplCustomerService implements ICustomerService {
     }
 
     @Override
-    public String uploadImage(String customerId, String path, MultipartFile file) throws IOException {
+    public Customer addOrder(String customerId, String orderId) throws Exception {
+        log.info("Inside the addOrder customer service");
+        Customer customer=customerRepo.findById(customerId).orElseThrow(CustomerNotFoundException::new);
+        log.info("Customer: "+customer);
+        if(customer.getCustomerOrderHistory()==null)
+        {
+            customer.setCustomerOrderHistory(new ArrayList<>());
+        }
+        List<String> orderList=customer.getCustomerOrderHistory();
+        boolean isPresent=orderList.stream().anyMatch(i->i.equals(orderId));
+        System.out.println(isPresent);
+        if(isPresent)
+        {
+            throw new Exception();
+        }
+        orderList.add(orderId);
+        customerRepo.save(customer);
+        return customer;
+    }
+
+    @Override
+    public List<Customer> getAllCustomer() {
+        return customerRepo.findAll();
+    }
+
+    @Override
+    public String uploadImage(String customerId, String path, MultipartFile file) throws IOException, CustomerNotFoundException {
+        Customer customer=customerRepo.findById(customerId).orElseThrow(CustomerNotFoundException::new);
         String name=file.getOriginalFilename();
         // Check if the file type is allowed (only JPEG and PNG)
         String contentType = file.getContentType();
@@ -244,7 +265,7 @@ public class ImplCustomerService implements ICustomerService {
         String fileName1=randomId.concat(name.substring(name.lastIndexOf(".")));
         //FullPath
         String filePath=path+ File.separator +fileName1;
-
+        customer.setCustomerProfilePic(filePath);
         //create folder if not created
         File file1=new File(path);
         if(!file1.exists())
@@ -253,7 +274,9 @@ public class ImplCustomerService implements ICustomerService {
         }
         //file copy
         Files.copy(file.getInputStream(), Paths.get(filePath));
-        return filePath;
+        customer.setCustomerProfilePic(fileName1);
+        customerRepo.save(customer);
+        return fileName1;
     }
     private boolean isAllowedContentType(String contentType) {
         return "image/jpeg".equals(contentType) || "image/png".equals(contentType);

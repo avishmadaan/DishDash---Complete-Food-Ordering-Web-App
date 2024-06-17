@@ -5,19 +5,54 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9c8a6dba-7c8c-426b-ad82-e45f53e77f5c" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/customersapiservice/src/main/java/com/bej/customersapiservice/domain/ImageModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/order-service-api/src/main/java/com/bej/controller/OrderController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/order-service-api/src/main/java/com/bej/domain/CartDish.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/order-service-api/src/main/java/com/bej/domain/Order.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/order-service-api/src/main/java/com/bej/proxy/CustomerProxy.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/order-service-api/src/main/java/com/bej/services/OrderService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/order-service-api/src/main/java/com/bej/services/OrderServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ApiGateaway/src/main/java/com/example/ApiGateaway/config/AppConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/ApiGateaway/src/main/java/com/example/ApiGateaway/config/AppConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UserAuthenticationService/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/UserAuthenticationService/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cart-service-api/src/main/java/com/bej/controller/CartController.java" beforeDir="false" afterPath="$PROJECT_DIR$/cart-service-api/src/main/java/com/bej/controller/CartController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cart-service-api/src/main/java/com/bej/domain/Dish.java" beforeDir="false" afterPath="$PROJECT_DIR$/cart-service-api/src/main/java/com/bej/domain/Dish.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cart-service-api/src/main/java/com/bej/services/CartService.java" beforeDir="false" afterPath="$PROJECT_DIR$/cart-service-api/src/main/java/com/bej/services/CartService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cart-service-api/src/main/java/com/bej/services/CartServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/cart-service-api/src/main/java/com/bej/services/CartServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/customersapiservice/src/main/java/com/bej/customersapiservice/domain/Address.java" beforeDir="false" afterPath="$PROJECT_DIR$/customersapiservice/src/main/java/com/bej/customersapiservice/domain/Address.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cart-service-api/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/order-service-api/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cart-service-api/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/order-service-api/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cart-service-api/mvnw" beforeDir="false" afterPath="$PROJECT_DIR$/order-service-api/mvnw" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cart-service-api/mvnw.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/order-service-api/mvnw.cmd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cart-service-api/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/order-service-api/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cart-service-api/src/main/java/com/bej/CartServiceApiApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service-api/src/main/java/com/bej/OrderServiceApiApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cart-service-api/src/main/java/com/bej/controller/CartController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cart-service-api/src/main/java/com/bej/domain/Cart.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cart-service-api/src/main/java/com/bej/domain/Dish.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cart-service-api/src/main/java/com/bej/exceptions/CartNotFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service-api/src/main/java/com/bej/exceptions/CartNotFoundException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cart-service-api/src/main/java/com/bej/exceptions/NoDishFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service-api/src/main/java/com/bej/exceptions/NoDishFoundException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cart-service-api/src/main/java/com/bej/exceptions/RestaurantAlreadyExistException.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service-api/src/main/java/com/bej/exceptions/RestaurantAlreadyExistException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cart-service-api/src/main/java/com/bej/repository/CartRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service-api/src/main/java/com/bej/repository/OrderRepo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cart-service-api/src/main/java/com/bej/services/CartService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cart-service-api/src/main/java/com/bej/services/CartServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cart-service-api/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/order-service-api/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cart-service-api/src/test/java/com/bej/CartServiceApiApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service-api/src/test/java/com/bej/OrderServiceApiApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/customersapiservice/src/main/java/com/bej/customersapiservice/CustomersapiserviceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/customersapiservice/src/main/java/com/bej/customersapiservice/CustomersapiserviceApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/customersapiservice/src/main/java/com/bej/customersapiservice/controller/CustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/customersapiservice/src/main/java/com/bej/customersapiservice/controller/CustomerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/customersapiservice/src/main/java/com/bej/customersapiservice/domain/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/customersapiservice/src/main/java/com/bej/customersapiservice/domain/Customer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/customersapiservice/src/main/java/com/bej/customersapiservice/proxy/CartProxy.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/customersapiservice/src/main/java/com/bej/customersapiservice/services/ICustomerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/customersapiservice/src/main/java/com/bej/customersapiservice/services/ICustomerService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/customersapiservice/src/main/java/com/bej/customersapiservice/services/ImplCustomerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/customersapiservice/src/main/java/com/bej/customersapiservice/services/ImplCustomerService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/edit-profile/edit-profile.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/edit-profile/edit-profile.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/angular.json" beforeDir="false" afterPath="$PROJECT_DIR$/../FrontEnd/DishDash/angular.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/Images/MainLogo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/Images/background.jpg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/myaddresses/myaddresses.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/myaddresses/myaddresses.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/myaddresses/myaddresses.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/myaddresses/myaddresses.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/navbar/MainLogo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/navbar/navbar.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/navbar/navbar.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/profile/profile.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/profile/profile.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/profile/profile.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/profile/profile.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/search/search.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/search/search.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Model/customer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Model/customer.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/app.module.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/services/user.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/services/user.service.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -47,32 +82,35 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.ApiGateawayApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Application.CartServiceApiApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Application.CustomersapiserviceApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Application.EurekaDiscoveryServerApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Application.RestaurantServiceApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Application.UserAuthenticationServiceApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Application.abc.executor&quot;: &quot;Run&quot;,
-    &quot;Maven.FoodieApp [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.FoodieApp [compile].executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;dev-v1&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Niit/Major_Capstone_project/major-capstone-project/major-capstone-project/BackEnd&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.ApiGateawayApplication.executor": "Run",
+    "Application.CartServiceApiApplication.executor": "Run",
+    "Application.CustomersapiserviceApplication.executor": "Run",
+    "Application.EurekaDiscoveryServerApplication.executor": "Run",
+    "Application.OrderServiceApiApplication.executor": "Run",
+    "Application.RestaurantServiceApplication.executor": "Run",
+    "Application.UserAuthenticationServiceApplication.executor": "Run",
+    "Application.abc.executor": "Run",
+    "JUnit.ApiGateawayApplicationTests.contextLoads.executor": "Run",
+    "Maven.FoodieApp [clean].executor": "Run",
+    "Maven.FoodieApp [compile].executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "dev-v1",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Niit/Major_Capstone_project/major-capstone-project/major-capstone-project/BackEnd",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Avish Madaan\Desktop\NIIT\Phase 2\Course 14 - Capstone Project\major-capstone-project\FoodieApp" />
     </key>
   </component>
-  <component name="RunManager">
-    <configuration name="ApiGateawayApplication" type="Application" factoryName="Application" nameIsGenerated="true">
+  <component name="RunManager" selected="Application.CustomersapiserviceApplication">
+    <configuration name="ApiGateawayApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.example.ApiGateaway.ApiGateawayApplication" />
       <module name="ApiGateaway" />
       <extension name="coverage">
@@ -85,7 +123,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CustomersapiserviceApplication" type="Application" factoryName="Application" nameIsGenerated="true">
+    <configuration name="CustomersapiserviceApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.bej.customersapiservice.CustomersapiserviceApplication" />
       <module name="customersapiservice" />
       <extension name="coverage">
@@ -98,12 +136,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="EurekaDiscoveryServerApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.example.EurekaDiscoveryServer.EurekaDiscoveryServerApplication" />
-      <module name="EurekaDiscoveryServer" />
+    <configuration name="OrderServiceApiApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.bej.OrderServiceApiApplication" />
+      <module name="order-service-api" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.example.EurekaDiscoveryServer.*" />
+          <option name="PATTERN" value="com.bej.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -111,20 +149,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="RestaurantServiceApplication" type="Application" factoryName="Application" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.example.RestaurantService.RestaurantServiceApplication" />
-      <module name="RestaurantService" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.example.RestaurantService.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="UserAuthenticationServiceApplication" type="Application" factoryName="Application" nameIsGenerated="true">
+    <configuration name="UserAuthenticationServiceApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.example.UserAuthenticationService.UserAuthenticationServiceApplication" />
       <module name="UserAuthenticationService" />
       <extension name="coverage">
@@ -137,24 +162,36 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MY gROUP" type="CompoundRunConfigurationType">
-      <toRun name="ApiGateawayApplication" type="Application" />
-      <toRun name="CustomersapiserviceApplication" type="Application" />
-      <toRun name="RestaurantServiceApplication" type="Application" />
-      <toRun name="UserAuthenticationServiceApplication" type="Application" />
-      <method v="2" />
+    <configuration name="ApiGateawayApplicationTests.contextLoads" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ApiGateaway" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.ApiGateaway.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example.ApiGateaway" />
+      <option name="MAIN_CLASS_NAME" value="com.example.ApiGateaway.ApiGateawayApplicationTests" />
+      <option name="METHOD_NAME" value="contextLoads" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
     <list>
+      <item itemvalue="Application.OrderServiceApiApplication" />
       <item itemvalue="Application.ApiGateawayApplication" />
       <item itemvalue="Application.UserAuthenticationServiceApplication" />
-      <item itemvalue="Application.RestaurantServiceApplication" />
       <item itemvalue="Application.CustomersapiserviceApplication" />
-      <item itemvalue="Application.EurekaDiscoveryServerApplication" />
-      <item itemvalue="Compound.MY gROUP" />
+      <item itemvalue="JUnit.ApiGateawayApplicationTests.contextLoads" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.EurekaDiscoveryServerApplication" />
+        <item itemvalue="Application.CustomersapiserviceApplication" />
+        <item itemvalue="Application.OrderServiceApiApplication" />
+        <item itemvalue="Application.ApiGateawayApplication" />
+        <item itemvalue="Application.UserAuthenticationServiceApplication" />
+        <item itemvalue="JUnit.ApiGateawayApplicationTests.contextLoads" />
       </list>
     </recent_temporary>
   </component>

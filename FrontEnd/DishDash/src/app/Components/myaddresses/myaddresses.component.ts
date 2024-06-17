@@ -110,7 +110,7 @@ noAddresses:boolean = false;
     return this.addressForm.get('address1');
   }
 
-  get landmark() {
+  get landMark() {
     return this.addressForm.get('landmark');
   }
 

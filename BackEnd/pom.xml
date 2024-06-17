@@ -23,7 +23,7 @@
     <module>UserAuthenticationService</module>
     <module>RestaurantService</module>
     <module>customersapiservice</module>
-    <module>cart-service-api</module>
+    <module>order-service-api</module>
   </modules>
 
   <properties>

@@ -17,6 +17,7 @@ import { PagenotfoundComponent } from './Components/pagenotfound/pagenotfound.co
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import {MatIconModule} from '@angular/material/icon';
 import { RestaurantcardComponent } from './Components/restaurantcard/restaurantcard.component';
 import { HomepageComponent } from './Components/homepage/homepage.component';
 import { CutomerfavouriteComponent } from './Components/cutomerfavourite/cutomerfavourite.component';
@@ -39,7 +40,6 @@ import {MatButtonModule} from '@angular/material/button';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { EditProfileComponent } from './Components/edit-profile/edit-profile.component';
 import {MatTooltipModule} from '@angular/material/tooltip';
-import { MatIconModule } from '@angular/material/icon';
 
 
 @NgModule({

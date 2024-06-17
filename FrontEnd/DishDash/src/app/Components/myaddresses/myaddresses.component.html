@@ -18,8 +18,8 @@
 
           <mat-form-field class="w-100">
             <mat-label>Landmark</mat-label>
-            <input matInput placeholder="Landmark" formControlName="landmark">
-            <mat-error *ngIf="landmark?.hasError('required')">Landmark is required.</mat-error>
+            <input matInput placeholder="Landmark" formControlName="landMark">
+            <mat-error *ngIf="landMark?.hasError('required')">Landmark is required.</mat-error>
           </mat-form-field>
 
           <mat-form-field class="w-100">
@@ -40,7 +40,6 @@
             <input matInput placeholder="Google Maps Location" formControlName="currentLocation">
             <mat-error *ngIf="currentLocation?.hasError('required')">Current Location is required.</mat-error>
           </mat-form-field>
-
           <button class="btn btn-dark btn-block mb-3" type="submit" [disabled]="addressForm.invalid">Save Address</button>
         </form>
       </mat-expansion-panel>
