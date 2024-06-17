@@ -54,10 +54,10 @@
             <p class="description">{{ item.dishDescription }}</p>
             <span class="badge" [ngClass]="item.veg ? 'bg-success' : 'bg-danger'">{{ item.veg ? 'Veg' : 'Non-Veg' }}</span>
             <div class="add-to-cart">
-              <button class="btn btn-warning" (click)="increaseCount(item)">Add +</button>
-              <div class="quantity-controls">
+              <button class="btn btn-warning mt-2" *ngIf="!isInCart(item)"  (click)="increaseCount(item)">Add +</button>
+              <div class="quantity-controls"*ngIf="isInCart(item)">
                 <button class="btn btn-dark" (click)="decreaseCount(item)">-</button>
-                <span>1</span>
+                <span>{{getCartItemQuantity(item)}}</span>
                 <button class="btn btn-dark" (click)="increaseCount(item)">+</button>
               </div>
             </div>

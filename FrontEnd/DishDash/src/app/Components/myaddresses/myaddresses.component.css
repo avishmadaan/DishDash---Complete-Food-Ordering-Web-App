@@ -24,6 +24,15 @@
   margin-bottom: 16px;
 }
 
+.form-row {
+  display: flex;
+  gap: 16px;
+}
+
+.form-row .mat-form-field {
+  flex: 1;
+}
+
 .saved-addresses-section {
   margin-top: 20px;
   background-color: #fff;
@@ -49,6 +58,9 @@
 .address-card {
   flex: 1 1 calc(50% - 20px);
   min-width: 250px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .address-card .card-body {
@@ -76,4 +88,20 @@
 
 .btn {
   min-width: 100px;
+}
+
+.btn-block {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+}
+
+.mat-form-field {
+  background: #ffffff;
+  border-radius: 4px;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.mat-form-field-appearance-outline .mat-form-field-outline {
+  color: #ced4da;
 }

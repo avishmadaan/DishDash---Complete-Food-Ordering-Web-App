@@ -12,5 +12,5 @@ export class customer {
     customerAddress?:address[]
     customerFavRestaurants?:string[]
     customerFavDishes?:favdishes[]
-    customerCartId?:string
+    customerOrderHistory?:string[] 
 }

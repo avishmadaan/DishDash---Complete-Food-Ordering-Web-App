@@ -4,3 +4,16 @@
   <router-outlet></router-outlet>
 </div>
 <app-footer></app-footer>
+
+<div class="chatbot">
+  <div class="support support-dropup" *ngIf="supportChat">
+    <app-support-chat></app-support-chat>
+  </div>
+
+  <div class="chatbubble" (click)="supportChat = !supportChat">
+    <mat-icon *ngIf="!supportChat">chat</mat-icon>
+    <mat-icon *ngIf="supportChat">close</mat-icon>
+  </div>
+  
+  <div class="chatbubble-message" *ngIf="!supportChat">Need help?</div>
+</div>

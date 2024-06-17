@@ -4,4 +4,7 @@ export class CartDish {
     dishQuantity:number
     dishPrice:number
     veg:boolean
+    restaurantId:string
+    quantity:number
+
 }

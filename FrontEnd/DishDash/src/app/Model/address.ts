@@ -4,5 +4,5 @@ export class address {
     landMark:string
     city:string
     pincode:number
-    currentLocation:string
+    currentLocation?:string
 }

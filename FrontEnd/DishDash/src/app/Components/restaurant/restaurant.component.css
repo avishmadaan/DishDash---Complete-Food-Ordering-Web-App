@@ -66,6 +66,9 @@
   .text-info-emphasis {
     color: #007bff; /* Primary blue color */
   }
+  .card {
+    border:none !Important;
+  }
   
   @media (max-width: 768px) {
     .restaurants .card {

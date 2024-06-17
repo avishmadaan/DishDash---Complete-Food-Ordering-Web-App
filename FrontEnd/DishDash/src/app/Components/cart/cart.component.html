@@ -1,18 +1,33 @@
-<h6>Your Cart</h6>
-
-<div class="cartItems">
-    <div class="item flex gap-2 mb-3  bg-light" *ngFor="let dishItem of customerCart.dishList">
-       <div class="left w-50">
-        <img class="w-100" src="{{dishItem.dishImage}}" alt="">
-       </div>
-       <div class="middle w-50">
-        <p>Name:- {{dishItem.dishName}}</p>
-        <p>Price:- {{dishItem.dishPrice}}</p>
-        <p>Quantity:- {{dishItem.dishQuantity}}</p>
-       </div>
-
-      <div class="right"></div>
-
-        
+<div class="cart-container">
+  <div *ngIf="cart.length > 0" class="details">
+    <h3 class="cart-title">Your Cart</h3>
+    <div class="cart-items">
+      <div *ngFor="let item of cart" class="cart-item">
+        <div class="item-image">
+          <img [src]="item.dishImage" alt="{{ item.dishName }}">
+        </div>
+        <div class="item-details">
+          <p class="item-name">{{ item.dishName }}</p>
+          <p class="item-price">Rs {{ item.dishPrice }}/-</p>
+          <span class="badge" [ngClass]="item.veg ? 'bg-success' : 'bg-danger'">{{ item.veg ? 'Veg' : 'Non-Veg' }}</span>
+        </div>
+        <div class="quantity-controls">
+          <button class="btn btn-dark" (click)="decreaseQuantity(item)">-</button>
+          <span>{{ item.quantity }}</span>
+          <button class="btn btn-dark" (click)="increaseQuantity(item)">+</button>
+        </div>
+      </div>
     </div>
+    <div class="cart-total">
+      <p>Total: Rs {{ total }}/-</p>
+    </div>
+    <div class="button">
+      <button class="btn btn-primary" routerLink="customer/checkout">Checkout</button>
+    </div>
+  </div>
+
+  <div *ngIf="cart.length === 0" class="cartempty">
+    <i class="fas fa-shopping-cart empty-cart-icon"></i>
+    <h6>Your Cart Is Empty</h6>
+  </div>
 </div>

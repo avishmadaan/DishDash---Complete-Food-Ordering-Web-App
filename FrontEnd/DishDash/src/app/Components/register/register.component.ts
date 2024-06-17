@@ -66,7 +66,7 @@ export class RegisterComponent {
     }
     this.isLoading = true;
     let registerCustomer: customer = this.registerForm.value as customer;
-    registerCustomer.customerCartId = this.generateUniqueKey();
+    // registerCustomer.customerCartId = this.generateUniqueKey();
     console.log(registerCustomer);
     this.userService.registerUser(registerCustomer).subscribe({
       next: data => {

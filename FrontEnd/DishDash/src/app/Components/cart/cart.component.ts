@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CartServiceService } from '../../services/cart-service.service';
 import { Cart } from '../../Model/Cart';
 import { CartDish } from '../../Model/CartDish';
+import { JsonPipe } from '@angular/common';
 
 @Component({
   selector: 'app-cart',
@@ -10,17 +11,9 @@ import { CartDish } from '../../Model/CartDish';
 })
 export class CartComponent implements OnInit {
 
-  customerCart:Cart={
-    cartId: '',
-    resId: '',
-    dishList: []
-  }
+  cart:any[] = [];
+  total:number = 0;
 
-  quantityOfDishItems:number;
-
-
-  @Input()
-  cartId:string
   @Output()
  quantityChange:EventEmitter<number> = new EventEmitter<number>()
 
@@ -29,27 +22,39 @@ export class CartComponent implements OnInit {
   constructor(private cartService:CartServiceService) {}
 
   ngOnInit(): void {
-    console.log("My cartId :"+this.cartId)
-    this.fetchingWholeCart()
-
+  this.loadCart();
   }
 
-  fetchingWholeCart() {
-    this.cartService.fetchingWholeCart(this.cartId).subscribe({
-      next:data => {
-        this.customerCart = data;
-        this.quantityOfDishItems = data.dishList.length;
-        console.log("Success in fetching whole cart");
-        
-        console.log(data)
+  loadCart() {
+   
+    this.cart = JSON.parse(localStorage.getItem('cart' || '[]'));
+    this.calculateTotal();
+  }
 
-        this.quantityChange.emit(this.quantityOfDishItems);
-      },
-      error:e => {
-        console.log("Error while fetching cart")
-      }
-    })
+  calculateTotal() {
+    this.total = this.cart.reduce((sum, item) => sum+item.dishPrice*item.quantity, 0)
+  }
 
+  increaseQuantity(item:any) {
+    item.quantity += 1;
+    this.saveCart();
+  }
+
+  decreaseQuantity(item:any) {
+    if (item.quantity > 1) {
+      item.quantity -= 1;
+    } else {
+      this.cart = this.cart.filter(cartItem => cartItem.dishName !== item.dishName);
+    }
+    this.saveCart();
+  }
+
+  saveCart() {
+    localStorage.setItem('cart', JSON.stringify(this.cart));
+    this.calculateTotal();
+    this.quantityChange.emit();
+    const event = new Event('storage');
+    window.dispatchEvent(event);
   }
   
 

@@ -18,6 +18,8 @@ export class NavigationComponent implements OnInit, OnDestroy {
   isLoading = false; // Add this property
   progress = 0; // Add this property
 
+  supportChat:boolean=false;
+
   private intervalId: any;
   private routerEventsSubscription: Subscription = new Subscription(); // Initialize the subscription
 

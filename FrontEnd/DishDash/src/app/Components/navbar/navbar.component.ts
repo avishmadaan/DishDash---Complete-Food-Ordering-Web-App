@@ -15,7 +15,7 @@ export class NavbarComponent implements OnInit {
 
   activeCustomer: customer;
   customerJwt: string;
-  matBadge: number;
+  matBadge: 5;
   showCart: boolean = false;
 
   logoutMessageVisible: boolean = false;
@@ -30,6 +30,9 @@ export class NavbarComponent implements OnInit {
       this.customerJwt = this.cookieService.get("token");
       this.fetchActiveCustomer();
     }
+
+    this.updateCartCount();
+    window.addEventListener('storage', this.updateCartCount.bind(this));
 
     // Subscribe to logInSubject to update login state
     this.userService.logInSubject.subscribe({
@@ -51,6 +54,12 @@ export class NavbarComponent implements OnInit {
         console.error(e);
       }
     });
+  }
+
+  //Updating cart number
+  updateCartCount() {
+    const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+    this.matBadge = cart.reduce((total:number, item:any) => total+item.quantity, 0);
   }
 
   // Update the badge with the number of items in the cart
