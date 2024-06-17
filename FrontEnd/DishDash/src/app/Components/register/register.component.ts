@@ -17,6 +17,7 @@ export class RegisterComponent {
   uniqueId: string = '';
   isLoading: boolean = false;
   uuidString: string = uuidv4();
+  formSubmitted: boolean = false;
 
   userlogin: customerLogin = {
     customerEmail: '',
@@ -59,6 +60,10 @@ export class RegisterComponent {
   }
 
   onSubmit() {
+    this.formSubmitted = true;
+    if (this.registerForm.invalid) {
+      return;
+    }
     this.isLoading = true;
     let registerCustomer: customer = this.registerForm.value as customer;
     registerCustomer.customerCartId = this.generateUniqueKey();

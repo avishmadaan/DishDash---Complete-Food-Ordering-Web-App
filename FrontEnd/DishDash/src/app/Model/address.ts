@@ -1,5 +1,5 @@
 export class address {
-    addressId:string
+    addressId?:string
     address1:string
     landMark:string
     city:string

@@ -31,18 +31,6 @@ export class NavbarComponent implements OnInit {
       this.fetchActiveCustomer();
     }
 
-    // Subscribe to token subject to handle token-related actions
-    this.userService.tokenSubject.subscribe({
-      next: data => {
-        if (!data) {
-          this.logout();
-        }
-      },
-      error: e => {
-        console.error(e);
-      }
-    });
-
     // Subscribe to logInSubject to update login state
     this.userService.logInSubject.subscribe({
       next: data => {
@@ -55,8 +43,8 @@ export class NavbarComponent implements OnInit {
     // Subscribe to loggedOutFromProfileSubject to handle profile logout
     this.userService.loggedOutFromProfileSubject.subscribe({
       next: data => {
-        if (true) {
-          this.logout();
+        if (data) {
+          this.handleLogout();
         }
       },
       error: e => {
@@ -75,11 +63,17 @@ export class NavbarComponent implements OnInit {
     this.cookieService.delete("token");
     this.loading = true;
     setTimeout(() => {
-      this.cookieService.delete("token");
       this.isLoggedIn = false;
       this.loading = false;
       this.showLogoutMessage();
     }, 1000);
+  }
+
+  // Handle logout without showing the message immediately on page load
+  handleLogout() {
+    this.cookieService.delete("token");
+    this.isLoggedIn = false;
+    this.showLogoutMessage();
   }
 
   // Show a temporary message indicating successful logout

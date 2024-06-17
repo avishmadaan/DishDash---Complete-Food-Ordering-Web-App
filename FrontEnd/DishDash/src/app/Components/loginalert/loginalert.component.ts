@@ -16,6 +16,8 @@ export class LoginalertComponent {
 
   openLoginDialog() {
     this.closeDialog();
-    this.dialog.open(LoginComponent);
+    this.dialog.open(LoginComponent, {
+      width: "400px"
+    });
   }
 }
