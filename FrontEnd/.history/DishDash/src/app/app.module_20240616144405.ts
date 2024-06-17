@@ -16,9 +16,8 @@ import { RegisterComponent } from './Components/register/register.component';
 import { PagenotfoundComponent } from './Components/pagenotfound/pagenotfound.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatIconModule } from '@angular/material/icon';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import {MatIconModule} from '@angular/material/icon';
 import { RestaurantcardComponent } from './Components/restaurantcard/restaurantcard.component';
 import { HomepageComponent } from './Components/homepage/homepage.component';
 import { CutomerfavouriteComponent } from './Components/cutomerfavourite/cutomerfavourite.component';
@@ -39,19 +38,8 @@ import { MyaddressesComponent } from './Components/myaddresses/myaddresses.compo
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatButtonModule} from '@angular/material/button';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { MatTooltipModule } from '@angular/material/tooltip';
-import { CheckoutComponent } from './Components/checkout/checkout.component';
-import { OrderSuccessComponent } from './Components/order-success/order-success.component';
-import { AdminLoginComponent } from './Components/admin-login/admin-login.component';
-import { AdminViewComponent } from './Components/admin-view/admin-view.component';
-import { MatTableModule } from '@angular/material/table';
-import { MatTabGroup, MatTabsModule } from '@angular/material/tabs';
-import { SpinnerComponent } from './Components/spinner/spinner.component';
-import { EditProfileComponent } from './Components/edit-profile/edit-profile.component';
-import { SupportChatComponent } from './Components/support-chat/support-chat.component';
 import { EditProfileComponent } from './Components/edit-profile/edit-profile.component';
 import {MatTooltipModule} from '@angular/material/tooltip';
-import { MatIconModule } from '@angular/material/icon';
 
 
 @NgModule({

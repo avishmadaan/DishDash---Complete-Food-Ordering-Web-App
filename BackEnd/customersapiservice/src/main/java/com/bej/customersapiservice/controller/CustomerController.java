@@ -2,6 +2,7 @@ package com.bej.customersapiservice.controller;
 
 import com.bej.customersapiservice.domain.Address;
 import com.bej.customersapiservice.domain.Customer;
+import com.bej.customersapiservice.domain.ImageModel;
 import com.bej.customersapiservice.emails.IGenerateEmails;
 import com.bej.customersapiservice.exception.CustomerAlreadyExistException;
 import com.bej.customersapiservice.exception.CustomerNotFoundException;
@@ -15,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.annotation.Id;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -89,6 +91,11 @@ public class CustomerController {
         String customerId = (String) request.getAttribute("customerId");
         return new ResponseEntity<>(iCustomerService.getCustomerById(customerId),HttpStatus.OK);
     }
+    @GetMapping("customers/allCustomers")
+    public ResponseEntity<?> fetchAllCustomer()
+    {
+        return new ResponseEntity<>(iCustomerService.getAllCustomer(),HttpStatus.OK);
+    }
     @DeleteMapping("/customers/deletedish/{dishName}")
     public ResponseEntity<?> deleteFavDish(@PathVariable String dish, HttpServletRequest request) throws CustomerNotFoundException {
         String customerId = (String) request.getAttribute("customerId");
@@ -131,17 +138,36 @@ public class CustomerController {
         return new ResponseEntity<>(iCustomerService.makeItPrimary(customerId, address),HttpStatus.OK);
     }
 
-    @PostMapping("/customers/upload/image")
-    public ResponseEntity<?> fileUpload(@RequestParam MultipartFile image, HttpServletRequest request) throws IOException {
+    @PutMapping("/addOrder/{customerId}/{orderId}")
+    public ResponseEntity<?> addOrder(@PathVariable String customerId,@PathVariable String orderId) throws Exception {
+        try{
+            return new ResponseEntity<>(iCustomerService.addOrder(customerId,orderId),HttpStatus.CREATED);
+        }catch (Exception ex)
+        {
+            return new ResponseEntity<>(ex.getStackTrace(),HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+    }
+
+    @PostMapping(value = "/customers/upload/image",consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
+    public ResponseEntity<?> fileUpload(@RequestParam MultipartFile image, HttpServletRequest request) throws IOException
+    {
+        log.info("Inside the image controller");
         String customerId = (String) request.getAttribute("customerId");
         try{
-            String fileName=this.iCustomerService.uploadImage(customerId,path,image);
-            return new ResponseEntity<>(fileName, HttpStatus.OK);
+            log.info("Inside the try of image controller");
+            Customer customer=iCustomerService.getCustomerById(customerId);
+            ImageModel imageModel=imageUpload(image);
+            customer.setCustomerImage(imageModel);
+            return new ResponseEntity<>(imageModel, HttpStatus.OK);
         }catch (Exception ex)
         {
             return new ResponseEntity<>(ex.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
+    }
+    public ImageModel imageUpload(MultipartFile file) throws IOException {
+        return new ImageModel(file.getOriginalFilename(), file.getContentType(), file.getBytes());
     }
 
 }

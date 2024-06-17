@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 
 @SpringBootApplication
 @EnableFeignClients
-@CrossOrigin
 public class CustomersapiserviceApplication {
 
 	public static void main(String[] args) {

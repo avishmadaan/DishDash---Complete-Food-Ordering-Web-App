@@ -18,12 +18,15 @@ public class Customer {
     private String customerName;
     private String customerEmail;
     private String customerPassword;
-    private String customerProfilePic;
+    private ImageModel customerImage;
+    private String customerProfilePic;//may need to delete
     private long customerPhone;
     private List<Address> customerAddress;
     private List<String> customerFavRestaurants;
     private List<String> customerFavDishes;//object
-    private String customerCartId;
+    private List<String> customerOrderHistory;
 
-
+    public Customer(String customerProfilePic) {
+        this.customerProfilePic = customerProfilePic;
+    }
 }

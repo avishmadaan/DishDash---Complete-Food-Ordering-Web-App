@@ -6,6 +6,7 @@ import { customer } from '../Model/customer';
 import { restaurant } from '../Model/restaurant';
 import { CookieService } from 'ngx-cookie-service';
 import { address } from '../Model/address';
+import { FileHandle } from '../Model/file-handle';
 
 @Injectable({
   providedIn: 'root'
@@ -163,8 +164,12 @@ updateCustomer (Jwt:string,updatedCustomer:any):Observable<customer> {
 
   return this.http.put<customer>("http://localhost:8082/api/v2/customers/update", updatedCustomer, { headers })
 
-
-
+}
+updateImage(picture:FormData,Jwt:string):Observable<any>{
+  const headers = new HttpHeaders({
+    'Authorization': `Bearer ${Jwt}`
+  });
+  return this.http.post<FileHandle>("http://localhost:8082/api/v2/customers/upload/image",picture,{headers});
 }
 
 
