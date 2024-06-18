@@ -91,7 +91,7 @@ public class CustomerController {
         String customerId = (String) request.getAttribute("customerId");
         return new ResponseEntity<>(iCustomerService.getCustomerById(customerId),HttpStatus.OK);
     }
-    @GetMapping("customers/allCustomers")
+    @GetMapping("allCustomers")
     public ResponseEntity<?> fetchAllCustomer()
     {
         return new ResponseEntity<>(iCustomerService.getAllCustomer(),HttpStatus.OK);

@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { LoginComponent } from '../login/login.component';
 import { customer } from '../../Model/customer';
 import { RegisterComponent } from '../register/register.component';
+import { RouterService } from '../../services/router.service';
 
 @Component({
   selector: 'app-navbar',
@@ -21,7 +22,7 @@ export class NavbarComponent implements OnInit {
   logoutMessageVisible: boolean = false;
   loading: boolean = false;
 
-  constructor(private cookieService: CookieService, private userService: UserService, public dialog: MatDialog) {}
+  constructor(private cookieService: CookieService, private userService: UserService, public dialog: MatDialog, private routerService:RouterService) {}
   isLoggedIn: boolean = false;
 
   ngOnInit(): void {
@@ -71,6 +72,7 @@ export class NavbarComponent implements OnInit {
   logout() {
     this.cookieService.delete("token");
     this.loading = true;
+    this.routerService.navigateToHomePage()
     setTimeout(() => {
       this.isLoggedIn = false;
       this.loading = false;

@@ -25,7 +25,7 @@ public class OrderController {
     {
         return new ResponseEntity<>(orderService.getOrderByOrderId(orderId),HttpStatus.OK);
     }
-    @GetMapping("/all/order")
+    @GetMapping("/order/all")
     public  ResponseEntity<?> fetchAllOrder()
     {
         return new ResponseEntity<>(orderService.fetchAll(),HttpStatus.OK);

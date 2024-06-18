@@ -30,7 +30,7 @@
           <!-- Primary Address -->
           <h4 class="mt-4"> Address</h4>
           <div class="primary-address mb-3 p-3 border rounded" *ngIf="primaryAddress">
-            <p class="selected-address-badge text-success mb-2">Selected Address</p>
+            <p class="selected-address-badge text-success mb-2">Selected Primary Address</p>
             <p>{{ primaryAddress.address1 }}</p>
             <p>{{ primaryAddress.landMark }}</p>
             <p>{{ primaryAddress.city }}</p>
@@ -62,6 +62,11 @@
   
           <button type="submit" class="btn btn-primary mt-4 w-100" [disabled]="checkoutForm.invalid">Place Order</button>
         </form>
+
+          <!-- Spinner -->
+    <div class="spinner flex justify-content-center" *ngIf="isLoadingSpinner">
+      <mat-spinner></mat-spinner>
+    </div>
       </div>
   
       <!-- Right Side: Cart Summary -->

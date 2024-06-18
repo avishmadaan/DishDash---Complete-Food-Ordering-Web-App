@@ -12,6 +12,7 @@ export class RestaurantComponent implements OnInit {
   restaurants: restaurant[] = [];
   spinnerVisible: boolean = false;
   noRestuarant: boolean = false;
+  noSuchRestaurant: boolean = false;
 
   // Pagination properties
   p: number = 1;  // Current page number
@@ -30,9 +31,15 @@ export class RestaurantComponent implements OnInit {
         // Subscribe to restaurant data changes
         this.resService.restaurantsEmitter.subscribe({
           next: data => {
+            console.log("Data from search")
+            console.log(data);
+            
             if (data) {
               this.restaurants = data;
               this.noRestuarant = false;
+              if(this.restaurants.length == 0) {
+                this.noSuchRestaurant = true;
+              }
             } else {
               this.noRestuarant = true;
               this.restaurants = [];

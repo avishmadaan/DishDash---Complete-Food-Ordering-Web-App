@@ -12,20 +12,18 @@ export class OrderServiceService {
   constructor(private http:HttpClient, private cookieService:CookieService) { }
 
   //Final Order Placing
-  finalOrderPlacing(orderDetails:Order, Jwt:string):Observable<Order> {
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${Jwt}`
-    });
-    return this.http.post<Order>(`http://localhost:8089/api/v4/cart/update/`, orderDetails, { headers });
+  finalOrderPlacing(orderDetails:Order):Observable<Order> {
+
+    return this.http.post<Order>(`http://localhost:8089/api/v4/order/add`, orderDetails);
   }
 
   //Fetching One Order
   fetchingOneOrder(orderId:string):Observable<Order> {
-    return this.http.get<Order>(`http://localhost:8089/api/v4/cart/update/${orderId}`);
+    return this.http.get<Order>(`http://localhost:8089/api/v4/orderById/${orderId}`);
   }
 
   //Fetching All Orders
   fetchingAllOrders():Observable<Array<Order>> {
-    return this.http.get<Array<Order>>(`http://localhost:8089/api/v4/cart/update`);
+    return this.http.get<Array<Order>>(`http://localhost:8089/api/v4/order/all`);
   }
 }

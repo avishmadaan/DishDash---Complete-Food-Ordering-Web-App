@@ -10,6 +10,7 @@ import lombok.*;
 public class CartDish {
     private String dishName;
     private String dishImage;
+    private String dishDescription;
     private double dishPrice;
     private boolean veg;
     private String restaurantId;

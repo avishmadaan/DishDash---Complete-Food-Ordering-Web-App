@@ -20,6 +20,7 @@ export class CheckoutComponent implements OnInit {
   primaryAddress:any = {};
   activeCustomer: customer;
   totalAmount: number = 0;
+  isLoadingSpinner:boolean = false;
 
   orderDetail:Order = {
     orderId: '',
@@ -93,6 +94,7 @@ export class CheckoutComponent implements OnInit {
   
 
   onSubmit() {
+    this.isLoadingSpinner = true;
     
 this.orderDetail.orderId = this.generateUniqueKey();
 this.orderDetail.restaurantId = this.cartItems[0].restaurantId;
@@ -105,11 +107,10 @@ this.orderDetail.totalItems = this.countTotalItems();
 this.orderDetail.customerAddress = this.activeCustomer.customerAddress[0];
 this.orderDetail.paymentMethod = this.checkoutForm.get('paymentMethod').value;
 this.orderDetail.cartItems = this.cartItems;
-
-const Jwt = this.cookieService.get('token');
+console.log(this.orderDetail);
 
 //Now sending it to backend
-      this.orderService.finalOrderPlacing(this.orderDetail, Jwt).subscribe({
+      this.orderService.finalOrderPlacing(this.orderDetail).subscribe({
         next:data => {
           console.log("Order Success")
 
@@ -117,17 +118,15 @@ const Jwt = this.cookieService.get('token');
           const event = new Event('storage');
     window.dispatchEvent(event)
           this.routerService.navigateToOrderCompletion(this.orderDetail.orderId);
+          this.isLoadingSpinner= false;
         },
-        error:data => {
+        error:e => {
+          console.log(e);
           console.log("Order Failure")
+          this.isLoadingSpinner= false;
         }
       })
-      // Submit the orderDetails to the backend
-      console.log('Order placed successfully', this.orderDetail);
-      localStorage.setItem('cart', JSON.stringify([]));
-      const event = new Event('storage');
-    window.dispatchEvent(event)
-      this.routerService.navigateToOrderCompletion(this.orderDetail.orderId);
+
   
   }
 

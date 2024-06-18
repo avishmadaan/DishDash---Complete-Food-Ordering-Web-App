@@ -38,15 +38,15 @@ export class AdminViewComponent implements OnInit {
   }
 
   fetchingAllCustomers() {
-    // this.userService.fetchAllCustomers().subscribe({
-    //   next: data => {
-    //     this.allCustomers = data;
-    //     console.log("Success while fetching All Customers");
-    //   },
-    //   error: data => {
-    //     console.log("Error while fetching all customers");
-    //   }
-    // });
+    this.userService.fetchAllCustomers().subscribe({
+      next: data => {
+        this.allCustomers = data;
+        console.log("Success while fetching All Customers");
+      },
+      error: data => {
+        console.log("Error while fetching all customers");
+      }
+    });
   }
 
 }

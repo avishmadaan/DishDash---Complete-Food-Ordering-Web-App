@@ -8,7 +8,7 @@
         <mat-icon aria-hidden="false" aria-label="Location icon" fontIcon="location_on"></mat-icon> {{city}}
       </button>
       <ul class="dropdown-menu">
-        <li class="dropdown-header">Current Location: {{cityFromIp}}</li>
+        <li class="dropdown-header pointer" (click)="selectCity(cityFromIp)">Current Location: {{cityFromIp}}</li>
         <li class="dropdown-divider"></li>
         <li class="dropdown-header">Available Cities</li>
         <li *ngFor="let rest of allUniqueCities">

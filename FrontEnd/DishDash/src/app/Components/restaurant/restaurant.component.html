@@ -16,6 +16,11 @@
     <p>We are working hard to bring DishDash to your city</p>
   </div>
 
+  <div class="text-center p-5" *ngIf="noSuchRestaurant">
+    <h3 class="text-info-emphasis">No, Such Restaurant In Your City</h3>
+    <p>Trying Searching Something Else...</p>
+  </div>
+
   <div class="spinner-container" *ngIf="spinnerVisible">
     <mat-spinner></mat-spinner>
   </div>

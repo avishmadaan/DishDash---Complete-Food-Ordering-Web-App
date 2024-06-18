@@ -164,15 +164,24 @@ updateCustomer (Jwt:string,updatedCustomer:any):Observable<customer> {
 
   return this.http.put<customer>("http://localhost:8082/api/v2/customers/update", updatedCustomer, { headers })
 
+
+
 }
+
+//Fetching all customers for admin
+
+fetchAllCustomers():Observable<Array<customer>> {
+  return this.http.get<Array<customer>>("http://localhost:8082/api/v2/allCustomers")
+}
+
+//Uploading prifle picture
+
 updateImage(picture:FormData,Jwt:string):Observable<any>{
   const headers = new HttpHeaders({
     'Authorization': `Bearer ${Jwt}`
   });
   return this.http.post<FileHandle>("http://localhost:8082/api/v2/customers/upload/image",picture,{headers});
 }
-
-
 
 }
 
