@@ -254,7 +254,9 @@ public class ImplCustomerService implements ICustomerService {
     @Override
     public String uploadImage(String customerId, String path, MultipartFile file) throws IOException, CustomerNotFoundException {
         Customer customer=customerRepo.findById(customerId).orElseThrow(CustomerNotFoundException::new);
+        log.info("fetching customer :"+customer);
         String name=file.getOriginalFilename();
+        log.info("File name:"+name);
         // Check if the file type is allowed (only JPEG and PNG)
         String contentType = file.getContentType();
         if (!isAllowedContentType(contentType)) {
@@ -264,7 +266,7 @@ public class ImplCustomerService implements ICustomerService {
         String randomId= UUID.randomUUID().toString();
         String fileName1=randomId.concat(name.substring(name.lastIndexOf(".")));
         //FullPath
-        String filePath=path+ File.separator +fileName1;
+        String filePath=path+File.separator+fileName1;
         customer.setCustomerProfilePic(filePath);
         //create folder if not created
         File file1=new File(path);
@@ -276,7 +278,7 @@ public class ImplCustomerService implements ICustomerService {
         Files.copy(file.getInputStream(), Paths.get(filePath));
         customer.setCustomerProfilePic(fileName1);
         customerRepo.save(customer);
-        return fileName1;
+        return filePath;
     }
     private boolean isAllowedContentType(String contentType) {
         return "image/jpeg".equals(contentType) || "image/png".equals(contentType);

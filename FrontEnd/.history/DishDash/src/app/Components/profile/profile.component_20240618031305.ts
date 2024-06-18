@@ -24,8 +24,7 @@ export class ProfileComponent implements OnInit {
     customerEmail: '',
     customerPassword: ''
   };
-  profilePicture:boolean=false;
-  url:string  = `https://via.placeholder.com/50x50`
+  url:string  = '';
   constructor(
     private cookieService: CookieService,
     private userService: UserService,
@@ -48,13 +47,12 @@ export class ProfileComponent implements OnInit {
       next: data => {
         console.log('Profile picture uploaded successfully', data);
         this.fetchActiveCustomer();
-      
+        this.url ="../../../assets/images/"+`${this.activeCustomer.customerProfilePic}`
       },
       error: err => {
         console.log('Error while uploading profile picture', err);
       }
     });
-  
   }
 
   prepareFormData(customerImage: FileHandle): FormData {
@@ -96,22 +94,10 @@ export class ProfileComponent implements OnInit {
 
   fetchActiveCustomer() {
     this.customerJwt = this.cookieService.get("token");
-    let pic:string=""
+
     this.userService.fetchCustomerByJwt(this.customerJwt).subscribe({
       next: data => {
         this.activeCustomer = data;
-        if(this.activeCustomer.customerProfilePic)
-          {
-            
-            this.url ="http://127.0.0.1:5500/DishDash/src/assets/images/"+`${this.activeCustomer.customerProfilePic}`
-
-            // pic=`<img id="profileImage" *ngIf="profilePicture" class="profile rounded-circle" src=${this.url}  alt="Profile Image">`
-            // const element=document.getElementById("profile-div");
-            // element.innerHTML=element.innerHTML+pic;
-            this.profilePicture=true;
-            
-          }
-
       },
       error: data => {
         console.log("Error while fetching customer");

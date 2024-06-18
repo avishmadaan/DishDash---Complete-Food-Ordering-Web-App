@@ -48,7 +48,6 @@ export class ProfileComponent implements OnInit {
       next: data => {
         console.log('Profile picture uploaded successfully', data);
         this.fetchActiveCustomer();
-      
       },
       error: err => {
         console.log('Error while uploading profile picture', err);
@@ -103,7 +102,7 @@ export class ProfileComponent implements OnInit {
         if(this.activeCustomer.customerProfilePic)
           {
             
-            this.url ="http://127.0.0.1:5500/DishDash/src/assets/images/"+`${this.activeCustomer.customerProfilePic}`
+            this.url ="../../../assets/images/"+`${this.activeCustomer.customerProfilePic}`
 
             // pic=`<img id="profileImage" *ngIf="profilePicture" class="profile rounded-circle" src=${this.url}  alt="Profile Image">`
             // const element=document.getElementById("profile-div");

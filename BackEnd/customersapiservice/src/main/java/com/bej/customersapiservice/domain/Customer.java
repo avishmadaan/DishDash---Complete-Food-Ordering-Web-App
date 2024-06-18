@@ -18,9 +18,9 @@ public class Customer {
     private String customerName;
     private String customerEmail;
     private String customerPassword;
-    private ImageModel customerImage;
+
     private String customerProfilePic;//may need to delete
-    private long customerPhone;
+    private String customerPhone;
     private List<Address> customerAddress;
     private List<String> customerFavRestaurants;
     private List<String> customerFavDishes;//object

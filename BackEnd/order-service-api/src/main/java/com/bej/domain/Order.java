@@ -22,7 +22,7 @@ public class Order {
     private double Discount;
     private double billingPrice;
     private int totalItems;
-    private String customerAddress;
+    private List<Object> customerAddress;
     private String paymentMethod;
     private List<CartDish> cartItems;
 }

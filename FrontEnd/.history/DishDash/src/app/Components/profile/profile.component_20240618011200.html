@@ -1,9 +1,8 @@
 <div class="profile-container container mt-5">
     <!-- Profile Header Section -->
   <form [formGroup]="pictureForm" (ngSubmit)="onSubmit()">
-    <div id="profile-div" class="welcome text-center p-4 bg-dark text-white position-relative rounded">
-      <img id="profileImage" *ngIf="profilePicture" class="profile rounded-circle" src="{{url}}"  alt="Profile Image">
-      <img id="profileImage" *ngIf="!profilePicture" class="profile rounded-circle" src="https://via.placeholder.com/50x50"  alt="Profile Image">
+    <div class="welcome text-center p-4 bg-dark text-white position-relative rounded">
+      <img id="profileImage" class="profile rounded-circle" src="../../../assets/images/dd192cde-8436-4e33-bec8-b24f00b2fabe.jpg" alt="Profile Image">
       <input type="file" id="fileInput" id="customerProfilePic"
       class="form-control"
       formControlName="customerProfilePic" (change)="onFileSelected($event)" >
