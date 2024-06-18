@@ -77,7 +77,7 @@ export class MyaddressesComponent implements OnInit {
     landMark: ['', Validators.required],
     city: ['', Validators.required],
     pincode: [null, [Validators.required, Validators.pattern('^[0-9]{6}$')]],
-    currentLocation: [, Validators.required]
+    currentLocation: []
   });
 
   get addressId() {

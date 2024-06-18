@@ -22,7 +22,7 @@
         
         <li class="nav-item dropdown" *ngIf="isLoggedIn">
           <a
-            class="nav-link dropdown-toggle"
+            class="nav-link dropdown-toggle d-flex align-items-center"
             href="#"
             id="navbarDropdown"
             role="button"
@@ -37,17 +37,25 @@
             {{ activeCustomer.customerName.split(' ')[0] }}
           </a>
           <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" routerLink="customer/profile/favorites">Profile</a></li>
-            <li><a class="dropdown-item" (click)="logout()">Logout</a></li>
+            <li>
+              <a class="dropdown-item d-flex align-items-center" routerLink="customer/profile/favorites">
+                <mat-icon class="me-2">account_circle</mat-icon> Profile
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item d-flex align-items-center pointer" (click)="logout()">
+                <mat-icon class="me-2">exit_to_app</mat-icon> Logout
+              </a>
+            </li>
           </ul>
         </li>
         <li class="nav-item position-relative" (mouseover)="showCart = true" (mouseleave)="showCart = false">
-          <a class="nav-link d-flex align-items-center" href="#">
+          <a class="nav-link d-flex align-items-center">
             <mat-icon class="cart-icon" [matBadge]="matBadge" matBadgeColor="warn">shopping_cart</mat-icon>
-            <span class="ms-1">Cart</span>
+            <span class="ms-1 pointer">Cart</span>
           </a>
           <div class="cart-dropdown position-absolute bg-white shadow-sm" *ngIf="showCart">
-            <app-cart [cartId]="activeCustomer.customerCartId" (quantityChange)="noOfItemsChanges($event)"></app-cart>
+            <app-cart (quantityChange)="noOfItemsChanges($event)"></app-cart>
           </div>
         </li>
       </ul>

@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { LoginComponent } from '../login/login.component';
 import { customer } from '../../Model/customer';
 import { RegisterComponent } from '../register/register.component';
+import { RouterService } from '../../services/router.service';
 
 @Component({
   selector: 'app-navbar',
@@ -15,13 +16,13 @@ export class NavbarComponent implements OnInit {
 
   activeCustomer: customer;
   customerJwt: string;
-  matBadge: number;
+  matBadge: 5;
   showCart: boolean = false;
 
   logoutMessageVisible: boolean = false;
   loading: boolean = false;
 
-  constructor(private cookieService: CookieService, private userService: UserService, public dialog: MatDialog) {}
+  constructor(private cookieService: CookieService, private userService: UserService, public dialog: MatDialog, private routerService:RouterService) {}
   isLoggedIn: boolean = false;
 
   ngOnInit(): void {
@@ -30,6 +31,9 @@ export class NavbarComponent implements OnInit {
       this.customerJwt = this.cookieService.get("token");
       this.fetchActiveCustomer();
     }
+
+    this.updateCartCount();
+    window.addEventListener('storage', this.updateCartCount.bind(this));
 
     // Subscribe to logInSubject to update login state
     this.userService.logInSubject.subscribe({
@@ -53,6 +57,12 @@ export class NavbarComponent implements OnInit {
     });
   }
 
+  //Updating cart number
+  updateCartCount() {
+    const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+    this.matBadge = cart.reduce((total:number, item:any) => total+item.quantity, 0);
+  }
+
   // Update the badge with the number of items in the cart
   noOfItemsChanges($event) {
     this.matBadge = $event;
@@ -62,6 +72,7 @@ export class NavbarComponent implements OnInit {
   logout() {
     this.cookieService.delete("token");
     this.loading = true;
+    this.routerService.navigateToHomePage()
     setTimeout(() => {
       this.isLoggedIn = false;
       this.loading = false;

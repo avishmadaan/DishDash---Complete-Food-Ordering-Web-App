@@ -9,13 +9,13 @@ import { restaurant } from '../../Model/restaurant';
 export class RestaurantcardComponent {
   @Input() onerestaurant: restaurant;
   isFavorite: boolean = false;
-  categoryLimit: number = 2; // Adjust the limit as needed
+  cuisineLimit: number = 2; // Adjust the limit as needed
 
   toggleFavorite() {
     this.isFavorite = !this.isFavorite;
   }
 
-  displayedCategories(categories: string[]) {
-    return categories.slice(0, this.categoryLimit);
+  displayedCuisines(cuisines: string[]) {
+    return cuisines.slice(0, this.cuisineLimit);
   }
 }

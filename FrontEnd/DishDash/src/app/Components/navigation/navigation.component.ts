@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { IpLocationService } from '../../services/ip-location.service';
 import { LoadingService } from '../../services/loading.service';
 import { NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router } from '@angular/router';
-import { Subject, Subscription } from 'rxjs';
+import { Subject, Subscription, filter } from 'rxjs';
 import { RestaurantService } from '../../services/restaurant.service';
 
 @Component({
@@ -18,6 +18,8 @@ export class NavigationComponent implements OnInit, OnDestroy {
   isLoading = false; // Add this property
   progress = 0; // Add this property
 
+  supportChat:boolean=false;
+
   private intervalId: any;
   private routerEventsSubscription: Subscription = new Subscription(); // Initialize the subscription
 
@@ -30,6 +32,17 @@ export class NavigationComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
+
+    // this.router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe(() => {
+    //   window.scrollTo(0, 0);
+    // });
+
+    this.router.events.subscribe( (event) =>{
+      if (event instanceof NavigationEnd) {
+        window.scrollTo(0, 0);
+     
+      }
+    })
 
  
     // Router events subscription

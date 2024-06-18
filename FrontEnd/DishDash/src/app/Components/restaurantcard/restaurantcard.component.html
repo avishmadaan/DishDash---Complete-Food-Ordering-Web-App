@@ -4,16 +4,16 @@
   </div>
   <div class="card-body">
     <h5 class="card-title">{{onerestaurant.resName}}</h5>
-    <p class="card-text">{{onerestaurant.resAddress}}</p>
-    <p class="card-text categories">
-      <span *ngFor="let category of displayedCategories(onerestaurant.resCategories)" class="badge bg-primary me-1">{{category}}</span>
-      <span *ngIf="onerestaurant.resCategories.length > categoryLimit" class="badge bg-primary me-1">...</span>
+    <p class="card-text"><mat-icon>location_on</mat-icon> {{onerestaurant.resAddress}}</p>
+    <p class="card-text cuisines">
+      <span *ngFor="let cuisine of displayedCuisines(onerestaurant.resCuisines)" class="badge bg-primary me-1">{{cuisine}}</span>
+      <span *ngIf="onerestaurant.resCuisines.length > cuisineLimit" class="badge bg-primary me-1">...</span>
     </p>
   </div>
   <div class="card-footer d-flex justify-content-between align-items-center">
     <span class="rating">
       <mat-icon>star</mat-icon>{{onerestaurant.resRating}}
     </span>
-    <mat-icon class="heart-icon" [ngClass]="{'favorite': isFavorite}" (click)="toggleFavorite()">favorite</mat-icon>
+    <!-- <mat-icon class="heart-icon" [ngClass]="{'favorite': isFavorite}" (click)="toggleFavorite()">favorite</mat-icon> -->
   </div>
 </div>
