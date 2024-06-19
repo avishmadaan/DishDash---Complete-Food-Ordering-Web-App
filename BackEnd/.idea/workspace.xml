@@ -5,26 +5,40 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9c8a6dba-7c8c-426b-ad82-e45f53e77f5c" name="Changes" comment="&quot;Trying to resolve conflict&quot;">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_10-06-2024_09_31_pm_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_10-06-2024_09_31_pm__Changes_.xml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/customersapiservice/src/main/java/com/bej/customersapiservice/exception/SameEmailException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/order-service-api/src/main/java/com/bej/config/EmailConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/order-service-api/src/main/java/com/bej/exceptions/OrderNotFoundException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/order-service-api/src/main/java/com/bej/services/EmailService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/order-service-api/src/main/java/com/bej/services/GenerateEmail.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/order-service-api/src/main/java/com/bej/services/GenerateEmailImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12-06-2024_12_36_am_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12-06-2024_12_36_am__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserAuthenticationService/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/UserAuthenticationService/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/customersapiservice/src/main/java/com/bej/customersapiservice/controller/CustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/customersapiservice/src/main/java/com/bej/customersapiservice/controller/CustomerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/customersapiservice/src/main/java/com/bej/customersapiservice/domain/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/customersapiservice/src/main/java/com/bej/customersapiservice/domain/Customer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/customersapiservice/src/main/java/com/bej/customersapiservice/domain/ImageModel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/customersapiservice/src/main/java/com/bej/customersapiservice/respository/CustomerRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/customersapiservice/src/main/java/com/bej/customersapiservice/respository/CustomerRepo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/customersapiservice/src/main/java/com/bej/customersapiservice/services/EmailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/customersapiservice/src/main/java/com/bej/customersapiservice/services/EmailService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/customersapiservice/src/main/java/com/bej/customersapiservice/services/ICustomerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/customersapiservice/src/main/java/com/bej/customersapiservice/services/ICustomerService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/customersapiservice/src/main/java/com/bej/customersapiservice/services/ImplCustomerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/customersapiservice/src/main/java/com/bej/customersapiservice/services/ImplCustomerService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/customersapiservice/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/customersapiservice/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/19fc1180-02da-4e9d-8c66-b24747916edd.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/294bad5e-45e8-488c-9e7d-afefb6085d50.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/71da4779-34be-42a7-8ee3-ea3e876668fe.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/ae43304f-28cd-45d0-a6aa-ce5f460f11dd.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/b7b92c07-3747-446c-8e88-d01201f336fe.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/f82e0143-9a28-44e5-a400-e80cbf456ba0.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/fc50cd2c-2b5a-430b-bb9e-b76d42eb91dc.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/2dc03b95-f5cb-4aff-b98c-f67a78e02c07.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/order-service-api/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/order-service-api/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/order-service-api/src/main/java/com/bej/controller/OrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service-api/src/main/java/com/bej/controller/OrderController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order-service-api/src/main/java/com/bej/domain/CartDish.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service-api/src/main/java/com/bej/domain/CartDish.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/order-service-api/src/main/java/com/bej/domain/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service-api/src/main/java/com/bej/domain/Order.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/angular.json" beforeDir="false" afterPath="$PROJECT_DIR$/../FrontEnd/DishDash/angular.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order-service-api/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/order-service-api/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/checkout/checkout.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/checkout/checkout.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/checkout/checkout.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/checkout/checkout.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/edit-profile/edit-profile.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/edit-profile/edit-profile.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/edit-profile/edit-profile.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/edit-profile/edit-profile.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/myaddresses/myaddresses.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/myaddresses/myaddresses.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/myaddresses/myaddresses.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/myaddresses/myaddresses.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/profile/profile.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/profile/profile.component.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/profile/profile.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/profile/profile.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/profile/profile.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/profile/profile.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/register/register.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/register/register.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/register/register.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/register/register.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Model/CartDish.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Model/CartDish.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Model/Order.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Model/Order.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Model/customer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Model/customer.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -82,7 +96,7 @@
       <recent name="C:\Users\Avish Madaan\Desktop\NIIT\Phase 2\Course 14 - Capstone Project\major-capstone-project\FoodieApp" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.CustomersapiserviceApplication">
+  <component name="RunManager" selected="Application.RestaurantServiceApplication">
     <configuration name="ApiGateawayApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.example.ApiGateaway.ApiGateawayApplication" />
       <module name="ApiGateaway" />
@@ -157,9 +171,9 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.CustomersapiserviceApplication" />
         <item itemvalue="Application.RestaurantServiceApplication" />
         <item itemvalue="Application.OrderServiceApiApplication" />
+        <item itemvalue="Application.CustomersapiserviceApplication" />
         <item itemvalue="Application.UserAuthenticationServiceApplication" />
         <item itemvalue="Application.ApiGateawayApplication" />
       </list>

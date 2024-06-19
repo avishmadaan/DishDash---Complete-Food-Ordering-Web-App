@@ -17,12 +17,14 @@ public class Order {
     private String orderId;
     private String restaurantId;
     private String customerId;
+    private String customerName;
+    private String customerEmail;
     private String timeStamp;
     private double totalPrice;
     private double Discount;
     private double billingPrice;
     private int totalItems;
-    private List<Object> customerAddress;
+    private Object customerAddress;
     private String paymentMethod;
     private List<CartDish> cartItems;
 }

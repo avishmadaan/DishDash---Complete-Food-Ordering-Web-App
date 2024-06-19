@@ -6,6 +6,7 @@ import com.bej.customersapiservice.emails.IGenerateEmails;
 import com.bej.customersapiservice.exception.CustomerAlreadyExistException;
 import com.bej.customersapiservice.exception.CustomerNotFoundException;
 import com.bej.customersapiservice.exception.RestaurantAlreatExistException;
+import com.bej.customersapiservice.exception.SameEmailException;
 import com.bej.customersapiservice.services.EmailService;
 import com.bej.customersapiservice.services.ICustomerService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -46,6 +47,9 @@ public class CustomerController {
             return response;
         } catch (CustomerAlreadyExistException e) {
             return new ResponseEntity(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }catch (SameEmailException ex)
+        {
+            return new ResponseEntity(ex.getMessage(),HttpStatus.CONFLICT);
         }
     }
 

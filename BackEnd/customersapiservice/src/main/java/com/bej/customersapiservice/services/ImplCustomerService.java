@@ -5,6 +5,7 @@ import com.bej.customersapiservice.domain.Customer;
 import com.bej.customersapiservice.exception.CustomerAlreadyExistException;
 import com.bej.customersapiservice.exception.CustomerNotFoundException;
 import com.bej.customersapiservice.exception.RestaurantAlreatExistException;
+import com.bej.customersapiservice.exception.SameEmailException;
 import com.bej.customersapiservice.proxy.CustomerProxy;
 import com.bej.customersapiservice.respository.CustomerRepo;
 import lombok.extern.slf4j.Slf4j;
@@ -32,9 +33,13 @@ public class ImplCustomerService implements ICustomerService {
     private CustomerProxy customerProxy;
 
     @Override
-    public Customer registerCustomer(Customer customer) throws CustomerAlreadyExistException {
+    public Customer registerCustomer(Customer customer) throws CustomerAlreadyExistException, SameEmailException {
         if(customerRepo.findById(customer.getCustomerId()).isPresent()) {
             throw new CustomerAlreadyExistException();
+        }
+        if(customerRepo.findByCustomerEmail(customer.getCustomerEmail()).isPresent())
+        {
+            throw new SameEmailException();
         }
         if(customer.getCustomerFavDishes() ==  null) {
             customer.setCustomerFavDishes(new ArrayList<>());

@@ -5,6 +5,7 @@ import com.bej.customersapiservice.domain.Customer;
 import com.bej.customersapiservice.exception.CustomerAlreadyExistException;
 import com.bej.customersapiservice.exception.CustomerNotFoundException;
 import com.bej.customersapiservice.exception.RestaurantAlreatExistException;
+import com.bej.customersapiservice.exception.SameEmailException;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -12,7 +13,7 @@ import java.util.List;
 
 public interface ICustomerService {
 
-    public Customer registerCustomer(Customer customer) throws CustomerAlreadyExistException;
+    public Customer registerCustomer(Customer customer) throws CustomerAlreadyExistException, SameEmailException;
     public Customer updateCustomer(Customer customer, String customerId) throws CustomerAlreadyExistException, CustomerNotFoundException;
     public String addFavoriteRestaurant(String resId,String customerId) throws CustomerNotFoundException, RestaurantAlreatExistException;
     public String addFavoriteDish(String obj,String customerId) throws CustomerNotFoundException;

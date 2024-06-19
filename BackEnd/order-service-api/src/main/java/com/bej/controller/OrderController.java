@@ -5,6 +5,8 @@ import com.bej.domain.CartDish;
 import com.bej.exceptions.CartNotFoundException;
 import com.bej.exceptions.NoDishFoundException;
 import com.bej.exceptions.RestaurantAlreadyExistException;
+import com.bej.services.EmailService;
+import com.bej.services.GenerateEmail;
 import com.bej.services.OrderService;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
@@ -19,6 +21,12 @@ import org.springframework.web.bind.annotation.*;
 public class OrderController {
     @Autowired
     private OrderService orderService;
+
+    @Autowired
+    private EmailService emailService;
+
+    @Autowired
+    private GenerateEmail generateEmail;
 
     @GetMapping("/orderById/{orderId}")
     public ResponseEntity<?> fetchOrderById(@PathVariable String orderId)
@@ -35,7 +43,17 @@ public class OrderController {
     {
         try {
             log.info("Inside of try of order add controller");
-            return new ResponseEntity<>(orderService.addOrder(order), HttpStatus.CREATED);
+            Order addedOrder = orderService.addOrder(order);
+
+            // Generate email content
+            String emailContent = generateEmail.orderCompletionEmail(order.getOrderId(), order.getCustomerName());
+
+            // Send email
+            emailService.sendEmail(order.getCustomerEmail(), "Thank you for ordering from Dish Dish", emailContent);
+
+            // Return response
+            return new ResponseEntity<>(addedOrder, HttpStatus.CREATED);
+
         }catch (Exception ex)
         {
             log.info("Inside catch of order add controller");
