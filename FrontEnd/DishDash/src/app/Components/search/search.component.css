@@ -1,5 +1,5 @@
 .main {
-  background: linear-gradient(to right, #007bff, #00aaff); /* Gradient background */
+  background: linear-gradient(to right, #3B273F, #523a57); /* Gradient background */
   color: #fff; /* White text */
   height: 50vh;
   background-size: cover;
@@ -12,6 +12,20 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
+.btn {
+  border:none;
+}
+
+.btn-location {
+  background-color: #F4835F;
+  color:white
+}
+
+.dropdown-menu {
+  --bs-dropdown-link-active-bg:#F4835F !important;
+  color: white;
+}
+
 .headline h1 {
   font-size: 2.5rem;
   margin-bottom: 20px;
@@ -20,7 +34,7 @@
 
 .headline span {
   font-style: italic;
-  color: #ffd700; /* Gold color */
+  color: #F4835F /* Gold color */
 }
 
 .searchbar {
@@ -42,13 +56,13 @@
   justify-content: center;
   height: 100%;
   border-radius: 10px;
-  background-color: #ffd700; /* Gold color */
+  background-color: #F4835F; /* Gold color */
   color: #fff;
   transition: background-color 0.3s ease;
 }
 
 .button button:hover {
-  background-color: #ffc107; /* Darker gold on hover */
+  background-color: #f9a085; /* Darker gold on hover */
 }
 
 .dropdown-menu {

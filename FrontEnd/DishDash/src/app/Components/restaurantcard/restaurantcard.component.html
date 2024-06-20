@@ -6,8 +6,8 @@
     <h5 class="card-title">{{onerestaurant.resName}}</h5>
     <p class="card-text"><mat-icon>location_on</mat-icon> {{onerestaurant.resAddress}}</p>
     <p class="card-text cuisines">
-      <span *ngFor="let cuisine of displayedCuisines(onerestaurant.resCuisines)" class="badge bg-primary me-1">{{cuisine}}</span>
-      <span *ngIf="onerestaurant.resCuisines.length > cuisineLimit" class="badge bg-primary me-1">...</span>
+      <span *ngFor="let cuisine of displayedCuisines(onerestaurant.resCuisines)" class="badge me-1">{{cuisine}}</span>
+      <span *ngIf="onerestaurant.resCuisines.length > cuisineLimit" class="badge me-1">...</span>
     </p>
   </div>
   <div class="card-footer d-flex justify-content-between align-items-center">

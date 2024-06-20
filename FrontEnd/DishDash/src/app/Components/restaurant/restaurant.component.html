@@ -6,7 +6,7 @@
       </div>
     </div>
 
-    <div class="controls text-center m-3">
+    <div class="controls text-center m-3 paginators">
       <pagination-controls (pageChange)="p = $event" class="pagination"></pagination-controls>
     </div>
   </div>
@@ -22,6 +22,6 @@
   </div>
 
   <div class="spinner-container" *ngIf="spinnerVisible">
-    <mat-spinner></mat-spinner>
+    <mat-spinner class="spinner" ></mat-spinner>
   </div>
 </div>

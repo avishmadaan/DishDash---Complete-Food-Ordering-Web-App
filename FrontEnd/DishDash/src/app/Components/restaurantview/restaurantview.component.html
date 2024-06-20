@@ -31,10 +31,10 @@
         <div class="info-left">
           <h1>{{ oneRestaurant.resName }}</h1>
           <div class="cuisines">
-            <span *ngFor="let cuisine of oneRestaurant.resCuisines" class="badge bg-primary">{{ cuisine }}</span>
+            <span *ngFor="let cuisine of oneRestaurant.resCuisines" class="badge bg-primary cuisines">{{ cuisine }}</span>
           </div>
-          <p class="address"><mat-icon>location_on</mat-icon>{{ oneRestaurant.resAddress }}</p>
-          <p class="description"><mat-icon>description</mat-icon>{{ oneRestaurant.resDescription }}</p>
+          <p class="address"><mat-icon class="icon">location_on</mat-icon>{{ oneRestaurant.resAddress }}</p>
+          <p class="description"><mat-icon class="icon">description</mat-icon>{{ oneRestaurant.resDescription }}</p>
         </div>
         <div class="info-right">
           <span class="badge bg-success rating">{{ oneRestaurant.resRating }}</span>
@@ -68,7 +68,7 @@
               <p class="price">Rs {{ item.dishPrice }}/-</p>
               <p class="description">{{ item.dishDescription }}</p>
               <div class="add-to-cart">
-                <button class="btn btn-warning mt-2" *ngIf="!isInCart(item)" (click)="increaseCount(item)">Add +</button>
+                <button class="btn btn-warning mt-2 addButton" *ngIf="!isInCart(item)" (click)="increaseCount(item)">Add +</button>
                 <div class="quantity-controls mt-2" *ngIf="isInCart(item)">
                   <button class="btn btn-dark" (click)="decreaseCount(item)">-</button>
                   <span>{{ getCartItemQuantity(item) }}</span>

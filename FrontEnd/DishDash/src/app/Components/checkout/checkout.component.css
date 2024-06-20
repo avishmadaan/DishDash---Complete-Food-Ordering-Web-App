@@ -65,15 +65,17 @@
   }
   
   .btn-primary {
-    background-color: #007bff;
-    border-color: #007bff;
+   
+    background-color:  #F4835F;
+    border-color:  #F4835F;
     color: #fff;
     border-radius: 5px;
   }
   
   .btn-primary:hover {
-    background-color: #0056b3;
-    border-color: #0056b3;
+    
+    background-color: #fb9374;
+    border-color: #F4835F;
   }
   
   .img-thumbnail {

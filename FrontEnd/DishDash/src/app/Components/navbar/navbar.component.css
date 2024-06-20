@@ -8,6 +8,7 @@
   width: 40px !important;
 }
 
+
 .nav-item .cart-dropdown {
   right: 0;
   top: 100%;
@@ -97,4 +98,23 @@
 
 .nav-item .nav-link.d-flex {
   gap: 5px;
+}
+.cart-icon {
+ color: #3B273F;
+
+}
+.cart .mat-badge-content {
+
+  background-color: #FFBB4A  !important;
+}
+
+#mat-badge-content-0 {
+  background-color: #FFBB4A  !important;
+  /* background-color: #3B273F; */
+}
+
+
+.carting a .carti span {
+  color: #FFBB4A  !important;
+  background-color: #FFBB4A  !important;
 }

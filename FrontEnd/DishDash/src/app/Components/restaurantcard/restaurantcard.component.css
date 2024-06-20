@@ -60,7 +60,7 @@
 
 .rating {
   font-size: 1.2rem;
-  color: #ffc107; /* Gold color */
+ color: #FFBB4A; /* Gold color */
   display: flex;
   align-items: center;
 }
@@ -92,6 +92,13 @@
   overflow: hidden;
   text-overflow: ellipsis;
   max-width: 100px; /* Adjust the width as needed */
+}
+
+.cuisines span {
+  background-color: #F4835F;
+  /* background-color: #FFBB4A; */
+  /* background-color: #3B273F !important; */
+
 }
 
 @media (max-width: 768px) {

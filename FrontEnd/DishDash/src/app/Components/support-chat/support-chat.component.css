@@ -15,7 +15,7 @@
   
   /* Header styling */
   .chatbot-header {
-    background-color: #007bff;
+    background-color: #3B273F;
     color: white;
     padding: 10px 15px;
     text-align: center;
@@ -50,7 +50,7 @@
   
   /* Right-aligned messages for the user */
   .chat-container .right {
-    background-color: #007bff;
+    background-color: #3B273F;
     color: white;
     align-self: flex-end;
     border-bottom-right-radius: 0;
@@ -78,7 +78,7 @@
   
   /* Send button styling */
   .querybar .search {
-    background-color: #007bff;
+    background-color: #F4835F;
     color: white;
     border: none;
     border-radius: 20px;
@@ -90,7 +90,7 @@
   
   /* Send button hover effect */
   .querybar .search:hover {
-    background-color: #0056b3;
+    background-color: #FFBB4A;
   }
   
   /* Smooth scrolling for messages */
@@ -104,7 +104,7 @@
   }
   
   .messages::-webkit-scrollbar-thumb {
-    background-color: #007bff;
+    background-color: #FFBB4A;
     border-radius: 10px;
   }
   

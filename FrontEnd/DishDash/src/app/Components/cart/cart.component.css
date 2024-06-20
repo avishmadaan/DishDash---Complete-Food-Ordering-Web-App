@@ -39,6 +39,11 @@
     height: 50px;
     border-radius: 5px;
   }
+
+  .checkoutBtn {
+    background-color:#F4835F !important ;
+    border: none;
+  }
   
   .item-details {
     flex: 1;
@@ -51,7 +56,8 @@
   }
   
   .item-price {
-    color: #007bff;
+    
+    color: #F4835F;
   }
   
   .quantity-controls {
