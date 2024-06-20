@@ -8,8 +8,8 @@ import { LoginalertComponent } from '../loginalert/loginalert.component';
 import { UserService } from '../../services/user.service';
 import { customer } from '../../Model/customer';
 import { dish } from '../../Model/dish';
-import { CartServiceService } from '../../services/cart-service.service';
 import { CartDish } from '../../Model/CartDish';
+import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-restaurantview',
@@ -27,14 +27,14 @@ export class RestaurantviewComponent implements OnInit {
   categoryWiseDishesArray: [string, dish[]][] = [];
   noSuchRestaurant = false;
   activeCustomer: customer;
+  errorMessage: string | null = null;  // Message for favourites
 
   constructor(
     private ac: ActivatedRoute,
     private resService: RestaurantService,
     private cookieService: CookieService,
     public dialog: MatDialog,
-    private userService: UserService,
-    private cartService: CartServiceService
+    private userService: UserService
   ) {}
 
   ngOnInit(): void {
@@ -52,6 +52,7 @@ export class RestaurantviewComponent implements OnInit {
       }
     });
   }
+
 
   // Fetching active customer
   fetchActiveCustomer() {
@@ -78,28 +79,41 @@ export class RestaurantviewComponent implements OnInit {
   // Adding to cart Method, when user clicks to add
   addToCart(dish: dish) {
     if (this.checkDifferentRestaurant(dish)) {
-      const confirmation = confirm("You already have items from a different restaurant in your cart. Do you want to clear the cart and add items from the restaurant?");
-      if (confirmation) {
-        localStorage.setItem('cart', JSON.stringify([]));
-      } else {
-        return;
-      }
+      const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+        data: {
+          title:'Confirm Action',
+          message:'You already have items from a different restaurant in your cart. Do you want to clear the cart and add items from this restaurant?'
+        }
+      });
+  
+      dialogRef.afterClosed().subscribe(result => {
+        if (result) {
+          localStorage.setItem('cart', JSON.stringify([]));
+          this.addDishToCart(dish);
+        }
+      });
+    } else {
+      this.addDishToCart(dish);
     }
+  }
 
+  addDishToCart(dish: dish) {
     let cart = JSON.parse(localStorage.getItem('cart') || '[]');
-
+  
     // Checking if the dish is already present
     const existingItem = cart.find((item: any) => item.dishName === dish.dishName);
-
+  
     if (existingItem) {
       existingItem.quantity += 1;
     } else {
       cart.push({ ...dish, quantity: 1, restaurantId: this.oneRestaurant.resId });
     }
-
+  
     localStorage.setItem('cart', JSON.stringify(cart));
     this.updateNavBarCartCount();
   }
+
+    
 
   // For the + button
   increaseCount(item: dish) {
@@ -161,6 +175,7 @@ export class RestaurantviewComponent implements OnInit {
         this.categoryArray = Array.from(this.categoryAndCount.entries());
         this.prepareCategoryWise();
         this.categoryWiseDishesArray = Array.from(this.categoryWise.entries());
+        this.fetchActiveCustomerFavs();
 
         if (this.cookieService.get('token')) {
           this.fetchActiveCustomer();
@@ -216,6 +231,10 @@ export class RestaurantviewComponent implements OnInit {
       this.userService.sendFavoriteRestToCustomer(this.oneRestaurant.resId, Jwt).subscribe({
         next: data => {
           console.log("Added Success");
+          this.errorMessage = "Successfully Added To Favourites"
+          setTimeout(() => {
+            this.errorMessage =null
+          }, 2000);
         },
         error: e => {
           console.log("Error adding favorite", e);
@@ -226,6 +245,10 @@ export class RestaurantviewComponent implements OnInit {
       this.userService.DeleteFavoriteRestFromCustomer(this.oneRestaurant.resId, Jwt).subscribe({
         next: data => {
           console.log("Deletion Success");
+           this.errorMessage = "Successfully Removed From Favourites"
+          setTimeout(() => {
+            this.errorMessage = null;
+          }, 2000);
         },
         error: e => {
           console.log("Error deleting favorite", e);

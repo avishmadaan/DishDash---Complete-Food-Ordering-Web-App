@@ -15,23 +15,27 @@ import { CheckoutComponent } from './Components/checkout/checkout.component';
 import { OrderSuccessComponent } from './Components/order-success/order-success.component';
 import { AdminViewComponent } from './Components/admin-view/admin-view.component';
 import { AdminLoginComponent } from './Components/admin-login/admin-login.component';
+import { LegalComponent } from './Components/legal/legal.component';
+import { authGuard } from './guards/auth.guard';
+import { canDeactivateGuard } from './guards/can-deactivate.guard';
+import { adminGuardGuard } from './guards/admin-guard.guard';
 
 const routes: Routes = [
 {path:'', component: HomepageComponent},
 {path:'home', component: HomepageComponent},
-{path:'customer/profile', component:ProfileComponent, children: [
+{path:'customer/profile', component:ProfileComponent, canActivate:[authGuard], children: [
   {path:'', component: CutomerfavouriteComponent},
   {path:'favorites', component: CutomerfavouriteComponent},
   {path:'edit-profile', component: EditProfileComponent},
   {path:'order-history', component: OrderhistoryComponent},
   {path:'my-addresses', component: MyaddressesComponent},
 ]},
-{path:'customer/favourites', component: CutomerfavouriteComponent},
-{path:'customer/checkout', component: CheckoutComponent},
-{path:'customer/order-complete/:orderId', component: OrderSuccessComponent},
+{path:'customer/checkout', component: CheckoutComponent, canActivate:[authGuard], canDeactivate:[canDeactivateGuard]},
+{path:'customer/order-complete/:orderId', component: OrderSuccessComponent, canActivate:[authGuard]},
 {path:':city/restaurants/:resid', component: RestaurantviewComponent},
-{path:'admin/view', component: AdminViewComponent},
+{path:'admin/view', component: AdminViewComponent, canActivate:[adminGuardGuard]},
 {path:'admin/login', component: AdminLoginComponent},
+{path:'legal', component: LegalComponent},
 {path:'**', component: PagenotfoundComponent}
 
 ];

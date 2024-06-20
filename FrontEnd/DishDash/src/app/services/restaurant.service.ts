@@ -13,7 +13,7 @@ export class RestaurantService implements OnInit {
   constructor(private http:HttpClient) { }
   ngOnInit(): void { }
 
-  fetchByCityURL:string = `http://localhost:8082/api/v3/restaurantsbycity`
+  fetchByCityURL:string = `http://localhost:9000/api/v3/restaurantsbycity`
 
   fetchRestaurantsByCity(city:string):Observable<Array<restaurant>> {
     console.log("Fetch by city"+this.fetchByCityURL+`/${city}`)
@@ -21,12 +21,12 @@ export class RestaurantService implements OnInit {
   }
 
   fetchRestaurantByid(resId:string):Observable<restaurant> {
-    let fetchByIdURL = `http://localhost:8082/api/v3/restaurantsbyid/${resId}`;
+    let fetchByIdURL = `http://localhost:9000/api/v3/restaurantsbyid/${resId}`;
     return this.http.get<restaurant>(fetchByIdURL); 
   }
 
   fetchAllRestaurants():Observable<Array<restaurant>> {
-    return this.http.get<Array<restaurant>>("http://localhost:8082/api/v3/allrestaurants")
+    return this.http.get<Array<restaurant>>("http://localhost:9000/api/v3/allrestaurants")
   }
 
   updateCity(city:string) {
@@ -37,9 +37,7 @@ export class RestaurantService implements OnInit {
     return this.restaurantsEmitter.next(res);
   }
 
-  saveRestaurantToCustomer() {
-    
-  }
+
 
 
 }

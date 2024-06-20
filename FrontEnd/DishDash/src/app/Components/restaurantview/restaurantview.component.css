@@ -1,7 +1,11 @@
+/* Updated CSS */
 .restaurant-container {
   max-width: 1200px;
   margin: auto;
   padding: 20px;
+}
+.inside {
+  top:80px
 }
 
 .restaurant-header {
@@ -69,20 +73,38 @@
   gap: 10px;
 }
 
+.restaurant-info .info-right .rating {
+  font-size: 1.5em;
+}
+
 .rating-favorite {
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
+.fav {
+  font-size: 50px  !important;
+  width: 20%;
+  height: 100%;
+  color: red;
+}
+
+.favblack {
+  font-size: 50px  !important;
+  width: 20%;
+  height: 100%;
+}
+
 .rating-favorite .fav {
-  font-size: 30px;
+  font-size: 40px;
   cursor: pointer;
-  transition: color 0.3s ease-in-out;
+  transition: color 0.3s ease-in-out, transform 0.3s;
 }
 
 .rating-favorite .fav.favorited {
   color: red;
+  transform: scale(1.2);
   animation: pulse 0.6s;
 }
 
@@ -103,6 +125,8 @@
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 20px;
 }
 
 .categories h2 {
@@ -150,11 +174,23 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+.item-image {
+  position: relative;
+}
+
 .item-image img {
   width: 100px;
   height: 100px;
   border-radius: 8px;
   object-fit: cover;
+}
+
+.item-image .badge {
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  right: 0;
+  text-align: center;
 }
 
 .item-info {
@@ -195,4 +231,3 @@
   text-align: center;
   margin-top: 50px;
 }
-

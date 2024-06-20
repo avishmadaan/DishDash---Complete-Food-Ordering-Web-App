@@ -18,6 +18,8 @@ export class RegisterComponent {
   isLoading: boolean = false;
   uuidString: string = uuidv4();
   formSubmitted: boolean = false;
+  registrationSuccess: boolean = false;
+  emailAreadyExist:boolean = false;
 
   userlogin: customerLogin = {
     customerEmail: '',
@@ -28,15 +30,17 @@ export class RegisterComponent {
     private fb: FormBuilder,
     private userService: UserService,
     public dialogRef: MatDialogRef<RegisterComponent>,
-    public cookieService: CookieService
-  ) {}
+    public cookieService: CookieService) {}
 
   registerForm = this.fb.group({
-    customerId: [this.uuidString],
+    customerId: [this.generateUniqueKey()],
     customerName: ['', [Validators.required, Validators.minLength(3), Validators.pattern(/^[a-zA-Z ]+$/)]],
     customerEmail: ['', [Validators.required, Validators.pattern(/^\S+@\S+\.\S+$/)]],
     customerPassword: ['', [Validators.required, Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/)]],
-    confirmPassword: ['', [Validators.required]]
+    confirmPassword: ['', [Validators.required]],
+    customerFavRestaurants:[[]],
+    customerFavDishes: [[]],
+    customerOrderHistory:[[]]
   }, { validators: this.checkPasswordMismatch });
 
   get customerId() {
@@ -74,10 +78,22 @@ export class RegisterComponent {
         console.log(data);
         this.userlogin.customerEmail = data.customerEmail;
         this.userlogin.customerPassword = data.customerPassword;
-        this.closeDialoge();
-        this.loginUser(this.userlogin);
+        this.registrationSuccess = true;
+        setTimeout(() => {
+          this.registrationSuccess = false;
+          this.closeDialoge();
+          this.loginUser(this.userlogin);
+        }, 2000); // Show success message for 2 seconds before closing the dialog
       },
       error: err => {
+        if(err.status == 409) {
+
+          this.emailAreadyExist = true;
+          setTimeout(() => {
+            this.emailAreadyExist = false;
+          }, 3000)
+
+        }
         this.isLoading = false;
         console.log("Error", err);
       }
@@ -87,7 +103,7 @@ export class RegisterComponent {
   generateUniqueKey() {
     const timestamp = new Date().getTime();
     const randomNumber = Math.floor(Math.random() * 1000);
-    return `cart-${timestamp}-${randomNumber}`;
+    return `customer-${timestamp}-${randomNumber}`;
   }
 
   checkPasswordMismatch(c: AbstractControl) {

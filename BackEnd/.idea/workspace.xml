@@ -5,41 +5,93 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9c8a6dba-7c8c-426b-ad82-e45f53e77f5c" name="Changes" comment="&quot;Trying to resolve conflict&quot;">
-      <change afterPath="$PROJECT_DIR$/customersapiservice/src/main/java/com/bej/customersapiservice/exception/SameEmailException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/order-service-api/src/main/java/com/bej/config/EmailConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/order-service-api/src/main/java/com/bej/exceptions/OrderNotFoundException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/order-service-api/src/main/java/com/bej/services/EmailService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/order-service-api/src/main/java/com/bej/services/GenerateEmail.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/order-service-api/src/main/java/com/bej/services/GenerateEmailImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12-06-2024_12_36_am_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12-06-2024_12_36_am__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ApiGateaway/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/ApiGateaway/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UserAuthenticationService/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/UserAuthenticationService/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/customersapiservice/src/main/java/com/bej/customersapiservice/controller/CustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/customersapiservice/src/main/java/com/bej/customersapiservice/controller/CustomerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/customersapiservice/src/main/java/com/bej/customersapiservice/respository/CustomerRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/customersapiservice/src/main/java/com/bej/customersapiservice/respository/CustomerRepo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/customersapiservice/src/main/java/com/bej/customersapiservice/services/EmailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/customersapiservice/src/main/java/com/bej/customersapiservice/services/EmailService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/customersapiservice/src/main/java/com/bej/customersapiservice/services/ICustomerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/customersapiservice/src/main/java/com/bej/customersapiservice/services/ICustomerService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/customersapiservice/src/main/java/com/bej/customersapiservice/services/ImplCustomerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/customersapiservice/src/main/java/com/bej/customersapiservice/services/ImplCustomerService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/2dc03b95-f5cb-4aff-b98c-f67a78e02c07.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/order-service-api/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/order-service-api/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/order-service-api/src/main/java/com/bej/controller/OrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service-api/src/main/java/com/bej/controller/OrderController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/order-service-api/src/main/java/com/bej/domain/CartDish.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service-api/src/main/java/com/bej/domain/CartDish.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/order-service-api/src/main/java/com/bej/domain/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service-api/src/main/java/com/bej/domain/Order.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/order-service-api/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/order-service-api/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/customersapiservice/src/main/java/com/bej/customersapiservice/emails/GenerateEmails.java" beforeDir="false" afterPath="$PROJECT_DIR$/customersapiservice/src/main/java/com/bej/customersapiservice/emails/GenerateEmails.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/customersapiservice/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/customersapiservice/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order-service-api/src/main/java/com/bej/services/GenerateEmailImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service-api/src/main/java/com/bej/services/GenerateEmailImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/angular.json" beforeDir="false" afterPath="$PROJECT_DIR$/../FrontEnd/DishDash/angular.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/admin-login/admin-login.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/admin-login/admin-login.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/admin-view/admin-view.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/admin-view/admin-view.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/admin-view/admin-view.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/admin-view/admin-view.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/admin-view/admin-view.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/admin-view/admin-view.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/cart/cart.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/cart/cart.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/cart/cart.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/cart/cart.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/cart/cart.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/cart/cart.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/checkout/checkout.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/checkout/checkout.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/checkout/checkout.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/checkout/checkout.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/edit-profile/edit-profile.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/edit-profile/edit-profile.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/edit-profile/edit-profile.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/edit-profile/edit-profile.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/footer/footer.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/footer/footer.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/footer/footer.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/footer/footer.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/footer/footer.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/footer/footer.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/login/login.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/login/login.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/login/login.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/login/login.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/login/login.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/login/login.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/myaddresses/myaddresses.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/myaddresses/myaddresses.component.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/myaddresses/myaddresses.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/myaddresses/myaddresses.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/myaddresses/myaddresses.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/myaddresses/myaddresses.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/navbar/navbar.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/navbar/navbar.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/navbar/navbar.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/navbar/navbar.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/navbar/navbar.component.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/navbar/navbar.component.spec.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/navbar/navbar.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/navbar/navbar.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/navigation/navigation.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/navigation/navigation.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/navigation/navigation.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/navigation/navigation.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/navigation/navigation.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/navigation/navigation.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/orderhistory/orderhistory.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/orderhistory/orderhistory.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/orderhistory/orderhistory.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/orderhistory/orderhistory.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/orderhistory/orderhistory.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/orderhistory/orderhistory.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/pagenotfound/pagenotfound.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/pagenotfound/pagenotfound.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/pagenotfound/pagenotfound.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/pagenotfound/pagenotfound.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/profile/profile.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/profile/profile.component.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/profile/profile.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/profile/profile.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/profile/profile.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/profile/profile.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/register/register.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/register/register.component.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/register/register.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/register/register.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/register/register.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/register/register.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Model/CartDish.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Model/CartDish.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/restaurant/restaurant.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/restaurant/restaurant.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/restaurantview/restaurantview.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/restaurantview/restaurantview.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/restaurantview/restaurantview.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/restaurantview/restaurantview.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/restaurantview/restaurantview.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/restaurantview/restaurantview.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/search/search.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/search/search.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/search/search.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/search/search.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/support-chat/support-chat.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/support-chat/support-chat.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/support-chat/support-chat.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Components/support-chat/support-chat.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Model/Order.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Model/Order.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Model/customer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/Model/customer.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/app-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/app-routing.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/app.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/services/cart-service.service.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/services/cart-service.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/services/chat-service.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/services/chat-service.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/services/order-service.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/services/order-service.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/services/restaurant.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/services/restaurant.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/services/user.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../FrontEnd/DishDash/src/app/services/user.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/assets/images/10f473b5-859f-421b-bcad-ccc1667b3fa3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/assets/images/13e33167-ea67-43fa-bc4b-90fd85fd9999.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/assets/images/1e8e1328-6e6a-4393-9982-4f91f697b346.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/assets/images/1eeeede7-1cf7-4bad-a6bc-4a4023a653b1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/assets/images/302912a6-b4d7-4586-803a-3167c47aed1d.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/assets/images/30b333e1-9b5a-4d38-bd6d-c144a9f8f760.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/assets/images/3138d0f2-ef30-4f47-9e77-9f538b7a685c.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/assets/images/4b1001eb-853b-4092-996b-509013af1198.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/assets/images/509a3744-5807-4b49-8e11-d0d0c1067215.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/assets/images/51be9e34-94d9-405e-83a1-59dbc5aaebe6.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/assets/images/5beea0e3-4934-4513-a3be-27e8e6d1de95.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/assets/images/76a6f7f7-808b-40af-b0ab-20b7ea21887d.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/assets/images/841494b8-8d27-4095-ab2f-206caffe92a9.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/assets/images/8439b2af-bfb4-4853-8846-f2a235b6fec7.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/assets/images/9ff9b2bd-87bf-4432-b155-38b015166cd3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/assets/images/a50d2338-c46a-4a0a-947e-dfd1f43892fd.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/assets/images/b145feb9-e3b2-4dc8-821c-1e4f237c710e.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/assets/images/c0b000a8-7d36-48fa-b25e-f2578b213683.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/assets/images/c6376712-8e7c-4187-afbb-87f263bcda01.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/assets/images/df226776-ba71-4cf6-88e8-7b170bc4fce4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/assets/images/df303369-fc28-4771-b8f5-e6258d023bab.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/assets/images/df8891bc-495c-4155-8f56-e8a8d9b4f57a.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/assets/images/ee8d1299-0989-45e1-9809-bfad64192691.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FrontEnd/DishDash/src/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../FrontEnd/DishDash/src/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,7 +139,7 @@
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;dev-v1&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Niit/Major_Capstone_project/major-capstone-project/major-capstone-project/BackEnd&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Avish Madaan/Desktop/NIIT/Phase2/Course14_Capstone_Project/major-capstone-project/FoodieApp/BackEnd&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
 }</component>
@@ -96,8 +148,8 @@
       <recent name="C:\Users\Avish Madaan\Desktop\NIIT\Phase 2\Course 14 - Capstone Project\major-capstone-project\FoodieApp" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.RestaurantServiceApplication">
-    <configuration name="ApiGateawayApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Compound.My Group">
+    <configuration name="ApiGateawayApplication" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.example.ApiGateaway.ApiGateawayApplication" />
       <module name="ApiGateaway" />
       <extension name="coverage">
@@ -110,7 +162,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CustomersapiserviceApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration name="CustomersapiserviceApplication" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.bej.customersapiservice.CustomersapiserviceApplication" />
       <module name="customersapiservice" />
       <extension name="coverage">
@@ -123,7 +175,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="OrderServiceApiApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration name="OrderServiceApiApplication" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.bej.OrderServiceApiApplication" />
       <module name="order-service-api" />
       <extension name="coverage">
@@ -136,7 +188,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="RestaurantServiceApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration name="RestaurantServiceApplication" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.example.RestaurantService.RestaurantServiceApplication" />
       <module name="RestaurantService" />
       <extension name="coverage">
@@ -149,7 +201,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="UserAuthenticationServiceApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration name="UserAuthenticationServiceApplication" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.example.UserAuthenticationService.UserAuthenticationServiceApplication" />
       <module name="UserAuthenticationService" />
       <extension name="coverage">
@@ -162,22 +214,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="My Group" type="CompoundRunConfigurationType">
+      <toRun name="ApiGateawayApplication" type="Application" />
+      <toRun name="CustomersapiserviceApplication" type="Application" />
+      <toRun name="OrderServiceApiApplication" type="Application" />
+      <toRun name="RestaurantServiceApplication" type="Application" />
+      <toRun name="UserAuthenticationServiceApplication" type="Application" />
+      <method v="2" />
+    </configuration>
     <list>
       <item itemvalue="Application.RestaurantServiceApplication" />
       <item itemvalue="Application.OrderServiceApiApplication" />
       <item itemvalue="Application.ApiGateawayApplication" />
       <item itemvalue="Application.UserAuthenticationServiceApplication" />
       <item itemvalue="Application.CustomersapiserviceApplication" />
+      <item itemvalue="Compound.My Group" />
     </list>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Application.RestaurantServiceApplication" />
-        <item itemvalue="Application.OrderServiceApiApplication" />
-        <item itemvalue="Application.CustomersapiserviceApplication" />
-        <item itemvalue="Application.UserAuthenticationServiceApplication" />
-        <item itemvalue="Application.ApiGateawayApplication" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">

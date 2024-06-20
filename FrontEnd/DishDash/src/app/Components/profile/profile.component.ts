@@ -5,8 +5,7 @@ import { customer } from '../../Model/customer';
 import { RouterService } from '../../services/router.service';
 import { FileHandle } from '../../Model/file-handle';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
-import { FormBuilder, FormGroup } from '@angular/forms';
-
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -34,15 +33,13 @@ export class ProfileComponent implements OnInit {
     private fb: FormBuilder
   ) {
     this.pictureForm = this.fb.group({
-      file: ['']
+      file: ['',Validators.required]
     });
   }
-
   onSubmit(): void {
     if (this.pictureForm.invalid) {
       return;
     }
-
     const imageFormData = this.prepareFormData(this.customerImage);
     this.userService.updateImage( imageFormData,this.cookieService.get('token')).subscribe({
       next: data => {
@@ -54,20 +51,26 @@ export class ProfileComponent implements OnInit {
         console.log('Error while uploading profile picture', err);
       }
     });
-  
+    this.resetForm();
   }
-
+  resetForm() {
+    this.pictureForm.reset();
+    this.profilePicture = false;
+    this.url = '';
+  }
   prepareFormData(customerImage: FileHandle): FormData {
     const formData = new FormData();
     formData.append('image', customerImage.file);
     return formData;
   }
-
-  // triggerFileInput() {
-  //   const fileInput = document.getElementById('fileInput') as HTMLInputElement;
-  //   fileInput.click();
-  // }
-
+  triggerFileInput() {
+    const fileInput = document.getElementById('fileInput') as HTMLInputElement;
+    if (fileInput) {
+        fileInput.click();
+    } else {
+        console.error('File input element not found');
+    }
+}
 
   onFileSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
@@ -79,7 +82,6 @@ export class ProfileComponent implements OnInit {
       };
       this.customerImage = fileHandle;
       this.pictureForm.patchValue({ file: file });
-
       const reader = new FileReader();
       reader.onload = (e: any) => {
         this.profilePictureUrl = this.sanitizer.bypassSecurityTrustUrl(e.target.result);
@@ -87,13 +89,11 @@ export class ProfileComponent implements OnInit {
       reader.readAsDataURL(file);
     }
   }
-
  
   ngOnInit(): void {
     this.fetchActiveCustomer();
    
   }
-
   fetchActiveCustomer() {
     this.customerJwt = this.cookieService.get("token");
     let pic:string=""
@@ -103,22 +103,16 @@ export class ProfileComponent implements OnInit {
         if(this.activeCustomer.customerProfilePic)
           {
             
-            this.url ="http://127.0.0.1:5500/DishDash/src/assets/images/"+`${this.activeCustomer.customerProfilePic}`
-
-            // pic=`<img id="profileImage" *ngIf="profilePicture" class="profile rounded-circle" src=${this.url}  alt="Profile Image">`
-            // const element=document.getElementById("profile-div");
-            // element.innerHTML=element.innerHTML+pic;
+            this.url ="http://127.0.0.1:5501/src/assets/profile-pictures/"+`${this.activeCustomer.customerProfilePic}`
             this.profilePicture=true;
             
           }
-
       },
       error: data => {
         console.log("Error while fetching customer");
       }
     });
   }
-
   logout() {
     this.userService.loggingOutFromProfile(true);
     this.routerService.navigateToHomePage();

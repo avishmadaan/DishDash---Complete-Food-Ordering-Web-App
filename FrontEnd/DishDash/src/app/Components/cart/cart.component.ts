@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { CartServiceService } from '../../services/cart-service.service';
 import { Cart } from '../../Model/Cart';
 import { CartDish } from '../../Model/CartDish';
 import { JsonPipe } from '@angular/common';
@@ -13,13 +12,14 @@ export class CartComponent implements OnInit {
 
   cart:any[] = [];
   total:number = 0;
+  cartEmptyErrorMessage:boolean = false;
 
   @Output()
  quantityChange:EventEmitter<number> = new EventEmitter<number>()
 
 
 
-  constructor(private cartService:CartServiceService) {}
+  constructor() {}
 
   ngOnInit(): void {
   this.loadCart();
@@ -28,6 +28,12 @@ export class CartComponent implements OnInit {
   loadCart() {
    
     this.cart = JSON.parse(localStorage.getItem('cart' || '[]'));
+    if(!this.cart || this.cart.length ==0) {
+      this.cartEmptyErrorMessage = true;
+    }
+    else {
+      this.cartEmptyErrorMessage = false;
+    }
     this.calculateTotal();
   }
 

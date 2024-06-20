@@ -66,10 +66,12 @@ export class SearchComponent implements OnInit {
   selectCity(city: string) {
     this.city = city;
     this.updateCity(this.city);
+    this.Search = '';
 
     // Fetch restaurants by the selected city
     this.resService.fetchRestaurantsByCity(this.city).subscribe({
       next: data => {
+       
         this.fliterRestaurants = data;
         this.sendFilteredData(this.fliterRestaurants);
       },

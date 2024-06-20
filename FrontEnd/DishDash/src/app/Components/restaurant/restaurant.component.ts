@@ -16,7 +16,7 @@ export class RestaurantComponent implements OnInit {
 
   // Pagination properties
   p: number = 1;  // Current page number
-  itemsPerPage: number = 7;  // Number of items per page
+  itemsPerPage: number = 6;  // Number of items per page
 
   constructor(private resService: RestaurantService) {}
 
@@ -37,6 +37,7 @@ export class RestaurantComponent implements OnInit {
             if (data) {
               this.restaurants = data;
               this.noRestuarant = false;
+              this.noSuchRestaurant = false;
               if(this.restaurants.length == 0) {
                 this.noSuchRestaurant = true;
               }
@@ -44,6 +45,7 @@ export class RestaurantComponent implements OnInit {
               this.noRestuarant = true;
               this.restaurants = [];
             }
+    
             this.spinnerVisible = false;
           },
           error: e => {

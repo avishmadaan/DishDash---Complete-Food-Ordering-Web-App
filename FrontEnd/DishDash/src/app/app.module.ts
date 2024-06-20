@@ -46,6 +46,8 @@ import { MatTabGroup, MatTabsModule } from '@angular/material/tabs';
 import { SpinnerComponent } from './Components/spinner/spinner.component';
 import { EditProfileComponent } from './Components/edit-profile/edit-profile.component';
 import { SupportChatComponent } from './Components/support-chat/support-chat.component';
+import { LegalComponent } from './Components/legal/legal.component';
+import { ConfirmDialogComponent } from './Components/confirm-dialog/confirm-dialog.component';
 
 @NgModule({
   declarations: [
@@ -76,7 +78,9 @@ import { SupportChatComponent } from './Components/support-chat/support-chat.com
     OrderSuccessComponent,
     AdminLoginComponent,
     AdminViewComponent,
-    SupportChatComponent
+    SupportChatComponent,
+    LegalComponent,
+    ConfirmDialogComponent
   ],
   imports: [
     BrowserModule,

@@ -22,7 +22,7 @@ export class NavigationComponent implements OnInit, OnDestroy {
 
   private intervalId: any;
   private routerEventsSubscription: Subscription = new Subscription(); // Initialize the subscription
-
+  showNavbar:boolean = true;
 
   constructor(
     private ipLocationService: IpLocationService, 
@@ -36,6 +36,12 @@ export class NavigationComponent implements OnInit, OnDestroy {
     // this.router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe(() => {
     //   window.scrollTo(0, 0);
     // });
+
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        this.showNavbar = !event.url.includes('/admin');
+      }
+    });
 
     this.router.events.subscribe( (event) =>{
       if (event instanceof NavigationEnd) {

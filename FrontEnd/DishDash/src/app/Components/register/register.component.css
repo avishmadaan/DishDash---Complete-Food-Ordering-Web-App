@@ -1,5 +1,5 @@
 .header {
-  padding: 1rem;
+  padding: 0.5rem; /* Reduced padding */
   border-bottom: 1px solid #dee2e6;
   display: flex;
   justify-content: flex-end;
@@ -18,15 +18,20 @@
 .regform {
   max-width: 400px;
   margin: 0 auto;
+  padding: 1rem; /* Reduced padding */
+}
+
+h4 {
+  font-size: 1.5rem; /* Slightly smaller headline */
 }
 
 .form-outline {
   position: relative;
-  margin-bottom: 1rem; /* Reduced margin for shorter form */
+  margin-bottom: 0.75rem; /* Reduced margin for more compact form */
 }
 
 .form-control {
-  padding: 0.75rem; /* Adjusted padding for smaller form */
+  padding: 0.5rem; /* Adjusted padding for smaller form */
   height: auto;
   border-radius: 0.25rem;
   border: 1px solid #ced4da;
@@ -44,12 +49,12 @@
 
 .button button {
   min-width: 100%;
-  padding: 0.75rem;
+  padding: 0.5rem; /* Reduced padding for button */
   font-size: 1rem;
 }
 
 .spinner {
-  margin-top: 1rem;
+  margin-top: 0.75rem; /* Reduced margin */
 }
 
 .text-danger {
@@ -60,4 +65,8 @@
 .alert {
   font-size: 0.9rem;
   margin-bottom: 1rem;
+}
+
+.register-message {
+  margin-top: 0.75rem ; /* Reduced margin */
 }

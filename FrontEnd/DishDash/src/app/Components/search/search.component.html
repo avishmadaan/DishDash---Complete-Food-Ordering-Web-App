@@ -17,7 +17,7 @@
       </ul>
     </div>
     <div class="search d-flex align-items-center flex-grow-1">
-      <input type="text" class="form-control" placeholder="Search for restaurant, cuisine or a dish" [(ngModel)]="Search" (input)="onSearch()" />
+      <input type="text" class="form-control" placeholder="Search for restaurant in your city..." [(ngModel)]="Search" (input)="onSearch()" (keydown.enter)= "onSearch()" />
     </div>
     <div class="button ms-3">
       <button class="btn btn-warning d-flex align-items-center" (click)="onSearch()">

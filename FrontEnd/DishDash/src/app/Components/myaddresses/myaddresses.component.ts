@@ -73,9 +73,9 @@ export class MyaddressesComponent implements OnInit {
 
   addressForm = this.fb.group({
     addressId: [],
-    address1: ['', Validators.required],
-    landMark: ['', Validators.required],
-    city: ['', Validators.required],
+    address1: ['', [Validators.required, Validators.minLength(5)]],
+    landMark: ['', [Validators.required, Validators.minLength(5)]],
+    city: ['', [Validators.required, Validators.pattern(/^[a-zA-Z ]+$/),  Validators.minLength(2)]],
     pincode: [null, [Validators.required, Validators.pattern('^[0-9]{6}$')]],
     currentLocation: []
   });

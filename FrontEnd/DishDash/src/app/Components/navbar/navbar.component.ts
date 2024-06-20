@@ -22,6 +22,9 @@ export class NavbarComponent implements OnInit {
   logoutMessageVisible: boolean = false;
   loading: boolean = false;
 
+  profilePicture:boolean = false; 
+  url:string  = `https://via.placeholder.com/50x50`//for fetching profile pic
+
   constructor(private cookieService: CookieService, private userService: UserService, public dialog: MatDialog, private routerService:RouterService) {}
   isLoggedIn: boolean = false;
 
@@ -115,6 +118,14 @@ export class NavbarComponent implements OnInit {
       next: data => {
         this.activeCustomer = data;
         this.isLoggedIn = true;
+        if(this.activeCustomer.customerProfilePic)
+          {
+            
+            this.url ="http://127.0.0.1:5501/src/assets/profile-pictures/"+`${this.activeCustomer.customerProfilePic}`
+      
+            this.profilePicture=true;
+            
+          }
       },
       error: e => {
         console.error(e);

@@ -4,14 +4,15 @@
   </button>
 </div>
 
-<div class="regform p-5">
+<div class="regform p-3">
+  <h4 class="text-center mb-3">Sign up </h4>
   <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
     <div *ngIf="formSubmitted && registerForm.invalid" class="alert alert-danger">
       Please fill out the form correctly.
     </div>
 
     <!-- Customer Name -->
-    <div class="form-outline mb-4">
+    <div class="form-outline mb-3">
       <input
         type="text"
         id="customerName"
@@ -33,7 +34,7 @@
     </div>
 
     <!-- Customer Email -->
-    <div class="form-outline mb-4">
+    <div class="form-outline mb-3">
       <input
         type="email"
         id="customerEmail"
@@ -52,7 +53,7 @@
     </div>
 
     <!-- Customer Password -->
-    <div class="form-outline mb-4">
+    <div class="form-outline mb-3">
       <input
         type="password"
         id="customerPassword"
@@ -71,7 +72,7 @@
     </div>
 
     <!-- Confirm Password -->
-    <div class="form-outline mb-4">
+    <div class="form-outline mb-3">
       <input
         type="password"
         id="confirmPassword"
@@ -79,11 +80,11 @@
         formControlName="confirmPassword"
         placeholder="Confirm Password"
       />
-      <div *ngIf="confirmPassword?.touched && confirmPassword?.invalid">
+      <div *ngIf="confirmPassword?.dirty ||  confirmPassword?.touched">
         <small *ngIf="confirmPassword?.errors?.['required']" class="text-danger">
           Confirm Password is required.
         </small>
-        <small *ngIf="registerForm.errors?.['passwordMismatch']" class="text-danger">
+        <small *ngIf="confirmPassword?.dirty && registerForm?.errors?.['passwordMismatch']" class="text-danger">
           Password and Confirm Password should match.
         </small>
       </div>
@@ -91,7 +92,7 @@
 
     <!-- Submit button -->
     <div class="button">
-      <button class="btn btn-primary btn-block mb-4" type="submit" [disabled]="registerForm.invalid">Register</button>
+      <button class="btn btn-primary btn-block mb-3" type="submit" [disabled]="registerForm.invalid">Register</button>
     </div>
 
     <!-- Spinner -->
@@ -99,4 +100,13 @@
       <mat-spinner></mat-spinner>
     </div>
   </form>
+
+  <!-- Success Message -->
+  <div class="register-message alert alert-success" *ngIf="registrationSuccess" role="alert">
+    Registered successfully!
+  </div>
+
+  <div class="register-message alert alert-success" *ngIf="emailAreadyExist" role="alert">
+    Email Already Exist
+  </div>
 </div>

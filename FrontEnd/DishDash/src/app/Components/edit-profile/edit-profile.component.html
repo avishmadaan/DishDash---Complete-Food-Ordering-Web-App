@@ -26,14 +26,18 @@
         <input matInput type="email" placeholder="email" formControlName="customerEmail" matTooltip="You can't edit this email">
       </mat-form-field>
 
-      <!-- Customer Phone -->
-      <mat-form-field appearance="outline">
-        <mat-label>Your Phone Number</mat-label>
-        <input matInput type="text" placeholder="Your Phone" formControlName="customerPhone">
-        <mat-error *ngIf="updateForm.get('customerPhone')?.hasError('required')">
-          Phone is required
-        </mat-error>
-      </mat-form-field>
+
+     <!-- Customer Phone -->
+     <mat-form-field appearance="outline">
+      <mat-label>Your Phone Number</mat-label>
+      <input matInput type="text" placeholder="Your Phone" formControlName="customerPhone">
+      <mat-error *ngIf="updateForm.get('customerPhone')?.hasError('required')">
+        Phone is required
+      </mat-error>
+      <mat-error *ngIf="updateForm.get('customerPhone').hasError('pattern')">
+        Enter a valid 10 digits phone number
+      </mat-error>
+    </mat-form-field>
 
       <button class="full-width btn btn-primary mb-4" type="submit" [disabled]="updateForm.invalid">Update Profile Info</button>
     </div>

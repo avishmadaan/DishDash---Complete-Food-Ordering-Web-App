@@ -1,6 +1,9 @@
+<!-- Updated HTML -->
 <div *ngIf="spinnerVisible; else content" class="spinner flex justify-content-center">
   <mat-spinner></mat-spinner>
 </div>
+
+
 
 <ng-template #content>
   <div class="restaurant-container">
@@ -12,6 +15,7 @@
             <img [src]="x" class="d-block w-100" alt="Restaurant Image">
           </div>
         </div>
+        
         <button class="carousel-control-prev" type="button" data-bs-target="#restaurantImagesCarousel" data-bs-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
           <span class="visually-hidden">Previous</span>
@@ -21,7 +25,9 @@
           <span class="visually-hidden">Next</span>
         </button>
       </div>
+      <div *ngIf="errorMessage" class="alert alert-info text-center ">{{errorMessage}}</div>
       <div class="restaurant-info">
+        
         <div class="info-left">
           <h1>{{ oneRestaurant.resName }}</h1>
           <div class="cuisines">
@@ -31,18 +37,21 @@
           <p class="description"><mat-icon>description</mat-icon>{{ oneRestaurant.resDescription }}</p>
         </div>
         <div class="info-right">
-          <span class="badge bg-success">{{ oneRestaurant.resRating }}</span>
-          <mat-icon class="fav" [class.favorited]="isFavorite" [fontIcon]="isFavorite ? 'favorite' : 'favorite_border'" (click)="toggleFav()"></mat-icon>
+          <span class="badge bg-success rating">{{ oneRestaurant.resRating }}</span>
+          <mat-icon class="fav" fontIcon='favorite' (click)="toggleFav()" *ngIf="isFavorite"></mat-icon>
+          <mat-icon class="favblack " fontIcon="favorite_border" (click)="toggleFav()" *ngIf="!isFavorite"></mat-icon>
         </div>
       </div>
     </div>
 
     <!-- Categories and Menu Section -->
     <div class="menu-section">
-      <div class="categories">
-        <h2>Categories</h2>
-        <div *ngFor="let category of categoryArray" class="category-item pointer" (click)="scrollToCategory(category[0])">
-          {{ category[0] }} ({{ category[1] }})
+      <div class="categories  ">
+        <div class="inside position-sticky">
+          <h2>Categories</h2>
+          <div *ngFor="let category of categoryArray" class="category-item pointer" (click)="scrollToCategory(category[0])">
+            {{ category[0] }} ({{ category[1] }})
+          </div>
         </div>
       </div>
       <div class="menu-items">
@@ -51,13 +60,13 @@
           <div *ngFor="let item of category[1]" class="menu-item">
             <div class="item-image">
               <img [src]="item.dishImage" alt="{{ item.dishName }}">
+              <span class="badge" [ngClass]="item.veg ? 'bg-success' : 'bg-danger'">{{ item.veg ? 'Veg' : 'Non-Veg' }}</span>
             </div>
             <div class="item-info">
               <h4>{{ item.dishName }}</h4>
               <p class="rating">{{ item.dishRating }} people rated</p>
               <p class="price">Rs {{ item.dishPrice }}/-</p>
               <p class="description">{{ item.dishDescription }}</p>
-              <span class="badge" [ngClass]="item.veg ? 'bg-success' : 'bg-danger'">{{ item.veg ? 'Veg' : 'Non-Veg' }}</span>
               <div class="add-to-cart">
                 <button class="btn btn-warning mt-2" *ngIf="!isInCart(item)" (click)="increaseCount(item)">Add +</button>
                 <div class="quantity-controls mt-2" *ngIf="isInCart(item)">

@@ -9,9 +9,12 @@
           <div class="form-group mb-3">
             <label for="name">Name</label>
             <input id="name" type="text" formControlName="name" class="form-control" />
-            <div *ngIf="checkoutForm.get('name').invalid && checkoutForm.get('name').touched" class="text-danger">
+            <div *ngIf="checkoutForm.get('name').hasError('required') && checkoutForm.get('name').touched" class="text-danger">
               Name is required.
             </div>
+            <div *ngIf="checkoutForm.get('name').hasError('minlength')" class="text-danger">
+              Enter atleast 3 characters
+          </div>
           </div>
   
           <div class="form-group mb-3">
@@ -25,6 +28,9 @@
             <div *ngIf="checkoutForm.get('phone').invalid && checkoutForm.get('phone').touched" class="text-danger">
               Phone Number is required.
             </div>
+            <div *ngIf="checkoutForm.get('phone').hasError('pattern')" class="text-danger">
+              Enter valid 10 digit phone number
+          </div>
           </div>
   
           <!-- Primary Address -->
@@ -39,8 +45,14 @@
           </div>
   
           <div class="no-address p-3 border rounded" *ngIf="!primaryAddress">
+           
             <p>No Saved Address</p>
             <a routerLink="/customer/profile/my-addresses">Create Your Address Here</a>
+
+            <div *ngIf="showAddressError" class="text-danger mt-2 d-flex align-items-center">
+              <mat-icon>error</mat-icon>
+              <span class="ms-2">Please select an address before placing the order.</span>
+            </div>
           </div>
   
           <!-- Payment Options -->
@@ -59,9 +71,20 @@
               <label class="form-check-label" for="upi">UPI</label>
             </div>
           </div>
-  
-          <button type="submit" class="btn btn-primary mt-4 w-100" [disabled]="checkoutForm.invalid">Place Order</button>
+          <div class="button p-0 m-0" (mouseenter)="checkAddressSelected()" >
+            <button type="submit" class="btn btn-primary w-100" [disabled]="checkoutForm.invalid || !primaryAddress || cartItems.length == 0 " >Place Order</button>
+          </div>
+
+          <div *ngIf="showCartErrorMessage" class="text-danger mt-2 d-flex align-items-center">
+            <mat-icon>error</mat-icon>
+            <span class="ms-2">Your Cart Is Empty</span>
+          </div>
+     
         </form>
+
+        
+
+      
 
           <!-- Spinner -->
     <div class="spinner flex justify-content-center" *ngIf="isLoadingSpinner">

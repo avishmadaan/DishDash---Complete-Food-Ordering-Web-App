@@ -20,6 +20,7 @@ export class NavbarComponent implements OnInit {
 
   logoutMessageVisible: boolean = false;
   loading: boolean = false;
+url: any;
 
   constructor(private cookieService: CookieService, private userService: UserService, public dialog: MatDialog) {}
   isLoggedIn: boolean = false;

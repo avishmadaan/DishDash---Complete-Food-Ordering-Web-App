@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { CartServiceService } from '../../services/cart-service.service';
 import { OrderServiceService } from '../../services/order-service.service';
 import { Order } from '../../Model/Order';
 import { CookieService } from 'ngx-cookie-service';
@@ -9,32 +8,37 @@ import { UserService } from '../../services/user.service';
 @Component({
   selector: 'app-orderhistory',
   templateUrl: './orderhistory.component.html',
-  styleUrl: './orderhistory.component.css'
+  styleUrls: ['./orderhistory.component.css'] // Ensure the correct key 'styleUrls'
 })
 export class OrderhistoryComponent implements OnInit {
 
-  orderHistory:Order[] = [];
-  orderIds:string[] = [];
-  activeCustomer:customer;
-  constructor(private orderService: OrderServiceService, private Cookieservice:CookieService, private userService:UserService) {}
+  orderHistory: Order[] = [];
+  orderIds: string[] = [];
+  activeCustomer: customer;
+  totalAmountSpent: number = 0;
+  expandedOrderId: string | null = null;
+
+  constructor(
+    private orderService: OrderServiceService, 
+    private cookieService: CookieService, 
+    private userService: UserService
+  ) {}
+
   ngOnInit(): void {
-    this.fetchActiveCustomer()
-  
-    
+    this.fetchActiveCustomer();
   }
 
   fetchActiveCustomer() {
-    const Jwt = this.Cookieservice.get('token')
+    const Jwt = this.cookieService.get('token');
     this.userService.fetchCustomerByJwt(Jwt).subscribe({
-      next:data => {
-        this.activeCustomer  = data;
-        this.fetchCustomerOrderIds()
+      next: data => {
+        this.activeCustomer = data;
+        this.fetchCustomerOrderIds();
       },
-      error:data => {
-        console.log("Error while fetching customer")
+      error: data => {
+        console.log("Error while fetching customer");
       }
-    })
-
+    });
   }
 
   fetchCustomerOrderIds() {
@@ -43,18 +47,25 @@ export class OrderhistoryComponent implements OnInit {
   }
 
   fetchingAllOrderHistory() {
-    for ( let orderId of this.orderIds) {
+    this.orderIds.forEach(orderId => {
       this.orderService.fetchingOneOrder(orderId).subscribe({
-        next:data => {
+        next: data => {
           console.log("Fetch Success");
           this.orderHistory.push(data);
+          this.calculateTotalAmountSpent();
         },
-        error:e => {
-          console.log("Error while fetching Order History")
+        error: e => {
+          console.log("Error while fetching Order History");
         }
-      })
-    }
+      });
+    });
   }
-  
 
+  toggleOrderDetails(orderId: string) {
+    this.expandedOrderId = this.expandedOrderId === orderId ? null : orderId;
+  }
+
+  calculateTotalAmountSpent() {
+    this.totalAmountSpent = this.orderHistory.reduce((acc, order) => acc + order.totalPrice, 0);
+  }
 }

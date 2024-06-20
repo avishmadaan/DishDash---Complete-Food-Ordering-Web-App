@@ -63,27 +63,37 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.address-card .card-body {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+.address-card .card-header {
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #ddd;
+  padding: 10px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
 }
 
-.primary-banner {
-  border-radius: 4px;
+.address-card .card-body {
+  padding: 20px;
 }
 
 .card-title {
   font-weight: bold;
   color: #333;
+  margin-bottom: 10px;
 }
 
 .card-text {
-  color: #777;
+  color: #555;
+  margin-bottom: 10px;
 }
 
-.card-text strong {
-  color: #333;
+.card-text mat-icon {
+  vertical-align: middle;
+  margin-right: 8px;
+  color: #6c757d;
+}
+
+.card-actions {
+  margin-top: 10px;
 }
 
 .btn {
@@ -94,14 +104,4 @@
   width: 100%;
   padding: 10px;
   font-size: 16px;
-}
-
-.mat-form-field {
-  background: #ffffff;
-  border-radius: 4px;
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
-}
-
-.mat-form-field-appearance-outline .mat-form-field-outline {
-  color: #ced4da;
 }

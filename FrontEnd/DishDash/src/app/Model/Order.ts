@@ -5,6 +5,8 @@ export class Order {
     orderId:string
     restaurantId:string
     customerId:string
+    customerName:string
+    customerEmail:string
     timeStamp:string
     totalPrice:number
     discount:number

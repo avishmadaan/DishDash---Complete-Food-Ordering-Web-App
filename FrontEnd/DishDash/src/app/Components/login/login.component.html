@@ -58,4 +58,8 @@
       <p>Not a member? <a class="pointer" (click)="openRegister()">Register</a></p>
     </div>
   </form>
+
+  <div class="login-message alert alert-success" *ngIf="loggedInSuccess" role="alert">
+    Logged in successfully!
+  </div>
 </div>

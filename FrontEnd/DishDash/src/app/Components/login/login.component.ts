@@ -5,6 +5,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { LoadingService } from '../../services/loading.service';
 import { RegisterComponent } from '../register/register.component';
+import { AuthserviceService } from '../../services/authservice.service';
 
 @Component({
   selector: 'app-login',
@@ -21,13 +22,15 @@ export class LoginComponent implements OnInit {
   customerJWT: string;
   errorMessage: string | null = null;
   isLoadingSpinner = false;
+  loggedInSuccess:boolean = false;
 
   constructor(
     private userService: UserService,
     private cookieService: CookieService,
     public dialog: MatDialog,
     public dialogRef: MatDialogRef<LoginComponent>,
-    public loadingSevice: LoadingService
+    public loadingSevice: LoadingService,
+    private authService:AuthserviceService
   ) {}
 
   ngOnInit(): void {
@@ -50,7 +53,13 @@ export class LoginComponent implements OnInit {
         this.customerJWT = data;
         this.cookieService.set("token", this.customerJWT);
         this.afterLogin();
-        this.closeDialoge();
+        
+        this.loggedInSuccess = true;
+        this.authService.navigateToRedirectUrl();
+        setTimeout(() => {
+          this.loggedInSuccess = false;
+          this.closeDialoge();
+        }, 1000)
       },
       error: e => {
         this.isLoadingSpinner = false;

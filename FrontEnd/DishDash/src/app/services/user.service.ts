@@ -19,7 +19,6 @@ export class UserService {
   tokenSubject = new BehaviorSubject<boolean>(this.hasToken());
 
   loggedOutFromProfileSubject = new Subject<boolean>();
-
   constructor(private http:HttpClient, private cookieservice:CookieService) {
     window.addEventListener('storage', () => {
       console.log('Token state changed');
@@ -38,7 +37,7 @@ export class UserService {
   }
 
   loginUser(data:customerLogin):Observable<string> {
-    return this.http.post("http://localhost:8081/api/v1/login", data,  { responseType: 'text' });
+    return this.http.post("http://localhost:9000/api/v1/login", data,  { responseType: 'text' });
   }
 
   //SendToNav
@@ -50,7 +49,7 @@ export class UserService {
 
   registerUser(customer:customer):Observable<customer>
   {
-    return this.http.post<customer>("http://localhost:8083/api/v2/register",customer);
+    return this.http.post<customer>("http://localhost:9000/api/v2/register",customer);
   }
 
   fetchCustomerByJwt(Jwt:any):Observable<customer> {
@@ -59,7 +58,7 @@ export class UserService {
       'Authorization': `Bearer ${Jwt}`
     });
 
-    return this.http.get<customer>('http://localhost:8083/api/v2/customers/eachcustomer',{ headers });
+    return this.http.get<customer>('http://localhost:9000/api/v2/customers/eachcustomer',{ headers });
   }
 
   fetchCustomerFavRestaurants(customerId:string):Observable<string> {
@@ -77,7 +76,7 @@ export class UserService {
       'Authorization': `Bearer ${Jwt}`
     });
 
-    return this.http.get<Array<string>>('http://localhost:8083/api/v2/customers/restaurant',{ headers });
+    return this.http.get<Array<string>>('http://localhost:9000/api/v2/customers/restaurant',{ headers });
   }
 
 
@@ -90,7 +89,7 @@ export class UserService {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${Jwt}`
     });
-    return this.http.put("http://localhost:8083/api/v2/customers/addfavres", resId, { headers, responseType:'text'})
+    return this.http.put("http://localhost:9000/api/v2/customers/addfavres", resId, { headers, responseType:'text'})
   }
 
   //Deleting Custoemer Fav from Backedn
@@ -107,7 +106,7 @@ export class UserService {
       params: params
     }
 
- return this.http.delete<boolean>("http://localhost:8082/api/v2/customers/deleterestaurant", options)
+ return this.http.delete<boolean>("http://localhost:9000/api/v2/customers/deleterestaurant", options)
 
   }
 
@@ -118,7 +117,7 @@ export class UserService {
       'Authorization': `Bearer ${Jwt}`
     });
 
-    return this.http.get<Array<address>>("http://localhost:8082/api/v2/customers/addresses/all", { headers })
+    return this.http.get<Array<address>>("http://localhost:9000/api/v2/customers/addresses/all", { headers })
 
   }  
 
@@ -131,7 +130,7 @@ export class UserService {
     'Authorization': `Bearer ${Jwt}`
   });
 
-  return this.http.put<address>("http://localhost:8082/api/v2/customers/addresses/addnew", newAddress, { headers })
+  return this.http.put<address>("http://localhost:9000/api/v2/customers/addresses/addnew", newAddress, { headers })
  }
 
  //Making Address Primary
@@ -141,7 +140,7 @@ export class UserService {
     'Authorization': `Bearer ${Jwt}`
   });
 
-  return this.http.put<address>("http://localhost:8082/api/v2/customers/addresses/makeitprimary", addressPrimary, { headers })
+  return this.http.put<address>("http://localhost:9000/api/v2/customers/addresses/makeitprimary", addressPrimary, { headers })
  }
 
 
@@ -152,7 +151,7 @@ export class UserService {
     'Authorization': `Bearer ${Jwt}`
   });
 
-  return this.http.delete<boolean>(`http://localhost:8082/api/v2/customers/deleteone/${addressId}`, { headers })
+  return this.http.delete<boolean>(`http://localhost:9000/api/v2/customers/deleteone/${addressId}`, { headers })
  }
 //Updating user through Profile Edit Tav
 
@@ -162,7 +161,7 @@ updateCustomer (Jwt:string,updatedCustomer:any):Observable<customer> {
     'Authorization': `Bearer ${Jwt}`
   });
 
-  return this.http.put<customer>("http://localhost:8082/api/v2/customers/update", updatedCustomer, { headers })
+  return this.http.put<customer>("http://localhost:9000/api/v2/customers/update", updatedCustomer, { headers })
 
 
 
@@ -171,7 +170,7 @@ updateCustomer (Jwt:string,updatedCustomer:any):Observable<customer> {
 //Fetching all customers for admin
 
 fetchAllCustomers():Observable<Array<customer>> {
-  return this.http.get<Array<customer>>("http://localhost:8082/api/v2/allCustomers")
+  return this.http.get<Array<customer>>("http://localhost:9000/api/v2/allCustomers")
 }
 
 //Uploading prifle picture
@@ -180,7 +179,7 @@ updateImage(picture:FormData,Jwt:string):Observable<any>{
   const headers = new HttpHeaders({
     'Authorization': `Bearer ${Jwt}`
   });
-  return this.http.post<FileHandle>("http://localhost:8082/api/v2/customers/upload/image",picture,{headers});
+  return this.http.post<FileHandle>("http://localhost:9000/api/v2/customers/upload/image",picture,{headers});
 }
 
 }

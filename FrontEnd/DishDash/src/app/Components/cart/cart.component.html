@@ -1,5 +1,5 @@
 <div class="cart-container">
-  <div *ngIf="cart.length > 0" class="details">
+  <div *ngIf="!cartEmptyErrorMessage" class="details">
     <h3 class="cart-title">Your Cart</h3>
     <div class="cart-items">
       <div *ngFor="let item of cart" class="cart-item">
@@ -26,7 +26,7 @@
     </div>
   </div>
 
-  <div *ngIf="cart.length === 0" class="cartempty">
+  <div *ngIf="cartEmptyErrorMessage" class="cartempty">
     <i class="fas fa-shopping-cart empty-cart-icon"></i>
     <h6>Your Cart Is Empty</h6>
   </div>
