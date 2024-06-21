@@ -22,7 +22,7 @@ export class AdminLoginComponent {
 
   loginUser() {
     if(this.adminLogin.customerEmail == "admin@dishdash.com" && this.adminLogin.customerPassword == "admin") {
-      this.cookieService.delete('token');
+      this.cookieService.delete('token', '/');
       this.cookieService.set("adminToken", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbkBkaXNoZGFzaC5jb20iLCJpYXQiOjE1MTYyMzkwMjJ9.TpKRb1haGxZmWTAjjlMvxyy8jMi6_w9YBlxNaVTtM04")
       this.isLoadingSpinner = true;
       setTimeout(() => {

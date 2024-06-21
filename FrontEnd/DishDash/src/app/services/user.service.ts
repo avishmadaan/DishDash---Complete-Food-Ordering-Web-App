@@ -17,6 +17,7 @@ export class UserService {
   logInSubject = new Subject<boolean>()
   listenLogin = new Subject<customerLogin>();
   tokenSubject = new BehaviorSubject<boolean>(this.hasToken());
+  profilePictureUpdate = new Subject<boolean>();
 
   loggedOutFromProfileSubject = new Subject<boolean>();
   constructor(private http:HttpClient, private cookieservice:CookieService) {
@@ -181,6 +182,15 @@ updateImage(picture:FormData,Jwt:string):Observable<any>{
   });
   return this.http.post<FileHandle>("http://localhost:9000/api/v2/customers/upload/image",picture,{headers});
 }
+
+
+
+//Profile Picture Update
+
+profilePictureUpdation() {
+  this.profilePictureUpdate.next(true);
+}
+
 
 }
 

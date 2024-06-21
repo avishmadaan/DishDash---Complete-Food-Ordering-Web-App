@@ -58,6 +58,10 @@ export class NavbarComponent implements OnInit {
         console.error(e);
       }
     });
+
+
+    //Profile Picture Update
+    this.profilePictureUpdateListen()
   }
 
   //Updating cart number
@@ -73,7 +77,7 @@ export class NavbarComponent implements OnInit {
 
   // Handle user logout and display loading indicator
   logout() {
-    this.cookieService.delete("token");
+    this.cookieService.delete("token", "/");
     this.loading = true;
     this.routerService.navigateToHomePage()
     setTimeout(() => {
@@ -131,5 +135,17 @@ export class NavbarComponent implements OnInit {
         console.error(e);
       }
     });
+  }
+
+
+  profilePictureUpdateListen() {
+    this.userService.profilePictureUpdate.subscribe({
+      next:data => {
+        this.fetchActiveCustomer();
+      },
+      error:e => {
+        console.log("Error while fetching profile pictures")
+      }
+    })
   }
 }

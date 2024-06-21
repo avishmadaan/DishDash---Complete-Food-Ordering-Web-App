@@ -114,6 +114,7 @@ export class MyaddressesComponent implements OnInit {
     this.userService.saveNewAddress(Jwt, addressNew).subscribe({
       next: data => {
         console.log("Address Added Successfully", data);
+       this.addressForm.reset();
         this.fetchAllAddresses();
       },
       error: e => {

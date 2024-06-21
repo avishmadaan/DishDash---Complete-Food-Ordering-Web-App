@@ -16,6 +16,8 @@ export class ProfileComponent implements OnInit {
   pictureForm: FormGroup;
   profilePictureUrl: SafeUrl | null = null;
   customerImage: FileHandle;
+  imageLoading:boolean=false
+  showPictureErr:boolean=false;
   
   activeCustomer: customer = {
     customerId: '',
@@ -40,15 +42,27 @@ export class ProfileComponent implements OnInit {
     if (this.pictureForm.invalid) {
       return;
     }
+    this.imageLoading=true;
     const imageFormData = this.prepareFormData(this.customerImage);
     this.userService.updateImage( imageFormData,this.cookieService.get('token')).subscribe({
       next: data => {
         console.log('Profile picture uploaded successfully', data);
+        this.userService.profilePictureUpdation();
         this.fetchActiveCustomer();
       
       },
       error: err => {
+        this.imageLoading=false;
+        this.profilePicture=true;
+        this.fetchActiveCustomer()
         console.log('Error while uploading profile picture', err);
+        if(err.error=="Only JPEG and PNG files are allowed."){
+        
+            this.showPictureErr=true;
+            setTimeout(()=> {
+              this.showPictureErr=false;
+            },3000)
+        }
       }
     });
     this.resetForm();
@@ -71,7 +85,6 @@ export class ProfileComponent implements OnInit {
         console.error('File input element not found');
     }
 }
-
   onFileSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files[0]) {
@@ -103,9 +116,10 @@ export class ProfileComponent implements OnInit {
         if(this.activeCustomer.customerProfilePic)
           {
             
-            this.url ="http://127.0.0.1:5501/src/assets/profile-pictures/"+`${this.activeCustomer.customerProfilePic}`
+            this.url ="http://127.0.0.1:5501/src/assets/profile-pictures/"+`${this.activeCustomer.customerProfilePic}`;
+
             this.profilePicture=true;
-            
+            this.imageLoading=false;
           }
       },
       error: data => {

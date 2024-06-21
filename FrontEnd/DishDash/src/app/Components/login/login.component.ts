@@ -51,9 +51,9 @@ export class LoginComponent implements OnInit {
         this.isLoadingSpinner = false;
         console.log("My JWT " + data);
         this.customerJWT = data;
-        this.cookieService.set("token", this.customerJWT);
+        this.cookieService.set("token", this.customerJWT, undefined, "/");
         this.afterLogin();
-        
+      
         this.loggedInSuccess = true;
         this.authService.navigateToRedirectUrl();
         setTimeout(() => {

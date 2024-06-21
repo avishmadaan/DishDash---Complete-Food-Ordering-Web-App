@@ -25,7 +25,7 @@ export class EditProfileComponent implements OnInit {
     customerId: [''],
     customerEmail: [{ value: '', disabled: true }],
     customerName: ['', [Validators.required, Validators.minLength(3), Validators.pattern(/^[a-zA-Z ]+$/)]],
-    customerPhone: ['', [Validators.required, Validators.pattern(/^[6-9]\d{9}$/)]] // Ensure phone number is initialized as an empty string
+    customerPhone: ['', [ Validators.pattern(/^[6-9]\d{9}$/)]] // Ensure phone number is initialized as an empty string
   });
 
   constructor(

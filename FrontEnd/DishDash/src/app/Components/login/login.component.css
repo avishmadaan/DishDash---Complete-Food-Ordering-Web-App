@@ -45,7 +45,11 @@
   }
   
   .spinner {
-    margin-top: 1rem;
+    /* margin-top: 0rem; */
+    height: 5vh;
+  }
+  .loadingSpinner {
+    max-height: 5vh;
   }
   
   .text-center {

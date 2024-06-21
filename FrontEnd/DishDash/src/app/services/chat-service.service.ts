@@ -13,7 +13,7 @@ export class ChatServiceService {
     
     const headers = new HttpHeaders({
       'Content-Type':'application/json',
-      'Authorization':'Bearer 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'
+      'Authorization':'Bearer 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'
     });
 
     const data = {

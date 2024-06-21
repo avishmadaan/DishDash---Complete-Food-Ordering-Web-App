@@ -47,6 +47,10 @@ h4 {
   text-align: center;
 }
 
+.loadingSpinner {
+  max-height: 5vh;
+}
+
 .button button {
   min-width: 100%;
   padding: 0.5rem; /* Reduced padding for button */

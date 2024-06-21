@@ -19,20 +19,20 @@ public class GenerateEmailImpl implements GenerateEmail {
 
         emailContent.append("Dear ").append(customerName).append(",\n\n")
                 .append("Thank you for ordering with DishDash. Your order has been successfully placed and is being processed. Below are the details of your order:\n\n")
-                .append("Order ID: ").append(orderId).append("\n")
+                .append("Order ID: ").append(orderId).append("\n\n")
                 .append("Order Details:\n")
                 .append("-------------------------------------------------\n")
-                .append(String.format("%-25s %-10s %-10s %-10s\n", "Dish Name", "Quantity", "Price", "Total"))
+                .append(String.format("%-30s %-10s %-15s %-15s\n", "Dish Name", "Quantity", "Price (INR)", "Total (INR)"))
                 .append("-------------------------------------------------\n");
 
         for (CartDish dish : order.getCartItems()) {
             double total = dish.getDishPrice() * dish.getQuantity();
-            emailContent.append(String.format("%-25s %-10d Rs %-10.2f Rs %-10.2f\n",
+            emailContent.append(String.format("%-30s %-10d %-15.2f %-15.2f\n",
                     dish.getDishName(), dish.getQuantity(), dish.getDishPrice(), total));
         }
 
         emailContent.append("-------------------------------------------------\n")
-                .append(String.format("%-25s %-10s %-10s Rs%-10.2f\n", "Total Amount:", "", "", order.getBillingPrice()))
+                .append(String.format("%-30s %-10s %-15s %-15.2f\n", "Total Amount:", "", "", order.getBillingPrice()))
                 .append("-------------------------------------------------\n\n")
                 .append("If you have any questions or need further assistance, please feel free to contact our customer support team.\n\n")
                 .append("Thank you for choosing DishDash!\n\n")
