@@ -1,0 +1,4 @@
+[build]
+  base    = "FrontEnd/DishDash"
+  publish = "FrontEnd/DishDash/dist/DishDash"
+  command = "npm install && ng build --configuration production"
