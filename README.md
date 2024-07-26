@@ -56,7 +56,23 @@ Version Control: GitHub
 ![Project Flow](FlowDiagram.png)
 
 ## Screenshots
-![Home Page 1](images/HomePage_1.png)
+![homepage](Screenshots/HomePage.png)
+![restaurant](Screenshots/Restaurants.png)
+![register view](Screenshots/RegisterView.png)
+![res view](Screenshots/Restaurant_view_1.png)
+![res view 2](Screenshots/Restaurant_view_2.png)
+![loginalert](Screenshots/LoginAlert.png)
+![welcome](Screenshots/Welcome_Email.png)
+![chat](Screenshots/Chatbot.png)
+![login view](Screenshots/LoginView.png)
+![profile tab](Screenshots/ProfileTab.png)
+![address](Screenshots/Address_Tab.png)
+![profile](Screenshots/Edit_Profile_Tab.png)
+![cart](Screenshots/Cart_Section.png)
+![multiple](Screenshots/Multiple_Res_Alert.png)
+![checkout](Screenshots/Checkout.png)
+![order success](Screenshots/Order_Success.png)
+![order email](Screenshots/Order_Success_Email.png)
 
 
 ## Installation
