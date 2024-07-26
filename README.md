@@ -1,26 +1,50 @@
 # DishDash
 
-Dish Dash is a web application designed to help users quickly find and order dairy products online. 
+DishDash is a sophisticated web application designed to simplify the process of finding and ordering dairy products online, offering a range of features to enhance user convenience and engagement.
 
 ## Features
-- Complete cart mangement feature
-- Automatic Location Detection
-- Dynamic Search feature
-- Notification services using emails
-- User authentication
-- Profile Updation and Mangements
-- Order History with Details available.
-- Implemented AI support to enhance user experience by providing personalized recommendations.
+
+✅ **Complete Cart Management:** Streamlined cart management system for efficient order handling.
+
+✅ **Automatic Location Detection:** Automatically detects user location for accurate restaurant options.
+
+✅ **Dynamic Search Functionality:** Enables users to search for products by name or category with ease.
+
+✅ **Notification Services:** Sends email notifications for order updates and other alerts.
+
+✅ **User Authentication:** Secure login and account management.
+
+✅ **Profile Management:** Allows users to update and manage their profiles.
+
+✅ **Order History:** Provides detailed records of past orders.
+
+✅ **AI-Powered Recommendations:** Enhances user experience with personalized product suggestions.
 
 ## Tech Stack
-- Angular ( Main FrontEnd Framework )
-- MongoDB & MySql ( Database )
-- Spring Boot
-- REST API's
-- Html
-- CSS
-- JavaScript
-- BootStrap
+
+### Front-End:
+Angular (Main Front-End Framework)
+
+HTML
+
+CSS
+
+JavaScript
+
+Bootstrap
+
+### Back-End:
+Spring Boot
+
+REST APIs
+
+### Databases:
+MongoDB
+
+MySQL
+
+### Additional:
+Version Control: GitHub
 
 ## Overview Video
 
@@ -59,6 +83,3 @@ To run this project locally, follow these steps:
 6. **Run your project on:**
 ```sh
    http://localhost:4200
-
-
-
