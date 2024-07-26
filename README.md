@@ -1,11 +1,64 @@
-DishDash – Food Ordering Website with AI SupportDishDash – Food Ordering Website with AI Support
+# DishDash
 
-👉Developed a comprehensive food ordering platform using Java, Spring Boot, Angular, MongoDB, and MySQL.
+Dish Dash is a web application designed to help users quickly find and order dairy products online. 
 
-👉Implemented AI support to enhance user experience by providing personalized recommendations.
+## Features
+- Complete cart mangement feature
+- Automatic Location Detection
+- Dynamic Search feature
+- Notification services using emails
+- User authentication
+- Profile Updation and Mangements
+- Order History with Details available.
+- Implemented AI support to enhance user experience by providing personalized recommendations.
 
-👉Created user authentication, customer orders systems, email services, and profile updating features.
+## Tech Stack
+- Angular ( Main FrontEnd Framework )
+- MongoDB & MySql ( Database )
+- Spring Boot
+- REST API's
+- Html
+- CSS
+- JavaScript
+- BootStrap
 
-👉Ensured a responsive and user-friendly interface, improving accessibility across devices.
+## Overview Video
 
-👉Collaborated with a small team to design and deploy the project, utilizing Git for version control and collaboration.
+## Architecture Diagram
+
+![Architecture](ArchitectureDiagram.png)
+
+## Project Flow
+![Project Flow](FlowDiagram.png)
+
+## Screenshots
+![Home Page 1](images/HomePage_1.png)
+
+
+## Installation
+To run this project locally, follow these steps:
+
+1. **Clone the repository:**
+   ```sh
+   git clone https://github.com/avishmadaan/DishDash-Complete_Food_Ordering_Web_App
+   
+2. **Navigate to the project directory:**
+    ```sh
+   cd FrontEnd/DishDash
+
+3. **Install dependencies**
+    ```sh
+    npm install
+
+4. **Start the development server:**
+    ```sh
+   ng serve
+
+5. **Start Backend servcies**
+
+6. **Run your project on:**
+```sh
+   http://localhost:4200
+
+
+
