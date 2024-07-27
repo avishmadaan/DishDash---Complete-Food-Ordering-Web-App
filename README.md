@@ -47,6 +47,7 @@ MySQL
 Version Control: GitHub
 
 ## Overview Video
+[![YouTube Video](https://img.youtube.com/vi/8FZFjvkYMn8/0.jpg)](https://www.youtube.com/watch?v=8FZFjvkYMn8&t=3s)
 
 ## Architecture Diagram
 
