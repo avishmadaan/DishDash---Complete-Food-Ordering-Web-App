@@ -18,7 +18,7 @@ DishDash is a sophisticated web application designed to simplify the process of 
 
 ✅ **Order History:** Provides detailed records of past orders.
 
-✅ **AI-Powered Recommendations:** Enhances user experience with personalized product suggestions.
+✅ **AI-Powered Support Chat:** Enhances user experience with AI powered chat.
 
 ## Tech Stack
 
